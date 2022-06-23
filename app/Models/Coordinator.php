@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Application;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Coordinator extends Model
 {
@@ -13,4 +14,9 @@ class Coordinator extends Model
         'name',
         'users_id'
     ];
+
+    public function coordinator(){
+
+        $this->hasMany(Application::class, 'coordinators_id');
+    }
 }

@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('gwa');
             $table->string('nationality');
             $table->string('city');
-            $table->string('documentary_req');
+            $table->string('registered_voter');
+            $table->string('documentary_requirement');
             $table->string('application_form');
             $table->timestamps();
         });

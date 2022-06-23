@@ -48,7 +48,7 @@ Route::post('/logout', [UserController::class, 'logout']);
  *
  */
 
-// Create Account of Coordinator
+// Create Account of Coordinator Form
 Route::get('/coordinator', [CoordinatorController::class, 'createForm'])->name('coordinator');
 // Create Accoount of Coordinator
 Route::post('/coordinator/create', [CoordinatorController::class, 'createAccount']);
@@ -56,4 +56,12 @@ Route::post('/coordinator/create', [CoordinatorController::class, 'createAccount
 Route::get('/application', [CoordinatorController::class, 'application'])->name('application');
 // Application Form
 Route::get('/application/create', [CoordinatorController::class, 'applicationCreate']);
+
+// Submission Table
+Route::get('/submission', [CoordinatorController::class, 'submission']);
+// Applicant Table
+Route::get('/applicant', [CoordinatorController::class, 'applicant']);
+
+// Application Store
+Route::post('/application/store', [CoordinatorController::class, 'applicationStore']);
 

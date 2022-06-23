@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Application;
 use App\Models\Coordinator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CoordinatorController extends Controller
 {
@@ -63,5 +66,59 @@ class CoordinatorController extends Controller
     public function applicationCreate(){
 
         return view('coordinator.create_application');
+    }
+
+    /**
+     * Application Store
+     */
+    public function applicationStore(Request $request){
+
+        $formFields = $request->validate([
+            'slots' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+
+            'description' => 'required',
+            'years_in_city' => 'required',
+            'family_income' => 'required',
+            'educational_attainment' => 'required',
+            'age' => 'required',
+            'gwa' => 'required',
+            'nationality' => 'required',
+            'city' => 'required',
+            'registered_voter' => 'required',
+            'documentary_requirement' => ['required', 'mimes:pdf'],
+            'application_form' => ['required', 'mimes:pdf']
+        ]);
+
+
+        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
+        $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
+
+        dd($formFields);
+
+        $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
+        $formFields['coordinators_id'] = $coordinatorID->id;
+        $formFields['status'] = "On-going";
+
+        // $application = Application::create($formFields);
+
+
+    }
+
+    /**
+    * Submission Table
+    */
+   public function submission(){
+
+       return view('coordinator.submission');
+   }
+
+       /**
+    * Submission Table
+    */
+    public function applicant(){
+
+        return view('coordinator.applicant');
     }
 }

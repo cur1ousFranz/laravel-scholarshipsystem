@@ -1,5 +1,5 @@
 <x-navbar>
     <x-layout>
-        dashboard
+        Applicant
     </x-layout>
 </x-navbar>

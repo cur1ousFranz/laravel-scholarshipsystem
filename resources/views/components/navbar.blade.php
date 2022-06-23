@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Document</title>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea#editor',
+            skin: 'bootstrap',
+            plugins: 'lists, link, image, media',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+            menubar: false,
+        });
+    </script>
 </head>
 
 <body>
@@ -54,10 +64,10 @@
                             <a class="nav-link text-white" href="/application">Application</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Submission</a>
+                            <a class="nav-link text-white" href="/submission">Submission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Applicant</a>
+                            <a class="nav-link text-white" href="/applicant">Applicant</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown show">
@@ -79,10 +89,10 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Home</a>
+                        <a class="nav-link text-white mt-1" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="">About</a>
+                        <a class="nav-link text-white mt-1" href="">About</a>
                     </li>
                     <li class="nav-item border border-2 border-warning ms-3">
                         <a class="nav-link text-white" href="/signup">Sign up</a>

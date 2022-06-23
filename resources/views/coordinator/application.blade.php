@@ -1,21 +1,21 @@
 <x-navbar>
     <x-layout>
-            <div class="d-flex justify-content-between">
-                <h4 class="mt-3">Application</h4>
-                <a href="/application/create" class="btn btn-outline-primary mt-2 mb-3">Create Application</a>
-            </div>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Slots</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{-- @if (!$student->isEmpty())
+        <div class="d-flex justify-content-between">
+            <h4 class="mt-3">Application</h4>
+            <a href="/application/create" class="btn btn-outline-primary mt-2 mb-3">Create Application</a>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Slots</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{-- @if (!$student->isEmpty())
                         @foreach ($student as $students)
                             <tr>
                                 <td>{{ $students->student_no }}</td>
@@ -37,8 +37,8 @@
                             <td colspan="8" class="text-center">No students yet</td>
                         </tr>
                     @endif --}}
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
         {{-- <div class="container mt-3">
             {{ $student->links('pagination::bootstrap-5') }}
