@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('years_in_city');
             $table->string('family_income');
             $table->string('educational_attainment');
-            $table->unsignedBigInteger('age');
             $table->string('gwa');
             $table->string('nationality');
             $table->string('city');

@@ -5,7 +5,7 @@
             <a href="/application/create" class="btn btn-outline-primary mt-2 mb-3">Create Application</a>
         </div>
         <table class="table table-striped table-bordered">
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th scope="col">Slots</th>
                     <th scope="col">Start Date</th>
@@ -14,21 +14,16 @@
                     <th scope="col">Details</th>
                 </tr>
             </thead>
-            <tbody>
-                {{-- @if (!$student->isEmpty())
-                        @foreach ($student as $students)
+            <tbody class="text-center">
+                @if (!$application->isEmpty())
+                        @foreach ($application as $applications)
                             <tr>
-                                <td>{{ $students->student_no }}</td>
-                                <td>{{ $students->firstname }}</td>
-                                <td>{{ $students->middlename }}</td>
-                                <td>{{ $students->lastname }}</td>
-                                <td>{{ $students->age }}</td>
-                                <td>{{ $students->gender }}</td>
-                                <td>{{ $students->course }}</td>
-                                <td>{{ $students->subject_count }}</td>
+                                <td>{{ $applications->slots }}</td>
+                                <td>{{ $applications->start_date }}</td>
+                                <td>{{ $applications->end_date }}</td>
+                                <td class="text-success">{{ $applications->status }}</td>
                                 <td>
-                                    <button class="btn btn-outline-success"><span><i class="bi bi-pencil-square"></i></span></button>
-                                    <button class="btn btn-outline-danger"><span><i class="bi bi-trash3-fill"></i></span></button>
+                                    <a href="">View</a> {{-- TODOOOOOO! --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -36,7 +31,7 @@
                         <tr>
                             <td colspan="8" class="text-center">No students yet</td>
                         </tr>
-                    @endif --}}
+                    @endif
             </tbody>
         </table>
 

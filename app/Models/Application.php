@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Coordinator;
+use App\Models\ApplicationDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,5 +22,10 @@ class Application extends Model
     public function application(){
 
         $this->belongsTo(Coordinator::class, 'coordinators_id');
+    }
+
+    public function applicationDetails(){
+
+        return $this->hasOne(ApplicationDetail::class, 'applications_id');
     }
 }

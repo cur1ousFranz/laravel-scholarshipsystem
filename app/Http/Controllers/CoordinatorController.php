@@ -7,6 +7,7 @@ use App\Models\Application;
 use App\Models\Coordinator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\ApplicationDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,7 +58,9 @@ class CoordinatorController extends Controller
      */
     public function application(){
 
-        return view('coordinator.application');
+        return view('coordinator.application', [
+            'application' => DB::table('applications')->get()
+        ]);
     }
 
     /**
@@ -69,7 +72,7 @@ class CoordinatorController extends Controller
     }
 
     /**
-     * Application Store
+     * Storing the applications created
      */
     public function applicationStore(Request $request){
 
@@ -82,7 +85,6 @@ class CoordinatorController extends Controller
             'years_in_city' => 'required',
             'family_income' => 'required',
             'educational_attainment' => 'required',
-            'age' => 'required',
             'gwa' => 'required',
             'nationality' => 'required',
             'city' => 'required',
@@ -91,18 +93,39 @@ class CoordinatorController extends Controller
             'application_form' => ['required', 'mimes:pdf']
         ]);
 
-
         $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
         $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
-
-        dd($formFields);
+        // dd($formFields);
 
         $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
         $formFields['coordinators_id'] = $coordinatorID->id;
         $formFields['status'] = "On-going";
 
-        // $application = Application::create($formFields);
+        $application = Application::create([
+            'coordinators_id' => $formFields['coordinators_id'],
+            'slots' => $formFields['slots'],
+            'start_date' => $formFields['start_date'],
+            'end_date' => $formFields['end_date'],
+            'status' => $formFields['status']
+        ]);
 
+        ApplicationDetail::create([
+
+            'applications_id' => $application->id,
+            'description' => $formFields['description'],
+            'years_in_city' => $formFields['years_in_city'],
+            'family_income' => $formFields['family_income'],
+            'educational_attainment' => $formFields['educational_attainment'],
+            'gwa' => $formFields['gwa'],
+            'nationality' => $formFields['nationality'],
+            'city' => $formFields['city'],
+            'registered_voter' => $formFields['registered_voter'],
+            'documentary_requirement' => $formFields['documentary_requirement'],
+            'application_form' => $formFields['application_form']
+
+        ]);
+
+        return redirect('/application');
 
     }
 

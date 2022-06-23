@@ -13,7 +13,6 @@
     <title>Document</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
     <script>
         tinymce.init({
             selector: 'textarea#editor',
