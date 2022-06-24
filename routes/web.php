@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\CoordinatorController;
 
 /*
@@ -47,21 +48,38 @@ Route::post('/logout', [UserController::class, 'logout']);
  * Coordinator Controller
  *
  */
-
 // Create Account of Coordinator Form
 Route::get('/coordinator', [CoordinatorController::class, 'createForm'])->name('coordinator');
 // Create Accoount of Coordinator
 Route::post('/coordinator/create', [CoordinatorController::class, 'createAccount']);
 // Application Page
-Route::get('/application', [CoordinatorController::class, 'application'])->name('application');
+Route::get('/applications', [CoordinatorController::class, 'application'])->name('application');
 // Application Form
-Route::get('/application/create', [CoordinatorController::class, 'applicationCreate']);
+Route::get('/applications/create', [CoordinatorController::class, 'applicationCreate']);
+// Application Store
+Route::post('/applications/store', [CoordinatorController::class, 'applicationStore']);
+// Application Edit View
+Route::get('/applications/{application}/edit', [CoordinatorController::class, 'applicationEdit']);
+// Application details update
+Route::put('/applications/{application}', [CoordinatorController::class, 'applicationDetailsUpdate']);
+// Application files update
+Route::put('/applications/{application}', [CoordinatorController::class, 'applicationFilesUpdate']);
 
 // Submission Table
-Route::get('/submission', [CoordinatorController::class, 'submission']);
+Route::get('/submissions', [CoordinatorController::class, 'submission']);
 // Applicant Table
-Route::get('/applicant', [CoordinatorController::class, 'applicant']);
+Route::get('/applicants', [CoordinatorController::class, 'applicant']);
 
-// Application Store
-Route::post('/application/store', [CoordinatorController::class, 'applicationStore']);
+/**
+ * Applicant Controller
+ *
+ *
+ */
+// Applicant profile page
+Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
+// Applicant edit profile page
+Route::get('/profiles/{profile}/edit', [ApplicantController::class, 'applicantProfileEdit']);
+// Applicant profile update
+Route::put('/profiles/{profile}', [ApplicantController::class, 'applicantProfileUpdate']);
+
 

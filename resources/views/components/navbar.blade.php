@@ -45,7 +45,7 @@
                                 </a>
 
                                 <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="/profile">Profile</a>
                                     <div class="dropdown-divider"></div>
                                     <form action="/logout" method="post" class="dropdown-item">
                                         @csrf
@@ -60,13 +60,13 @@
                             <a class="nav-link text-white" href="/dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/application">Application</a>
+                            <a class="nav-link text-white" href="/applications">Application</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/submission">Submission</a>
+                            <a class="nav-link text-white" href="/submissions">Submission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/applicant">Applicant</a>
+                            <a class="nav-link text-white" href="/applicants">Applicant</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown show">

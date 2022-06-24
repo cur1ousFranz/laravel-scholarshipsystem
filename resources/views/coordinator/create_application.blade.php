@@ -3,7 +3,7 @@
         <div class="container-fluid d-flex justify-content-center mb-5">
             <div class="card w-75">
                 <div class="card-body border-top border-top-4 border-primary">
-                    <form action="/application/store" method="post" enctype="multipart/form-data">
+                    <form action="/applications/store" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <h2 class="text-center">Create Application</h2>

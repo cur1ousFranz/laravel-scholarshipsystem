@@ -2,7 +2,7 @@
     <x-layout>
         <div class="d-flex justify-content-between">
             <h4 class="mt-3">Application</h4>
-            <a href="/application/create" class="btn btn-outline-primary mt-2 mb-3">Create Application</a>
+            <a href="/applications/create" class="btn btn-outline-primary mt-2 mb-3">Create Application</a>
         </div>
         <table class="table table-striped table-bordered">
             <thead class="text-center">
@@ -23,7 +23,7 @@
                                 <td>{{ $applications->end_date }}</td>
                                 <td class="text-success">{{ $applications->status }}</td>
                                 <td>
-                                    <a href="">View</a> {{-- TODOOOOOO! --}}
+                                    <a href="/applications/{{ $applications->id }}/edit">View</a> {{-- TODOOOOOO! --}}
                                 </td>
                             </tr>
                         @endforeach

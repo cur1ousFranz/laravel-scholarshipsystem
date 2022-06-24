@@ -130,6 +130,85 @@ class CoordinatorController extends Controller
     }
 
     /**
+     * Show to edit of application form
+     */
+    public function applicationEdit(Application $application){
+
+        $applicationDetail = DB::table('application_details')->get();
+
+        return view('coordinator.edit_application', [
+            'application' => $application,
+            'applicationDetail' => $applicationDetail
+        ]);
+    }
+
+    /**
+     * Update the details application form
+     */
+    public function applicationDetailsUpdate(Request $request, Application $application){
+
+        $formFields = $request->validate([
+            'slots' => 'required',
+            'end_date' => 'required',
+
+            'description' => 'required',
+            'years_in_city' => 'required',
+            'family_income' => 'required',
+            'educational_attainment' => 'required',
+            'gwa' => 'required',
+            'nationality' => 'required',
+            'city' => 'required',
+            'registered_voter' => 'required'
+        ]);
+
+        // dd($applicationDetail);
+
+        $application->update([
+            'slots' => $formFields['slots'],
+            'end_date' => $formFields['end_date']
+        ]);
+
+
+        ApplicationDetail::where('applications_id', $application->id)->update([
+
+            'description' => $formFields['description'],
+            'years_in_city' => $formFields['years_in_city'],
+            'family_income' => $formFields['family_income'],
+            'educational_attainment' => $formFields['educational_attainment'],
+            'gwa' => $formFields['gwa'],
+            'nationality' => $formFields['nationality'],
+            'city' => $formFields['city'],
+            'registered_voter' => $formFields['registered_voter']
+        ]);
+
+        return back();
+
+    }
+
+    /**
+     * Update the files application form
+     */
+    public function applicationFilesUpdate(Request $request, Application $application){
+
+        $formFields = $request->validate([
+
+            'documentary_requirement' => ['sometimes', 'mimes:pdf'],
+            'application_form' => ['sometimes', 'mimes:pdf']
+        ]);
+
+        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
+        $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
+
+        ApplicationDetail::where('applications_id', $application->id)->update([
+
+            'documentary_requirement' => $formFields['documentary_requirement'],
+            'application_form' => $formFields['application_form']
+        ]);
+
+        return back();
+    }
+
+    /**
     * Submission Table
     */
    public function submission(){
