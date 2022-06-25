@@ -1,7 +1,5 @@
 <x-navbar>
-
     <x-layout>
-        Applicant
-    </x-layout>
 
+    </x-layout>
 </x-navbar>

@@ -6,9 +6,11 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <div class="d-flex flex-column align-items-center text-center p-3">
                                 <img class="rounded-circle" width="150px"
                                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -32,7 +34,8 @@
                                                     <h6>First Name</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text" id="first_name"
-                                                    name="first_name" value="{{ old('first_name') }}">
+                                                    name="first_name"
+                                                    value="{{ old('first_name') ?? $applicant->first_name }}">
 
                                                 @error('first_name')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -44,7 +47,8 @@
                                                     <h6>Middle Name</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text" id="middle_name"
-                                                    name="middle_name" value="{{ old('middle_name') }}">
+                                                    name="middle_name"
+                                                    value="{{ old('middle_name') ?? $applicant->middle_name }}">
 
                                                 @error('middle_name')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -56,7 +60,8 @@
                                                     <h6>Last Name</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text" id="last_name"
-                                                    name="last_name" value="{{ old('last_name') }}">
+                                                    name="last_name"
+                                                    value="{{ old('last_name') ?? $applicant->last_name }}">
 
                                                 @error('last_name')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -71,10 +76,11 @@
                                                         </label>
                                                         <select class="form-select form-control" name="age">
                                                             <option selected disabled>Select</option>
-                                                            @for ($i = 17; $i <= 25; $i++)
-                                                                <option value="{{ $i }}">{{ $i }}
-                                                                </option>
-                                                            @endfor
+                                                            @foreach ($age as $ages)
+                                                                <option
+                                                                    {{ $applicant->age == $ages ? 'selected' : '' }} value="{{ $ages }}">
+                                                                    {{ $ages }}</option>
+                                                            @endforeach
                                                         </select>
 
                                                         @error('age')
@@ -90,8 +96,8 @@
                                                         </label>
                                                         <select class="form-select form-control" name="gender">
                                                             <option selected disabled>Select</option>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
+                                                            <option {{ $applicant->gender === 'Male' ? 'selected' : '' }} value="Male">Male</option>
+                                                            <option {{ $applicant->gender === 'Female' ? 'selected' : '' }} value="Female">Female</option>
                                                         </select>
 
                                                         @error('gender')
@@ -109,10 +115,18 @@
                                                         </label>
                                                         <select class="form-select form-control" name="civil_status">
                                                             <option selected disabled>Select</option>
-                                                            <option value="Single">Single</option>
-                                                            <option value="Married">Married</option>
-                                                            <option value="Widowed">Widowed </option>
-                                                            <option value="Divorced">Divorced</option>
+                                                            <option
+                                                                {{ $applicant->civil_status === 'Single' ? 'selected' : '' }}
+                                                                value="Single">Single</option>
+                                                            <option
+                                                                {{ $applicant->civil_status === 'Married' ? 'selected' : '' }}
+                                                                value="Married">Married</option>
+                                                            <option
+                                                                {{ $applicant->civil_status === 'Widowed' ? 'selected' : '' }}
+                                                                value="Widowed">Widowed </option>
+                                                            <option
+                                                                {{ $applicant->civil_status === 'Divorced' ? 'selected' : '' }}
+                                                                value="Divorced">Divorced</option>
                                                         </select>
 
                                                         @error('civil_status')
@@ -128,7 +142,9 @@
                                                         </label>
                                                         <select class="form-select form-control" name="nationality">
                                                             <option selected disabled>Select</option>
-                                                            <option value="filipino">Filipino</option>
+                                                            <option
+                                                                {{ $applicant->nationality === 'Filipino' ? 'selected' : '' }}
+                                                                value="Filipino">Filipino</option>
                                                         </select>
 
                                                         @error('nationality')
@@ -144,9 +160,16 @@
                                                 </label>
                                                 <select class="form-select form-control" name="educational_attainment">
                                                     <option selected disabled>Select</option>
-                                                    <option value="SHS">Senior Highschool Graduate</option>
-                                                    <option value="ALS">ALS Graduate</option>
-                                                    <option value="College Level">College Level</option>
+                                                    <option
+                                                        {{ $applicant->educational_attainment === 'SHS' ? 'selected' : '' }}
+                                                        value="SHS">Senior Highschool Graduate</option>
+                                                    <option
+                                                        {{ $applicant->educational_attainment === 'ALS' ? 'selected' : '' }}
+                                                        value="ALS">ALS Graduate</option>
+                                                    <option
+                                                        {{ $applicant->educational_attainment === 'College Level' ? 'selected' : '' }}
+                                                        value="College Level">College Level</option>
+
                                                 </select>
 
                                                 @error('educational_attainment')
@@ -160,7 +183,7 @@
                                                 </label>
                                                 <input class="form-control form-control" type="text"
                                                     id="desired_school" name="desired_school"
-                                                    value="{{ old('desired_school') }}">
+                                                    value="{{ old('desired_school') ?? $school->desired_school }}">
 
                                                 @error('desired_school')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -173,7 +196,7 @@
                                                 </label>
                                                 <input class="form-control form-control" type="text"
                                                     id="school_last_attended" name="school_last_attended"
-                                                    value="{{ old('school_last_attended') }}">
+                                                    value="{{ old('school_last_attended') ?? $school->school_last_attended }}">
 
                                                 @error('school_last_attended')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -188,8 +211,12 @@
                                                         </label>
                                                         <select class="form-select form-control" name="hei_type">
                                                             <option selected disabled>Select</option>
-                                                            <option value="Public">Public</option>
-                                                            <option value="Private">Private</option>
+                                                            <option
+                                                                {{ $school->hei_type === 'Public' ? 'selected' : '' }}
+                                                                value="Public">Public</option>
+                                                            <option
+                                                                {{ $school->hei_type === 'Private' ? 'selected' : '' }}
+                                                                value="Private">Private</option>
                                                         </select>
 
                                                         @error('hei_type')
@@ -205,7 +232,7 @@
                                                         </label>
                                                         <input class="form-control form-control" type="int"
                                                             id="gwa" name="gwa"
-                                                            value="{{ old('gwa') }}"
+                                                            value="{{ old('gwa') ?? $applicant->gwa }}"
                                                             onkeypress="return /[0-9.]/i.test(event.key)"
                                                             maxlength="5">
 
@@ -228,8 +255,8 @@
                                                 <select class="form-select form-control" name="course_name">
                                                     <option selected disabled>Select</option>
                                                     @foreach ($course as $courses)
-                                                        <option value="{{ $courses->course_name }}">
-                                                            {{ $courses->course_name }}</option>
+                                                        <option {{ $applicant->courses_id == $courses->id ? 'selected' : '' }}
+                                                            value="{{ $courses->id }}"> {{ $courses->course_name }} </option>
                                                     @endforeach
                                                 </select>
 
@@ -248,14 +275,13 @@
                                                     </div>
                                                     <input class="form-control form-control" type="text"
                                                         id="contact_number" name="contact_number"
-                                                        value="{{ old('contact_number') }}"
+                                                        value="{{ old('contact_number') ?? $contact->contact_number }}"
                                                         onkeypress="return /[0-9]/i.test(event.key)" maxlength="11">
+                                                </div>
 
-                                                    </div>
-
-                                                    @error('contact_number')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
+                                                @error('contact_number')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="mt-2">
@@ -263,7 +289,7 @@
                                                     <h6>Email</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="email"
-                                                    id="email" name="email" value="{{ old('email') }}">
+                                                    id="email" name="email" value="{{ old('email') ?? $contact->email }}">
 
                                                 @error('email')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -279,7 +305,8 @@
                                                         <select class="form-select form-control" name="years_in_city">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 10; $i++)
-                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                <option {{ $applicant->years_in_city == $i ? 'selected' : '' }}
+                                                                    value="{{ $i }}"> {{ $i }}</option>
                                                             @endfor
                                                         </select>
 
@@ -295,10 +322,10 @@
                                                         </label>
                                                         <select class="form-select form-control" name="family_income">
                                                             <option selected disabled>Select</option>
-                                                            <option value="8000">8,000 PHP</option>
-                                                            <option value="12000">12,000 PHP</option>
-                                                            <option value="16000">16,000 PHP</option>
-                                                            <option value="20000">20,000 PHP</option>
+                                                            <option {{ $applicant->family_income == 8000 ? 'selected' : '' }} value="8000">8,000 PHP</option>
+                                                            <option {{ $applicant->family_income == 12000 ? 'selected' : '' }} value="12000">12,000 PHP</option>
+                                                            <option {{ $applicant->family_income == 16000 ? 'selected' : '' }} value="16000">16,000 PHP</option>
+                                                            <option {{ $applicant->family_income == 20000 ? 'selected' : '' }} value="20000">20,000 PHP</option>
                                                         </select>
 
                                                         @error('family_income')
@@ -313,7 +340,7 @@
                                                     <h6>Street</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="street" name="street" value="{{ old('street') }}">
+                                                    id="street" name="street" value="{{ old('street') ?? $address->street }}">
 
                                                 @error('street')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -325,7 +352,7 @@
                                                     <h6>Barangay</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="barangay" name="barangay" value="{{ old('barangay') }}">
+                                                    id="barangay" name="barangay" value="{{ old('barangay') ?? $address->barangay }}">
 
                                                 @error('barangay')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -337,7 +364,7 @@
                                                     <h6>City</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="city" name="city" value="{{ old('city') }}">
+                                                    id="city" name="city" value="{{ old('city') ?? $address->city }}">
 
                                                 @error('city')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -349,7 +376,7 @@
                                                     <h6>Province</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="province" name="province" value="{{ old('province') }}">
+                                                    id="province" name="province" value="{{ old('province') ?? $address->province }}">
 
                                                 @error('province')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -366,7 +393,8 @@
                                                         <select class="form-select form-control" name="region">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 12; $i++)
-                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                <option {{ $address->region == $i ? 'selected' : '' }} value="{{ $i }}">
+                                                                    {{ $i }}</option>
                                                             @endfor
                                                         </select>
 
@@ -383,7 +411,8 @@
                                                         </label>
                                                         <input class="form-control form-control" type="text"
                                                             id="zipcode" name="zipcode"
-                                                            value="{{ old('zipcode') }}" onkeypress="return /[0-9]/i.test(event.key)"
+                                                            value="{{ old('zipcode') ?? $address->zipcode }}"
+                                                            onkeypress="return /[0-9]/i.test(event.key)"
                                                             maxlength="4">
 
                                                         @error('zipcode')

@@ -67,7 +67,7 @@ class UserController extends Controller
         if(Auth::attempt($formFields)){
             if($user->role == "applicant"){
                 $request->session()->regenerate();
-                return redirect('/home');
+                return redirect('/');
             }
         }
 

@@ -12,7 +12,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Document</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: 'textarea#editor',
@@ -26,22 +27,43 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top border-bottom">
         <div class="container ">
 
-            <a class="navbar-brand" href="/">Navbar</a>
+            <a class="navbar-brand" href="/">Edukar Scholarship Applicant Management System</a>
             <ul class="navbar-nav">
                 {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
                 @auth
                     @if (auth()->user()->role == 'applicant')
+
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="">Home</a>
+                            <a class="btn nav-link text-white" href="/">
+                                <i class="bi bi-house-door" style="font-size: 20px"></i></a>
                         </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item mt-1">
 
                             <div class="dropdown show">
                                 <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
+                                    <i class="bi bi-bell" style="font-size: 19px"></i>
+                                </a>
+
+                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                    ...
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item mt-2">
+
+                            <div class="dropdown show">
+                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    <?php
+                                    $applicant = Illuminate\Support\Facades\DB::table('applicants')
+                                        ->where('users_id', auth()->user()->id)
+                                        ->first();
+                                    echo $applicant->first_name;
+                                    ?><i class="ms-1 bi bi-caret-down-fill"></i>
                                 </a>
 
                                 <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
@@ -87,12 +109,6 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item">
-                        <a class="nav-link text-white mt-1" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white mt-1" href="">About</a>
-                    </li>
                     <li class="nav-item border border-2 border-warning ms-3">
                         <a class="nav-link text-white" href="/signup">Sign up</a>
                     </li>

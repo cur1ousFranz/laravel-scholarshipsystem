@@ -7,22 +7,11 @@ use Illuminate\Http\Request;
 class ApplicationController extends Controller
 {
     //
-        /**
-     * Application Store
+    /**
+     * Applicaiton Form
      */
-    public function applicationStore(Request $request){
+    public function apply(){
 
-        $formFields = $request->validate([
-            'slots' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required'
-        ]);
-
-        $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
-        $formFields['coordinators_id'] = $coordinatorID->id;
-        $formFields['status'] = "On-going";
-
-        dd($formFields);
-
+        return view('applicant.apply');
     }
 }

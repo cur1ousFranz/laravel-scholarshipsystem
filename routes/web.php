@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CoordinatorController;
 
 /*
@@ -18,15 +19,12 @@ use App\Http\Controllers\CoordinatorController;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('guest');
+});
 
 Route::get('/signup', function () {
     return view('signup');
 })->middleware('guest');
 
-Route::get('/home', function () {
-    return view('applicant.home');
-})->name('home')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('coordinator.dashboard');
@@ -73,7 +71,6 @@ Route::get('/applicants', [CoordinatorController::class, 'applicant']);
 /**
  * Applicant Controller
  *
- *
  */
 // Applicant profile page
 Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
@@ -81,5 +78,13 @@ Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
 Route::get('/profiles/{profile}/edit', [ApplicantController::class, 'applicantProfileEdit']);
 // Applicant profile update
 Route::put('/profiles/{profile}', [ApplicantController::class, 'applicantProfileUpdate']);
+
+/**
+ * Application Controller
+ *
+ */
+// Application Form
+Route::get('/apply', [ApplicationController::class, 'apply'])->name('apply');
+
 
 

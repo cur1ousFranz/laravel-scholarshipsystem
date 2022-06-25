@@ -6,9 +6,28 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                <img class="rounded-circle" width="150px"
+                            <div class="d-flex flex-column align-items-center text-center py-3">
+                                <img class="rounded-circle mb-2" width="150px"
                                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                <div class="container-fluid me-5">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-person-square"></i>
+                                        </div>
+                                        <div class="col-10 mt-1 ">
+                                            <h6 class="float-start">{{ auth()->user()->username }}</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="col-10 mt-1">
+                                            <h6 class="float-start">{{ $contact->email }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +50,8 @@
                                                 <h6>First Name</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="first_name"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $applicant->first_name }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -39,8 +59,8 @@
                                                 <h6>Middle Name</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="middle_name"
-                                                name="middle_name" value="" style="background-color: #fff;"
-                                                readonly>
+                                                value="{{ $applicant->middle_name }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -48,8 +68,8 @@
                                                 <h6>Last Name</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="last_name"
-                                                name="last_name" value="" style="background-color: #fff;"
-                                                readonly>
+                                                value="{{ $applicant->last_name }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="row mt-2">
@@ -59,8 +79,8 @@
                                                         <h6>Age</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="age" name="age" value=""
-                                                        style="background-color: #fff;" readonly>
+                                                        id="age" value="{{ $applicant->age }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
 
@@ -70,8 +90,8 @@
                                                         <h6>Gender</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="gender" value="" style="background-color: #fff;"
-                                                        readonly>
+                                                        id="gender" value="{{ $applicant->gender }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,8 +103,8 @@
                                                         <h6>Civil Status</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="civil_status" value="" style="background-color: #fff;"
-                                                        readonly>
+                                                        id="civil_status" value="{{ $applicant->civil_status }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
 
@@ -94,8 +114,8 @@
                                                         <h6>Nationality</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="nationality" value="" style="background-color: #fff;"
-                                                        readonly>
+                                                        id="nationality" value="{{ $applicant->nationality }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,8 +125,9 @@
                                                 <h6>Educational Attainment</h6>
                                             </label>
                                             <input class="form-control form-control" type="text"
-                                                id="educational_attainment" value=""
-                                                style="background-color: #fff;" readonly>
+                                                id="educational_attainment"
+                                                value="{{ $applicant->educational_attainment }}"
+                                                style="background-color: #fff;" disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -114,7 +135,8 @@
                                                 <h6>Desired School</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="desired_school"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $school->desired_school }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -122,8 +144,8 @@
                                                 <h6>School Last Attended</h6>
                                             </label>
                                             <input class="form-control form-control" type="text"
-                                                id="school_last_attended" value="" style="background-color: #fff;"
-                                                readonly>
+                                                id="school_last_attended" value="{{ $school->school_last_attended }}"
+                                                style="background-color: #fff;" disabled>
                                         </div>
 
                                         <div class="row mt-2">
@@ -133,8 +155,8 @@
                                                         <h6>HEI Type</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="hei_type" name="hei_type" value=""
-                                                        style="background-color: #fff;" readonly>
+                                                        id="hei_type" value="{{ $school->hei_type }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
 
@@ -144,8 +166,8 @@
                                                         <h6>General Weighted Avg</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="gwa" name="gwa" value=""
-                                                        style="background-color: #fff;" readonly>
+                                                        id="gwa" value="{{ $applicant->gwa }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
 
@@ -160,7 +182,11 @@
                                                 <h6>Course</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="course_name"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="<?php foreach ($course as $courses) {
+                                                    if ($courses->id == $applicant->courses_id) {
+                                                        echo $courses->course_name;
+                                                    }
+                                                } ?>" style="background-color: #fff;" disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -168,8 +194,8 @@
                                                 <h6>Contact Number</h6>
                                             </label>
                                             <input class="form-control form-control" type="text"
-                                                id="contact_number" value="" style="background-color: #fff;"
-                                                readonly>
+                                                id="contact_number" value="{{ $contact->contact_number }}"
+                                                style="background-color: #fff;" disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -177,7 +203,8 @@
                                                 <h6>Email</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="email"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $contact->email }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="row mt-2">
@@ -187,8 +214,8 @@
                                                         <h6>No. years in city</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="years_in_city" value=""
-                                                        style="background-color: #fff;" readonly>
+                                                        id="years_in_city" value="{{ $applicant->years_in_city }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -197,8 +224,8 @@
                                                         <h6>Family Income</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="family_income" value=""
-                                                        style="background-color: #fff;" readonly>
+                                                        id="family_income" value="{{ $applicant->family_income }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,7 +235,8 @@
                                                 <h6>Street</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="street"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $address->street }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -216,7 +244,8 @@
                                                 <h6>Barangay</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="barangay"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $address->barangay }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -224,7 +253,8 @@
                                                 <h6>City</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="city"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $address->city }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="mt-2">
@@ -232,7 +262,8 @@
                                                 <h6>Province</h6>
                                             </label>
                                             <input class="form-control form-control" type="text" id="province"
-                                                value="" style="background-color: #fff;" readonly>
+                                                value="{{ $address->province }}" style="background-color: #fff;"
+                                                disabled>
                                         </div>
 
                                         <div class="row mt-2">
@@ -243,8 +274,8 @@
                                                         <h6>Region</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="region" value="" style="background-color: #fff;"
-                                                        readonly>
+                                                        id="region" value="{{ $address->region }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
 
@@ -254,8 +285,8 @@
                                                         <h6>Zipcode</h6>
                                                     </label>
                                                     <input class="form-control form-control" type="text"
-                                                        id="zipcode" value="" style="background-color: #fff;"
-                                                        readonly>
+                                                        id="zipcode" value="{{ $address->zipcode }}"
+                                                        style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
                                         </div>
