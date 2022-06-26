@@ -15,45 +15,71 @@ class ApplicantController extends Controller
     /**
      * Applicant profile page
      */
-    public function applicantProfile(){
+    public function applicantProfile()
+    {
 
         $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
         $school = DB::table('schools')->where('applicants_id', $applicant->id)->first();
         $address = DB::table('addresses')->where('applicants_id', $applicant->id)->first();
-        $course = DB::table('courses')->get();
+
         $contact = DB::table('contacts')->where('applicants_id', $applicant->id)->first();
 
         return view('applicant.profile', [
             'applicant' => $applicant,
             'school' => $school,
             'address' => $address,
-            'course' => $course,
-            'contact' => $contact
+            'contact' => $contact,
+
         ]);
     }
 
     // Applicant profile edit form
-    public function applicantProfileEdit(){
+    public function applicantProfileEdit()
+    {
 
         $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
         $school = DB::table('schools')->where('applicants_id', $applicant->id)->first();
         $address = DB::table('addresses')->where('applicants_id', $applicant->id)->first();
-        $course = DB::table('courses')->get();
+
         $contact = DB::table('contacts')->where('applicants_id', $applicant->id)->first();
-        $ageArray = ['17', '18','19', '20','21', '22', '23', '24', '25'];
+        $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
+
+        $school_list = DB::table('school_courses')->groupBy('school')->get();
 
         return view('applicant.profile_edit', [
             'applicant' => $applicant,
             'school' => $school,
             'address' => $address,
-            'course' => $course,
             'contact' => $contact,
-            'age' => $ageArray
+            'age' => $ageArray,
+            'school_list' => $school_list
         ]);
     }
 
+    /**
+     * This is used for Dynamic Dependent Dropdown
+     * AJAX
+     */
+    public function fetch(Request $request)
+    {
+
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('school_courses')
+            ->where($select, $value)
+            ->groupBy($dependent)
+            ->get();
+        $output = '<option value="">Select ' . ucfirst($dependent) . '</option>';
+        foreach ($data as $row) {
+            $output .= '<option value="' . $row->$dependent . '">' . $row->$dependent . '</option>';
+        }
+        echo $output;
+    }
+
     // Update Profile of Applicant
-    public function applicantProfileUpdate(Request $request){
+    public function applicantProfileUpdate(Request $request)
+    {
 
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
@@ -71,8 +97,7 @@ class ApplicantController extends Controller
             'desired_school' => 'required',
             'hei_type' => 'required',               // School Table
             'school_last_attended' => 'required',
-
-            'course_name' => 'required',            // This will tkae the ID of course selected
+            'course_name' => 'required',
 
             'street' => 'required',
             'barangay' => 'required',
@@ -90,7 +115,6 @@ class ApplicantController extends Controller
 
         Applicant::where('users_id', $applicant->id)->update([
 
-            'courses_id' => $formFields['course_name'],
             'first_name' => $formFields['first_name'],
             'middle_name' => $formFields['middle_name'],
             'last_name' => $formFields['last_name'],
@@ -107,6 +131,7 @@ class ApplicantController extends Controller
         School::where('applicants_id', $applicant->id)->update([
 
             'desired_school' => $formFields['desired_school'],
+            'course_name' => $formFields['course_name'],
             'hei_type' => $formFields['hei_type'],
             'school_last_attended' => $formFields['school_last_attended'],
         ]);
@@ -128,6 +153,5 @@ class ApplicantController extends Controller
         ]);
 
         return redirect('/profile');
-
     }
 }

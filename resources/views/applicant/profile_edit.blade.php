@@ -78,7 +78,8 @@
                                                             <option selected disabled>Select</option>
                                                             @foreach ($age as $ages)
                                                                 <option
-                                                                    {{ $applicant->age == $ages ? 'selected' : '' }} value="{{ $ages }}">
+                                                                    {{ $applicant->age == $ages ? 'selected' : '' }}
+                                                                    value="{{ $ages }}">
                                                                     {{ $ages }}</option>
                                                             @endforeach
                                                         </select>
@@ -96,8 +97,12 @@
                                                         </label>
                                                         <select class="form-select form-control" name="gender">
                                                             <option selected disabled>Select</option>
-                                                            <option {{ $applicant->gender === 'Male' ? 'selected' : '' }} value="Male">Male</option>
-                                                            <option {{ $applicant->gender === 'Female' ? 'selected' : '' }} value="Female">Female</option>
+                                                            <option
+                                                                {{ $applicant->gender === 'Male' ? 'selected' : '' }}
+                                                                value="Male">Male</option>
+                                                            <option
+                                                                {{ $applicant->gender === 'Female' ? 'selected' : '' }}
+                                                                value="Female">Female</option>
                                                         </select>
 
                                                         @error('gender')
@@ -178,19 +183,6 @@
                                             </div>
 
                                             <div class="mt-2">
-                                                <label for="desired_school">
-                                                    <h6>Desired School</h6>
-                                                </label>
-                                                <input class="form-control form-control" type="text"
-                                                    id="desired_school" name="desired_school"
-                                                    value="{{ old('desired_school') ?? $school->desired_school }}">
-
-                                                @error('desired_school')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mt-2">
                                                 <label for="school_last_attended">
                                                     <h6>School Last Attended</h6>
                                                 </label>
@@ -203,7 +195,58 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="row mt-2">
+                                            <div class="mt-2">
+                                                <label for="desired_school">
+                                                    <h6>Desired School</h6>
+                                                </label>
+
+                                                <select class="form-select form-control dynamic" name="desired_school"
+                                                    id="school" data-dependent="course">
+                                                    <option selected disabled>Select School</option>
+                                                    @foreach ($school_list as $schools)
+                                                        <option value="{{ $schools->school }}">
+                                                            {{ $schools->school }}</option>
+                                                    @endforeach
+                                                </select>
+
+
+                                                {{-- <input class="form-control form-control" type="text"
+                                                    id="desired_school" name="desired_school"
+                                                    value="{{ old('desired_school') ?? $school->desired_school }}"> --}}
+
+                                                @error('desired_school')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mt-2">
+                                                <label for="course_name">
+                                                    <h6>Course</h6>
+                                                </label>
+                                                <select class="form-select form-control" name="course_name"
+                                                    id="course">
+                                                    <option selected disabled>Select</option>
+
+
+
+
+                                                    {{-- @foreach ($course as $courses)
+                                                        <option {{ $applicant->courses_id == $courses->id ? 'selected' : '' }}
+                                                            value="{{ $courses->id }}"> {{ $courses->course_name }} </option>
+                                                    @endforeach --}}
+                                                </select>
+
+                                                @error('course_name')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+
+                                        {{-- NEXT COLUMN --}}
+                                        <div class="col-6">
+
+                                            <div class="row">
                                                 <div class="col-6">
                                                     <div>
                                                         <label for="hei_type">
@@ -243,27 +286,6 @@
                                                 </div>
 
                                             </div>
-                                        </div>
-
-                                        {{-- NEXT COLUMN --}}
-                                        <div class="col-6">
-
-                                            <div>
-                                                <label for="course_name">
-                                                    <h6>Course</h6>
-                                                </label>
-                                                <select class="form-select form-control" name="course_name">
-                                                    <option selected disabled>Select</option>
-                                                    @foreach ($course as $courses)
-                                                        <option {{ $applicant->courses_id == $courses->id ? 'selected' : '' }}
-                                                            value="{{ $courses->id }}"> {{ $courses->course_name }} </option>
-                                                    @endforeach
-                                                </select>
-
-                                                @error('course_name')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
 
                                             <div class="mt-2">
                                                 <label for="contact_number">
@@ -289,7 +311,8 @@
                                                     <h6>Email</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="email"
-                                                    id="email" name="email" value="{{ old('email') ?? $contact->email }}">
+                                                    id="email" name="email"
+                                                    value="{{ old('email') ?? $contact->email }}">
 
                                                 @error('email')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -305,8 +328,10 @@
                                                         <select class="form-select form-control" name="years_in_city">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 10; $i++)
-                                                                <option {{ $applicant->years_in_city == $i ? 'selected' : '' }}
-                                                                    value="{{ $i }}"> {{ $i }}</option>
+                                                                <option
+                                                                    {{ $applicant->years_in_city == $i ? 'selected' : '' }}
+                                                                    value="{{ $i }}"> {{ $i }}
+                                                                </option>
                                                             @endfor
                                                         </select>
 
@@ -322,10 +347,18 @@
                                                         </label>
                                                         <select class="form-select form-control" name="family_income">
                                                             <option selected disabled>Select</option>
-                                                            <option {{ $applicant->family_income == 8000 ? 'selected' : '' }} value="8000">8,000 PHP</option>
-                                                            <option {{ $applicant->family_income == 12000 ? 'selected' : '' }} value="12000">12,000 PHP</option>
-                                                            <option {{ $applicant->family_income == 16000 ? 'selected' : '' }} value="16000">16,000 PHP</option>
-                                                            <option {{ $applicant->family_income == 20000 ? 'selected' : '' }} value="20000">20,000 PHP</option>
+                                                            <option
+                                                                {{ $applicant->family_income == 8000 ? 'selected' : '' }}
+                                                                value="8000">8,000 PHP</option>
+                                                            <option
+                                                                {{ $applicant->family_income == 12000 ? 'selected' : '' }}
+                                                                value="12000">12,000 PHP</option>
+                                                            <option
+                                                                {{ $applicant->family_income == 16000 ? 'selected' : '' }}
+                                                                value="16000">16,000 PHP</option>
+                                                            <option
+                                                                {{ $applicant->family_income == 20000 ? 'selected' : '' }}
+                                                                value="20000">20,000 PHP</option>
                                                         </select>
 
                                                         @error('family_income')
@@ -340,7 +373,8 @@
                                                     <h6>Street</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="street" name="street" value="{{ old('street') ?? $address->street }}">
+                                                    id="street" name="street"
+                                                    value="{{ old('street') ?? $address->street }}">
 
                                                 @error('street')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -352,7 +386,8 @@
                                                     <h6>Barangay</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="barangay" name="barangay" value="{{ old('barangay') ?? $address->barangay }}">
+                                                    id="barangay" name="barangay"
+                                                    value="{{ old('barangay') ?? $address->barangay }}">
 
                                                 @error('barangay')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -364,7 +399,8 @@
                                                     <h6>City</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="city" name="city" value="{{ old('city') ?? $address->city }}">
+                                                    id="city" name="city"
+                                                    value="{{ old('city') ?? $address->city }}">
 
                                                 @error('city')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -376,7 +412,8 @@
                                                     <h6>Province</h6>
                                                 </label>
                                                 <input class="form-control form-control" type="text"
-                                                    id="province" name="province" value="{{ old('province') ?? $address->province }}">
+                                                    id="province" name="province"
+                                                    value="{{ old('province') ?? $address->province }}">
 
                                                 @error('province')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -393,7 +430,9 @@
                                                         <select class="form-select form-control" name="region">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 12; $i++)
-                                                                <option {{ $address->region == $i ? 'selected' : '' }} value="{{ $i }}">
+                                                                <option
+                                                                    {{ $address->region == $i ? 'selected' : '' }}
+                                                                    value="{{ $i }}">
                                                                     {{ $i }}</option>
                                                             @endfor
                                                         </select>
@@ -430,12 +469,45 @@
                                     <button class="btn btn-primary float-end" type="submit">Save</button>
                                 </div>
                             </div>
+                            {{ csrf_field() }}
                         </form>
                     </div>
 
                 </div>
             </div>
         </div>
-
     </x-layout>
 </x-navbar>
+
+<script>
+    $(document).ready(function() {
+
+        $('.dynamic').change(function() {
+            if ($(this).val() != '') {
+                var select = $(this).attr("id");
+                var value = $(this).val();
+                var dependent = $(this).data('dependent');
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ route('applicantcontroller.fetch') }}",
+                    method: "POST",
+                    data: {
+                        select: select,
+                        value: value,
+                        _token: _token,
+                        dependent: dependent
+                    },
+                    success: function(result) {
+                        $('#' + dependent).html(result);
+                    }
+
+                })
+            }
+        });
+
+        $('#school').change(function() {
+            $('#course').val('');
+        });
+
+    });
+</script>

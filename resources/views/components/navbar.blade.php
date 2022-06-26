@@ -8,10 +8,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Styles -->
+    <!-- BOOTSTRAP Dependency -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
+
+    <title>ESAMS</title>
+    <!-- AJAX CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- BOOTSTRAP CDN -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Decription Box CDN -->
     <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
@@ -27,7 +32,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top border-bottom">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top border-bottom">
         <div class="container ">
 
             <a class="navbar-brand" href="/">Edukar Scholarship Applicant Management System</a>
@@ -35,7 +40,6 @@
                 {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
                 @auth
                     @if (auth()->user()->role == 'applicant')
-
                         <li class="nav-item">
                             <a class="btn nav-link text-white" href="/">
                                 <i class="bi bi-house-door" style="font-size: 20px"></i></a>
@@ -136,44 +140,48 @@
 
                         <div class="row">
                             <div class="col-12">
+                                <div class="container">
+                                    <div>
+                                        <label for="username">
+                                            <h6>Username</h6>
+                                        </label>
+                                        <input class="form-control form-control" type="text" id="username"
+                                            name="username" value="{{ old('username') }}">
 
-                                <div>
-                                    <label for="username">
-                                        <h6>Username</h6>
-                                    </label>
-                                    <input class="form-control form-control" type="text" id="username"
-                                        name="username" value="{{ old('username') }}">
+                                        @error('username')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="password">
+                                            <h6>Password</h6>
+                                        </label>
+                                        <input class="form-control form-control" type="password" id="password"
+                                            name="password" value="{{ old('password') }}">
+                                    </div>
 
-                                    @error('username')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mt-3">
-                                    <label for="password">
-                                        <h6>Password</h6>
-                                    </label>
-                                    <input class="form-control form-control" type="password" id="password"
-                                        name="password" value="{{ old('password') }}">
+                                    <div class="row mt-4 ">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <h6 class="text-primary">Forgot Password?</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="modal-foote">
+                                            <div>
+                                                <button type="submit"
+                                                    class="btn btn-primary form-control form-control-lg mt-3">
+                                                    Sign in
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
 
                         </div>
-                        <div class="row mt-4 ">
-                            <div class="col-12 d-flex justify-content-center">
-                                <h6 class="text-primary">Forgot Password?</h6>
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <div class="modal-foote">
-                                <div>
-                                    <button type="submit" class="btn btn-primary form-control form-control-lg mt-3">
-                                        Sign in
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -194,6 +202,10 @@
 
     </footer>
     <!-- Footer -->
+
+
 </body>
 
 </html>
+
+

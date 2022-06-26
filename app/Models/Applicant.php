@@ -12,7 +12,6 @@ class Applicant extends Model
 
     protected $fillable = [
         'users_id',
-        'courses_id',
         'first_name',
         'middle_name',
         'last_name',

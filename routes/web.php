@@ -87,4 +87,8 @@ Route::put('/profiles/{profile}', [ApplicantController::class, 'applicantProfile
 Route::get('/apply', [ApplicationController::class, 'apply'])->name('apply');
 
 
+// Fetch Method
+Route::post('/applicantcontroller/fetch', [ApplicantController::class, 'fetch'])->name('applicantcontroller.fetch');
+
+
 

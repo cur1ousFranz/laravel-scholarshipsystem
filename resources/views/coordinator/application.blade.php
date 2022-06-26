@@ -15,8 +15,10 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @if (!$application->isEmpty())
-                        @foreach ($application as $applications)
+                <?php
+                    if (!$application->isEmpty()) {
+                        foreach ($application as $applications){
+                        ?>
                             <tr>
                                 <td>{{ $applications->slots }}</td>
                                 <td>{{ $applications->start_date }}</td>
@@ -26,12 +28,36 @@
                                     <a href="/applications/{{ $applications->id }}/edit">View</a> {{-- TODOOOOOO! --}}
                                 </td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="8" class="text-center">No students yet</td>
-                        </tr>
-                    @endif
+                        <?php
+
+
+                        }
+
+                    }else {
+                        ?>  <tr>
+                                <td colspan="8" class="text-center">No applications yet</td>
+                            </tr>
+                    <?php
+                    }
+
+                ?>
+                {{-- @if (!$application->isEmpty())
+                    @foreach ($application as $applications) --}}
+                        {{-- <tr>
+                            <td>{{ $applications->slots }}</td>
+                            <td>{{ $applications->start_date }}</td>
+                            <td>{{ $applications->end_date }}</td>
+                            <td class="text-success">{{ $applications->status }}</td>
+                            <td> --}}
+                                {{-- <a href="/applications/{{ $applications->id }}/edit">View</a> TODOOOOOO! --}}
+                            {{-- </td>
+                        </tr> --}}
+                    {{-- @endforeach
+                @else --}}
+                    {{-- <tr>
+                        <td colspan="8" class="text-center">No applications yet</td>
+                    </tr> --}}
+                {{-- @endif --}}
             </tbody>
         </table>
 

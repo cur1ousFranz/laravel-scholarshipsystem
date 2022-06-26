@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('courses_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();

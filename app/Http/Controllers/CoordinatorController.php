@@ -58,8 +58,9 @@ class CoordinatorController extends Controller
      */
     public function application(){
 
+        $application = DB::table('applications')->get();
         return view('coordinator.application', [
-            'application' => DB::table('applications')->get()
+            'application' => $application
         ]);
     }
 
@@ -125,7 +126,7 @@ class CoordinatorController extends Controller
 
         ]);
 
-        return redirect('/application');
+        return view('coordinator.application');
 
     }
 
