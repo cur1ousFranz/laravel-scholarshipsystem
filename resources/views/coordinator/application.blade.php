@@ -11,53 +11,31 @@
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Submissions</th>
                     <th scope="col">Details</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                <?php
-                    if (!$application->isEmpty()) {
-                        foreach ($application as $applications){
-                        ?>
-                            <tr>
-                                <td>{{ $applications->slots }}</td>
-                                <td>{{ $applications->start_date }}</td>
-                                <td>{{ $applications->end_date }}</td>
-                                <td class="text-success">{{ $applications->status }}</td>
-                                <td>
-                                    <a href="/applications/{{ $applications->id }}/edit">View</a> {{-- TODOOOOOO! --}}
-                                </td>
-                            </tr>
-                        <?php
-
-
-                        }
-
-                    }else {
-                        ?>  <tr>
-                                <td colspan="8" class="text-center">No applications yet</td>
-                            </tr>
-                    <?php
-                    }
-
-                ?>
-                {{-- @if (!$application->isEmpty())
-                    @foreach ($application as $applications) --}}
-                        {{-- <tr>
+                @if (!$application->isEmpty())
+                    @foreach ($application as $applications)
+                        <tr>
                             <td>{{ $applications->slots }}</td>
                             <td>{{ $applications->start_date }}</td>
                             <td>{{ $applications->end_date }}</td>
                             <td class="text-success">{{ $applications->status }}</td>
-                            <td> --}}
-                                {{-- <a href="/applications/{{ $applications->id }}/edit">View</a> TODOOOOOO! --}}
-                            {{-- </td>
-                        </tr> --}}
-                    {{-- @endforeach
-                @else --}}
-                    {{-- <tr>
+                            <td>
+                                <a href="/applications/{{ $applications->id }}/submissions">View</a>
+                            </td>
+                            <td>
+                                <a href="/applications/{{ $applications->id }}/edit">View</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
                         <td colspan="8" class="text-center">No applications yet</td>
-                    </tr> --}}
-                {{-- @endif --}}
+                    </tr>
+                @endif
             </tbody>
         </table>
 

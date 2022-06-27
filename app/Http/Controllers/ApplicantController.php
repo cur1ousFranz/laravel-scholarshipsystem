@@ -18,17 +18,10 @@ class ApplicantController extends Controller
     public function applicantProfile()
     {
 
-        $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
-        $school = DB::table('schools')->where('applicants_id', $applicant->id)->first();
-        $address = DB::table('addresses')->where('applicants_id', $applicant->id)->first();
-
-        $contact = DB::table('contacts')->where('applicants_id', $applicant->id)->first();
+        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
 
         return view('applicant.profile', [
-            'applicant' => $applicant,
-            'school' => $school,
-            'address' => $address,
-            'contact' => $contact,
+            'applicant' => $applicant
 
         ]);
     }
@@ -37,20 +30,12 @@ class ApplicantController extends Controller
     public function applicantProfileEdit()
     {
 
-        $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
-        $school = DB::table('schools')->where('applicants_id', $applicant->id)->first();
-        $address = DB::table('addresses')->where('applicants_id', $applicant->id)->first();
-
-        $contact = DB::table('contacts')->where('applicants_id', $applicant->id)->first();
+        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
         $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
-
         $school_list = DB::table('school_courses')->groupBy('school')->get();
 
         return view('applicant.profile_edit', [
             'applicant' => $applicant,
-            'school' => $school,
-            'address' => $address,
-            'contact' => $contact,
             'age' => $ageArray,
             'school_list' => $school_list
         ]);
@@ -92,6 +77,7 @@ class ApplicantController extends Controller
             'educational_attainment' => 'required',
             'years_in_city' => 'required',
             'family_income' => 'required',
+            'registered_voter' => 'required',
             'gwa' => 'required',
 
             'desired_school' => 'required',
@@ -113,7 +99,7 @@ class ApplicantController extends Controller
 
         $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
 
-        Applicant::where('users_id', $applicant->id)->update([
+        Applicant::where('id', $applicant->id)->update([
 
             'first_name' => $formFields['first_name'],
             'middle_name' => $formFields['middle_name'],
@@ -125,6 +111,7 @@ class ApplicantController extends Controller
             'educational_attainment' => $formFields['educational_attainment'],
             'years_in_city' => $formFields['years_in_city'],
             'family_income' => $formFields['family_income'],
+            'registered_voter' => $formFields['registered_voter'],
             'gwa' => $formFields['gwa'],
         ]);
 

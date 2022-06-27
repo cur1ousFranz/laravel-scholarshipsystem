@@ -12,6 +12,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ESAMS</title>
+
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- BOOTSTRAP CDN -->
@@ -28,6 +29,36 @@
             menubar: false,
         });
     </script>
+
+    <style>
+        .scroll {
+            overflow-x: auto;
+            max-width: auto;
+
+        }
+
+        #applicantListHeader{
+            white-space: nowrap;
+        }
+
+        .scroll th:nth-child(1),
+        .scroll td:nth-child(1){
+            position: sticky;
+            left: 0px;
+        }
+
+        .scroll th:nth-child(2),
+        .scroll td:nth-child(2){
+            position: sticky;
+            left: 60px;
+        }
+
+        .scroll td:nth-child(1),
+        .scroll td:nth-child(2){
+            background-color: white;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -87,9 +118,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/applications">Application</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/submissions">Submission</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/applicants">Applicant</a>
@@ -207,5 +235,3 @@
 </body>
 
 </html>
-
-

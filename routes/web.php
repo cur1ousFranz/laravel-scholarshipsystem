@@ -63,8 +63,10 @@ Route::put('/applications/{application}', [CoordinatorController::class, 'applic
 // Application files update
 Route::put('/applications/{application}', [CoordinatorController::class, 'applicationFilesUpdate']);
 
-// Submission Table
-Route::get('/submissions', [CoordinatorController::class, 'submission']);
+// Submissions
+Route::get('/applications/{application}/submissions', [CoordinatorController::class, 'submissions']);
+
+
 // Applicant Table
 Route::get('/applicants', [CoordinatorController::class, 'applicant']);
 

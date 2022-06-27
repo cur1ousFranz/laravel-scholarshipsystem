@@ -12,7 +12,7 @@
                         <div class="container">
                             <h4 class="mb-4">Description</h4>
                             {{-- DECODING THE HTML TAGS FROM DATABASE --}}
-                           {!! $applicationDetail->description !!}
+                            {!! $applicationDetail->description !!}
                         </div>
                         <hr class="mt-5">
                     </div>
@@ -42,7 +42,8 @@
                                 </p>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->documentary_requirement }}" class="btn btn-primary" target="_blank">&nbsp;View&nbsp;</a>
+                                <a href="/storage/{{ $applicationDetail->documentary_requirement }}"
+                                    class="btn btn-primary" target="_blank">&nbsp;View&nbsp;</a>
                             </div>
                         </div>
                         <hr>
@@ -60,7 +61,8 @@
                                 </p>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-primary" target="_blank">&nbsp;View&nbsp;</a>
+                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-primary"
+                                    target="_blank">&nbsp;View&nbsp;</a>
                             </div>
                         </div>
                         <hr>
@@ -76,7 +78,8 @@
                                 </p>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">Upload</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Upload</button>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal">
@@ -87,17 +90,27 @@
                                                     <h4 class="">Upload File</h4>
                                                 </div>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="" enctype="multipart/form-data">
-                                                    <h6>Note: You may only submit once, make sure you uploaded the right file. <br> File should be pdf format.</h6>
-                                                    <input type="file" class="form-control mt-4 mb-4">
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer d-flex justify-content-center">
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-outline-primary">Submit</button>
-                                            </div>
+                                            <form action="/submissions/{{ $application->id }}" method="POST" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    @csrf
+
+                                                    <h6>Note: You may only submit once, make sure you uploaded the right
+                                                        file. <br> File should be pdf format.</h6>
+                                                    <input type="file" class="form-control mt-4 mb-4"
+                                                        name="document">
+
+                                                    @error('document')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button type="button" class="btn btn-outline-danger"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary">Submit</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

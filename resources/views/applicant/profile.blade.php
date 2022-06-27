@@ -24,7 +24,7 @@
                                             <i class="bi bi-envelope-fill"></i>
                                         </div>
                                         <div class="col-10 mt-1">
-                                            <h6 class="float-start">{{ $contact->email }}</h6>
+                                            <h6 class="float-start">{{ $applicant->contact->email }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="container mb-4 mt-4">
 
-                                <div class="row">
+                                <div class="row mt-2">
                                     <div class="col-6">
                                         <div>
                                             <label for="first_name">
@@ -54,22 +54,30 @@
                                                 disabled>
                                         </div>
 
-                                        <div class="mt-2">
-                                            <label for="middle_name">
-                                                <h6>Middle Name</h6>
-                                            </label>
-                                            <input class="form-control form-control text-muted" type="text" id="middle_name"
-                                                value="{{ $applicant->middle_name }}" style="background-color: #fff;"
-                                                disabled>
-                                        </div>
+                                        <div class="row mt-2">
 
-                                        <div class="mt-2">
-                                            <label for="last_name">
-                                                <h6>Last Name</h6>
-                                            </label>
-                                            <input class="form-control form-control text-muted" type="text" id="last_name"
-                                                value="{{ $applicant->last_name }}" style="background-color: #fff;"
-                                                disabled>
+                                            <div class="col-6">
+                                                <div>
+                                                    <label for="middle_name">
+                                                        <h6>Middle Name</h6>
+                                                    </label>
+                                                    <input class="form-control form-control text-muted" type="text" id="middle_name"
+                                                        value="{{ $applicant->middle_name }}" style="background-color: #fff;"
+                                                        disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div>
+                                                    <label for="last_name">
+                                                        <h6>Last Name</h6>
+                                                    </label>
+                                                    <input class="form-control form-control text-muted" type="text" id="last_name"
+                                                        value="{{ $applicant->last_name }}" style="background-color: #fff;"
+                                                        disabled>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <div class="row mt-2">
@@ -135,7 +143,7 @@
                                                 <h6>School Last Attended</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text"
-                                                id="school_last_attended" value="{{ $school->school_last_attended }}"
+                                                id="school_last_attended" value="{{ $applicant->school->school_last_attended }}"
                                                 style="background-color: #fff;" disabled>
                                         </div>
 
@@ -144,7 +152,7 @@
                                                 <h6>Desired School</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="desired_school"
-                                                value="{{ $school->desired_school }}" style="background-color: #fff;"
+                                                value="{{ $applicant->school->desired_school }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -153,22 +161,17 @@
                                                 <h6>Course</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="course_name"
-                                                value="{{ $school->course_name }}" style="background-color: #fff;" disabled>
+                                                value="{{ $applicant->school->course_name }}" style="background-color: #fff;" disabled>
                                         </div>
 
-                                    </div>
-
-                                    {{-- NEXT COLUMN --}}
-                                    <div class="col-6">
-
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-6">
                                                 <div>
                                                     <label for="hei_type">
                                                         <h6>HEI Type</h6>
                                                     </label>
                                                     <input class="form-control form-control text-muted" type="text"
-                                                        id="hei_type" value="{{ $school->hei_type }}"
+                                                        id="hei_type" value="{{ $applicant->school->hei_type }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
@@ -186,12 +189,26 @@
 
                                         </div>
 
+                                    </div>
+
+                                    {{-- NEXT COLUMN --}}
+                                    <div class="col-6">
+
+                                        <div>
+                                            <label for="registered_voter">
+                                                <h6>Registered Voter</h6>
+                                            </label>
+                                            <input class="form-control form-control text-muted" type="text"
+                                                        id="registered_voter" value="{{ $applicant->registered_voter }}"
+                                                        style="background-color: #fff;" disabled>
+                                        </div>
+
                                         <div class="mt-2">
                                             <label for="contact_number">
                                                 <h6>Contact Number</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text"
-                                                id="contact_number" value="{{ $contact->contact_number }}"
+                                                id="contact_number" value="{{ $applicant->contact->contact_number }}"
                                                 style="background-color: #fff;" disabled>
                                         </div>
 
@@ -200,7 +217,7 @@
                                                 <h6>Email</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="email"
-                                                value="{{ $contact->email }}" style="background-color: #fff;"
+                                                value="{{ $applicant->contact->email }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -232,7 +249,7 @@
                                                 <h6>Street</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="street"
-                                                value="{{ $address->street }}" style="background-color: #fff;"
+                                                value="{{ $applicant->address->street }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -241,7 +258,7 @@
                                                 <h6>Barangay</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="barangay"
-                                                value="{{ $address->barangay }}" style="background-color: #fff;"
+                                                value="{{ $applicant->address->barangay }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -250,7 +267,7 @@
                                                 <h6>City</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="city"
-                                                value="{{ $address->city }}" style="background-color: #fff;"
+                                                value="{{ $applicant->address->city }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -259,7 +276,7 @@
                                                 <h6>Province</h6>
                                             </label>
                                             <input class="form-control form-control text-muted" type="text" id="province"
-                                                value="{{ $address->province }}" style="background-color: #fff;"
+                                                value="{{ $applicant->address->province }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -271,7 +288,7 @@
                                                         <h6>Region</h6>
                                                     </label>
                                                     <input class="form-control form-control text-muted" type="text"
-                                                        id="region" value="{{ $address->region }}"
+                                                        id="region" value="{{ $applicant->address->region }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>
@@ -282,7 +299,7 @@
                                                         <h6>Zipcode</h6>
                                                     </label>
                                                     <input class="form-control form-control text-muted" type="text"
-                                                        id="zipcode" value="{{ $address->zipcode }}"
+                                                        id="zipcode" value="{{ $applicant->address->zipcode }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
                                             </div>

@@ -73,9 +73,8 @@
                                     <hr>
                                     <h5 class="mt-3">Description</h5>
 
-                                    @foreach ($applicationDetail as $applicationDetails)
                                         <textarea id="editor" name="description">
-                                        {{ old('description') ?? $applicationDetails->description }}
+                                        {{ old('description') ?? $application->applicationDetail->description }}
                                 </textarea>
                                         @error('description')
                                             <p class="text-danger">{{ $message }}</p>
@@ -109,8 +108,8 @@
                                                             <select class="form-select form-control"
                                                                 name="family_income">
                                                                 <option
-                                                                    value="{{ old('family_income') ?? $applicationDetails->family_income }}">
-                                                                    {{ old('family_income') ?? $applicationDetails->family_income }}
+                                                                    value="{{ old('family_income') ?? $application->applicationDetail->family_income }}">
+                                                                    {{ old('family_income') ?? $application->applicationDetail->family_income }}
                                                                     PHP
                                                                 </option>
                                                                 <option value="8000">8,000 PHP</option>
@@ -130,8 +129,8 @@
                                                                 <h6>General Weighted Avg</h6>
                                                             </label>
                                                             <select class="form-select form-control" name="gwa">
-                                                                <option value="{{ old('gwa') ?? $applicationDetails->gwa }}">
-                                                                    {{ old('gwa') ?? $applicationDetails->gwa }}
+                                                                <option value="{{ old('gwa') ?? $application->applicationDetail->gwa }}">
+                                                                    {{ old('gwa') ?? $application->applicationDetail->gwa }}
                                                                 </option>
                                                                 <option value="75">75</option>
                                                                 <option value="80">80</option>
@@ -191,8 +190,8 @@
                                                             <select class="form-select form-control"
                                                                 name="years_in_city">
                                                                 <option
-                                                                    value="{{ old('years_in_city') ?? $applicationDetails->years_in_city }}">
-                                                                    {{ old('years_in_city') ?? $applicationDetails->years_in_city }}
+                                                                    value="{{ old('years_in_city') ?? $application->applicationDetail->years_in_city }}">
+                                                                    {{ old('years_in_city') ?? $application->applicationDetail->years_in_city }}
                                                                     year
                                                                 </option>
                                                                 <option value="1">1 year</option>
@@ -225,7 +224,6 @@
 
                                             </div>
                                         </div>
-                                    @endforeach
                                     <hr>
                                     <div>
                                         <button type="submit" class="btn btn-outline-primary float-end">
@@ -250,7 +248,6 @@
                                         information.
                                     </p>
                                     <hr>
-                                    @foreach ($applicationDetail as $applicationDetails)
                                         <div class="d-flex mt-4 justify-content-between">
                                             <h5 class="mt-2">Step 2: Documentary Requirements</h5>
                                             <div>
@@ -258,7 +255,7 @@
                                                     class="form-control" accept="application/pdf">
                                                 <p class="mt-2"><i
                                                         class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
-                                                    <a href="{{ asset('storage/' . $applicationDetails->documentary_requirement) }}"
+                                                    <a href="{{ asset('storage/' . $application->applicationDetail->documentary_requirement) }}"
                                                         target="_blank">
                                                         View
                                                     </a>
@@ -276,7 +273,7 @@
                                                     accept="application/pdf">
                                                 <p class="mt-2"><i
                                                         class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
-                                                    <a href="{{ asset('storage/' . $applicationDetails->application_form) }}"
+                                                    <a href="{{ asset('storage/' . $application->applicationDetail->application_form) }}"
                                                         target="_blank">
                                                         View
                                                     </a>
@@ -288,7 +285,6 @@
                                         @error('application_form')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
-                                    @endforeach
                                     <hr>
                                     <div>
                                         <button type="submit" class="btn btn-outline-primary float-end">

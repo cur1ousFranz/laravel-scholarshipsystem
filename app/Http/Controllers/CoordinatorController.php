@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Applicant;
+use App\Models\Submission;
 use App\Models\Application;
 use App\Models\Coordinator;
 use Illuminate\Http\Request;
+use App\Models\ApplicantList;
 use Illuminate\Validation\Rule;
 use App\Models\ApplicationDetail;
 use Illuminate\Support\Facades\DB;
@@ -58,7 +61,8 @@ class CoordinatorController extends Controller
      */
     public function application(){
 
-        $application = DB::table('applications')->get();
+        $application = Application::all();
+
         return view('coordinator.application', [
             'application' => $application
         ]);
@@ -110,6 +114,8 @@ class CoordinatorController extends Controller
             'status' => $formFields['status']
         ]);
 
+        // dd($application);
+
         ApplicationDetail::create([
 
             'applications_id' => $application->id,
@@ -126,7 +132,7 @@ class CoordinatorController extends Controller
 
         ]);
 
-        return view('coordinator.application');
+        return redirect('/applications');
 
     }
 
@@ -135,11 +141,9 @@ class CoordinatorController extends Controller
      */
     public function applicationEdit(Application $application){
 
-        $applicationDetail = DB::table('application_details')->get();
-
         return view('coordinator.edit_application', [
-            'application' => $application,
-            'applicationDetail' => $applicationDetail
+            'application' => $application
+
         ]);
     }
 
@@ -209,16 +213,17 @@ class CoordinatorController extends Controller
         return back();
     }
 
+    // Submissions
+    public function submissions(Application $application){
+
+        return view('coordinator.submission',[
+            'application' => $application
+        ]);
+    }
+
+
     /**
-    * Submission Table
-    */
-   public function submission(){
-
-       return view('coordinator.submission');
-   }
-
-       /**
-    * Submission Table
+    * Applicant Table
     */
     public function applicant(){
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Submission;
 use App\Models\Coordinator;
 use App\Models\ApplicationDetail;
 use Illuminate\Database\Eloquent\Model;
@@ -24,8 +25,13 @@ class Application extends Model
         $this->belongsTo(Coordinator::class, 'coordinators_id');
     }
 
-    public function applicationDetails(){
+    public function applicationDetail(){
 
         return $this->hasOne(ApplicationDetail::class, 'applications_id');
+    }
+
+    public function submission(){
+
+        return $this->hasMany(Submission::class, 'applications_id');
     }
 }

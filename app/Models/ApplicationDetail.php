@@ -24,7 +24,7 @@ class ApplicationDetail extends Model
         'application_form'
     ];
 
-    public function applicationDetail(){
+    public function application(){
 
         return $this->belongsTo(Application::class, 'applications_id');
     }

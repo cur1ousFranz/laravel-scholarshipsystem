@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('educational_attainment')->nullable();
             $table->string('years_in_city')->nullable();
             $table->string('family_income')->nullable();
+            $table->string('registered_voter')->nullable();
             $table->string('gwa')->nullable();
 
             $table->timestamps();
