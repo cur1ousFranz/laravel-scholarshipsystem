@@ -8,7 +8,7 @@
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="pill" data-bs-target="#nav-details"
                             type="button" role="tab">Application Details</button>
                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-files"
-                            type="button" role="tab">ApplicationFiles</button>
+                            type="button" role="tab">Application Files</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">

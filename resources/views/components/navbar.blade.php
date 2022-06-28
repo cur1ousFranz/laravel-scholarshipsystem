@@ -50,11 +50,18 @@
         .scroll th:nth-child(2),
         .scroll td:nth-child(2){
             position: sticky;
-            left: 60px;
+            left: 32px;
+        }
+
+        .scroll th:nth-child(3),
+        .scroll td:nth-child(3){
+            position: sticky;
+            left: 91px;
         }
 
         .scroll td:nth-child(1),
-        .scroll td:nth-child(2){
+        .scroll td:nth-child(2),
+        .scroll td:nth-child(3){
             background-color: white;
         }
 

@@ -65,6 +65,8 @@ Route::put('/applications/{application}', [CoordinatorController::class, 'applic
 
 // Submissions
 Route::get('/applications/{application}/submissions', [CoordinatorController::class, 'submissions']);
+// Submission Store
+Route::post('/submissions/{application}', [CoordinatorController::class, 'submissionStore']);
 
 
 // Applicant Table

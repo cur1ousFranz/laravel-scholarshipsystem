@@ -1,5 +1,5 @@
 <x-navbar>
-    <x-layout class="h-100">
+    <x-layout>
         <div class="d-flex justify-content-between">
             <h4 class="mt-3">Applicant List</h4>
             <form action="">
@@ -17,8 +17,11 @@
             <table class="table table-striped table-bordered">
                 <thead class="text-center text-dark" id="applicantListHeader">
                     <tr>
-                        <th scope="col" class="bg-primary text-white">Rating</th>
-                        <th scope="col" class="bg-primary text-white">Document</th>
+                        <th scope="col" class="bg-light">
+                           <input type="checkbox" class="mb-1 form-check-input" name="selectAll">
+                        </th>
+                        <th scope="col" class="bg-light">Rating</th>
+                        <th scope="col" class="bg-light">Document</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Middle Name</th>
                         <th scope="col">Last Name</th>
@@ -49,59 +52,82 @@
                         <th scope="col">Registered Voter</th>
                         <th scope="col">GWA</th>
 
+
                     </tr>
                 </thead>
+                {{-- RETRIEVING APPLICANT DATA ACCORDING TO ITS CURRENT ID IN LOOP --}}
                 <tbody class="text-center" id="applicantListHeader">
-                    <tr>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Franz Jeff</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>General Santos City</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                    </tr>
+                    <?php
+                        foreach($applicantList as $applicantsLists):
+                            $applicant = Illuminate\Support\Facades\DB::table('applicants')
+                                ->where('id', $applicantsLists->applicants_id)
+                                ->first();
 
-                    {{-- @if (!$submission->isEmpty())
-                        @foreach ($submission as $submissions)
-                            <tr>
-                                <td>{{ $submissions->application->status }}</td>
-                                <td>{{ $submissions->application->start_date }}</td>
-                                <td>{{ $submissions->application->end_date }}</td>
-                                <td>{{ $submissions->application->status }}</td>
-                                <td>
-                                    <a href="/submissions/applicants/{{ $submissions->id }}">View</a>
-                                </td>
+                            $address = Illuminate\Support\Facades\DB::table('addresses')
+                            ->where('applicants_id', $applicantsLists->applicants_id)
+                            ->first();
 
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="8" class="text-center">No submissions yet</td>
-                        </tr>
-                    @endif --}}
+                            $school = Illuminate\Support\Facades\DB::table('schools')
+                            ->where('applicants_id', $applicantsLists->applicants_id)
+                            ->first();
+
+                            $contact = Illuminate\Support\Facades\DB::table('contacts')
+                            ->where('applicants_id', $applicantsLists->applicants_id)
+                            ->first();
+
+                            ?>
+                                <tr>
+                                    <td><input type="checkbox" name="applicant[]" value="" class="form-check-input mt-1"></td>
+                                    <td>Test</td>
+                                    <td>
+                                        <a class="text-decoration-none" href="/storage/{{ $applicantsLists->document }}" target="_blank">View</a>
+                                    </td>
+                                    <td>{{ $applicant->first_name }}</td>
+                                    <td>{{ $applicant->middle_name }}</td>
+                                    <td>{{ $applicant->last_name }}</td>
+                                    <td>{{ $applicant->age }}</td>
+                                    <td>{{ $applicant->gender }}</td>
+                                    <td>{{ $applicant->civil_status }}</td>
+                                    <td>{{ $address->street }}</td>
+                                    <td>{{ $address->barangay }}</td>
+                                    <td>{{ $address->city }}</td>
+                                    <td>{{ $address->province }}</td>
+                                    <td>{{ $address->region }}</td>
+                                    <td>{{ $address->zipcode }}</td>
+                                    <td>{{ $contact->contact_number }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>{{ $school->desired_school }}</td>
+                                    <td>{{ $school->course_name }}</td>
+                                    <td>{{ $school->hei_type }}</td>
+                                    <td>{{ $school->school_last_attended }}</td>
+                                    <td>{{ $applicant->nationality }}</td>
+                                    <td>{{ $applicant->educational_attainment }}</td>
+                                    <td>{{ $applicant->years_in_city }}</td>
+                                    <td>{{ $applicant->family_income }}</td>
+                                    <td>{{ $applicant->registered_voter }}</td>
+                                    <td>{{ $applicant->gwa }}</td>
+                                </tr>
+                            <?php
+
+                        endforeach
+
+                    ?>
                 </tbody>
             </table>
         </div>
-
+        <div class="container mt-3">
+            {{ $applicantList->links('pagination::bootstrap-5') }}
+        </div>
     </x-layout>
 </x-navbar>
+
+<script>
+    $(function() {
+        jQuery("[name=selectAll]").click(function(source) {
+            checkboxes = jQuery("[name='applicant[]'");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>

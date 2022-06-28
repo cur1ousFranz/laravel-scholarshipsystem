@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Applicant;
-use App\Models\Submission;
 use App\Models\Application;
 use App\Models\Coordinator;
 use Illuminate\Http\Request;
@@ -216,9 +215,53 @@ class CoordinatorController extends Controller
     // Submissions
     public function submissions(Application $application){
 
+        $applicantList = DB::table('applicant_lists')
+        ->where('applications_id', $application->id)
+        ->paginate(10);
+
         return view('coordinator.submission',[
-            'application' => $application
+            'applicantList' => $applicantList
         ]);
+    }
+
+    // Submission Store
+    public function submissionStore(Request $request, Application $application){
+
+        $formFields = $request->validate([
+
+            'document' => ['required', 'mimes:pdf']
+        ]);
+
+        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
+
+        $formFields['document'] = $request->file('document')->store('submissions', 'public');
+        $formFields['applications_id'] = $application->id;
+        $formFields['applicants_id'] = $applicant->id;
+
+        $applicantList = DB::table('applicant_lists')
+            ->where('applications_id', $application->id)
+            ->get();
+
+        // Validating if the user is already applied or user profile is not set.
+        // This is 2nd validation, to avoid inspect element manipulation
+        if($applicantList){
+            $isApplied = false;
+            foreach($applicantList as $applicantLists){
+                if($applicantLists->applicants_id == $applicant->id){
+                    $isApplied = true;
+                    break;
+                }
+            }
+
+            if($isApplied || $applicant->first_name == null){
+                abort('403', 'Unauthorized Action');
+
+            }else{
+                ApplicantList::create($formFields);
+                return back();
+            }
+
+        }
     }
 
 

@@ -20,13 +20,20 @@
                         <h4>How to Apply</h4>
                         <div class="row mt-4">
                             <div class="col-10">
-                                <h5>1. Click “Apply” for the pre-registration</h5>
-                                <p>
-                                    Make sure that you have completed setting up your profile to be able to proceed.
-                                </p>
+                                <h5>1. Complete your profile to be able to proceed.</h5>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <button class="btn btn-primary">Apply</button>
+
+                                @if (Auth::user())
+                                    @if ($applicant->first_name != null)
+                                        <a class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>&nbsp;&nbsp;</a>
+                                    @else
+                                        <button class="btn btn-outline-danger" disabled>Not Set</button>
+                                    @endif
+                                @else
+                                    <button class="btn btn-primary" disabled>Profile !Set</button>
+                                @endif
+
                             </div>
                         </div>
                         <hr>
@@ -43,7 +50,7 @@
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
                                 <a href="/storage/{{ $applicationDetail->documentary_requirement }}"
-                                    class="btn btn-primary" target="_blank">&nbsp;View&nbsp;</a>
+                                    class="btn btn-outline-success" target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
                         <hr>
@@ -61,8 +68,8 @@
                                 </p>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-primary"
-                                    target="_blank">&nbsp;View&nbsp;</a>
+                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-outline-success"
+                                    target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
                         <hr>
@@ -78,11 +85,56 @@
                                 </p>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
-                                <button class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Upload</button>
+                                {{-- CHECKING IF THE USER IS ALREADY APPLIED TO CURRENT APPLICATION.
+                                    IT WILL DISABLE THE UPLOAD BUTTON IF ITS TRUE --}}
+                                <?php
+                                    if ($application) {
+                                        $isApplied = false;
+
+                                        foreach ($applicantList as $applicantLists) {
+                                            if ($applicantLists->applicants_id == $applicant->id) {
+
+                                                $isApplied = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if ($isApplied) {
+                                            ?>
+                                                <button class="btn btn-outline-success" disabled>
+                                                    Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                                </button>
+                                            <?php
+                                        }else {
+
+                                            if ($applicant->first_name != null) {
+                                                ?>
+                                                    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#uploadFile">
+                                                        Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                                    </button>
+                                                <?php
+                                            }else{
+                                                ?>
+                                                    <button class="btn btn-outline-success" disabled>
+                                                        Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                                    </button>
+                                                <?php
+                                            }
+
+                                        }
+
+                                    } else {
+                                        ?>
+                                            <button class="btn btn-outline-success" disabled>
+                                                Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                            </button>
+                                        <?php
+                                    }
+
+                                ?>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal">
+                                <div class="modal fade" id="uploadFile">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -90,9 +142,11 @@
                                                     <h4 class="">Upload File</h4>
                                                 </div>
                                             </div>
-                                            <form action="/submissions/{{ $application->id }}" method="POST" enctype="multipart/form-data">
+                                            <form action="/submissions/{{ $application->id }}" method="POST"
+                                                enctype="multipart/form-data">
+
+                                                @csrf
                                                 <div class="modal-body">
-                                                    @csrf
 
                                                     <h6>Note: You may only submit once, make sure you uploaded the right
                                                         file. <br> File should be pdf format.</h6>
@@ -108,7 +162,7 @@
                                                     <button type="button" class="btn btn-outline-danger"
                                                         data-bs-dismiss="modal">Cancel</button>
                                                     <button type="submit"
-                                                        class="btn btn-outline-primary">Submit</button>
+                                                        class="btn btn-outline-success">Submit</button>
                                                 </div>
                                             </form>
                                         </div>

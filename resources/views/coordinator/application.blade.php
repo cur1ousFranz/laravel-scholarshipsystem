@@ -13,6 +13,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Submissions</th>
                     <th scope="col">Details</th>
+
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -24,10 +25,10 @@
                             <td>{{ $applications->end_date }}</td>
                             <td class="text-success">{{ $applications->status }}</td>
                             <td>
-                                <a href="/applications/{{ $applications->id }}/submissions">View</a>
+                                <a class="text-decoration-none" href="/applications/{{ $applications->id }}/submissions">View</a>
                             </td>
                             <td>
-                                <a href="/applications/{{ $applications->id }}/edit">View</a>
+                                <a class="text-decoration-none" href="/applications/{{ $applications->id }}/edit">View</a>
                             </td>
                         </tr>
                     @endforeach
