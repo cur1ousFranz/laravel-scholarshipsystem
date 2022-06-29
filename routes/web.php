@@ -67,10 +67,14 @@ Route::put('/applications/{application}', [CoordinatorController::class, 'applic
 Route::get('/applications/{application}/submissions', [CoordinatorController::class, 'submissions']);
 // Submission Store
 Route::post('/submissions/{application}', [CoordinatorController::class, 'submissionStore']);
+// Listing Applicant if Qualified or Rejected
+Route::post('/submissions/listing/{application}', [CoordinatorController::class, 'listingApplicant']);
 
 
 // Applicant Table
-Route::get('/applicants', [CoordinatorController::class, 'applicant']);
+Route::get('/applicants/qualified', [CoordinatorController::class, 'qualifiedApplicant']);
+// Applicant Table
+Route::get('/applicants/rejected', [CoordinatorController::class, 'rejectedApplicant']);
 
 /**
  * Applicant Controller

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\ApplicantList;
 use Illuminate\Validation\Rule;
 use App\Models\ApplicationDetail;
+use App\Models\QualifiedApplicant;
+use App\Models\RejectedApplicant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +21,8 @@ class CoordinatorController extends Controller
     /**
      * Registration form of Coordinator
      */
-    public function createForm(){
+    public function createForm()
+    {
 
         return view('coordinator.create_account');
     }
@@ -27,7 +30,8 @@ class CoordinatorController extends Controller
     /**
      * Create Account of Coordinator
      */
-    public function createAccount(Request $request){
+    public function createAccount(Request $request)
+    {
         $formFields = $request->validate([
 
             'username' => ['required', Rule::unique('users', 'username')],
@@ -36,7 +40,7 @@ class CoordinatorController extends Controller
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);
-        if($formFields['code'] == 9999){
+        if ($formFields['code'] == 9999) {
             $user = User::create([
 
                 'username' => $formFields['username'],
@@ -50,7 +54,7 @@ class CoordinatorController extends Controller
             ]);
 
             return back();
-        }else{
+        } else {
             return back()->withErrors(['username' => 'Invalid, please contact the administrator.'])->onlyInput('username');
         }
     }
@@ -58,7 +62,8 @@ class CoordinatorController extends Controller
     /**
      * Application Page
      */
-    public function application(){
+    public function application()
+    {
 
         $application = Application::all();
 
@@ -70,7 +75,8 @@ class CoordinatorController extends Controller
     /**
      * Application Form
      */
-    public function applicationCreate(){
+    public function applicationCreate()
+    {
 
         return view('coordinator.create_application');
     }
@@ -78,7 +84,8 @@ class CoordinatorController extends Controller
     /**
      * Storing the applications created
      */
-    public function applicationStore(Request $request){
+    public function applicationStore(Request $request)
+    {
 
         $formFields = $request->validate([
             'slots' => 'required',
@@ -132,13 +139,13 @@ class CoordinatorController extends Controller
         ]);
 
         return redirect('/applications');
-
     }
 
     /**
      * Show to edit of application form
      */
-    public function applicationEdit(Application $application){
+    public function applicationEdit(Application $application)
+    {
 
         return view('coordinator.edit_application', [
             'application' => $application
@@ -149,7 +156,8 @@ class CoordinatorController extends Controller
     /**
      * Update the details application form
      */
-    public function applicationDetailsUpdate(Request $request, Application $application){
+    public function applicationDetailsUpdate(Request $request, Application $application)
+    {
 
         $formFields = $request->validate([
             'slots' => 'required',
@@ -186,13 +194,13 @@ class CoordinatorController extends Controller
         ]);
 
         return back();
-
     }
 
     /**
      * Update the files application form
      */
-    public function applicationFilesUpdate(Request $request, Application $application){
+    public function applicationFilesUpdate(Request $request, Application $application)
+    {
 
         $formFields = $request->validate([
 
@@ -213,19 +221,22 @@ class CoordinatorController extends Controller
     }
 
     // Submissions
-    public function submissions(Application $application){
+    public function submissions(Application $application)
+    {
 
         $applicantList = DB::table('applicant_lists')
-        ->where('applications_id', $application->id)
-        ->paginate(10);
+            ->where('applications_id', $application->id)
+            ->paginate(10);
 
-        return view('coordinator.submission',[
-            'applicantList' => $applicantList
+        return view('coordinator.submission', [
+            'applicantList' => $applicantList,
+            'application' => $application
         ]);
     }
 
     // Submission Store
-    public function submissionStore(Request $request, Application $application){
+    public function submissionStore(Request $request, Application $application)
+    {
 
         $formFields = $request->validate([
 
@@ -238,38 +249,106 @@ class CoordinatorController extends Controller
         $formFields['applications_id'] = $application->id;
         $formFields['applicants_id'] = $applicant->id;
 
-        $applicantList = DB::table('applicant_lists')
-            ->where('applications_id', $application->id)
-            ->get();
+        /**
+         * This is for second validation which avoid the
+         * user manipulation using the inspect element
+         */
+        // Validating if applicant is exist in ApplicantList
+        $applicantList = ApplicantList::where([
+            'applications_id' => $application->id,
+            'applicants_id' => $applicant->id
+        ])->exists();
 
-        // Validating if the user is already applied or user profile is not set.
-        // This is 2nd validation, to avoid inspect element manipulation
-        if($applicantList){
-            $isApplied = false;
-            foreach($applicantList as $applicantLists){
-                if($applicantLists->applicants_id == $applicant->id){
-                    $isApplied = true;
+        // Validating if applicant is exist in QualifiedApplicant list
+        $qualifiedList = QualifiedApplicant::where([
+            'applications_id' => $application->id,
+            'applicants_id' => $applicant->id
+        ])->exists();
+
+        // Validating if applicant is exist in RejectedApplicant list
+        $rejectedList = RejectedApplicant::where([
+            'applications_id' => $application->id,
+            'applicants_id' => $applicant->id
+        ])->exists();
+
+
+        if ($applicantList || $applicant->first_name == null || $qualifiedList || $rejectedList) {
+            abort('403', 'Unauthorized Action');
+        } else {
+            ApplicantList::create($formFields);
+            return back();
+        }
+    }
+
+    /**
+     * Listing Applicant if Qualified or Rejected
+     */
+    public function listingApplicant(Request $request, Application $application)
+    {
+
+        if ($request->input('applicant')) {
+            switch ($request->input('action')) {
+                case 'qualified':
+
+                    foreach ($request->input('applicant') as $applicantID) {
+
+                        $applicant = ['applications_id' => $application->id, 'applicants_id' => $applicantID];
+
+                        QualifiedApplicant::create([
+                            'applications_id' => $application->id,
+                            'applicants_id' => $applicantID
+                        ]);
+
+                        // Deleting the selected applicant in applicant list
+                        ApplicantList::where($applicant)->delete();
+                    }
+
+                    return back();
+
                     break;
-                }
+
+                case 'rejected':
+
+                    foreach ($request->input('applicant') as $applicantID) {
+
+                        $applicant = ['applications_id' => $application->id, 'applicants_id' => $applicantID];
+
+                        RejectedApplicant::create([
+                            'applications_id' => $application->id,
+                            'applicants_id' => $applicantID
+                        ]);
+
+                        // Deleting the selected applicant in applicant list
+                        ApplicantList::where($applicant)->delete();
+                    }
+                    return back();
+
+                    break;
             }
-
-            if($isApplied || $applicant->first_name == null){
-                abort('403', 'Unauthorized Action');
-
-            }else{
-                ApplicantList::create($formFields);
-                return back();
-            }
-
+        } else {
+            return back();
         }
     }
 
 
     /**
-    * Applicant Table
-    */
-    public function applicant(){
+     * Qualified Applicant Table
+     */
+    public function qualifiedApplicant()
+    {
+        $qualifiedApplicant = QualifiedApplicant::get();
 
-        return view('coordinator.applicant');
+        return view('coordinator.qualified_applicant',[
+            'qualifiedApplicant' => $qualifiedApplicant
+        ]);
+    }
+
+    /**
+     * Rejected Applicant Table
+     */
+    public function rejectedApplicant()
+    {
+
+        return view('coordinator.rejected_applicant');
     }
 }

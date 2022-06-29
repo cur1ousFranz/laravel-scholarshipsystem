@@ -21,17 +21,13 @@ class ApplicationController extends Controller
             $applicationDetail = DB::table('application_details')
             ->where('applications_id', $application->id)->first();
 
-            $applicantList = DB::table('applicant_lists')
-            ->where('applications_id', $application->id)->get();
-
-            // dd($applicantList);
-
             return view('applicant.apply',[
                 'applicant' => $applicant,
-                'applicantList' => $applicantList,
                 'application' => $application,
-                'applicationDetail' => $applicationDetail
+                'applicationDetail' => $applicationDetail,
             ]);
+
+        // Returning back to page if there is no application On-going.
         }else{
             return back();
         }

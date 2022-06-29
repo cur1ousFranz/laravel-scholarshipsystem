@@ -127,7 +127,17 @@
                             <a class="nav-link text-white" href="/applications">Application</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/applicants">Applicant</a>
+                            <div class="dropdown show">
+                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
+                                </a>
+
+                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/applicants/qualified">Qualified Applicants</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/applicants/rejected">Rejected Applicants</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown show">

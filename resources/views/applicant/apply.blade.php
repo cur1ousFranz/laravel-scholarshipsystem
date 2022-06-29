@@ -91,12 +91,28 @@
                                     if ($application) {
                                         $isApplied = false;
 
-                                        foreach ($applicantList as $applicantLists) {
-                                            if ($applicantLists->applicants_id == $applicant->id) {
+                                        // Validating if applicant is exist in ApplicantList
+                                        $applicantList = App\Models\ApplicantList::where([
+                                            'applications_id' => $application->id,
+                                            'applicants_id' => $applicant->id
+                                        ])->exists();
 
-                                                $isApplied = true;
-                                                break;
-                                            }
+                                        // Validating if applicant is exist in QualifiedApplicant list
+                                        $qualifiedList = App\Models\QualifiedApplicant::where([
+                                            'applications_id' => $application->id,
+                                            'applicants_id' => $applicant->id
+                                        ])->exists();
+
+                                        // Validating if applicant is exist in RejectedApplicant list
+                                        $rejectedList = App\Models\RejectedApplicant::where([
+                                            'applications_id' => $application->id,
+                                            'applicants_id' => $applicant->id
+                                        ])->exists();
+
+
+                                        if($applicantList || $qualifiedList || $rejectedList){
+
+                                            $isApplied = true;
                                         }
 
                                         if ($isApplied) {
@@ -123,6 +139,7 @@
 
                                         }
 
+                                    // Optional if the user manipulates the inspect element
                                     } else {
                                         ?>
                                             <button class="btn btn-outline-success" disabled>

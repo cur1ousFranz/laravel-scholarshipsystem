@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Contact;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,7 +93,7 @@ class ApplicantController extends Controller
             'region' => 'required',
             'zipcode' => 'required',
 
-            'contact_number' => 'required',         // Contact Table
+            'contact_number' => ['required', Rule::unique('contacts', 'contact_number')],         // Contact Table
             'email' => 'required',
 
         ]);
