@@ -31,6 +31,8 @@
     </script>
 
     <style>
+
+        /* This is for submissions table */
         .scroll {
             overflow-x: auto;
             max-width: auto;
@@ -62,6 +64,20 @@
         .scroll td:nth-child(1),
         .scroll td:nth-child(2),
         .scroll td:nth-child(3){
+            background-color: white;
+        }
+
+        /* This is for qualified applicant list table */
+        .scroll2 {
+        overflow-x: auto;
+        max-width: auto;
+
+        }
+
+        .scroll2 th:nth-child(1),
+        .scroll2 td:nth-child(1){
+            position: sticky;
+            left: 0px;
             background-color: white;
         }
 

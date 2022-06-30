@@ -20,19 +20,23 @@
                         $applicationArray = array();
 
                         foreach ($qualifiedApplicant as $qualifiedApplicants) {
+
                             if(!in_array($qualifiedApplicants->applications_id, $applicationArray)){
                             $applicationArray[] = $qualifiedApplicants->applications_id
                             ?>
-                                <td>{{ $qualifiedApplicants->applicants_id }}</td>
-                                <td>{{ $qualifiedApplicants->applicants_id }}</td>
-                                <td>{{ $qualifiedApplicants->applicants_id }}</td>
-                                <td>{{ $qualifiedApplicants->applicants_id }}</td>
-                                <td>{{ $qualifiedApplicants->applicants_id }}</td>
-
-                                {{-- TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO! --}}
-                            <?php
-                            }else{
-                                continue;
+                    <tr>
+                        <td>{{ $qualifiedApplicants->applicants_id }}</td>
+                        <td>{{ $qualifiedApplicants->application->status }}</td>
+                        <td>{{ $qualifiedApplicants->created_at }}</td>
+                        <td>{{ $qualifiedApplicants->where('applications_id', $qualifiedApplicants->applications_id)
+                        ->count() . ' / ' . $qualifiedApplicants->application->slots }}
+                        </td>
+                        <td>
+                            <a href="/applicants/qualified/list/{{ $qualifiedApplicants->applications_id }}"
+                                class="text-decoration-none">View</a>
+                        </td>
+                    </tr>
+                    <?php
                             }
                         }
 
@@ -44,4 +48,3 @@
 
     </x-layout>
 </x-navbar>
-;

@@ -93,7 +93,7 @@ class ApplicantController extends Controller
             'region' => 'required',
             'zipcode' => 'required',
 
-            'contact_number' => ['required', Rule::unique('contacts', 'contact_number')],         // Contact Table
+            'contact_number' => 'required',         // Contact Table
             'email' => 'required',
 
         ]);

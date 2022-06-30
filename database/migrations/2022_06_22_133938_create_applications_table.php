@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('slots');
             $table->string('start_date');
             $table->string('end_date');
+            $table->string('batch');
             $table->string('status')->nullable();
             $table->timestamps();
         });

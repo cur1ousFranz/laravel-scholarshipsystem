@@ -68,6 +68,18 @@
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
+
+                                        <div>
+                                            <label for="batch">
+                                                <h6>Batch</h6>
+                                            </label>
+                                            <input class="form-control form-control" type="text" id="batch" name="batch"
+                                                value="{{ old('batch') ?? $application->batch}}">
+
+                                            @error('batch')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
 
                                     <hr>

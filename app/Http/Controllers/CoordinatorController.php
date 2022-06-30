@@ -90,6 +90,7 @@ class CoordinatorController extends Controller
         $formFields = $request->validate([
             'slots' => 'required',
             'start_date' => 'required',
+            'batch' => 'required',
             'end_date' => 'required',
 
             'description' => 'required',
@@ -117,6 +118,7 @@ class CoordinatorController extends Controller
             'slots' => $formFields['slots'],
             'start_date' => $formFields['start_date'],
             'end_date' => $formFields['end_date'],
+            'batch' => $formFields['batch'],
             'status' => $formFields['status']
         ]);
 
@@ -162,6 +164,7 @@ class CoordinatorController extends Controller
         $formFields = $request->validate([
             'slots' => 'required',
             'end_date' => 'required',
+            'batch' => 'required',
 
             'description' => 'required',
             'years_in_city' => 'required',
@@ -173,13 +176,11 @@ class CoordinatorController extends Controller
             'registered_voter' => 'required'
         ]);
 
-        // dd($applicationDetail);
-
         $application->update([
             'slots' => $formFields['slots'],
-            'end_date' => $formFields['end_date']
+            'end_date' => $formFields['end_date'],
+            'batch' => $formFields['batch']
         ]);
-
 
         ApplicationDetail::where('applications_id', $application->id)->update([
 
@@ -292,12 +293,17 @@ class CoordinatorController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicant = ['applications_id' => $application->id, 'applicants_id' => $applicantID];
+                        $documentApplicant = ApplicantList::where('applicants_id', $applicantID)->first();
+                        $document = $documentApplicant->document;
 
-                        QualifiedApplicant::create([
+                        $applicant = [
                             'applications_id' => $application->id,
-                            'applicants_id' => $applicantID
-                        ]);
+                            'applicants_id' => $applicantID,
+                            'document' => $document
+                        ];
+
+                        // Adding to Qualified Applicant
+                        QualifiedApplicant::create($applicant);
 
                         // Deleting the selected applicant in applicant list
                         ApplicantList::where($applicant)->delete();
@@ -330,16 +336,28 @@ class CoordinatorController extends Controller
         }
     }
 
-
     /**
      * Qualified Applicant Table
      */
     public function qualifiedApplicant()
     {
-        $qualifiedApplicant = QualifiedApplicant::get();
+        $qualifiedApplicant = QualifiedApplicant::latest()->get();
 
         return view('coordinator.qualified_applicant',[
             'qualifiedApplicant' => $qualifiedApplicant
+        ]);
+    }
+
+    /**
+     * Qualified Applicant List Table
+     */
+    public function qualifiedApplicantList(Application $application){
+
+        $qualifiedApplicantList = QualifiedApplicant::where(
+            'applications_id', $application->id)->latest()->get();
+
+        return view('coordinator.qualified_applicant_list',[
+            'qualifiedApplicantList' => $qualifiedApplicantList
         ]);
     }
 

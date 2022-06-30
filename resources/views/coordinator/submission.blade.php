@@ -4,8 +4,6 @@
             <h4 class="mt-3">Applicant List</h4>
             <div class="d-flex">
                 <div>
-                    {{-- form="checkboxForm" --}}
-                    {{-- name="action" value="qualified" --}}
                     <button class="btn btn-outline-success me-2" data-bs-toggle="modal"
                     data-bs-target="#qualifiedApplicant" id="checkBox1" disabled>
                         <i class="bi bi-person-check-fill"></i>

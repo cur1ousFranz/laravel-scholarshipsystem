@@ -71,9 +71,15 @@ Route::post('/submissions/{application}', [CoordinatorController::class, 'submis
 Route::post('/submissions/listing/{application}', [CoordinatorController::class, 'listingApplicant']);
 
 
-// Applicant Table
+// Qualified Applicant Table
 Route::get('/applicants/qualified', [CoordinatorController::class, 'qualifiedApplicant']);
-// Applicant Table
+// Qualified Applicant List Table
+Route::get('/applicants/qualified/list/{application}', [CoordinatorController::class, 'qualifiedApplicantList']);
+
+
+
+
+// Rejected Applicant Table
 Route::get('/applicants/rejected', [CoordinatorController::class, 'rejectedApplicant']);
 
 /**

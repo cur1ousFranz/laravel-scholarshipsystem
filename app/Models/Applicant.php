@@ -7,6 +7,7 @@ use App\Models\School;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\ApplicantList;
+use App\Models\QualifiedApplicant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -52,5 +53,10 @@ class Applicant extends Model
     public function applicantList(){
 
         return $this->belongsTo(ApplicantList::class, 'applicants_id');
+    }
+
+    public function qualifiedApplicant(){
+
+        return $this->belongsTo(QualifiedApplicant::class, 'applicants_id');
     }
 }
