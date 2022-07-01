@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Application;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RejectedApplicant extends Model
 {
@@ -13,4 +14,9 @@ class RejectedApplicant extends Model
         'applications_id',
         'applicants_id'
     ];
+
+    public function application(){
+
+        return $this->belongsTo(Application::class, 'applications_id');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Coordinator;
 use App\Models\ApplicantList;
 use App\Models\ApplicationDetail;
+use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,6 +41,11 @@ class Application extends Model
     public function qualifiedApplicant(){
 
         return $this->hasMany(QualifiedApplicant::class, 'appications_id');
+    }
+
+    public function rejectedApplicant(){
+
+        return $this->hasMany(RejectedApplicant::class, 'appications_id');
     }
 
 }

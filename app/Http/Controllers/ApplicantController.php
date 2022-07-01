@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class ApplicantController extends Controller
 {
@@ -141,5 +142,17 @@ class ApplicantController extends Controller
         ]);
 
         return redirect('/profile');
+    }
+
+    /**
+     * Applicant Notification message
+     */
+    public function notificationMessage(Request $request){
+
+        $notification = DB::table('notifications')->where('id', $request->route('id'))->first();
+
+        return view('applicant.notification',[
+            'notification' => $notification
+        ]);
     }
 }

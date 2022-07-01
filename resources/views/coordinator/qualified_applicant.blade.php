@@ -25,7 +25,7 @@
                             $applicationArray[] = $qualifiedApplicants->applications_id
                             ?>
                     <tr>
-                        <td>{{ $qualifiedApplicants->applicants_id }}</td>
+                        <td>{{ $qualifiedApplicants->application->batch }}</td>
                         <td>{{ $qualifiedApplicants->application->status }}</td>
                         <td>{{ $qualifiedApplicants->created_at }}</td>
                         <td>{{ $qualifiedApplicants->where('applications_id', $qualifiedApplicants->applications_id)

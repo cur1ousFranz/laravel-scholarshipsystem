@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 
 class UserController extends Controller
 {
+
+    use Notifiable;
 
     /**
      * Create account of applicant

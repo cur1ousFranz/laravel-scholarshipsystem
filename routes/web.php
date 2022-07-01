@@ -75,12 +75,15 @@ Route::post('/submissions/listing/{application}', [CoordinatorController::class,
 Route::get('/applicants/qualified', [CoordinatorController::class, 'qualifiedApplicant']);
 // Qualified Applicant List Table
 Route::get('/applicants/qualified/list/{application}', [CoordinatorController::class, 'qualifiedApplicantList']);
-
-
-
+// Send notification to Qualified Applicants
+Route::post('/applicants/qualified/message/{application}', [CoordinatorController::class, 'qualifiedApplicantNotification']);
 
 // Rejected Applicant Table
 Route::get('/applicants/rejected', [CoordinatorController::class, 'rejectedApplicant']);
+// Rejected Applicant List Table
+Route::get('/applicants/rejected/list/{application}', [CoordinatorController::class, 'rejectedApplicantList']);
+// Send notification to Rejected Applicants
+Route::post('/applicants/rejected/message/{application}', [CoordinatorController::class, 'rejectedApplicantNotification']);
 
 /**
  * Applicant Controller
@@ -92,6 +95,8 @@ Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
 Route::get('/profiles/{profile}/edit', [ApplicantController::class, 'applicantProfileEdit']);
 // Applicant profile update
 Route::put('/profiles/{profile}', [ApplicantController::class, 'applicantProfileUpdate']);
+// Applicant notification
+Route::get('/notifications/{id}', [ApplicantController::class, 'notificationMessage']);
 
 /**
  * Application Controller

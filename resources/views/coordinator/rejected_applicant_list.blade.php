@@ -2,10 +2,10 @@
     <x-layout>
 
         <div class="d-flex justify-content-between">
-            <h4 class="mt-3">Qualified Applicant List</h4>
+            <h4 class="mt-3">Rejected Applicant List</h4>
             <div class="d-flex">
                 <div>
-                    <button class="btn btn-outline-success me-3" data-bs-toggle="modal" data-bs-target="#message">
+                    <button class="btn btn-outline-danger me-3" data-bs-toggle="modal" data-bs-target="#message">
                         <i class="bi bi-envelope-plus-fill"></i>
                     </button>
 
@@ -16,7 +16,7 @@
                                 <div class="modal-header d-flex justify-content-center">
                                     <h4 class="modal-title">Create Announcement</h4>
                                 </div>
-                                <form action="/applicants/qualified/message/{{ $application->id }}" method="POST">
+                                <form action="/applicants/rejected/message/{{ $application->id }}" method="POST">
                                     @csrf
 
                                     <div class="modal-body">
@@ -106,29 +106,29 @@
                 <tbody class="text-center" id="applicantListHeader">
                     <?php
 
-                    if(!$qualifiedApplicantList->isEmpty()){
+                    if(!$rejectedApplicantList->isEmpty()){
 
-                        foreach($qualifiedApplicantList as $qualifiedApplicantLists){
+                        foreach($rejectedApplicantList as $rejectedApplicantLists){
                             $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                ->where('id', $qualifiedApplicantLists->applicants_id)
+                                ->where('id', $rejectedApplicantLists->applicants_id)
                                 ->first();
 
                             $address = Illuminate\Support\Facades\DB::table('addresses')
-                            ->where('applicants_id', $qualifiedApplicantLists->applicants_id)
+                            ->where('applicants_id', $rejectedApplicantLists->applicants_id)
                             ->first();
 
                             $school = Illuminate\Support\Facades\DB::table('schools')
-                            ->where('applicants_id', $qualifiedApplicantLists->applicants_id)
+                            ->where('applicants_id', $rejectedApplicantLists->applicants_id)
                             ->first();
 
                             $contact = Illuminate\Support\Facades\DB::table('contacts')
-                            ->where('applicants_id', $qualifiedApplicantLists->applicants_id)
+                            ->where('applicants_id', $rejectedApplicantLists->applicants_id)
                             ->first();
 
                             ?>
                     <tr>
                         <td>
-                            <a class="text-decoration-none" href="/storage/{{ $qualifiedApplicantLists->document }}"
+                            <a class="text-decoration-none" href="/storage/{{ $rejectedApplicantLists->document }}"
                                 target="_blank">View</a>
                         </td>
                         <td>{{ $applicant->first_name }}</td>

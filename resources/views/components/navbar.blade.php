@@ -104,10 +104,43 @@
                             <div class="dropdown show">
                                 <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     <i class="bi bi-bell" style="font-size: 19px"></i>
+                                    @if (auth()->user()->unreadNotifications->count())
+                                        <span class="badge bg-danger">
+                                            {{ auth()->user()->unreadNotifications->count() }}
+                                        </span>
+                                    @endif
                                 </a>
 
-                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                    ...
+                                <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink">
+
+                                    <ul class="list-group ">
+                                        @if (auth()->user()->notifications->count() != 0)
+                                            @foreach (auth()->user()->unreadNotifications as $notifications)
+                                                <li class="list-group-item" style="background-color: #B5CBF6">
+                                                    <a class=" text-decoration-none text-dark" href="/notifications/{{ $notifications->id }}"
+                                                        class="dropdown-item"> {{ $notifications->data['title'] }}
+                                                    </a>
+                                                    <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                        {{ $notifications->created_at->format('d M') }}
+                                                    </p>
+                                                </li>
+                                            @endforeach
+                                            @foreach ( auth()->user()->readNotifications as $notifications )
+                                                <li class="list-group-item">
+                                                    <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
+                                                        {{ $notifications->data['title'] }}
+                                                    </a>
+                                                    <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                        {{ $notifications->created_at->format('d M') }}
+                                                    </p>
+                                                </li>
+
+                                            @endforeach
+                                        @else
+                                                <li class="list-group-item">No notification yet.</li>
+                                        @endif
+
+                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -117,10 +150,10 @@
                             <div class="dropdown show">
                                 <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     <?php
-                                    $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                        ->where('users_id', auth()->user()->id)
-                                        ->first();
-                                    echo $applicant->first_name;
+                                    // $applicant = Illuminate\Support\Facades\DB::table('applicants')
+                                    //     ->where('users_id', auth()->user()->id)
+                                    //     ->first();
+                                    echo auth()->user()->username;
                                     ?><i class="ms-1 bi bi-caret-down-fill"></i>
                                 </a>
 
