@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between">
                 <h4 class="mt-3">Rejected Applicant</h4>
             </div>
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered shadow-sm">
                 <thead class="text-center">
                     <tr>
                         <th scope="col">Batch</th>
@@ -16,34 +16,48 @@
                 <tbody class="text-center">
                     <?php
 
-                    $applicationArray = array();
+                    if (!$rejectedApplicant->isEmpty()) {
+                        $applicationArray = array();
 
-                    foreach ($rejectedApplicant as $rejectedApplicants) {
+                        foreach ($rejectedApplicant as $rejectedApplicants) {
 
-                        if(!in_array($rejectedApplicants->applications_id, $applicationArray)){
-                        $applicationArray[] = $rejectedApplicants->applications_id
+                            if(!in_array($rejectedApplicants->applications_id, $applicationArray)){
+                            $applicationArray[] = $rejectedApplicants->applications_id
+                            ?>
+                                <tr>
+                                    <td>{{ $rejectedApplicants->application->batch }}</td>
+                                    <td>{{ date('F j, Y', strtotime($rejectedApplicants->created_at )). " - " .
+                                    date('H:i', strtotime($rejectedApplicants->created_at)) }}
+                                    </td>
+                                    <td>{{ $rejectedApplicants->where('applications_id', $rejectedApplicants->applications_id)
+                                    ->count() }}
+                                    </td>
+                                    <td>
+                                        <a href="/applicants/rejected/list/{{ $rejectedApplicants->applications_id }}"
+                                            class="text-decoration-none">View</a>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                        }
+                    } else{
                         ?>
                             <tr>
-                                <td>{{ $rejectedApplicants->application->batch }}</td>
-                                <td>{{ $rejectedApplicants->created_at }}</td>
-                                <td>{{ $rejectedApplicants->where('applications_id', $rejectedApplicants->applications_id)
-                                ->count() . ' / ' . $rejectedApplicants->application->slots }}
-                                </td>
-                                <td>
-                                    <a href="/applicants/rejected/list/{{ $rejectedApplicants->applications_id }}"
-                                        class="text-decoration-none">View</a>
-                                </td>
+                                <td colspan="4" class="text-center">No applicants yet</td>
                             </tr>
                         <?php
-                        }
                     }
+
 
                 ?>
 
                 </tbody>
             </table>
         </div>
-
+        <div class="container mt-3">
+            {{ $rejectedApplicant->links('pagination::bootstrap-5') }}
+        </div>
 
     </x-layout>
 </x-navbar>
+<x-footer/>

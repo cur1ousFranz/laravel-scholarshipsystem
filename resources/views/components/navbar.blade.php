@@ -12,7 +12,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ESAMS</title>
-
+    <!-- ALPINE JS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- BOOTSTRAP CDN -->
@@ -27,6 +28,7 @@
             plugins: 'lists, link, image, media',
             toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
             menubar: false,
+            max_height: 300
         });
     </script>
 
@@ -82,6 +84,7 @@
         }
 
     </style>
+
 </head>
 
 <body>
@@ -282,21 +285,30 @@
         </div>
     </div>
     <main>
-        {{ $slot }}
-    </main>
-    <!-- Footer -->
-    <footer class="page-footer font-small bg-primary text-white">
-
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">
-            © 2022 All rights reserved.
+        @if (session()->has('success'));
+        {{-- <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
+            <p> {{ session('message') }}</p>
+        </div> --}}
+        <div class="d-flex justify-content-center ms-3 text-center">
+            <div style="margin-top: 80px" class="alert alert-success w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                <p> {{ session('success') }}</p>
+            </div>
         </div>
-        <!-- Copyright -->
+        @endif
 
-    </footer>
-    <!-- Footer -->
+        @if (session()->has('error'));
+        {{-- <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
+            <p> {{ session('message') }}</p>
+        </div> --}}
+        <div class="d-flex justify-content-center ms-3 text-center">
+            <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                <p> {{ session('error') }}</p>
+            </div>
+        </div>
+        @endif
+        {{ $slot }}
 
+    </main>
 
 </body>
 

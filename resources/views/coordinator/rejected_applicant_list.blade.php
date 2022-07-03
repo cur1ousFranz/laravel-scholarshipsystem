@@ -5,14 +5,24 @@
             <h4 class="mt-3">Rejected Applicant List</h4>
             <div class="d-flex">
                 <div>
-                    <button class="btn btn-outline-danger me-3" data-bs-toggle="modal" data-bs-target="#message">
-                        <i class="bi bi-envelope-plus-fill"></i>
-                    </button>
+                    @if (!$rejectedApplicantList->isEmpty())
+                        <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
+                            <button class="btn btn-outline-success me-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#message">
+                                <i class="bi bi-envelope-plus-fill"></i>
+                            </button>
+                        </span>
+                    @else
+                        <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
+                            <button class="btn btn-outline-danger me-3 shadow-sm" disabled>
+                                <i class="bi bi-envelope-plus-fill"></i>
+                            </button>
+                        </span>
+                    @endif
 
                     {{-- MESSAGE MODAL --}}
                     <div class="modal fade" id="message">
                         <div class="modal-dialog modal-lg modal-dialog-centered text-center">
-                            <div class="modal-content">
+                            <div class="modal-content border border-danger">
                                 <div class="modal-header d-flex justify-content-center">
                                     <h4 class="modal-title">Create Announcement</h4>
                                 </div>
@@ -26,7 +36,7 @@
                                                     <label for="title">
                                                         <h6>Title</h6>
                                                     </label>
-                                                    <input class="form-control" type="text" id="title"
+                                                    <input class="form-control shadow-sm" type="text" id="title"
                                                         name="title" value="{{ old('title') }}" maxlength="20">
                                                 </div>
                                             </div>
@@ -36,8 +46,11 @@
                                             <label for="message">
                                                 <h6>Message</h6>
                                             </label>
-                                            <textarea class="form-control" name="message" id="editor"></textarea>
+                                            <textarea class="form-control shadow-sm" name="message" id="editor"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="text-start ms-3 text-muted">
+                                        <p>Note: This announcement will automatically send to all qualified scholars in this batch through notification.</p>
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
@@ -56,7 +69,7 @@
                 <form action="">
                     <div class="input-group">
                         <div class="form-outline">
-                            <input type="search" id="form1" class="form-control" />
+                            <input type="search" id="form1" class="form-control shadow-sm" />
                         </div>
                         <button type="button" class="btn btn-primary">
                             <i class="bi bi-search"></i>
@@ -66,7 +79,7 @@
 
             </div>
         </div>
-        <div class="scroll2 border">
+        <div class="scroll2 shadow-sm">
             <table class="table table-striped table-bordered">
                 <thead class="text-center text-dark" id="applicantListHeader">
                     <tr>
@@ -174,9 +187,10 @@
             </table>
             </form>
         </div>
-        {{-- <div class="container mt-3">
-            {{ $applicantList->links('pagination::bootstrap-5') }}
-        </div> --}}
+        <div class="container mt-3">
+            {{ $rejectedApplicantList->links('pagination::bootstrap-5') }}
+        </div>
 
     </x-layout>
 </x-navbar>
+<x-footer/>

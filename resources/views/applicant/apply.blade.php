@@ -1,9 +1,9 @@
 <x-navbar>
-    <x-layout class="h-100">
+    {{-- <x-layout> --}}
 
-        <div class="container mb-5">
-            <div class="card">
-                <div class="card-body">
+        <div class="container d-flex justify-content-center h-100" style="margin-top: 100px;">
+            <div class="card shadow-sm">
+                <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     <div class="container text-center">
                         <h4>Apply Edukar Scholarship</h4>
                         <hr>
@@ -26,12 +26,12 @@
 
                                 @if (Auth::user())
                                     @if ($applicant->first_name != null)
-                                        <a class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>&nbsp;&nbsp;</a>
+                                        <a class="btn btn-outline-success shadow-sm">&nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>&nbsp;&nbsp;</a>
                                     @else
-                                        <button class="btn btn-outline-danger" disabled>Not Set</button>
+                                        <button class="btn btn-outline-danger shadow-sm" disabled>Not Set</button>
                                     @endif
                                 @else
-                                    <button class="btn btn-primary" disabled>Profile !Set</button>
+                                    <button class="btn btn-outline-primary shadow-sm" disabled>Not Set</button>
                                 @endif
 
                             </div>
@@ -153,7 +153,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="uploadFile">
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
+                                        <div class="modal-content border-top border-bottom border-1 border-primary">
                                             <div class="modal-header">
                                                 <div class="container text-center">
                                                     <h4 class="">Upload File</h4>
@@ -195,5 +195,6 @@
             </div>
         </div>
 
-    </x-layout>
+    {{-- </x-layout> --}}
 </x-navbar>
+<x-footer/>

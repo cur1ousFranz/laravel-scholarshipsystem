@@ -4,22 +4,26 @@
             <h4 class="mt-3">Applicant List</h4>
             <div class="d-flex">
                 <div>
-                    <button class="btn btn-outline-success me-2" data-bs-toggle="modal"
-                    data-bs-target="#qualifiedApplicant" id="checkBox1" disabled>
-                        <i class="bi bi-person-check-fill"></i>
-                    </button>
+                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Qualified">
+                        <button class="shadow-sm btn btn-outline-success me-2" data-bs-toggle="modal"
+                        data-bs-target="#qualifiedApplicant" id="checkBox1" disabled>
+                            <i class="bi bi-person-check-fill"></i>
+                        </button>
+                    </span>
                 </div>
 
                 <div>
-                    <button class="btn btn-outline-danger me-3" id="checkBox2"
-                    disabled data-bs-toggle="modal" data-bs-target="#rejectedApplicant" disabled>
-                        <i class="bi bi-person-x-fill"></i>
-                    </button>
+                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Rejected">
+                        <button class="shadow-sm btn btn-outline-danger me-3" id="checkBox2"
+                        disabled data-bs-toggle="modal" data-bs-target="#rejectedApplicant" disabled>
+                            <i class="bi bi-person-x-fill"></i>
+                        </button>
+                    </span>
                 </div>
 
                 <form action="">
                     <div class="input-group">
-                        <div class="form-outline">
+                        <div class="shadow-sm form-outline">
                             <input type="search" id="form1" class="form-control" />
                         </div>
                         <button type="button" class="btn btn-primary">
@@ -29,7 +33,7 @@
                 </form>
             </div>
         </div>
-        <div class="scroll border">
+        <div class="scroll shadow-sm">
             <form action="/submissions/listing/{{ $application->id }}" method="POST" id="checkboxForm">
                 @csrf
                 <table class="table table-striped table-bordered">
@@ -154,6 +158,7 @@
                 </table>
             </form>
         </div>
+        {{-- PAGINATION --}}
         <div class="container mt-3">
             {{ $applicantList->links('pagination::bootstrap-5') }}
         </div>
@@ -161,7 +166,7 @@
         {{-- QualifiedApplicant Button Modal --}}
         <div class="modal fade" id="qualifiedApplicant">
             <div class="modal-dialog modal-dialog-centered text-center" >
-              <div class="modal-content">
+              <div class="modal-content border border-success">
                 <div class="modal-header d-flex justify-content-center">
                     <h4 class="modal-title">Qualified Applicant</h4>
                 </div>
@@ -186,7 +191,7 @@
         {{-- RejectedApplicant Button Modal --}}
         <div class="modal fade" id="rejectedApplicant">
             <div class="modal-dialog modal-dialog-centered text-center" >
-              <div class="modal-content">
+              <div class="modal-content border border-danger">
                 <div class="modal-header d-flex justify-content-center">
                     <h4 class="modal-title">Rejected Applicant</h4>
                 </div>
@@ -207,6 +212,7 @@
           </div>
     </x-layout>
 </x-navbar>
+<x-footer/>
 
 <script>
     $(function() {

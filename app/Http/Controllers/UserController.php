@@ -54,7 +54,7 @@ class UserController extends Controller
             'applicants_id' => $applicant->id
         ]);
 
-        return back();
+        return back()->with('success', 'Created account succesfully!');
     }
 
     public function login(Request $request){
@@ -70,7 +70,7 @@ class UserController extends Controller
         if(Auth::attempt($formFields)){
             if($user->role == "applicant"){
                 $request->session()->regenerate();
-                return redirect('/');
+                return redirect('/')->with('success', 'You logged in!');
             }
         }
 
@@ -78,12 +78,12 @@ class UserController extends Controller
         if(Auth::attempt($formFields)){
             if($user->role == "coordinator"){
                 $request->session()->regenerate();
-                return redirect('/dashboard');
+                return redirect('/dashboard')->with('success', 'You logged in!');
             }
 
         }
 
-        return back()->withErrors(['username' => 'Invalid credentials'])->onlyInput('username');
+        return back()->with('error', 'Invalid Credentials!');
     }
 
     /**

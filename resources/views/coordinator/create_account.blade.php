@@ -77,3 +77,4 @@
     </div>
 
 </x-navbar>
+<x-footer/>

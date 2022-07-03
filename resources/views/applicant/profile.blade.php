@@ -1,10 +1,10 @@
 <x-navbar>
     <x-layout class="h-100">
 
-        <div class="conntainer mb-5">
+        <div class="container" style="margin-top: 80px">
             <div class="row">
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                             <div class="d-flex flex-column align-items-center text-center py-3">
                                 <img class="rounded-circle mb-2" width="150px"
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="card-body border-top border-top-4 border-bottom border-bottom-4 border-primary">
                             <div class="container d-flex justify-content-between mt-3">
                                 <h2>Profile</h2>
@@ -49,7 +49,7 @@
                                             <label for="first_name">
                                                 <h6>First Name</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="first_name"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="first_name"
                                                 value="{{ $applicant->first_name }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -61,7 +61,7 @@
                                                     <label for="middle_name">
                                                         <h6>Middle Name</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text" id="middle_name"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text" id="middle_name"
                                                         value="{{ $applicant->middle_name }}" style="background-color: #fff;"
                                                         disabled>
                                                 </div>
@@ -72,7 +72,7 @@
                                                     <label for="last_name">
                                                         <h6>Last Name</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text" id="last_name"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text" id="last_name"
                                                         value="{{ $applicant->last_name }}" style="background-color: #fff;"
                                                         disabled>
                                                 </div>
@@ -86,7 +86,7 @@
                                                     <label for="age">
                                                         <h6>Age</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="age" value="{{ $applicant->age }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -97,7 +97,7 @@
                                                     <label for="gender">
                                                         <h6>Gender</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="gender" value="{{ $applicant->gender }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -110,7 +110,7 @@
                                                     <label for="civil_status">
                                                         <h6>Civil Status</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="civil_status" value="{{ $applicant->civil_status }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -121,7 +121,7 @@
                                                     <label for="nationality">
                                                         <h6>Nationality</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="nationality" value="{{ $applicant->nationality }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -132,7 +132,7 @@
                                             <label for="educational_attainment">
                                                 <h6>Educational Attainment</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text"
                                                 id="educational_attainment"
                                                 value="{{ $applicant->educational_attainment }}"
                                                 style="background-color: #fff;" disabled>
@@ -142,7 +142,7 @@
                                             <label for="school_last_attended">
                                                 <h6>School Last Attended</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text"
                                                 id="school_last_attended" value="{{ $applicant->school->school_last_attended }}"
                                                 style="background-color: #fff;" disabled>
                                         </div>
@@ -151,7 +151,7 @@
                                             <label for="desired_school">
                                                 <h6>Desired School</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="desired_school"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="desired_school"
                                                 value="{{ $applicant->school->desired_school }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -160,7 +160,7 @@
                                             <label for="course_name">
                                                 <h6>Course</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="course_name"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="course_name"
                                                 value="{{ $applicant->school->course_name }}" style="background-color: #fff;" disabled>
                                         </div>
 
@@ -170,7 +170,7 @@
                                                     <label for="hei_type">
                                                         <h6>HEI Type</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="hei_type" value="{{ $applicant->school->hei_type }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -181,7 +181,7 @@
                                                     <label for="gwa">
                                                         <h6>General Weighted Avg</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="gwa" value="{{ $applicant->gwa }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -198,7 +198,7 @@
                                             <label for="registered_voter">
                                                 <h6>Registered Voter</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="registered_voter" value="{{ $applicant->registered_voter }}"
                                                         style="background-color: #fff;" disabled>
                                         </div>
@@ -207,7 +207,7 @@
                                             <label for="contact_number">
                                                 <h6>Contact Number</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text"
                                                 id="contact_number" value="{{ $applicant->contact->contact_number }}"
                                                 style="background-color: #fff;" disabled>
                                         </div>
@@ -216,7 +216,7 @@
                                             <label for="email">
                                                 <h6>Email</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="email"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="email"
                                                 value="{{ $applicant->contact->email }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -227,7 +227,7 @@
                                                     <label for="years_in_city">
                                                         <h6>No. years in city</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="years_in_city" value="{{ $applicant->years_in_city }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -237,7 +237,7 @@
                                                     <label for="family_income">
                                                         <h6>Family Income</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="family_income" value="{{ $applicant->family_income }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -248,7 +248,7 @@
                                             <label for="street">
                                                 <h6>Street</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="street"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="street"
                                                 value="{{ $applicant->address->street }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -257,7 +257,7 @@
                                             <label for="barangay">
                                                 <h6>Barangay</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="barangay"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="barangay"
                                                 value="{{ $applicant->address->barangay }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -266,7 +266,7 @@
                                             <label for="city">
                                                 <h6>City</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="city"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="city"
                                                 value="{{ $applicant->address->city }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -275,7 +275,7 @@
                                             <label for="province">
                                                 <h6>Province</h6>
                                             </label>
-                                            <input class="form-control form-control text-muted" type="text" id="province"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="province"
                                                 value="{{ $applicant->address->province }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
@@ -287,7 +287,7 @@
                                                     <label for="region">
                                                         <h6>Region</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="region" value="{{ $applicant->address->region }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -298,7 +298,7 @@
                                                     <label for="zipcode">
                                                         <h6>Zipcode</h6>
                                                     </label>
-                                                    <input class="form-control form-control text-muted" type="text"
+                                                    <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="zipcode" value="{{ $applicant->address->zipcode }}"
                                                         style="background-color: #fff;" disabled>
                                                 </div>
@@ -318,3 +318,4 @@
 
     </x-layout>
 </x-navbar>
+<x-footer/>

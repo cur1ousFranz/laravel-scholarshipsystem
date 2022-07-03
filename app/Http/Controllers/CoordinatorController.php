@@ -14,6 +14,7 @@ use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Notifications\ApplicantNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -55,7 +56,7 @@ class CoordinatorController extends Controller
                 'users_id' => $user->id
             ]);
 
-            return back();
+            return back()->with('success', 'Created account successfully!');
         } else {
             return back()->withErrors(['username' => 'Invalid, please contact the administrator.'])->onlyInput('username');
         }
@@ -67,7 +68,7 @@ class CoordinatorController extends Controller
     public function application()
     {
 
-        $application = Application::all();
+        $application = Application::latest()->paginate(10);
 
         return view('coordinator.application', [
             'application' => $application
@@ -109,7 +110,6 @@ class CoordinatorController extends Controller
 
         $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
         $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
-        // dd($formFields);
 
         $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
         $formFields['coordinators_id'] = $coordinatorID->id;
@@ -123,8 +123,6 @@ class CoordinatorController extends Controller
             'batch' => $formFields['batch'],
             'status' => $formFields['status']
         ]);
-
-        // dd($application);
 
         ApplicationDetail::create([
 
@@ -142,7 +140,7 @@ class CoordinatorController extends Controller
 
         ]);
 
-        return redirect('/applications');
+        return redirect('/applications')->with('success', 'Application created successfully!');
     }
 
     /**
@@ -274,12 +272,13 @@ class CoordinatorController extends Controller
             'applicants_id' => $applicant->id
         ])->exists();
 
-
         if ($applicantList || $applicant->first_name == null || $qualifiedList || $rejectedList) {
             abort('403', 'Unauthorized Action');
         } else {
+
             ApplicantList::create($formFields);
-            return back();
+
+            return back()->with('success', 'Application submitted successfully!');
         }
     }
 
@@ -297,21 +296,31 @@ class CoordinatorController extends Controller
 
                         $documentApplicant = ApplicantList::where('applicants_id', $applicantID)->first();
                         $document = $documentApplicant->document;
+                        $qualifiedApplicantCount = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
 
-                        $applicant = [
-                            'applications_id' => $application->id,
-                            'applicants_id' => $applicantID,
-                            'document' => $document
-                        ];
+                        // dd($qualifiedApplicantCount);
+                        // Validating if there is slot available
+                        if($qualifiedApplicantCount < $application->slots){
+                            $applicant = [
+                                'applications_id' => $application->id,
+                                'applicants_id' => $applicantID,
+                                'document' => $document
+                            ];
 
-                        // Adding to Qualified Applicant
-                        QualifiedApplicant::create($applicant);
+                            // Adding to Qualified Applicant
+                            QualifiedApplicant::create($applicant);
 
-                        // Deleting the selected applicant in applicant list
-                        ApplicantList::where($applicant)->delete();
+                            // Deleting the selected applicant in applicant list
+                            ApplicantList::where($applicant)->delete();
+
+
+                        }else{
+
+                            return back()->with('error', 'No more slots available!');
+                        }
+
                     }
-
-                    return back();
+                    return back()->with('success', 'Added to qualified successfully!');
 
                     break;
 
@@ -329,12 +338,13 @@ class CoordinatorController extends Controller
                         // Deleting the selected applicant in applicant list
                         ApplicantList::where($applicant)->delete();
                     }
-                    return back();
+                    return back()->with('success', 'Added to rejected successfully!');
 
                     break;
             }
         } else {
-            return back();
+            return Redirect::back()->with('error', 'No applicants selected!');
+            // return back()->with('error', 'No applicants selected!');
         }
     }
 
@@ -343,7 +353,7 @@ class CoordinatorController extends Controller
      */
     public function qualifiedApplicant()
     {
-        $qualifiedApplicant = QualifiedApplicant::latest()->get();
+        $qualifiedApplicant = QualifiedApplicant::latest()->paginate(10);
 
         return view('coordinator.qualified_applicant',[
             'qualifiedApplicant' => $qualifiedApplicant
@@ -355,8 +365,14 @@ class CoordinatorController extends Controller
      */
     public function qualifiedApplicantList(Application $application){
 
-        $qualifiedApplicantList = QualifiedApplicant::where(
-            'applications_id', $application->id)->latest()->get();
+        // Getting all qualified applicants and fetching data for search query
+        $qualifiedApplicantList = QualifiedApplicant::
+                leftJoin('applicants', 'applicants.id' , '=', 'qualified_applicants.applicants_id')
+                ->where('applications_id', $application->id)->filter(request(['search']))
+                ->paginate(10);
+
+        // QualifiedApplicant::where(
+        //     'applications_id', $application->id)->latest()->filter(request(['search']))->paginate(10);
 
         return view('coordinator.qualified_applicant_list',[
             'qualifiedApplicantList' => $qualifiedApplicantList,
@@ -370,7 +386,7 @@ class CoordinatorController extends Controller
     public function rejectedApplicant()
     {
 
-        $rejectedApplicant = RejectedApplicant::latest()->get();
+        $rejectedApplicant = RejectedApplicant::latest()->paginate(10);
 
         return view('coordinator.rejected_applicant',[
             'rejectedApplicant' => $rejectedApplicant
@@ -383,7 +399,7 @@ class CoordinatorController extends Controller
     public function rejectedApplicantList(Application $application){
 
         $rejectedApplicantList = RejectedApplicant::where(
-            'applications_id', $application->id)->latest()->get();
+            'applications_id', $application->id)->latest()->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[
             'rejectedApplicantList' => $rejectedApplicantList,
@@ -455,7 +471,7 @@ class CoordinatorController extends Controller
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
 
-        return back();
+        return back()->with('success', 'Announcement sent successfully!');
 
     }
 
@@ -523,7 +539,7 @@ class CoordinatorController extends Controller
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
 
-        return back();
+        return back()->with('success', 'Announcement sent successfully!');
 
     }
 }

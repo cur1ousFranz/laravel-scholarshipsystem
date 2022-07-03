@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
-    //
     /**
      * Applicaiton Form
      */

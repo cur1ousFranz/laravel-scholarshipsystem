@@ -2,12 +2,11 @@
     <x-layout class="h-100">
         <div class="container-fluid mb-5">
             <div class="container m-auto w-75">
-
                 <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <div class="nav nav-tabs shadow-sm" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="pill" data-bs-target="#nav-details"
                             type="button" role="tab">Application Details</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-files"
+                        <button class="nav-link shadow-sm" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-files"
                             type="button" role="tab">Application Files</button>
                     </div>
                 </nav>
@@ -17,7 +16,7 @@
 
                         {{-- First Tab --}}
 
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <div class="card-body border-top border-top-4 border-primary">
                                 <form action="/applications/{{ $application->id }}" method="post">
                                     @csrf
@@ -29,7 +28,7 @@
                                             <label for="slots">
                                                 <h6>Slots</h6>
                                             </label>
-                                            <select class="form-select form-control" name="slots">
+                                            <select class="shadow-sm form-select form-control" name="slots">
                                                 <option value="{{ old('slots') ?? $application->slots }}" selected>
                                                     {{ old('slots') ?? $application->slots }}
                                                 </option>
@@ -47,7 +46,7 @@
                                             <label for="start_date">
                                                 <h6>Start Date</h6>
                                             </label>
-                                            <input class="form-control form-control" type="text" id="start_date"
+                                            <input class="shadow-sm form-control form-control" type="text" id="start_date"
                                                 name="start_date" value="{{ $application->start_date }}"
                                                 readonly="true">
 
@@ -60,7 +59,7 @@
                                             <label for="end_date">
                                                 <h6>End Date</h6>
                                             </label>
-                                            <input class="form-control form-control" type="date" id="end_date"
+                                            <input class="shadow-sm form-control form-control" type="date" id="end_date"
                                                 name="end_date"
                                                 value="{{ old('end_date') ?? $application->end_date }}">
 
@@ -73,7 +72,7 @@
                                             <label for="batch">
                                                 <h6>Batch</h6>
                                             </label>
-                                            <input class="form-control form-control" type="text" id="batch" name="batch"
+                                            <input class="shadow-sm form-control form-control" type="text" id="batch" name="batch"
                                                 value="{{ old('batch') ?? $application->batch}}">
 
                                             @error('batch')
@@ -100,7 +99,7 @@
                                                     <label for="educational_attainment">
                                                         <h6>Educational Attainment</h6>
                                                     </label>
-                                                    <select class="form-select form-control"
+                                                    <select class="shadow-sm form-select form-control"
                                                         name="educational_attainment">
                                                         <option value="Incoming College / College">Incoming College /
                                                             College
@@ -117,7 +116,7 @@
                                                             <label for="family_income">
                                                                 <h6>Family Income</h6>
                                                             </label>
-                                                            <select class="form-select form-control"
+                                                            <select class="shadow-sm form-select form-control"
                                                                 name="family_income">
                                                                 <option
                                                                     value="{{ old('family_income') ?? $application->applicationDetail->family_income }}">
@@ -140,7 +139,7 @@
                                                             <label for="gwa">
                                                                 <h6>General Weighted Avg</h6>
                                                             </label>
-                                                            <select class="form-select form-control" name="gwa">
+                                                            <select class="shadow-sm form-select form-control" name="gwa">
                                                                 <option value="{{ old('gwa') ?? $application->applicationDetail->gwa }}">
                                                                     {{ old('gwa') ?? $application->applicationDetail->gwa }}
                                                                 </option>
@@ -165,7 +164,7 @@
                                                             <label for="city">
                                                                 <h6>City</h6>
                                                             </label>
-                                                            <select class="form-select form-control" name="city">
+                                                            <select class="shadow-sm form-select form-control" name="city">
                                                                 <option value="General Santos City">General Santos City
                                                                 </option>
                                                             </select>
@@ -180,7 +179,7 @@
                                                             <label for="registered_voter">
                                                                 <h6>Registered Voter</h6>
                                                             </label>
-                                                            <select class="form-select form-control"
+                                                            <select class="shadow-sm form-select form-control"
                                                                 name="registered_voter">
                                                                 <option value="Yes">Yes</option>
                                                                 <option value="No">No</option>
@@ -199,7 +198,7 @@
                                                             <label for="years_in_city">
                                                                 <h6>No. of year resident in City</h6>
                                                             </label>
-                                                            <select class="form-select form-control"
+                                                            <select class="shadow-sm form-select form-control"
                                                                 name="years_in_city">
                                                                 <option
                                                                     value="{{ old('years_in_city') ?? $application->applicationDetail->years_in_city }}">
@@ -222,7 +221,7 @@
                                                             <label for="nationality">
                                                                 <h6>Nationality</h6>
                                                             </label>
-                                                            <select class="form-select form-control"
+                                                            <select class="shadow-sm form-select form-control"
                                                                 name="nationality">
                                                                 <option value="Filipino">Filipino</option>
                                                             </select>
@@ -249,7 +248,7 @@
                     </div>
                     <div class="tab-pane fade" id="nav-files" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <div class="card-body border-top border-top-4 border-primary">
                                 <form action="/applications/{{ $application->id }}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -264,7 +263,7 @@
                                             <h5 class="mt-2">Step 2: Documentary Requirements</h5>
                                             <div>
                                                 <input type="file" name="documentary_requirement"
-                                                    class="form-control" accept="application/pdf">
+                                                    class="shadow-sm form-control" accept="application/pdf">
                                                 <p class="mt-2"><i
                                                         class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
                                                     <a href="{{ asset('storage/' . $application->applicationDetail->documentary_requirement) }}"
@@ -281,7 +280,7 @@
                                         <div class="d-flex mt-4 justify-content-between">
                                             <h5 class="mt-2">Step 3: Application Form</h5>
                                             <div>
-                                                <input type="file" name="application_form" class="form-control"
+                                                <input type="file" name="application_form" class="shadow-sm form-control"
                                                     accept="application/pdf">
                                                 <p class="mt-2"><i
                                                         class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
@@ -314,3 +313,4 @@
         </div>
     </x-layout>
 </x-navbar>
+<x-footer/>

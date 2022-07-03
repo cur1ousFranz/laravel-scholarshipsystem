@@ -1,27 +1,44 @@
 <x-navbar>
     <x-layout class="h-100">
 
-        <div class="conntainer mb-5">
+        <div class="container" style="margin-top: 80px">
             <div class="row">
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
-                            <div class="d-flex flex-column align-items-center text-center p-3">
-                                <img class="rounded-circle" width="150px"
+                            <div class="d-flex flex-column align-items-center text-center py-3">
+                                <img class="rounded-circle mb-2" width="150px"
                                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                <form action="" method="POST" enctype="multipart/form-data">
-                                </form>
+                                <div class="container-fluid me-5">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-person-square"></i>
+                                        </div>
+                                        <div class="col-10 mt-1 ">
+                                            <h6 class="float-start">{{ auth()->user()->username }}</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="col-10 mt-1">
+                                            <h6 class="float-start">{{ $applicant->contact->email }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-9">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <form action="/profiles/{{ $applicant->id }}" method="POST">
                             @csrf
                             @method('PUT')
 
-                            <div class="card-body mb-5 border-top border-top-4 border-bottom-4 border-primary">
+                            <div class="card-body mb-5 border-top border-top-4 border-primary">
                                 <div class="container d-flex justify-content-between mt-3">
                                     <h2>Edit Profile</h2>
                                 </div>
@@ -33,7 +50,7 @@
                                                 <label for="first_name">
                                                     <h6>First Name</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text" id="first_name"
+                                                <input class="shadow-sm form-control form-control" type="text" id="first_name"
                                                     name="first_name"
                                                     value="{{ old('first_name') ?? $applicant->first_name }}">
 
@@ -48,7 +65,7 @@
                                                         <label for="middle_name">
                                                             <h6>Middle Name</h6>
                                                         </label>
-                                                        <input class="form-control form-control" type="text" id="middle_name"
+                                                        <input class="shadow-sm form-control form-control" type="text" id="middle_name"
                                                             name="middle_name"
                                                             value="{{ old('middle_name') ?? $applicant->middle_name }}">
 
@@ -65,7 +82,7 @@
                                                         <label for="last_name">
                                                             <h6>Last Name</h6>
                                                         </label>
-                                                        <input class="form-control form-control" type="text" id="last_name"
+                                                        <input class="shadow-sm form-control form-control" type="text" id="last_name"
                                                             name="last_name"
                                                             value="{{ old('last_name') ?? $applicant->last_name }}">
 
@@ -83,7 +100,7 @@
                                                         <label for="age">
                                                             <h6>Age</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="age">
+                                                        <select class="shadow-sm form-select form-control" name="age">
                                                             <option selected disabled>Select</option>
                                                             @foreach ($age as $ages)
                                                                 <option
@@ -104,7 +121,7 @@
                                                         <label for="gender">
                                                             <h6>Gender</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="gender">
+                                                        <select class="shadow-sm form-select form-control" name="gender">
                                                             <option selected disabled>Select</option>
                                                             <option
                                                                 {{ $applicant->gender === 'Male' ? 'selected' : '' }}
@@ -127,7 +144,7 @@
                                                         <label for="civil_status">
                                                             <h6>Civil Status</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="civil_status">
+                                                        <select class="shadow-sm form-select form-control" name="civil_status">
                                                             <option selected disabled>Select</option>
                                                             <option
                                                                 {{ $applicant->civil_status === 'Single' ? 'selected' : '' }}
@@ -154,7 +171,7 @@
                                                         <label for="nationality">
                                                             <h6>Nationality</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="nationality">
+                                                        <select class="shadow-sm form-select form-control" name="nationality">
                                                             <option selected disabled>Select</option>
                                                             <option
                                                                 {{ $applicant->nationality === 'Filipino' ? 'selected' : '' }}
@@ -172,7 +189,7 @@
                                                 <label for="educational_attainment">
                                                     <h6>Educational Attainment</h6>
                                                 </label>
-                                                <select class="form-select form-control" name="educational_attainment">
+                                                <select class="shadow-sm form-select form-control" name="educational_attainment">
                                                     <option selected disabled>Select</option>
                                                     <option
                                                         {{ $applicant->educational_attainment === 'SHS' ? 'selected' : '' }}
@@ -195,7 +212,7 @@
                                                 <label for="school_last_attended">
                                                     <h6>School Last Attended</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="text"
                                                     id="school_last_attended" name="school_last_attended"
                                                     value="{{ old('school_last_attended') ?? $applicant->school->school_last_attended }}">
 
@@ -209,7 +226,7 @@
                                                     <h6>Desired School</h6>
                                                 </label>
 
-                                                <select class="form-select form-control dynamic" name="desired_school"
+                                                <select class="shadow-sm form-select form-control dynamic" name="desired_school"
                                                     id="school" data-dependent="course">
                                                     <option selected disabled>Select School</option>
                                                     @foreach ($school_list as $schools)
@@ -232,7 +249,7 @@
                                                 <label for="course_name">
                                                     <h6>Course</h6>
                                                 </label>
-                                                <select class="form-select form-control" name="course_name"
+                                                <select class="shadow-sm form-select form-control" name="course_name"
                                                     id="course">
                                                     <option selected disabled>Select</option>
 
@@ -249,7 +266,7 @@
                                                         <label for="hei_type">
                                                             <h6>HEI Type</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="hei_type">
+                                                        <select class="shadow-sm form-select form-control" name="hei_type">
                                                             <option selected disabled>Select</option>
                                                             <option
                                                                 {{ $applicant->school->hei_type === 'Public' ? 'selected' : '' }}
@@ -270,7 +287,7 @@
                                                         <label for="gwa">
                                                             <h6>General Weighted Avg</h6>
                                                         </label>
-                                                        <input class="form-control form-control" type="int"
+                                                        <input class="shadow-sm form-control form-control" type="int"
                                                             id="gwa" name="gwa"
                                                             value="{{ old('gwa') ?? $applicant->gwa }}"
                                                             onkeypress="return /[0-9.]/i.test(event.key)"
@@ -293,7 +310,7 @@
                                                 <label for="registered_voter">
                                                     <h6>Registered Voter</h6>
                                                 </label>
-                                                <select class="form-select form-control" name="registered_voter">
+                                                <select class="shadow-sm form-select form-control" name="registered_voter">
                                                     <option selected disabled>Select</option>
                                                     <option
                                                         {{ $applicant->registered_voter == 'Yes' ? 'selected' : '' }}
@@ -316,7 +333,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1">+63</span>
                                                     </div>
-                                                    <input class="form-control form-control" type="text"
+                                                    <input class="shadow-sm form-control form-control" type="text"
                                                         id="contact_number" name="contact_number"
                                                         value="{{ old('contact_number') ?? $applicant->contact->contact_number }}"
                                                         onkeypress="return /[0-9]/i.test(event.key)" maxlength="11">
@@ -331,7 +348,7 @@
                                                 <label for="email">
                                                     <h6>Email</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="email"
+                                                <input class="shadow-sm form-control form-control" type="email"
                                                     id="email" name="email"
                                                     value="{{ old('email') ?? $applicant->contact->email }}">
 
@@ -346,7 +363,7 @@
                                                         <label for="years_in_city">
                                                             <h6>No. years in city</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="years_in_city">
+                                                        <select class="shadow-sm form-select form-control" name="years_in_city">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 10; $i++)
                                                                 <option
@@ -366,7 +383,7 @@
                                                         <label for="family_income">
                                                             <h6>Family Income</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="family_income">
+                                                        <select class="shadow-sm form-select form-control" name="family_income">
                                                             <option selected disabled>Select</option>
                                                             <option
                                                                 {{ $applicant->family_income == 8000 ? 'selected' : '' }}
@@ -393,7 +410,7 @@
                                                 <label for="street">
                                                     <h6>Street</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="text"
                                                     id="street" name="street"
                                                     value="{{ old('street') ?? $applicant->address->street }}">
 
@@ -406,7 +423,7 @@
                                                 <label for="barangay">
                                                     <h6>Barangay</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="text"
                                                     id="barangay" name="barangay"
                                                     value="{{ old('barangay') ?? $applicant->address->barangay }}">
 
@@ -419,7 +436,7 @@
                                                 <label for="city">
                                                     <h6>City</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="text"
                                                     id="city" name="city"
                                                     value="{{ old('city') ?? $applicant->address->city }}">
 
@@ -432,7 +449,7 @@
                                                 <label for="province">
                                                     <h6>Province</h6>
                                                 </label>
-                                                <input class="form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="text"
                                                     id="province" name="province"
                                                     value="{{ old('province') ?? $applicant->address->province }}">
 
@@ -448,7 +465,7 @@
                                                         <label for="region">
                                                             <h6>Region</h6>
                                                         </label>
-                                                        <select class="form-select form-control" name="region">
+                                                        <select class="shadow-sm form-select form-control" name="region">
                                                             <option selected disabled>Select</option>
                                                             @for ($i = 1; $i <= 12; $i++)
                                                                 <option
@@ -469,7 +486,7 @@
                                                         <label for="zipcode">
                                                             <h6>Zipcode</h6>
                                                         </label>
-                                                        <input class="form-control form-control" type="text"
+                                                        <input class="shadow-sm form-control form-control" type="text"
                                                             id="zipcode" name="zipcode"
                                                             value="{{ old('zipcode') ?? $applicant->address->zipcode }}"
                                                             onkeypress="return /[0-9]/i.test(event.key)"
@@ -487,7 +504,7 @@
                                 </div>
                                 <hr>
                                 <div class="container">
-                                    <button class="btn btn-primary float-end" type="submit">Save</button>
+                                    <button class="shadow-sm btn btn-outline-primary float-end" type="submit">Save</button>
                                 </div>
                             </div>
                             {{-- {{ csrf_field() }} --}}
@@ -499,6 +516,7 @@
         </div>
     </x-layout>
 </x-navbar>
+<x-footer/>
 
 <script>
     $(document).ready(function() {

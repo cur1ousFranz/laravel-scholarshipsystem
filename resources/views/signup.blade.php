@@ -1,7 +1,6 @@
 <x-navbar>
-
-    <div class="container-fluid border-top" style="height: 610px; margin-top: 60px">
-        <div class="container mt-4" style="width: 500px">
+    <x-layout>
+        <div class="container" style="width: 500px; margin-top: 100px">
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
@@ -77,7 +76,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
+    </x-layout>
 </x-navbar>
+<x-footer/>

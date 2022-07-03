@@ -19,19 +19,19 @@
                                     <b>Apply Now!</b>
                                 </a>
                             </div>
-                            <div class="ms-3 mt-2">
-                                <?php
-                                $application = Illuminate\Support\Facades\DB::table('applications')
+                        </div>
+                        <div class="d-flex justify-content-center ms-3 mt-2">
+                            @php
+                                 $application = Illuminate\Support\Facades\DB::table('applications')
                                 ->where('status', 'On-going')
                                 ->first();
-
                                 if (!$application == null) {
-                                    echo "<p class='text-success text-decoration-none mt-4'>$application->start_date - $application->end_date</p>";
+                                echo "<p class='fw-bold text-light text-decoration-none mt-4'>"."Open: " . date('F j, Y', strtotime($application->start_date))
+                                    ."<br>Until: ". date('F j, Y', strtotime($application->end_date )). "</p>";
                                 }else {
-                                    echo "<p class='fw-bold text-decoration-none mt-4'>Closed</p>";
+                                    echo "<p class='fw-bold text-light text-decoration-none mt-4 me-3'>Closed</p>";
                                 }
-                            ?>
-                            </div>
+                            @endphp
                         </div>
 
                     @else
@@ -41,19 +41,19 @@
                                     <b>Apply Now!</b>
                                 </a>
                             </div>
-                            <div class="ms-3 mt-2">
-                                <?php
-                                $application = Illuminate\Support\Facades\DB::table('applications')
+                        </div>
+                        <div class="d-flex justify-content-center ms-3 mt-2">
+                            @php
+                                 $application = Illuminate\Support\Facades\DB::table('applications')
                                 ->where('status', 'On-going')
                                 ->first();
-
                                 if (!$application == null) {
-                                    echo "<p class='text-success text-decoration-none mt-4'>$application->start_date - $application->end_date</p>";
+                                echo "<p class='fw-bold text-light text-decoration-none mt-4'>"."Open: " . date('F j, Y', strtotime($application->start_date))
+                                    ."<br>Until: ". date('F j, Y', strtotime($application->end_date )). "</p>";
                                 }else {
-                                    echo "<p class='fw-bold text-decoration-none mt-4'>Closed</p>";
+                                    echo "<p class='fw-bold text-light text-decoration-none mt-4 me-3'>Closed</p>";
                                 }
-                            ?>
-                            </div>
+                            @endphp
                         </div>
                     @endif
 
@@ -118,3 +118,4 @@
         {{-- ANOTHER SECTION --}}
     </div>
 </x-navbar>
+<x-footer/>
