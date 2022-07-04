@@ -32,7 +32,7 @@
                     {{-- MESSAGE MODAL --}}
                     <div class="modal fade" id="message">
                         <div class="modal-dialog modal-lg modal-dialog-centered text-center">
-                            <div class="modal-content border border-primary">
+                            <div class="modal-content border border-dark">
                                 <div class="modal-header d-flex justify-content-center">
                                     <h4 class="modal-title">Create Announcement</h4>
                                 </div>
@@ -60,9 +60,9 @@
                                         </div>
                                     </div>
                                     <div class="text-start ms-3 text-muted">
-                                        <p>Note: This announcement will automatically send to all qualified scholars in this batch through notification.</p>
+                                        <p>Note: This announcement will automatically send to all qualified applicants in this batch through notification.</p>
                                     </div>
-                                    <div class="modal-footer d-flex justify-content-center">
+                                    <div class="modal-footer d-flex justify-content-end">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                             Cancel
                                         </button>
@@ -201,7 +201,5 @@
         <div class="container mt-3">
             {{ $qualifiedApplicantList->links('pagination::bootstrap-5') }}
         </div>
-
     </x-layout>
 </x-navbar>
-<x-footer/>

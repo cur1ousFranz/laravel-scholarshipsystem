@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Applicant;
 use App\Models\Application;
@@ -61,6 +62,32 @@ class CoordinatorController extends Controller
             return back()->withErrors(['username' => 'Invalid, please contact the administrator.'])->onlyInput('username');
         }
     }
+
+    /**
+     * Dashboard Page
+     */
+    public function dashboard(){
+
+        $data = Applicant::select('id', 'created_at')->get()->groupBy(function($data){
+
+           return Carbon::parse($data->created_at)->format('M');
+        });
+
+        $months = [];
+        $monthCount = [];
+
+        foreach($data as $month => $value){
+            $months[] = $month;
+            $monthCount[] = count($value);
+        }
+
+        return view('coordinator.dashboard',[
+            'data' => $data,
+            'months' => $month,
+            'monthCount' => $monthCount
+        ]);
+    }
+
 
     /**
      * Application Page
@@ -225,8 +252,9 @@ class CoordinatorController extends Controller
     public function submissions(Application $application)
     {
 
-        $applicantList = DB::table('applicant_lists')
-            ->where('applications_id', $application->id)
+        $applicantList = ApplicantList::
+            leftJoin('applicants', 'applicants.id' , '=', 'applicant_lists.applicants_id')
+            ->where('applications_id', $application->id)->filter(request(['search']))
             ->paginate(10);
 
         return view('coordinator.submission', [
@@ -254,6 +282,7 @@ class CoordinatorController extends Controller
          * This is for second validation which avoid the
          * user manipulation using the inspect element
          */
+
         // Validating if applicant is exist in ApplicantList
         $applicantList = ApplicantList::where([
             'applications_id' => $application->id,
@@ -298,7 +327,6 @@ class CoordinatorController extends Controller
                         $document = $documentApplicant->document;
                         $qualifiedApplicantCount = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
 
-                        // dd($qualifiedApplicantCount);
                         // Validating if there is slot available
                         if($qualifiedApplicantCount < $application->slots){
                             $applicant = [
@@ -398,8 +426,10 @@ class CoordinatorController extends Controller
      */
     public function rejectedApplicantList(Application $application){
 
-        $rejectedApplicantList = RejectedApplicant::where(
-            'applications_id', $application->id)->latest()->paginate(10);
+        $rejectedApplicantList = RejectedApplicant::
+                leftJoin('applicants', 'applicants.id' , '=', 'rejected_applicants.applicants_id')
+                ->where('applications_id', $application->id)->filter(request(['search']))
+                ->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[
             'rejectedApplicantList' => $rejectedApplicantList,

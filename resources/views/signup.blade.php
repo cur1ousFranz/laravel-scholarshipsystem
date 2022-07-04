@@ -1,6 +1,6 @@
 <x-navbar>
     <x-layout>
-        <div class="container" style="width: 500px; margin-top: 100px">
+        <div class="container" style="width: 500px;">
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
@@ -78,4 +78,3 @@
         </div>
     </x-layout>
 </x-navbar>
-<x-footer/>

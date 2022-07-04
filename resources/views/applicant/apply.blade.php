@@ -171,6 +171,9 @@
                                                         name="document">
 
                                                     @error('document')
+                                                        @php
+                                                            back()->with('error', 'File not submitted!');
+                                                        @endphp
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
 

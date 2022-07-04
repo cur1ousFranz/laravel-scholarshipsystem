@@ -1,7 +1,6 @@
 <x-navbar>
-    <x-layout class="h-100">
+    <x-layout>
 
-        <div class="container" style="margin-top: 80px">
             <div class="row">
                 <div class="col-3">
                     <div class="card shadow-sm">
@@ -304,18 +303,12 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-        </div>
-
     </x-layout>
 </x-navbar>
-<x-footer/>

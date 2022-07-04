@@ -14,19 +14,25 @@
 
                 <div>
                     <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Rejected">
-                        <button class="shadow-sm btn btn-outline-danger me-3" id="checkBox2"
+                        <button class="shadow-sm btn btn-outline-danger me-2" id="checkBox2"
                         disabled data-bs-toggle="modal" data-bs-target="#rejectedApplicant" disabled>
                             <i class="bi bi-person-x-fill"></i>
                         </button>
                     </span>
                 </div>
 
+                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Show All Applicants">
+                    <a href="/applications/{{ $application->id }}/submissions" class="btn btn-outline-warning me-2">
+                        <i class="bi bi-arrow-up-square-fill"></i>
+                    </a>
+                </span>
+
                 <form action="">
                     <div class="input-group">
                         <div class="shadow-sm form-outline">
-                            <input type="search" id="form1" class="form-control" />
+                            <input type="search" id="form1" class="form-control" name="search"/>
                         </div>
-                        <button type="button" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
@@ -212,7 +218,6 @@
           </div>
     </x-layout>
 </x-navbar>
-<x-footer/>
 
 <script>
     $(function() {

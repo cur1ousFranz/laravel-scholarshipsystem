@@ -1,5 +1,3 @@
-<div {{ $attributes->merge(['class' => "container-fluid border-top", 'style' => "height: 100vh; margin-top: 30px"]) }}>
-    <div class="container mt-5">
+<div {{ $attributes->merge(['class' => "container", 'style' => "margin-top: 100px; margin-bottom: 50px"]) }}>
         {{ $slot }}
-    </div>
 </div>

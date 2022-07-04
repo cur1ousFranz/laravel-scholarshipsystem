@@ -1,5 +1,5 @@
 <x-navbar>
-    <x-layout class="mt-5" style="height: 100%">
+    <x-layout>
         <div class="container-fluid d-flex justify-content-center mb-5">
             <div class="card w-75 shadow-sm">
                 <div class="card-body border-top border-top-4 border-primary">
@@ -228,7 +228,6 @@
                 </div>
             </div>
         </div>
-
     </x-layout>
 </x-navbar>
-<x-footer/>
+

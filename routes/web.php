@@ -25,11 +25,6 @@ Route::get('/signup', function () {
     return view('signup');
 })->middleware('guest');
 
-
-Route::get('/dashboard', function () {
-    return view('coordinator.dashboard');
-})->name('dashboard')->middleware('auth');
-
 /**
  * User Controller
  *
@@ -46,6 +41,8 @@ Route::post('/logout', [UserController::class, 'logout']);
  * Coordinator Controller
  *
  */
+// Dashboard page
+Route::get('/dashboard', [CoordinatorController::class, 'dashboard'])->name('dashboard');
 // Create Account of Coordinator Form
 Route::get('/coordinator', [CoordinatorController::class, 'createForm'])->name('coordinator');
 // Create Accoount of Coordinator

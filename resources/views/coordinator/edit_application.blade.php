@@ -1,5 +1,5 @@
 <x-navbar>
-    <x-layout class="h-100">
+    <x-layout>
         <div class="container-fluid mb-5">
             <div class="container m-auto w-75">
                 <nav>
@@ -313,4 +313,3 @@
         </div>
     </x-layout>
 </x-navbar>
-<x-footer/>

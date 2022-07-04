@@ -13,7 +13,7 @@ class ApplicationController extends Controller
      */
     public function apply(){
 
-        $application = DB::table('applications')->where('status', 'On-going')->first();
+        $application = DB::table('applications')->where('status', 'On-going')->latest()->first();
         $applicant = Applicant::where('users_id', Auth::user()->id)->first();
 
         if($application != null){

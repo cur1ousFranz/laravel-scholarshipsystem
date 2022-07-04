@@ -60,7 +60,5 @@
         <div class="container mt-3">
             {{ $qualifiedApplicant->links('pagination::bootstrap-5') }}
         </div>
-
     </x-layout>
 </x-navbar>
-<x-footer/>

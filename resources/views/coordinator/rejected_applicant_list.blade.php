@@ -1,23 +1,28 @@
 <x-navbar>
     <x-layout>
-
         <div class="d-flex justify-content-between">
             <h4 class="mt-3">Rejected Applicant List</h4>
             <div class="d-flex">
                 <div>
                     @if (!$rejectedApplicantList->isEmpty())
                         <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
-                            <button class="btn btn-outline-success me-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#message">
+                            <button class="btn btn-outline-success me-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#message">
                                 <i class="bi bi-envelope-plus-fill"></i>
                             </button>
                         </span>
                     @else
                         <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
-                            <button class="btn btn-outline-danger me-3 shadow-sm" disabled>
+                            <button class="btn btn-outline-success me-1 shadow-sm" disabled>
                                 <i class="bi bi-envelope-plus-fill"></i>
                             </button>
                         </span>
                     @endif
+
+                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="Show All Applicants">
+                        <a href="/applicants/rejected/list/{{ $application->id }}" class="btn btn-outline-warning me-2">
+                            <i class="bi bi-arrow-up-square-fill"></i>
+                        </a>
+                    </span>
 
                     {{-- MESSAGE MODAL --}}
                     <div class="modal fade" id="message">
@@ -50,9 +55,9 @@
                                         </div>
                                     </div>
                                     <div class="text-start ms-3 text-muted">
-                                        <p>Note: This announcement will automatically send to all qualified scholars in this batch through notification.</p>
+                                        <p>Note: This announcement will automatically send to all rejected applicants in this batch through notification.</p>
                                     </div>
-                                    <div class="modal-footer d-flex justify-content-center">
+                                    <div class="modal-footer d-flex justify-content-end">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                             Cancel
                                         </button>
@@ -69,9 +74,9 @@
                 <form action="">
                     <div class="input-group">
                         <div class="form-outline">
-                            <input type="search" id="form1" class="form-control shadow-sm" />
+                            <input type="search" id="form1" class="form-control shadow-sm" name="search"/>
                         </div>
-                        <button type="button" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
@@ -190,7 +195,6 @@
         <div class="container mt-3">
             {{ $rejectedApplicantList->links('pagination::bootstrap-5') }}
         </div>
-
     </x-layout>
 </x-navbar>
 <x-footer/>

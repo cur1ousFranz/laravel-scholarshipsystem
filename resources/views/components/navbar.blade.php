@@ -12,6 +12,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ESAMS</title>
+
+    <!-- CHART -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="{{ asset('public/assets/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('public/assets/demo/chart-bar-demo.js') }}"></script>
+
     <!-- ALPINE JS -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- AJAX CDN -->
@@ -87,25 +93,25 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top border-bottom">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top border-bottom" style="background-color: #fffcff">
         <div class="container ">
 
-            <a class="navbar-brand" href="/">Edukar Scholarship Applicant Management System</a>
+            <a class="navbar-brand" href="/">Edukar Scholarship Application Management System</a>
             <ul class="navbar-nav">
                 {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
                 @auth
                     @if (auth()->user()->role == 'applicant')
                         <li class="nav-item">
-                            <a class="btn nav-link text-white" href="/">
+                            <a class="btn nav-link text-dark" href="/">
                                 <i class="bi bi-house-door" style="font-size: 20px"></i></a>
                         </li>
 
                         <li class="nav-item mt-1">
 
                             <div class="dropdown show">
-                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     <i class="bi bi-bell" style="font-size: 19px"></i>
                                     @if (auth()->user()->unreadNotifications->count())
                                         <span class="badge bg-danger">
@@ -151,7 +157,7 @@
                         <li class="nav-item mt-2">
 
                             <div class="dropdown show">
-                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     <?php
                                     // $applicant = Illuminate\Support\Facades\DB::table('applicants')
                                     //     ->where('users_id', auth()->user()->id)
@@ -173,14 +179,14 @@
                         </li>
                     @elseif(auth()->user()->role == 'coordinator')
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/dashboard">Dashboard</a>
+                            <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/applications">Application</a>
+                            <a class="nav-link text-dark" href="/applications">Application</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown show">
-                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
                                 </a>
 
@@ -193,7 +199,7 @@
                         </li>
                         <li class="nav-item">
                             <div class="dropdown show">
-                                <a class="btn text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                     Coordinator<i class="ms-1 bi bi-caret-down-fill"></i>
                                 </a>
 
@@ -211,10 +217,10 @@
                     @endif
                 @else
                     <li class="nav-item border border-2 border-warning ms-3">
-                        <a class="nav-link text-white" href="/signup">Sign up</a>
+                        <a class="nav-link text-dark" href="/signup">Sign up</a>
                     </li>
                     <li class="nav-item border border-2 border-warning ms-2">
-                        <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#signinModal"
+                        <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#signinModal"
                             href="">Sign in</a>
                     </li>
                 @endauth
@@ -227,7 +233,7 @@
     <!-- Modal -->
     <div class="modal fade" id="signinModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border border-3 border-primary">
+            <div class="modal-content border border-1 border-dark">
                 <div class="modal-header d-flex justify-content-center">
                     <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
                 </div>
@@ -310,6 +316,18 @@
 
     </main>
 
+    <!-- Footer -->
+    <footer class="page-footer font-small text-dark border-top border-top-4 border-secondary mt-auto" style="background-color: #fffcff">
+
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2022 All rights reserved.
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
 </body>
 
 </html>
