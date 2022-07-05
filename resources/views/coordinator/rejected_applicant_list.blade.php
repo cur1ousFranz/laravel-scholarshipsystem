@@ -197,4 +197,3 @@
         </div>
     </x-layout>
 </x-navbar>
-<x-footer/>

@@ -68,23 +68,55 @@ class CoordinatorController extends Controller
      */
     public function dashboard(){
 
-        $data = Applicant::select('id', 'created_at')->get()->groupBy(function($data){
+        /**
+         * This is for Applied Applicants chart in dashboard
+         */
+        $appliedApplicantData = ApplicantList::select('id', 'created_at')->get()->groupBy(function($data){
 
-           return Carbon::parse($data->created_at)->format('M');
+           return Carbon::parse($data->created_at)->format('Y');
         });
 
-        $months = [];
-        $monthCount = [];
-
-        foreach($data as $month => $value){
-            $months[] = $month;
-            $monthCount[] = count($value);
+        $appliedApplicantYears = [];
+        $appliedApplicantYearCount = [];
+        foreach($appliedApplicantData as $year => $value){
+            $appliedApplicantYears[] = $year;
+            $appliedApplicantYearCount[] = count($value);
         }
 
+         /**
+         * This is for Qualified Applicants chart in dashboard
+         */
+        $qualifiedApplicantData = QualifiedApplicant::select('id', 'created_at')->get()->groupBy(function($data){
+
+            return Carbon::parse($data->created_at)->format('Y');
+         });
+
+         $qualifiedApplicantYears = [];
+         $qualifiedApplicantYearCount = [];
+         foreach($qualifiedApplicantData as $year => $value){
+             $qualifiedApplicantYears[] = $year;
+             $qualifiedApplicantYearCount[] = count($value);
+         }
+
+        /**
+         * Fetching total applicants who registered in the system.
+         * Fetching total application created.
+         * Fetching total submissions that have been made.
+         */
+        $totalApplicants = Applicant::get();
+        $totalApplications = Application::get();
+        $totalSubmissions = ApplicantList::get();
+
         return view('coordinator.dashboard',[
-            'data' => $data,
-            'months' => $month,
-            'monthCount' => $monthCount
+            'appliedApplicantYears' => $appliedApplicantYears,
+            'appliedApplicantYearCount' => $appliedApplicantYearCount,
+
+            'qualifiedApplicantYears' => $qualifiedApplicantYears,
+            'qualifiedApplicantYearCount' => $qualifiedApplicantYearCount,
+
+            'totalApplicants' => $totalApplicants,
+            'totalApplications' => $totalApplications,
+            'totalSubmissions' => $totalSubmissions
         ]);
     }
 
@@ -317,14 +349,19 @@ class CoordinatorController extends Controller
     public function listingApplicant(Request $request, Application $application)
     {
 
+        /**
+         * Input has send through checkboxes
+         */
         if ($request->input('applicant')) {
             switch ($request->input('action')) {
                 case 'qualified':
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $documentApplicant = ApplicantList::where('applicants_id', $applicantID)->first();
-                        $document = $documentApplicant->document;
+                        $applicant = ApplicantList::where('applicants_id', $applicantID)->first();
+                        $document = $applicant->document;
+
+                        /** Getting the current count of qualified applicants, for validating the slots */
                         $qualifiedApplicantCount = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
 
                         // Validating if there is slot available
@@ -338,9 +375,11 @@ class CoordinatorController extends Controller
                             // Adding to Qualified Applicant
                             QualifiedApplicant::create($applicant);
 
-                            // Deleting the selected applicant in applicant list
-                            ApplicantList::where($applicant)->delete();
+                            // Setting the applicant review to Yes
+                            ApplicantList::where('applicants_id', $applicantID)->update([
 
+                                'review' => 'Yes'
+                            ]);
 
                         }else{
 
@@ -363,8 +402,11 @@ class CoordinatorController extends Controller
                             'applicants_id' => $applicantID
                         ]);
 
-                        // Deleting the selected applicant in applicant list
-                        ApplicantList::where($applicant)->delete();
+                        // Setting the applicant review to Yes
+                        ApplicantList::where('applicants_id', $applicantID)->update([
+
+                            'review' => 'Yes'
+                        ]);
                     }
                     return back()->with('success', 'Added to rejected successfully!');
 

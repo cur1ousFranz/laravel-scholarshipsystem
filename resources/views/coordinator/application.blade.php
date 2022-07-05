@@ -29,7 +29,8 @@
                             <td class="{{ $applications->status == "On-going" ? "text-success" : "text-danger" }}">
                                 {{ $applications->status }}
                             </td>
-                            <td>{{ $applications->applicantList->count() }}</td>
+                            <td>{{ $applications->applicantList->count() }}
+                            </td>
                             <td>
                                 <a class="text-decoration-none" href="/applications/{{ $applications->id }}/submissions">View</a>
                             </td>
