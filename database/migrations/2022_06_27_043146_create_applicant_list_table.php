@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('applicants_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('rating')->nullable();
             $table->string('document')->nullable();
+            $table->string('review')->nullable();
             $table->timestamps();
 
         });

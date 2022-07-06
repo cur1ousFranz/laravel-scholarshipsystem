@@ -243,12 +243,31 @@
                                             </div>
                                         </div>
 
+                                        <div class="row mt-2">
+                                            <div class="col-6">
+                                                <label for="country">
+                                                    <h6>Country</h6>
+                                                </label>
+                                                <input class="shadow-sm form-control form-control text-muted" type="text" id="country"
+                                                    value="{{ $applicant->address->country }}" style="background-color: #fff;"
+                                                    disabled>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="province">
+                                                    <h6>Province</h6>
+                                                </label>
+                                                <input class="shadow-sm form-control form-control text-muted" type="text" id="province"
+                                                    value="{{ $applicant->address->province }}" style="background-color: #fff;"
+                                                    disabled>
+                                            </div>
+                                        </div>
+
                                         <div class="mt-2">
-                                            <label for="street">
-                                                <h6>Street</h6>
+                                            <label for="city">
+                                                <h6>City</h6>
                                             </label>
-                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="street"
-                                                value="{{ $applicant->address->street }}" style="background-color: #fff;"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="city"
+                                                value="{{ $applicant->address->city }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 
@@ -262,20 +281,11 @@
                                         </div>
 
                                         <div class="mt-2">
-                                            <label for="city">
-                                                <h6>City</h6>
+                                            <label for="street">
+                                                <h6>Street</h6>
                                             </label>
-                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="city"
-                                                value="{{ $applicant->address->city }}" style="background-color: #fff;"
-                                                disabled>
-                                        </div>
-
-                                        <div class="mt-2">
-                                            <label for="province">
-                                                <h6>Province</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="province"
-                                                value="{{ $applicant->address->province }}" style="background-color: #fff;"
+                                            <input class="shadow-sm form-control form-control text-muted" type="text" id="street"
+                                                value="{{ $applicant->address->street }}" style="background-color: #fff;"
                                                 disabled>
                                         </div>
 

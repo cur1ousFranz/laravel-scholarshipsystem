@@ -34,17 +34,21 @@ class ApplicantController extends Controller
 
         $applicant = Applicant::where('users_id', Auth::user()->id)->first();
         $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
+
         $school_list = DB::table('school_courses')->groupBy('school')->get();
+        $dynamic_address = DB::table('dynamic_address')->groupBy('country')->get();
 
         return view('applicant.profile_edit', [
             'applicant' => $applicant,
             'age' => $ageArray,
-            'school_list' => $school_list
+            'school_list' => $school_list,
+            'dynamic_address' => $dynamic_address
         ]);
     }
 
     /**
      * This is used for Dynamic Dependent Dropdown
+     * of School and Courses
      * AJAX
      */
     public function fetch(Request $request)
@@ -63,6 +67,29 @@ class ApplicantController extends Controller
         }
         echo $output;
     }
+
+    /**
+     * This is used for Dynamic Dependent Dropdown
+     * of Addresses
+     * AJAX
+     */
+    public function fetchAddress(Request $request)
+    {
+
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('dynamic_address')
+            ->where($select, $value)
+            ->groupBy($dependent)
+            ->get();
+        $output = '<option value="">Select ' . ucfirst($dependent) . '</option>';
+        foreach ($data as $row) {
+            $output .= '<option value="' . $row->$dependent . '">' . $row->$dependent . '</option>';
+        }
+        echo $output;
+    }
+
 
     // Update Profile of Applicant
     public function applicantProfileUpdate(Request $request)
@@ -87,10 +114,11 @@ class ApplicantController extends Controller
             'school_last_attended' => 'required',
             'course_name' => 'required',
 
-            'street' => 'required',
-            'barangay' => 'required',
-            'city' => 'required',                   // Address Table
+            'country' => 'required',
             'province' => 'required',
+            'city' => 'required',
+            'barangay' => 'required',               // Address Table
+            'street' => 'required',
             'region' => 'required',
             'zipcode' => 'required',
 
@@ -127,10 +155,11 @@ class ApplicantController extends Controller
 
         Address::where('applicants_id', $applicant->id)->update([
 
-            'street' => $formFields['street'],
-            'barangay' => $formFields['barangay'],
-            'city' => $formFields['city'],
+            'country' => $formFields['country'],
             'province' => $formFields['province'],
+            'city' => $formFields['city'],
+            'barangay' => $formFields['barangay'],
+            'street' => $formFields['street'],
             'region' => $formFields['region'],
             'zipcode' => $formFields['zipcode'],
         ]);
@@ -141,7 +170,7 @@ class ApplicantController extends Controller
             'email' => $formFields['email'],
         ]);
 
-        return redirect('/profile');
+        return redirect('/profile')->with('success', 'Profile updated successfully!');
     }
 
     /**

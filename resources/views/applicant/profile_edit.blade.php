@@ -233,11 +233,6 @@
                                                 @endforeach
                                             </select>
 
-
-                                            {{-- <input class="form-control form-control" type="text"
-                                                id="desired_school" name="desired_school"
-                                                value="{{ old('desired_school') ?? $school->desired_school }}"> --}}
-
                                             @error('desired_school')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -348,7 +343,7 @@
                                             </label>
                                             <input class="shadow-sm form-control form-control" type="email"
                                                 id="email" name="email"
-                                                value="{{ old('email') ?? $applicant->contact->email }}">
+                                                value="{{ $applicant->contact->email }}" readonly>
 
                                             @error('email')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -395,6 +390,9 @@
                                                         <option
                                                             {{ $applicant->family_income == 20000 ? 'selected' : '' }}
                                                             value="20000">20,000 PHP</option>
+                                                        <option
+                                                            {{ $applicant->family_income == 25000 ? 'selected' : '' }}
+                                                            value="25000">25,000 PHP</option>
                                                     </select>
 
                                                     @error('family_income')
@@ -404,15 +402,55 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-2">
-                                            <label for="street">
-                                                <h6>Street</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control" type="text"
-                                                id="street" name="street"
-                                                value="{{ old('street') ?? $applicant->address->street }}">
+                                        {{-- DYNAMIC DROPDOWNS OF ADDRESS --}}
 
-                                            @error('street')
+                                        <div class="row mt-2">
+                                            <div class="col-6">
+                                                <label for="country">
+                                                    <h6>Country</h6>
+                                                </label>
+                                                <select class="shadow-sm form-select form-control dynamic" name="country"
+                                                    id="country" data-dependent="province">
+                                                    <option selected disabled>Select</option>
+
+                                                    @foreach ($dynamic_address as $country)
+                                                    <option value="{{ $country->country }}">
+                                                        {{ $country->country }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @error('country')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label for="province">
+                                                    <h6>Province</h6>
+                                                </label>
+                                                <select class="shadow-sm form-select form-control dynamic" name="province"
+                                                    id="province" data-dependent="city">
+                                                    <option selected disabled>Select</option>
+
+                                                </select>
+
+                                                @error('province')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="city">
+                                                <h6>City</h6>
+                                            </label>
+                                            <select class="shadow-sm form-select form-control dynamic" name="city"
+                                                id="city" data-dependent="barangay">
+                                                <option selected disabled>Select</option>
+
+                                            </select>
+
+                                            @error('city')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -421,9 +459,11 @@
                                             <label for="barangay">
                                                 <h6>Barangay</h6>
                                             </label>
-                                            <input class="shadow-sm form-control form-control" type="text"
-                                                id="barangay" name="barangay"
-                                                value="{{ old('barangay') ?? $applicant->address->barangay }}">
+                                            <select class="shadow-sm form-select form-control" name="barangay"
+                                                id="barangay">
+                                                <option selected disabled>Select</option>
+
+                                            </select>
 
                                             @error('barangay')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -431,27 +471,14 @@
                                         </div>
 
                                         <div class="mt-2">
-                                            <label for="city">
-                                                <h6>City</h6>
+                                            <label for="street">
+                                                <h6>Street</h6>
                                             </label>
                                             <input class="shadow-sm form-control form-control" type="text"
-                                                id="city" name="city"
-                                                value="{{ old('city') ?? $applicant->address->city }}">
+                                            id="street" name="street"
+                                            value="{{ old('street') ?? $applicant->address->street }}">
 
-                                            @error('city')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="mt-2">
-                                            <label for="province">
-                                                <h6>Province</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control" type="text"
-                                                id="province" name="province"
-                                                value="{{ old('province') ?? $applicant->address->province }}">
-
-                                            @error('province')
+                                            @error('street')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -512,6 +539,8 @@
 </x-navbar>
 
 <script>
+    // This is for School and Courses function
+    // dynamic dependent dropdown
     $(document).ready(function() {
 
         $('.dynamic').change(function() {
@@ -540,6 +569,54 @@
         $('#school').change(function() {
             $('#course').val('');
         });
+
+    });
+
+</script>
+<script>
+
+    // This is for Address function
+    // dynamic dependent dropdown
+    $(document).ready(function() {
+
+    $('.dynamic').change(function() {
+        if ($(this).val() != '') {
+            var select = $(this).attr("id");
+            var value = $(this).val();
+            var dependent = $(this).data('dependent');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{ route('applicantcontroller.fetchAddress') }}",
+                method: "POST",
+                data: {
+                    select: select,
+                    value: value,
+                    _token: _token,
+                    dependent: dependent
+                },
+                success: function(result) {
+                    $('#' + dependent).html(result);
+                }
+
+            })
+        }
+    });
+
+    $('#country').change(function() {
+        $('#province').val('');
+        $('#city').val('');
+        $('#barangay').val('');
+        $('#province').val('');
+    });
+
+    $('#province').change(function() {
+        $('#city').val('');
+        $('#barangay').val('');
+    });
+
+    $('#city').change(function() {
+        $('#barangay').val('');
+    });
 
     });
 </script>

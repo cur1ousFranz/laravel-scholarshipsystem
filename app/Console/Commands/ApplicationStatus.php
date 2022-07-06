@@ -28,14 +28,17 @@ class ApplicationStatus extends Command
      * @return int
      */
     public function handle(){
-        // THIS WILL DONE IN PUBLICATION STAGE,
+        /**
+         * TASK SCHEDULING
+         *
+         * THIS WILL DONE IN PUBLISHING THE SYSTEM ONLINE.
+         */
         $application = DB::table('applications')->where('status', 'On-going')->first();
 
         if($application != null){
 
             // TODO: Check the application's due date, if match with current date
-            // change the status
-
+            // or the slots has already been fulfilled it will change the status
             Application::where('id', $application->id)->update([
 
                 'status' => 'Closed'

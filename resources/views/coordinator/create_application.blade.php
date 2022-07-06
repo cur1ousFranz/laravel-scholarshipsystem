@@ -93,7 +93,7 @@
                                                 <h6>Family Income</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="family_income">
-                                                <option value="8000">Less than 8,000 PHP</option>
+                                                <option value="8000">8,000 PHP</option>
                                                 <option value="12000">12,000 PHP</option>
                                                 <option value="16000">16,000 PHP</option>
                                                 <option value="20000">20,000 PHP</option>
@@ -114,6 +114,7 @@
                                                 <option value="80">80</option>
                                                 <option value="85">85</option>
                                                 <option value="90">90</option>
+                                                <option value="95">95</option>
                                             </select>
 
                                             @error('gwa')
@@ -168,6 +169,7 @@
                                                 <option value="2">2 years</option>
                                                 <option value="3">3 years</option>
                                                 <option value="4">4 years</option>
+                                                <option value="5">5 years</option>
                                             </select>
 
                                             @error('years_in_city')

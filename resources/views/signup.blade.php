@@ -23,7 +23,7 @@
                                     @enderror
                                 </div>
 
-                                <div>
+                                <div class="mt-2">
                                     <label for="email">
                                         <h6>Email</h6>
                                     </label>
@@ -35,7 +35,7 @@
                                     @enderror
                                 </div>
 
-                                <div>
+                                <div class="mt-2">
                                     <label for="password">
                                         <h6>Password</h6>
                                     </label>
@@ -47,7 +47,7 @@
                                     @enderror
                                 </div>
 
-                                <div>
+                                <div class="mt-2">
                                     <label for="password_confirmation">
                                         <h6>Confirm Password</h6>
                                     </label>
@@ -58,8 +58,8 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+                                <hr class="mt-3 mb-1">
+                                <div class="row">
                                     <div>
                                         <button type="submit" class="btn btn-primary form-control form-control-lg mt-3">
                                             Sign up

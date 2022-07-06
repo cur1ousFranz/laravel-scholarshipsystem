@@ -103,7 +103,9 @@ Route::get('/notifications/{id}', [ApplicantController::class, 'notificationMess
 Route::get('/apply', [ApplicationController::class, 'apply'])->name('apply');
 
 
-// Fetch Method
+// Fetch Method of Address Dynamic Dependent
+Route::post('/applicantcontroller/fetchAddress', [ApplicantController::class, 'fetchAddress'])->name('applicantcontroller.fetchAddress');
+// Fetch Method of School Courses Dynamic Dependent
 Route::post('/applicantcontroller/fetch', [ApplicantController::class, 'fetch'])->name('applicantcontroller.fetch');
 
 

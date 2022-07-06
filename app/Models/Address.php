@@ -12,10 +12,11 @@ class Address extends Model
     protected $fillable = [
 
         'applicants_id',
-        'street',
-        'barangay',
-        'city',
+        'country',
         'province',
+        'city',
+        'barangay',
+        'street',
         'region',
         'zipcode'
 

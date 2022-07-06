@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('applicant_lists', function (Blueprint $table) {
-            $table->string('review')->nullable();
+        Schema::create('dynamic_address', function (Blueprint $table) {
+            $table->id();
+            $table->string('country');
+            $table->string('province');
+            $table->string('city');
+            $table->string('barangay');
+
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('applicant_lists', function (Blueprint $table) {
-            $table->dropColumn('review');
-        });
+        Schema::dropIfExists('dynamic_address');
     }
 };
