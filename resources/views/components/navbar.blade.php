@@ -200,7 +200,7 @@
                         <li class="nav-item">
                             <div class="dropdown show">
                                 <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    Coordinator<i class="ms-1 bi bi-caret-down-fill"></i>
+                                    {{ auth()->user()->username }}<i class="ms-1 bi bi-caret-down-fill"></i>
                                 </a>
 
                                 <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
@@ -280,11 +280,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -292,25 +289,19 @@
     </div>
     <main>
         @if (session()->has('success'));
-        {{-- <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
-            <p> {{ session('message') }}</p>
-        </div> --}}
-        <div class="d-flex justify-content-center ms-3 text-center">
-            <div style="margin-top: 80px" class="alert alert-success w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
-                <p> {{ session('success') }}</p>
+            <div class="d-flex justify-content-center ms-3 text-center">
+                <div style="margin-top: 80px" class="alert alert-success w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                    <p> {{ session('success') }}</p>
+                </div>
             </div>
-        </div>
         @endif
 
         @if (session()->has('error'));
-        {{-- <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
-            <p> {{ session('message') }}</p>
-        </div> --}}
-        <div class="d-flex justify-content-center ms-3 text-center">
-            <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
-                <p> {{ session('error') }}</p>
+            <div class="d-flex justify-content-center ms-3 text-center">
+                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                    <p> {{ session('error') }}</p>
+                </div>
             </div>
-        </div>
         @endif
         {{ $slot }}
 
@@ -319,13 +310,9 @@
     <!-- Footer -->
     <footer class="page-footer font-small text-dark border-top border-top-4 border-secondary mt-auto" style="background-color: #fffcff">
 
-
-        <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
             © 2022 All rights reserved.
         </div>
-        <!-- Copyright -->
-
     </footer>
     <!-- Footer -->
 </body>

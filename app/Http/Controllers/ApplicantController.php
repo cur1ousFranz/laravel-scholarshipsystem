@@ -131,9 +131,9 @@ class ApplicantController extends Controller
 
         Applicant::where('id', $applicant->id)->update([
 
-            'first_name' => $formFields['first_name'],
-            'middle_name' => $formFields['middle_name'],
-            'last_name' => $formFields['last_name'],
+            'first_name' => ucwords($formFields['first_name']),
+            'middle_name' => ucwords($formFields['middle_name']),
+            'last_name' => ucwords($formFields['last_name']),
             'age' => $formFields['age'],
             'gender' => $formFields['gender'],
             'civil_status' => $formFields['civil_status'],
@@ -150,7 +150,7 @@ class ApplicantController extends Controller
             'desired_school' => $formFields['desired_school'],
             'course_name' => $formFields['course_name'],
             'hei_type' => $formFields['hei_type'],
-            'school_last_attended' => $formFields['school_last_attended'],
+            'school_last_attended' => ucwords($formFields['school_last_attended']),
         ]);
 
         Address::where('applicants_id', $applicant->id)->update([
@@ -159,7 +159,7 @@ class ApplicantController extends Controller
             'province' => $formFields['province'],
             'city' => $formFields['city'],
             'barangay' => $formFields['barangay'],
-            'street' => $formFields['street'],
+            'street' => ucwords($formFields['street']),
             'region' => $formFields['region'],
             'zipcode' => $formFields['zipcode'],
         ]);

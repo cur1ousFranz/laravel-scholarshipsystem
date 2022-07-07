@@ -14,7 +14,8 @@ class QualifiedApplicant extends Model
     protected $fillable = [
         'applications_id',
         'applicants_id',
-        'document'
+        'document',
+        'added'
     ];
 
     /**

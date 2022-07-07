@@ -1,7 +1,13 @@
 <x-navbar>
     <x-layout>
         <div class="d-flex justify-content-between">
-            <h4 class="mt-3">Applicant List</h4>
+            <div class="d-flex">
+                <h4 class="mt-3">Applicant List</h4>
+                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal"
+                    title="To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from this table.">
+                    <i class="bi bi-info-circle"></i>
+                </p>
+            </div>
             <div class="d-flex">
                 <div>
                     <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Qualified">
@@ -223,6 +229,7 @@
             </div>
           </div>
     </x-layout>
+
 </x-navbar>
 
 <script>

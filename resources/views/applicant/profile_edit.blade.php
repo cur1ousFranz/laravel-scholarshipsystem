@@ -171,9 +171,134 @@
                                                     </label>
                                                     <select class="shadow-sm form-select form-control" name="nationality">
                                                         <option selected disabled>Select</option>
-                                                        <option
-                                                            {{ $applicant->nationality === 'Filipino' ? 'selected' : '' }}
-                                                            value="Filipino">Filipino</option>
+                                                        <option {{ $applicant->nationality === 'Afghan' ? 'selected' : '' }}
+                                                            value="Afghan">
+                                                            Afghan
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'American' ? 'selected' : '' }}
+                                                            value="American">
+                                                            American
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Australian' ? 'selected' : '' }}
+                                                            value="Australian">
+                                                            Australian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Bahamian' ? 'selected' : '' }}
+                                                            value="Bahamian">
+                                                            Bahamian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Bahraini' ? 'selected' : '' }}
+                                                            value="Bahraini">
+                                                            Bahraini
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Bangladeshi' ? 'selected' : '' }}
+                                                            value="Bangladeshi">
+                                                            Bangladeshi
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Cambodian' ? 'selected' : '' }}
+                                                            value="Cambodian">
+                                                            Cambodian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Chinese' ? 'selected' : '' }}
+                                                            value="Chinese">
+                                                            Chinese
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Canadian' ? 'selected' : '' }}
+                                                            value="Canadian">
+                                                            Canadian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Dominican' ? 'selected' : '' }}
+                                                            value="Dominican">
+                                                            Dominican
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Egyptian' ? 'selected' : '' }}
+                                                            value="Egyptian">
+                                                            Egyptian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Ethiopian' ? 'selected' : '' }}
+                                                            value="Ethiopian">
+                                                            Ethiopian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Filipino' ? 'selected' : '' }}
+                                                            value="Filipino">
+                                                            Filipino
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'French' ? 'selected' : '' }}
+                                                            value="French">
+                                                            French
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'German' ? 'selected' : '' }}
+                                                            value="German">
+                                                            German
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'German' ? 'selected' : '' }}
+                                                            value="German">
+                                                            German
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Hungarian' ? 'selected' : '' }}
+                                                            value="Hungarian">
+                                                            Hungarian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Indonesian' ? 'selected' : '' }}
+                                                            value="Indonesian">
+                                                            Indonesian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Italian' ? 'selected' : '' }}
+                                                            value="Italian">
+                                                            Italian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Jamaican' ? 'selected' : '' }}
+                                                            value="Jamaican">
+                                                            Jamaican
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Japanese' ? 'selected' : '' }}
+                                                            value="Japanese">
+                                                            Japanese
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Mexican' ? 'selected' : '' }}
+                                                            value="Mexican">
+                                                            Mexican
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Malaysian' ? 'selected' : '' }}
+                                                            value="Malaysian">
+                                                            Malaysian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Nigerien' ? 'selected' : '' }}
+                                                            value="Nigerien">
+                                                            Nigerien
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Pakistani' ? 'selected' : '' }}
+                                                            value="Pakistani">
+                                                            Pakistani
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Portuguese' ? 'selected' : '' }}
+                                                            value="Portuguese">
+                                                            Portuguese
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Romanian' ? 'selected' : '' }}
+                                                            value="Romanian">
+                                                            Romanian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Russian' ? 'selected' : '' }}
+                                                            value="Russian">
+                                                            Russian
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'South Korean' ? 'selected' : '' }}
+                                                            value="South Korean">
+                                                            South Korean
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Singaporean' ? 'selected' : '' }}
+                                                            value="Singaporean">
+                                                            Singaporean
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Taiwanese' ? 'selected' : '' }}
+                                                            value="Taiwanese">
+                                                            Taiwanese
+                                                        </option>
+                                                        <option {{ $applicant->nationality === 'Zambian' ? 'selected' : '' }}
+                                                            value="Zambian">
+                                                            Zambian
+                                                        </option>
                                                     </select>
 
                                                     @error('nationality')
@@ -190,14 +315,35 @@
                                             <select class="shadow-sm form-select form-control" name="educational_attainment">
                                                 <option selected disabled>Select</option>
                                                 <option
-                                                    {{ $applicant->educational_attainment === 'SHS' ? 'selected' : '' }}
-                                                    value="SHS">Senior Highschool Graduate</option>
+                                                {{ $applicant->educational_attainment === 'Primary' ? 'selected' : '' }}
+                                                value="Primary">Primary</option>
                                                 <option
-                                                    {{ $applicant->educational_attainment === 'ALS' ? 'selected' : '' }}
-                                                    value="ALS">ALS Graduate</option>
+                                                {{ $applicant->educational_attainment === 'Junior Highschool' ? 'selected' : '' }}
+                                                value="Junior Highschool">Junior Highschool</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'Senior Highschool' ? 'selected' : '' }}
+                                                    value="Senior Highschool">Senior Highschool</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'Senior Highschool Graduating' ? 'selected' : '' }}
+                                                    value="Senior Highschool Graduating">Senior Highschool Graduating</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'ALS Graduate' ? 'selected' : '' }}
+                                                    value="ALS Graduate">ALS Graduate</option>
                                                 <option
                                                     {{ $applicant->educational_attainment === 'College Level' ? 'selected' : '' }}
                                                     value="College Level">College Level</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'Associate Degree' ? 'selected' : '' }}
+                                                    value="Associate Degree">Associate Degree</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'College Graduate' ? 'selected' : '' }}
+                                                    value="College Graduate">College Graduate (Bachelor's Degree)</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'Post Graduate' ? 'selected' : '' }}
+                                                    value="Post Graduate">Post Graduate (Master's Degree)</option>
+                                                <option
+                                                    {{ $applicant->educational_attainment === 'Doctoral' ? 'selected' : '' }}
+                                                    value="Doctoral">Doctoral (PhD)</option>
 
                                             </select>
 
@@ -358,7 +504,7 @@
                                                     </label>
                                                     <select class="shadow-sm form-select form-control" name="years_in_city">
                                                         <option selected disabled>Select</option>
-                                                        @for ($i = 1; $i <= 10; $i++)
+                                                        @for ($i = 1; $i <= 5; $i++)
                                                             <option
                                                                 {{ $applicant->years_in_city == $i ? 'selected' : '' }}
                                                                 value="{{ $i }}"> {{ $i }}

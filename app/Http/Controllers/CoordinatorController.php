@@ -23,47 +23,6 @@ class CoordinatorController extends Controller
 {
 
     /**
-     * Registration form of Coordinator
-     */
-    public function createForm()
-    {
-
-        return view('coordinator.create_account');
-    }
-
-    /**
-     * Create Account of Coordinator
-     */
-    public function createAccount(Request $request)
-    {
-        $formFields = $request->validate([
-
-            'username' => ['required', Rule::unique('users', 'username')],
-            'password' => ['required', 'confirmed'],
-            'code' => 'required'
-        ]);
-
-        $formFields['password'] = bcrypt($formFields['password']);
-        if ($formFields['code'] == 9999) {
-            $user = User::create([
-
-                'username' => $formFields['username'],
-                'password' => $formFields['password'],
-                'role' => 'coordinator'
-            ]);
-
-            Coordinator::create([
-
-                'users_id' => $user->id
-            ]);
-
-            return back()->with('success', 'Created account successfully!');
-        } else {
-            return back()->withErrors(['username' => 'Invalid, please contact the administrator.'])->onlyInput('username');
-        }
-    }
-
-    /**
      * Dashboard Page
      */
     public function dashboard(){
@@ -119,7 +78,6 @@ class CoordinatorController extends Controller
             'totalSubmissions' => $totalSubmissions
         ]);
     }
-
 
     /**
      * Application Page
@@ -295,54 +253,6 @@ class CoordinatorController extends Controller
         ]);
     }
 
-    // Submission Store
-    public function submissionStore(Request $request, Application $application)
-    {
-
-        $formFields = $request->validate([
-
-            'document' => ['required', 'mimes:pdf']
-        ]);
-
-        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
-
-        $formFields['document'] = $request->file('document')->store('submissions', 'public');
-        $formFields['applications_id'] = $application->id;
-        $formFields['applicants_id'] = $applicant->id;
-
-        /**
-         * This is for second validation which avoid the
-         * user manipulation using the inspect element
-         */
-
-        // Validating if applicant is exist in ApplicantList
-        $applicantList = ApplicantList::where([
-            'applications_id' => $application->id,
-            'applicants_id' => $applicant->id
-        ])->exists();
-
-        // Validating if applicant is exist in QualifiedApplicant list
-        $qualifiedList = QualifiedApplicant::where([
-            'applications_id' => $application->id,
-            'applicants_id' => $applicant->id
-        ])->exists();
-
-        // Validating if applicant is exist in RejectedApplicant list
-        $rejectedList = RejectedApplicant::where([
-            'applications_id' => $application->id,
-            'applicants_id' => $applicant->id
-        ])->exists();
-
-        if ($applicantList || $applicant->first_name == null || $qualifiedList || $rejectedList) {
-            abort('403', 'Unauthorized Action');
-        } else {
-
-            ApplicantList::create($formFields);
-
-            return back()->with('success', 'Application submitted successfully!');
-        }
-    }
-
     /**
      * Listing Applicant if Qualified or Rejected
      */
@@ -369,7 +279,8 @@ class CoordinatorController extends Controller
                             $applicant = [
                                 'applications_id' => $application->id,
                                 'applicants_id' => $applicantID,
-                                'document' => $document
+                                'document' => $document,
+                                'added' => auth()->user()->username
                             ];
 
                             // Adding to Qualified Applicant
@@ -399,7 +310,8 @@ class CoordinatorController extends Controller
 
                         RejectedApplicant::create([
                             'applications_id' => $application->id,
-                            'applicants_id' => $applicantID
+                            'applicants_id' => $applicantID,
+                            'added' => auth()->user()->username
                         ]);
 
                         // Setting the applicant review to Yes

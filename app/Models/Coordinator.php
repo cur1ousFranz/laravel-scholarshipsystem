@@ -10,11 +10,6 @@ class Coordinator extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'users_id'
-    ];
-
     public function coordinator(){
 
         $this->hasMany(Application::class, 'coordinators_id');

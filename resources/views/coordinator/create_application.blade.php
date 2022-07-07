@@ -14,6 +14,7 @@
                                     <h6>Slots</h6>
                                 </label>
                                 <select class="shadow-sm form-select form-control" name="slots">
+                                    <option selected disabled>Select</option>
                                     <option value="100">100</option>
                                     <option value="200">200</option>
                                     <option value="300">300</option>
@@ -63,13 +64,11 @@
 
                         <hr>
                         <h5 class="mt-3">Description</h5>
-                        <textarea id="editor" name="description">
-                            {{ old('description') }}
-                        </textarea>
+                        <textarea id="editor" name="description">{{ old('description') }}</textarea>
+
                         @error('description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
-
                         <hr>
                         <h5 class="mt-4">Pre-evaluation</h5>
                         <div class="row">
@@ -79,6 +78,7 @@
                                         <h6>Educational Attainment</h6>
                                     </label>
                                     <select class="shadow-sm form-select form-control" name="educational_attainment">
+                                        <option selected disabled>Select</option>
                                         <option value="Incoming College / College">Incoming College / College</option>
                                     </select>
                                     @error('educational_attainment')
@@ -93,10 +93,12 @@
                                                 <h6>Family Income</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="family_income">
+                                                <option selected disabled>Select</option>
                                                 <option value="8000">8,000 PHP</option>
                                                 <option value="12000">12,000 PHP</option>
                                                 <option value="16000">16,000 PHP</option>
                                                 <option value="20000">20,000 PHP</option>
+                                                <option value="20000">25,000 PHP</option>
                                             </select>
 
                                             @error('family_income')
@@ -110,6 +112,7 @@
                                                 <h6>General Weighted Average</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="gwa">
+                                                <option selected disabled>Select</option>
                                                 <option value="75">75</option>
                                                 <option value="80">80</option>
                                                 <option value="85">85</option>
@@ -133,6 +136,7 @@
                                                 <h6>City</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="city">
+                                                <option selected disabled>Select</option>
                                                 <option value="General Santos City">General Santos City</option>
                                             </select>
 
@@ -147,8 +151,8 @@
                                                 <h6>Registered Voter</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="registered_voter">
+                                                <option selected disabled>Select</option>
                                                 <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
                                             </select>
 
                                             @error('registered_voter')
@@ -165,6 +169,7 @@
                                                 <h6>No. of year resident in City</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="years_in_city">
+                                                <option selected disabled>Select</option>
                                                 <option value="1">1 year</option>
                                                 <option value="2">2 years</option>
                                                 <option value="3">3 years</option>
@@ -183,6 +188,7 @@
                                                 <h6>Nationality</h6>
                                             </label>
                                             <select class="shadow-sm form-select form-control" name="nationality">
+                                                <option selected disabled>Select</option>
                                                 <option value="Filipino">Filipino</option>
                                             </select>
 

@@ -1,7 +1,13 @@
 <x-navbar>
     <x-layout>
         <div class="d-flex justify-content-between">
-            <h4 class="mt-3">Rejected Applicant List</h4>
+                        <div class="d-flex">
+                <h4 class="mt-3">Rejected Applicant List</h4>
+                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal"
+                title="By clicking the announcement button, you can send a message to all rejected applicants in this table. You can also view who added in each rejected applicants by hovering the gear icon from Document column.">
+                <i class="bi bi-info-circle"></i>
+            </p>
+            </div>
             <div class="d-flex">
                 <div>
                     @if (!$rejectedApplicantList->isEmpty())
@@ -145,8 +151,12 @@
 
                             ?>
                     <tr>
-                        <td>
-                            <a class="text-decoration-none" href="/storage/{{ $rejectedApplicantLists->document }}"
+                        <td class="d-flex">
+                            <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
+                                title="Added by: {{ $rejectedApplicantLists->added }}">
+                                <i class="bi bi-gear-fill"></i>
+                            </p>
+                            <a class="text-decoration-none ms-2" href="/storage/{{ $rejectedApplicantLists->document }}"
                                 target="_blank">View</a>
                         </td>
                         <td>{{ $applicant->first_name }}</td>

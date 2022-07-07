@@ -69,10 +69,6 @@
                             </form>
                         </div>
                     </div>
-
-                    {{-- LINK OF COORDINATOR REGISTRATION FORM, THIS SHOULD BE HIDDEN --}}
-                    {{-- <a href="/coordinator">Coordinator Form</a> --}}
-
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('applications_id')->constrained()->cascadeOnDelete();
             $table->foreignId('applicants_id')->constrained()->cascadeOnDelete();
             $table->string('document');
+            $table->string('added');
             $table->timestamps();
         });
     }
