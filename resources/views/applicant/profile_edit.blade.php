@@ -537,8 +537,8 @@
                                                             {{ $applicant->family_income == 20000 ? 'selected' : '' }}
                                                             value="20000">20,000 PHP</option>
                                                         <option
-                                                            {{ $applicant->family_income == 25000 ? 'selected' : '' }}
-                                                            value="25000">25,000 PHP</option>
+                                                            {{ $applicant->family_income == 24000 ? 'selected' : '' }}
+                                                            value="24000">24,000 PHP</option>
                                                     </select>
 
                                                     @error('family_income')

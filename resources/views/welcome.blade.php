@@ -66,7 +66,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid mt-5 h-100">
         <div class="row">
             <div class="col-6">
@@ -112,7 +111,5 @@
 
             </div>
         </div>
-    <div class="container-fluid mt-5">
-        {{-- ANOTHER SECTION --}}
-    </div>
+
 </x-navbar>

@@ -139,6 +139,10 @@
 
     var qualifiedApplicant = JSON.parse('{!! json_encode($qualifiedApplicantYears) !!}');
     var qualifiedApplicantCount = JSON.parse('{!! json_encode($qualifiedApplicantYearCount) !!}');
+
+    var applicantFamilyIncome = JSON.parse('{!! json_encode($applicantFamilyIncome) !!}');
+
+
 </script>
 
 <script src="{{ asset('js/chart-area-applied-applicant.js') }}"></script>

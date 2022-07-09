@@ -3,11 +3,29 @@
         <div class="d-flex justify-content-between">
             <div class="d-flex">
                 <h4 class="mt-3">Applicant List</h4>
-                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal"
-                    title="To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from this table.">
+                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
                     <i class="bi bi-info-circle"></i>
                 </p>
             </div>
+
+            {{-- MODAL --}}
+            <div class="modal fade" id="infoModal">
+                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                    <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-light"><i class="bi bi-info-circle"></i></h5>
+                        <button type="button" class="close border-0 float-start" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-light">
+                        <p>To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from the list.</p>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
             <div class="d-flex">
                 <div>
                     <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Qualified">

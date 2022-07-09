@@ -3,10 +3,27 @@
         <div class="d-flex justify-content-between">
                         <div class="d-flex">
                 <h4 class="mt-3">Rejected Applicant List</h4>
-                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal"
-                title="By clicking the announcement button, you can send a message to all rejected applicants in this table. You can also view who added in each rejected applicants by hovering the gear icon from Document column.">
+                <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
                 <i class="bi bi-info-circle"></i>
             </p>
+            </div>
+
+            {{-- MODAL --}}
+            <div class="modal fade" id="infoModal">
+                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                    <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-light"><i class="bi bi-info-circle"></i></h5>
+                        <button type="button" class="close border-0 float-start" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-light">
+                        <p>By clicking the message button, you can send announcement to all rejected applicants in this table. You can also view who added in each rejected applicant by hovering the gear icon from Document column.</p>
+                    </div>
+
+                    </div>
+                </div>
             </div>
             <div class="d-flex">
                 <div>
