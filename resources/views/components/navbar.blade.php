@@ -77,8 +77,8 @@
 
         /* This is for qualified applicant list table */
         .scroll2 {
-        overflow-x: auto;
-        max-width: auto;
+            overflow-x: auto;
+            max-width: auto;
 
         }
 
@@ -89,144 +89,162 @@
             background-color: white;
         }
 
+        #alertSuccess,
+        #alertError{
+
+            position:fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index:9999;
+            border-radius:0px
+
+        }
+
     </style>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-sm navbar-light fixed-top border-bottom" style="background-color: #fffcff">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom" style="background-color: #fffcff">
         <div class="container ">
 
-            <a class="navbar-brand" href="/">Edukar Scholarship Application Management System</a>
-            <ul class="navbar-nav">
-                {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
-                @auth
-                    @if (auth()->user()->role == 'applicant')
-                        <li class="nav-item">
-                            <a class="btn nav-link text-dark" href="/">
-                                <i class="bi bi-house-door" style="font-size: 20px"></i></a>
-                        </li>
+            <a class="navbar-brand" href="/">Edukar Scholarship</a>
 
-                        <li class="nav-item mt-1">
-
-                            <div class="dropdown show">
-                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    <i class="bi bi-bell" style="font-size: 19px"></i>
-                                    @if (auth()->user()->unreadNotifications->count())
-                                        <span class="badge bg-danger">
-                                            {{ auth()->user()->unreadNotifications->count() }}
-                                        </span>
-                                    @endif
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
+                    @auth
+                        @if (auth()->user()->role == 'applicant')
+                            <li class="nav-item mt-lg-1">
+                                <a class="btn nav-link text-dark" href="/">
+                                    <i class="bi bi-house-door" style="font-size: 19px"></i>
                                 </a>
+                            </li>
 
-                                <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink">
+                            <li class="nav-item mt-lg-1">
 
-                                    <ul class="list-group ">
-                                        @if (auth()->user()->notifications->count() != 0)
-                                            @foreach (auth()->user()->unreadNotifications as $notifications)
-                                                <li class="list-group-item" style="background-color: #B5CBF6">
-                                                    <a class=" text-decoration-none text-dark" href="/notifications/{{ $notifications->id }}"
-                                                        class="dropdown-item"> {{ $notifications->data['title'] }}
-                                                    </a>
-                                                    <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                        {{ $notifications->created_at->format('d M') }}
-                                                    </p>
-                                                </li>
-                                            @endforeach
-                                            @foreach ( auth()->user()->readNotifications as $notifications )
-                                                <li class="list-group-item">
-                                                    <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
-                                                        {{ $notifications->data['title'] }}
-                                                    </a>
-                                                    <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                        {{ $notifications->created_at->format('d M') }}
-                                                    </p>
-                                                </li>
-
-                                            @endforeach
-                                        @else
-                                                <li class="list-group-item">No notification yet.</li>
+                                <div class="dropdown show">
+                                    <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        <i class="bi bi-bell" style="font-size: 19px"></i>
+                                        @if (auth()->user()->unreadNotifications->count())
+                                            <span class="badge bg-danger">
+                                                {{ auth()->user()->unreadNotifications->count() }}
+                                            </span>
                                         @endif
+                                    </a>
 
-                                    </ul>
+                                    <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink">
+
+                                        <ul class="list-group ">
+                                            @if (auth()->user()->notifications->count() != 0)
+                                                @foreach (auth()->user()->unreadNotifications as $notifications)
+                                                    <li class="list-group-item" style="background-color: #B5CBF6">
+                                                        <a class=" text-decoration-none text-dark" href="/notifications/{{ $notifications->id }}"
+                                                            class="dropdown-item"> {{ $notifications->data['title'] }}
+                                                        </a>
+                                                        <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                            {{ $notifications->created_at->format('d M') }}
+                                                        </p>
+                                                    </li>
+                                                @endforeach
+                                                @foreach ( auth()->user()->readNotifications as $notifications )
+                                                    <li class="list-group-item">
+                                                        <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
+                                                            {{ $notifications->data['title'] }}
+                                                        </a>
+                                                        <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                            {{ $notifications->created_at->format('d M') }}
+                                                        </p>
+                                                    </li>
+
+                                                @endforeach
+                                            @else
+                                                    <li class="list-group-item">No notification yet.</li>
+                                            @endif
+
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <li class="nav-item mt-2">
+                            <li class="nav-item mt-lg-2">
 
-                            <div class="dropdown show">
-                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    <?php
-                                    // $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                    //     ->where('users_id', auth()->user()->id)
-                                    //     ->first();
-                                    echo auth()->user()->username;
-                                    ?><i class="ms-1 bi bi-caret-down-fill"></i>
-                                </a>
+                                <div class="dropdown show">
+                                    <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        <?php
+                                        // $applicant = Illuminate\Support\Facades\DB::table('applicants')
+                                        //     ->where('users_id', auth()->user()->id)
+                                        //     ->first();
+                                        echo auth()->user()->username;
+                                        ?><i class="ms-1 bi bi-caret-down-fill"></i>
+                                    </a>
 
-                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/profile">Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    <form action="/logout" method="post" class="dropdown-item">
-                                        @csrf
-                                        <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
-                                    </form>
+                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="/profile">Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <form action="/logout" method="post" class="dropdown-item">
+                                            @csrf
+                                            <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
+                                        </form>
 
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    @elseif(auth()->user()->role == 'coordinator')
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/applications">Application</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown show">
-                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
-                                </a>
+                            </li>
+                        @elseif(auth()->user()->role == 'coordinator')
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/applications">Application</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
+                                    </a>
 
-                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/applicants/qualified">Qualified Applicants</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/applicants/rejected">Rejected Applicants</a>
+                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="/applicants/qualified">Qualified Applicants</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/applicants/rejected">Rejected Applicants</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown show">
-                                <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                    {{ auth()->user()->username }}<i class="ms-1 bi bi-caret-down-fill"></i>
-                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        {{ auth()->user()->username }}<i class="ms-1 bi bi-caret-down-fill"></i>
+                                    </a>
 
-                                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    <form action="/logout" method="post" class="dropdown-item">
-                                        @csrf
-                                        <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
-                                    </form>
+                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <form action="/logout" method="post" class="dropdown-item">
+                                            @csrf
+                                            <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
+                                        </form>
 
+                                    </div>
                                 </div>
-                            </div>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item border border-2 border-warning">
+                            <a class="nav-link text-dark" href="/signup">Sign up</a>
                         </li>
-                    @endif
-                @else
-                    <li class="nav-item border border-2 border-warning ms-3">
-                        <a class="nav-link text-dark" href="/signup">Sign up</a>
-                    </li>
-                    <li class="nav-item border border-2 border-warning ms-2">
-                        <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#signinModal"
-                            href="">Sign in</a>
-                    </li>
-                @endauth
+                        <li class="nav-item border border-2 border-warning ms-lg-2">
+                            <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#signinModal"
+                                href="">Sign in</a>
+                        </li>
+                    @endauth
 
-            </ul>
-
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -287,25 +305,23 @@
             </div>
         </div>
     </div>
-    <main>
+
         @if (session()->has('success'));
-            <div class="d-flex justify-content-center ms-3 text-center">
-                <div style="margin-top: 80px" class="alert alert-success w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+            <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
+                <div style="margin-top: 80px" class="alert alert-success w-25" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                     <p> {{ session('success') }}</p>
                 </div>
             </div>
         @endif
 
         @if (session()->has('error'));
-            <div class="d-flex justify-content-center ms-3 text-center">
-                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-fixed" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+            <div class="d-flex justify-content-center ms-3 text-center" id="alertError">
+                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-static" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                     <p> {{ session('error') }}</p>
                 </div>
             </div>
         @endif
         {{ $slot }}
-
-    </main>
 
     <!-- Footer -->
     <footer class="page-footer font-small text-dark border-top border-top-4 border-secondary mt-auto" style="background-color: #fffcff">

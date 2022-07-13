@@ -1,11 +1,11 @@
 <x-navbar>
     <x-layout>
         <div class="row">
-            <div class="col-3">
-                <div class="card shadow-sm">
+            <div class="col-lg-3">
+                <div class="card shadow-sm mt-4">
                     <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                         <div class="d-flex flex-column align-items-center text-center py-3">
-                            <img class="rounded-circle mb-2" width="150px"
+                            <img class="rounded-circle mb-2 img-fluid" width="150px"
                                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                             <div class="container-fluid me-5">
                                 <div class="row">
@@ -30,8 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9">
-                <div class="card shadow-sm">
+            <div class="col-lg-9">
+                <div class="card shadow-sm mt-4">
                     <form action="/profiles/{{ $applicant->id }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -43,7 +43,7 @@
                             <div class="container mb-4 mt-4">
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <div>
                                             <label for="first_name">
                                                 <h6>First Name</h6>
@@ -58,7 +58,7 @@
                                         </div>
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="middle_name">
                                                         <h6>Middle Name</h6>
@@ -74,7 +74,7 @@
 
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
 
                                                 <div>
                                                     <label for="last_name">
@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="age">
                                                         <h6>Age</h6>
@@ -114,7 +114,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="gender">
                                                         <h6>Gender</h6>
@@ -137,7 +137,7 @@
                                         </div>
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="civil_status">
                                                         <h6>Civil Status</h6>
@@ -164,7 +164,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="nationality">
                                                         <h6>Nationality</h6>
@@ -400,7 +400,7 @@
                                         </div>
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="hei_type">
                                                         <h6>HEI Type</h6>
@@ -421,7 +421,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="gwa">
                                                         <h6>General Weighted Avg</h6>
@@ -443,7 +443,7 @@
                                     </div>
 
                                     {{-- NEXT COLUMN --}}
-                                    <div class="col-6">
+                                    <div class="col-md-6">
 
                                         <div>
                                             <label for="registered_voter">
@@ -497,7 +497,7 @@
                                         </div>
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="years_in_city">
                                                         <h6>No. years in city</h6>
@@ -517,7 +517,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="family_income">
                                                         <h6>Family Income</h6>
@@ -551,7 +551,7 @@
                                         {{-- DYNAMIC DROPDOWNS OF ADDRESS --}}
 
                                         <div class="row mt-2">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="country">
                                                     <h6>Country</h6>
                                                 </label>
@@ -570,7 +570,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <label for="province">
                                                     <h6>Province</h6>
                                                 </label>
@@ -631,7 +631,7 @@
 
                                         <div class="row mt-2">
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="region">
                                                         <h6>Region</h6>
@@ -652,7 +652,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div>
                                                     <label for="zipcode">
                                                         <h6>Zipcode</h6>

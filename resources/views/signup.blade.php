@@ -1,6 +1,6 @@
 <x-navbar>
     <x-layout>
-        <div class="container" style="width: 500px;">
+        <div class="container w-50">
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
