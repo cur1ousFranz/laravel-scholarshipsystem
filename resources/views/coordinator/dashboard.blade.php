@@ -147,7 +147,7 @@
 
 </script>
 
-<script src="{{ asset('js/chart-area-applied-applicant.js') }}"></script>
-<script src="{{ asset('js/chart-bar-qualified-appplicant.js') }}"></script>
-<script src="{{ asset('js/chart-pie-family-income.js') }}"></script>
+<script src="{{ asset('chart/chart-area-applied-applicant.js') }}"></script>
+<script src="{{ asset('chart/chart-bar-qualified-appplicant.js') }}"></script>
+<script src="{{ asset('chart/chart-pie-family-income.js') }}"></script>
 
