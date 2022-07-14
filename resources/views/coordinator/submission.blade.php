@@ -121,9 +121,6 @@
                                     where('id', $applicantsLists->applicants_id)
                                     ->first();
 
-                                    if ($applicantsLists->review == "Yes") {
-                                        continue;
-                                    }
                                     ?>
                                         <tr>
                                             <td>

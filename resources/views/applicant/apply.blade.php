@@ -27,7 +27,7 @@
                                     @if ($applicant->first_name != null)
                                         <button class="btn btn-outline-success shadow-sm">
                                             &nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>
-                                            &nbsp;&nbsp;
+                                            &nbsp;
                                         </button>
                                     @else
                                         <button class="btn btn-outline-danger shadow-sm" disabled>Not Set</button>

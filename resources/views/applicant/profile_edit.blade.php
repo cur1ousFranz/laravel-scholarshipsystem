@@ -426,11 +426,11 @@
                                                     <label for="gwa">
                                                         <h6>GWA</h6>
                                                     </label>
-                                                    <input class="shadow-sm form-control form-control" type="int"
+                                                    <input class="shadow-sm form-control form-control" type="number"
                                                         id="gwa" name="gwa"
                                                         value="{{ old('gwa') ?? $applicant->gwa }}"
                                                         onkeypress="return /[0-9.]/i.test(event.key)"
-                                                        maxlength="5">
+                                                        maxlength="5" min="70" max="99">
 
                                                     @error('gwa')
                                                         <p class="text-danger">{{ $message }}</p>
@@ -472,7 +472,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">+63</span>
                                                 </div>
-                                                <input class="shadow-sm form-control form-control" type="text"
+                                                <input class="shadow-sm form-control form-control" type="tel"
                                                     id="contact_number" name="contact_number"
                                                     value="{{ old('contact_number') ?? $applicant->contact->contact_number }}"
                                                     onkeypress="return /[0-9]/i.test(event.key)" maxlength="11">

@@ -237,10 +237,14 @@
                                                 </div>
                                             </div>
                                         <hr>
-                                        <div>
-                                            <button type="submit" class="btn btn-outline-primary float-end">
+                                        <div class="d-flex float-end">
+                                            <a href="/applications" class="btn btn-outline-secondary me-2">
+                                                Back
+                                            </a>
+                                            <button type="submit" class="btn btn-outline-primary">
                                                 Update
                                             </button>
+
                                         </div>
                                     </form>
                                 </div>

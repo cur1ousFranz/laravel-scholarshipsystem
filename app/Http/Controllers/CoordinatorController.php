@@ -244,7 +244,9 @@ class CoordinatorController extends Controller
 
         $applicantList = ApplicantList::
             leftJoin('applicants', 'applicants.id' , '=', 'applicant_lists.applicants_id')
-            ->where('applications_id', $application->id)->filter(request(['search']))
+            ->where('applications_id', $application->id)
+            ->where('review', null)
+            ->filter(request(['search']))
             ->paginate(10);
 
         return view('coordinator.submission', [

@@ -16,17 +16,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // $userAdmin = User::create([
+        $userAdmin = User::create([
 
-        //     'username' => 'admin2',
-        //     'password' => bcrypt('1234'),
-        //     'role' => 'coordinator'
+            'username' => 'admin2',
+            'password' => bcrypt('1234'),
+            'role' => 'coordinator'
 
-        // ]);
+        ]);
 
-        // Coordinator::create([
-        //     'users_id' => $userAdmin->id
-        // ]);
+        Coordinator::create([
+            'users_id' => $userAdmin->id
+        ]);
 
     }
 }

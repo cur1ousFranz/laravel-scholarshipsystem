@@ -308,7 +308,7 @@
 
         @if (session()->has('success'));
             <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
-                <div style="margin-top: 80px" class="alert alert-success w-25" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                <div style="margin-top: 80px" class="alert alert-success w-25" x-data="{show: true}" x-init="setTimeout(() => show = false, 1000)" x-show="show">
                     <p> {{ session('success') }}</p>
                 </div>
             </div>
@@ -316,7 +316,7 @@
 
         @if (session()->has('error'));
             <div class="d-flex justify-content-center ms-3 text-center" id="alertError">
-                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-static" x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-static" x-data="{show: true}" x-init="setTimeout(() => show = false, 1000)" x-show="show">
                     <p> {{ session('error') }}</p>
                 </div>
             </div>

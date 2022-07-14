@@ -15,8 +15,8 @@
                         <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Status</th>
-                        <th scope="col">No. Submissions</th>
-                        <th scope="col">Submissions</th>
+                        <th scope="col">Total Submissions</th>
+                        <th scope="col">Applicants</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
