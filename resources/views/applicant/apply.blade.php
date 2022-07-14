@@ -18,14 +18,17 @@
                     <div class="container">
                         <h4>How to Apply</h4>
                         <div class="row mt-4">
-                            <div class="col-10">
+                            <div class="col-md-10">
                                 <h5>1. Complete your profile to be able to proceed.</h5>
                             </div>
                             <div class="col-2 d-flex align-items-center justify-content-center">
 
                                 @if (Auth::user())
                                     @if ($applicant->first_name != null)
-                                        <a class="btn btn-outline-success shadow-sm">&nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>&nbsp;&nbsp;</a>
+                                        <button class="btn btn-outline-success shadow-sm">
+                                            &nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>
+                                            &nbsp;&nbsp;
+                                        </button>
                                     @else
                                         <button class="btn btn-outline-danger shadow-sm" disabled>Not Set</button>
                                     @endif
@@ -38,7 +41,7 @@
                         <hr>
 
                         <div class="row mt-4">
-                            <div class="col-10">
+                            <div class="col-md-10">
                                 <h5>2. Documentary Requirements</h5>
                                 <p>
                                     Download or View the pdf file of complete list of requirements. Make sure to READ
@@ -55,7 +58,7 @@
                         <hr>
 
                         <div class="row mt-4">
-                            <div class="col-10">
+                            <div class="col-md-10">
                                 <h5>3. Application Form</h5>
                                 <p>
                                     Please download the application form. Print it in long bond paper (8.5x13 inches)
@@ -74,7 +77,7 @@
                         <hr>
 
                         <div class="row mt-4">
-                            <div class="col-10">
+                            <div class="col-md-10">
                                 <h5>4. Submission</h5>
                                 <p>
                                     Once you have already completed/secured all the requirements, scan the documents IN

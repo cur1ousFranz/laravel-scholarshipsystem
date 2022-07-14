@@ -32,6 +32,7 @@ class Applicant extends Model
     ];
 
     public function applicant(){
+
         return $this->belongsTo(User::class, 'users_id');
     }
 

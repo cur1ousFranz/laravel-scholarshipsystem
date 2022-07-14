@@ -88,16 +88,6 @@ class CoordinatorController extends Controller
             }
         }
 
-
-        /**
-         * Fetching total applicants who registered in the system.
-         * Fetching total application created.
-         * Fetching total submissions that have been made.
-         */
-        $totalApplicants = Applicant::get();
-        $totalApplications = Application::get();
-        $totalSubmissions = ApplicantList::get();
-
         return view('coordinator.dashboard',[
             'appliedApplicantYears' => $appliedApplicantYears,
             'appliedApplicantYearCount' => $appliedApplicantYearCount,
@@ -107,9 +97,9 @@ class CoordinatorController extends Controller
 
             'applicantFamilyIncome' => $applicantFamilyIncome,
 
-            'totalApplicants' => $totalApplicants,
-            'totalApplications' => $totalApplications,
-            'totalSubmissions' => $totalSubmissions
+            'totalApplicants' => Applicant::get(),
+            'totalApplications' => Application::get(),
+            'totalSubmissions' => ApplicantList::get()
         ]);
 
     }
@@ -120,20 +110,9 @@ class CoordinatorController extends Controller
     public function application()
     {
 
-        $application = Application::latest()->paginate(10);
-
         return view('coordinator.application', [
-            'application' => $application
+            'application' => Application::latest()->paginate(10)
         ]);
-    }
-
-    /**
-     * Application Form
-     */
-    public function applicationCreate()
-    {
-
-        return view('coordinator.create_application');
     }
 
     /**
@@ -164,16 +143,14 @@ class CoordinatorController extends Controller
         $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
 
         $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
-        $formFields['coordinators_id'] = $coordinatorID->id;
-        $formFields['status'] = "On-going";
 
         $application = Application::create([
-            'coordinators_id' => $formFields['coordinators_id'],
+            'coordinators_id' => $coordinatorID->id,
             'slots' => $formFields['slots'],
             'start_date' => $formFields['start_date'],
             'end_date' => $formFields['end_date'],
             'batch' => $formFields['batch'],
-            'status' => $formFields['status']
+            'status' => "On-going"
         ]);
 
         ApplicationDetail::create([
@@ -193,18 +170,6 @@ class CoordinatorController extends Controller
         ]);
 
         return redirect('/applications')->with('success', 'Application created successfully!');
-    }
-
-    /**
-     * Show to edit of application form
-     */
-    public function applicationEdit(Application $application)
-    {
-
-        return view('coordinator.edit_application', [
-            'application' => $application
-
-        ]);
     }
 
     /**
@@ -370,10 +335,9 @@ class CoordinatorController extends Controller
      */
     public function qualifiedApplicant()
     {
-        $qualifiedApplicant = QualifiedApplicant::latest()->paginate(10);
 
         return view('coordinator.qualified_applicant',[
-            'qualifiedApplicant' => $qualifiedApplicant
+            'qualifiedApplicant' => QualifiedApplicant::latest()->paginate(10)
         ]);
     }
 
@@ -388,9 +352,6 @@ class CoordinatorController extends Controller
                 ->where('applications_id', $application->id)->filter(request(['search']))
                 ->paginate(10);
 
-        // QualifiedApplicant::where(
-        //     'applications_id', $application->id)->latest()->filter(request(['search']))->paginate(10);
-
         return view('coordinator.qualified_applicant_list',[
             'qualifiedApplicantList' => $qualifiedApplicantList,
             'application' => $application
@@ -403,10 +364,8 @@ class CoordinatorController extends Controller
     public function rejectedApplicant()
     {
 
-        $rejectedApplicant = RejectedApplicant::latest()->paginate(10);
-
         return view('coordinator.rejected_applicant',[
-            'rejectedApplicant' => $rejectedApplicant
+            'rejectedApplicant' => RejectedApplicant::latest()->paginate(10)
         ]);
     }
 
@@ -441,7 +400,6 @@ class CoordinatorController extends Controller
          */
         $qualifiedApplicantList = QualifiedApplicant::where(
             'applications_id', $application->id)->latest()->get();
-
 
         /**
          * Looping through Applicant table that is match in qualified
@@ -480,7 +438,6 @@ class CoordinatorController extends Controller
         /**
          * Retreiving users that has an ID belongs to
          * applicantNotifs array
-         *
          */
         $users = array();
         foreach($applicantNotif as $applicantNotifs){
@@ -507,9 +464,8 @@ class CoordinatorController extends Controller
         /**  Get all applicants that belongs to rejected table
          *   according to the current application id
          */
-        $rejectedApplicantList = RejectedApplicant::where(
-            'applications_id', $application->id)->latest()->get();
-
+        $rejectedApplicantList = RejectedApplicant::where('applications_id', $application->id)
+        ->latest()->get();
 
         /**
          * Looping through Applicant table that is match in rejected
@@ -548,7 +504,6 @@ class CoordinatorController extends Controller
         /**
          * Retreiving users that has an ID belongs to
          * applicantNotifs array
-         *
          */
         $users = array();
         foreach($applicantNotif as $applicantNotifs){

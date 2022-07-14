@@ -178,7 +178,7 @@
                                             <div class="col-md-6">
                                                 <div>
                                                     <label for="gwa">
-                                                        <h6>General Weighted Avg</h6>
+                                                        <h6>GWA</h6>
                                                     </label>
                                                     <input class="shadow-sm form-control form-control text-muted" type="text"
                                                         id="gwa" value="{{ $applicant->gwa }}"

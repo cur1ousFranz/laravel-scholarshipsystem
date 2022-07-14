@@ -47,6 +47,6 @@ class QualifiedApplicant extends Model
 
     public function applicant(){
 
-        return $this->hasMany(Applicant::class, 'applicants_id');
+        return $this->hasMany(Applicant::class, 'applicants_id', 'id');
     }
 }

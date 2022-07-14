@@ -151,21 +151,9 @@
                         if(!$rejectedApplicantList->isEmpty()){
 
                             foreach($rejectedApplicantList as $rejectedApplicantLists){
-                                $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                    ->where('id', $rejectedApplicantLists->applicants_id)
+                                $applicant = App\Models\Applicant::
+                                    where('id', $rejectedApplicantLists->applicants_id)
                                     ->first();
-
-                                $address = Illuminate\Support\Facades\DB::table('addresses')
-                                ->where('applicants_id', $rejectedApplicantLists->applicants_id)
-                                ->first();
-
-                                $school = Illuminate\Support\Facades\DB::table('schools')
-                                ->where('applicants_id', $rejectedApplicantLists->applicants_id)
-                                ->first();
-
-                                $contact = Illuminate\Support\Facades\DB::table('contacts')
-                                ->where('applicants_id', $rejectedApplicantLists->applicants_id)
-                                ->first();
 
                                 ?>
                         <tr>
@@ -183,18 +171,18 @@
                             <td>{{ $applicant->age }}</td>
                             <td>{{ $applicant->gender }}</td>
                             <td>{{ $applicant->civil_status }}</td>
-                            <td>{{ $address->street }}</td>
-                            <td>{{ $address->barangay }}</td>
-                            <td>{{ $address->city }}</td>
-                            <td>{{ $address->province }}</td>
-                            <td>{{ $address->region }}</td>
-                            <td>{{ $address->zipcode }}</td>
-                            <td>{{ $contact->contact_number }}</td>
-                            <td>{{ $contact->email }}</td>
-                            <td>{{ $school->desired_school }}</td>
-                            <td>{{ $school->course_name }}</td>
-                            <td>{{ $school->hei_type }}</td>
-                            <td>{{ $school->school_last_attended }}</td>
+                            <td>{{ $applicant->address->street }}</td>
+                            <td>{{ $applicant->address->barangay }}</td>
+                            <td>{{ $applicant->address->city }}</td>
+                            <td>{{ $applicant->address->province }}</td>
+                            <td>{{ $applicant->address->region }}</td>
+                            <td>{{ $applicant->address->zipcode }}</td>
+                            <td>{{ $applicant->contact->contact_number }}</td>
+                            <td>{{ $applicant->contact->email }}</td>
+                            <td>{{ $applicant->school->desired_school }}</td>
+                            <td>{{ $applicant->school->course_name }}</td>
+                            <td>{{ $applicant->school->hei_type }}</td>
+                            <td>{{ $applicant->school->school_last_attended }}</td>
                             <td>{{ $applicant->nationality }}</td>
                             <td>{{ $applicant->educational_attainment }}</td>
                             <td>{{ $applicant->years_in_city }}</td>

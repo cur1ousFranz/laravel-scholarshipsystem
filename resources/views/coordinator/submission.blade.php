@@ -112,84 +112,69 @@
                         </thead>
                         {{-- RETRIEVING APPLICANT DATA ACCORDING TO ITS CURRENT ID IN LOOP --}}
                         <tbody class="text-center" id="applicantListHeader">
-                            <?php
+                        <?php
 
-                        if(!$applicantList->isEmpty()){
+                            if(!$applicantList->isEmpty()){
 
-                            foreach($applicantList as $applicantsLists){
-                                $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                    ->where('id', $applicantsLists->applicants_id)
+                                foreach($applicantList as $applicantsLists){
+                                    $applicant = App\Models\Applicant::
+                                    where('id', $applicantsLists->applicants_id)
                                     ->first();
 
-                                $address = Illuminate\Support\Facades\DB::table('addresses')
-                                ->where('applicants_id', $applicantsLists->applicants_id)
-                                ->first();
+                                    if ($applicantsLists->review == "Yes") {
+                                        continue;
+                                    }
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="applicant[]" value="{{ $applicant->id }}"
+                                                    class="form-check-input mt-1"
+                                                    onchange="document.getElementById('checkBox1').disabled = !this.checked;
+                                                    document.getElementById('checkBox2').disabled = !this.checked;">
+                                            </td>
+                                            <td>Test</td>
+                                            <td>
+                                                <a class="text-decoration-none" href="/storage/{{ $applicantsLists->document }}"
+                                                    target="_blank">View</a>
+                                            </td>
+                                            <td>{{ $applicant->first_name }}</td>
+                                            <td>{{ $applicant->middle_name }}</td>
+                                            <td>{{ $applicant->last_name }}</td>
+                                            <td>{{ $applicant->age }}</td>
+                                            <td>{{ $applicant->gender }}</td>
+                                            <td>{{ $applicant->civil_status }}</td>
+                                            <td>{{ $applicant->address->street }}</td>
+                                            <td>{{ $applicant->address->barangay }}</td>
+                                            <td>{{ $applicant->address->city }}</td>
+                                            <td>{{ $applicant->address->province }}</td>
+                                            <td>{{ $applicant->address->region }}</td>
+                                            <td>{{ $applicant->address->zipcode }}</td>
+                                            <td>{{ $applicant->contact->contact_number }}</td>
+                                            <td>{{ $applicant->contact->email }}</td>
+                                            <td>{{ $applicant->school->desired_school }}</td>
+                                            <td>{{ $applicant->school->course_name }}</td>
+                                            <td>{{ $applicant->school->hei_type }}</td>
+                                            <td>{{ $applicant->school->school_last_attended }}</td>
+                                            <td>{{ $applicant->nationality }}</td>
+                                            <td>{{ $applicant->educational_attainment }}</td>
+                                            <td>{{ $applicant->years_in_city }}</td>
+                                            <td>{{ $applicant->family_income }}</td>
+                                            <td>{{ $applicant->registered_voter }}</td>
+                                            <td>{{ $applicant->gwa }}</td>
+                                        </tr>
+                                    <?php
 
-                                $school = Illuminate\Support\Facades\DB::table('schools')
-                                ->where('applicants_id', $applicantsLists->applicants_id)
-                                ->first();
-
-                                $contact = Illuminate\Support\Facades\DB::table('contacts')
-                                ->where('applicants_id', $applicantsLists->applicants_id)
-                                ->first();
-
-                                // This is for validating if the applicant has been
-                                // reviewed, if so, it should not be visible from the
-                                // table anymore
-                                if ($applicantsLists->review == "Yes") {
-                                    continue;
                                 }
+
+                            }   else{
+
                                 ?>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="applicant[]" value="{{ $applicant->id }}"
-                                                class="form-check-input mt-1"
-                                                onchange="document.getElementById('checkBox1').disabled = !this.checked;
-                                                document.getElementById('checkBox2').disabled = !this.checked;">
-                                        </td>
-                                        <td>Test</td>
-                                        <td>
-                                            <a class="text-decoration-none" href="/storage/{{ $applicantsLists->document }}"
-                                                target="_blank">View</a>
-                                        </td>
-                                        <td>{{ $applicant->first_name }}</td>
-                                        <td>{{ $applicant->middle_name }}</td>
-                                        <td>{{ $applicant->last_name }}</td>
-                                        <td>{{ $applicant->age }}</td>
-                                        <td>{{ $applicant->gender }}</td>
-                                        <td>{{ $applicant->civil_status }}</td>
-                                        <td>{{ $address->street }}</td>
-                                        <td>{{ $address->barangay }}</td>
-                                        <td>{{ $address->city }}</td>
-                                        <td>{{ $address->province }}</td>
-                                        <td>{{ $address->region }}</td>
-                                        <td>{{ $address->zipcode }}</td>
-                                        <td>{{ $contact->contact_number }}</td>
-                                        <td>{{ $contact->email }}</td>
-                                        <td>{{ $school->desired_school }}</td>
-                                        <td>{{ $school->course_name }}</td>
-                                        <td>{{ $school->hei_type }}</td>
-                                        <td>{{ $school->school_last_attended }}</td>
-                                        <td>{{ $applicant->nationality }}</td>
-                                        <td>{{ $applicant->educational_attainment }}</td>
-                                        <td>{{ $applicant->years_in_city }}</td>
-                                        <td>{{ $applicant->family_income }}</td>
-                                        <td>{{ $applicant->registered_voter }}</td>
-                                        <td>{{ $applicant->gwa }}</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="25">No submissions yet</td>
+                                </tr>
                                 <?php
 
-                            }
-
-                        }   else{
-
-                            ?>
-                            <tr>
-                                <td colspan="25">No submissions yet</td>
-                            </tr>
-                            <?php
-
-                            }
+                                }
                         ?>
                         </tbody>
                     </table>

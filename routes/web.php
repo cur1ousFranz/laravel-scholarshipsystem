@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplicantController;
@@ -49,11 +50,18 @@ Route::group(['middleware' => 'auth'], function() {
             // Application Page
             Route::get('/applications', [CoordinatorController::class, 'application'])->name('application');
             // Application Form
-            Route::get('/applications/create', [CoordinatorController::class, 'applicationCreate']);
+            Route::get('/applications/create', function() {
+                return view('coordinator.create_application');
+            });
             // Application Store
             Route::post('/applications/store', [CoordinatorController::class, 'applicationStore']);
             // Application Edit View
-            Route::get('/applications/{application}/edit', [CoordinatorController::class, 'applicationEdit']);
+            Route::get('/applications/{application}/edit', function(Application $application) {
+
+                return view('coordinator.edit_application', [
+                    'application' => $application
+                ]);
+            });
             // Application details update
             Route::put('/applications/{application}', [CoordinatorController::class, 'applicationDetailsUpdate']);
             // Application files update
