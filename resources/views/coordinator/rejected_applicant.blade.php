@@ -3,7 +3,7 @@
         <x-layout>
             <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h4 class="mt-3">Rejected Applicant</h4>
+                    <h4 class="mt-2">Rejected Applicant</h4>
                 </div>
                 <table class="table table-striped table-bordered shadow-sm">
                     <thead class="text-center">

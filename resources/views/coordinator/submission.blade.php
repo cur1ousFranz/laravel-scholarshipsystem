@@ -1,12 +1,50 @@
 <x-navbar>
     <section>
         <x-layout>
-            <div class="d-flex justify-content-between">
-                <div class="d-lg-flex">
-                    <h4 class="mt-3">Applicant List</h4>
+            <div class="row">
+                <div class="col-lg d-flex">
+                    <h4 class="mt-2">Applicant List</h4>
                     <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
                         <i class="bi bi-info-circle"></i>
                     </p>
+                </div>
+                <div class="col-lg">
+                    <div class="d-flex float-lg-end">
+                        <div>
+                            <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Qualified">
+                                <button class="shadow-sm btn btn-outline-success me-2" data-bs-toggle="modal"
+                                data-bs-target="#qualifiedApplicant" id="checkBox1" disabled>
+                                    <i class="bi bi-person-check-fill"></i>
+                                </button>
+                            </span>
+                        </div>
+
+                        <div>
+                            <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Rejected">
+                                <button class="shadow-sm btn btn-outline-danger me-2" id="checkBox2"
+                                disabled data-bs-toggle="modal" data-bs-target="#rejectedApplicant" disabled>
+                                    <i class="bi bi-person-x-fill"></i>
+                                </button>
+                            </span>
+                        </div>
+
+                        <span data-bs-toggle="tooltip" data-bs-placement="left" title="Show All Applicants">
+                            <a href="/applications/{{ $application->id }}/submissions" class="btn btn-outline-warning me-2">
+                                <i class="bi bi-arrow-up-square-fill"></i>
+                            </a>
+                        </span>
+
+                        <form action="">
+                            <div class="input-group">
+                                <div class="shadow-sm form-outline">
+                                    <input type="search" id="form1" class="form-control" name="search"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 {{-- MODAL --}}
@@ -27,44 +65,8 @@
                     </div>
                 </div>
 
-                <div class="d-flex">
-                    <div>
-                        <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Qualified">
-                            <button class="shadow-sm btn btn-outline-success me-2" data-bs-toggle="modal"
-                            data-bs-target="#qualifiedApplicant" id="checkBox1" disabled>
-                                <i class="bi bi-person-check-fill"></i>
-                            </button>
-                        </span>
-                    </div>
-
-                    <div>
-                        <span data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Rejected">
-                            <button class="shadow-sm btn btn-outline-danger me-2" id="checkBox2"
-                            disabled data-bs-toggle="modal" data-bs-target="#rejectedApplicant" disabled>
-                                <i class="bi bi-person-x-fill"></i>
-                            </button>
-                        </span>
-                    </div>
-
-                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="Show All Applicants">
-                        <a href="/applications/{{ $application->id }}/submissions" class="btn btn-outline-warning me-2">
-                            <i class="bi bi-arrow-up-square-fill"></i>
-                        </a>
-                    </span>
-
-                    <form action="">
-                        <div class="input-group">
-                            <div class="shadow-sm form-outline">
-                                <input type="search" id="form1" class="form-control" name="search"/>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
-            <div class="scroll shadow-sm">
+            <div class="scroll shadow-sm mt-2">
                 <form action="/submissions/listing/{{ $application->id }}" method="POST" id="checkboxForm">
                     @csrf
                     <table class="table table-striped table-bordered">
@@ -75,38 +77,36 @@
                                     onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                 </th>
-                                <th scope="col" class="bg-light">Rating</th>
-                                <th scope="col" class="bg-light">Document</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Middle Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Civil Status</th>
+                                <th class="bg-light fw-normal">Rating</th>
+                                <th class="bg-light fw-normal">Document</th>
+                                <th class="fw-normal">First Name</th>
+                                <th class="fw-normal">Middle Name</th>
+                                <th class="fw-normal">Last Name</th>
+                                <th class="fw-normal">Age</th>
+                                <th class="fw-normal">Gender</th>
+                                <th class="fw-normal">Civil Status</th>
 
-                                <th scope="col">Street</th>
-                                <th scope="col">Barangay</th>
-                                <th scope="col">City</th>
-                                <th scope="col">Province</th>
-                                <th scope="col">Region</th>
-                                <th scope="col">Zipcode</th>
+                                <th class="fw-normal">Street</th>
+                                <th class="fw-normal">Barangay</th>
+                                <th class="fw-normal">City</th>
+                                <th class="fw-normal">Province</th>
+                                <th class="fw-normal">Region</th>
+                                <th class="fw-normal">Zipcode</th>
 
-                                <th scope="col">Contact Number</th>
-                                <th scope="col">Contact Email</th>
+                                <th class="fw-normal">Contact Number</th>
+                                <th class="fw-normal">Contact Email</th>
 
+                                <th class="fw-normal">Desired School</th>
+                                <th class="fw-normal">Course</th>
+                                <th class="fw-normal">HEI Type</th>
+                                <th class="fw-normal">School Last Attended</th>
 
-                                <th scope="col">Desired School</th>
-                                <th scope="col">Course</th>
-                                <th scope="col">HEI Type</th>
-                                <th scope="col">School Last Attended</th>
-
-                                <th scope="col">Nationality</th>
-                                <th scope="col">Educational Attainment</th>
-                                <th scope="col">No. Years in City</th>
-                                <th scope="col">Family Income</th>
-                                <th scope="col">Registered Voter</th>
-                                <th scope="col">GWA</th>
-
+                                <th class="fw-normal">Nationality</th>
+                                <th class="fw-normal">Educational Attainment</th>
+                                <th class="fw-normal">No. Years in City</th>
+                                <th class="fw-normal">Family Income</th>
+                                <th class="fw-normal">Registered Voter</th>
+                                <th class="fw-normal">GWA</th>
 
                             </tr>
                         </thead>
@@ -234,6 +234,7 @@
 
 </x-navbar>
 
+{{-- Script for select box in table --}}
 <script>
     $(function() {
         jQuery("[name=selectAll]").click(function(source) {

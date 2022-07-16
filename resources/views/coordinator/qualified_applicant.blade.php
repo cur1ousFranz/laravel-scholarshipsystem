@@ -3,16 +3,16 @@
         <x-layout>
             <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h4 class="mt-3">Qualified Applicant</h4>
+                    <h4 class="mt-2">Qualified Applicant</h4>
                 </div>
                 <table class="table table-striped table-bordered shadow-sm">
                     <thead class="text-center">
                         <tr>
-                            <th scope="col">Batch</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Last Date Modfied</th>
-                            <th scope="col">No. Applicants</th>
-                            <th scope="col">Applicants</th>
+                            <th class="fw-normal">Batch</th>
+                            <th class="fw-normal">Status</th>
+                            <th class="fw-normal">Last Date Modfied</th>
+                            <th class="fw-normal">No. Applicants</th>
+                            <th class="fw-normal">Applicants</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -52,7 +52,6 @@
                                 </tr>
                             <?php
                         }
-
 
                         ?>
                     </tbody>

@@ -49,7 +49,7 @@ class ApplicationController extends Controller
 
         $applicant = Applicant::where('users_id', Auth::user()->id)->first();
 
-        $formFields['document'] = $request->file('document')->store('submissions', 'public');
+        $formFields['document'] = $request->file('document')->store('application_submissions', 'public');
         $formFields['applications_id'] = $application->id;
         $formFields['applicants_id'] = $applicant->id;
 

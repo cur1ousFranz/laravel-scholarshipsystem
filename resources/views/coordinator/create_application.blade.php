@@ -6,60 +6,68 @@
                     <div class="card-body border-top border-top-4 border-primary">
                         <form action="/applications/store" method="post" enctype="multipart/form-data">
                             @csrf
-
                             <h2 class="text-center">Create Application</h2>
+                            <hr>
                             <h5 class="mt-5">Application Details</h5>
                             <div class="d-flex justify-content-around mt-3">
-                                <div>
-                                    <label for="slots">
-                                        <h6>Slots</h6>
-                                    </label>
-                                    <select class="shadow-sm form-select form-control" name="slots">
-                                        <option selected disabled>Select</option>
-                                        <option value="100">100</option>
-                                        <option value="200">200</option>
-                                        <option value="300">300</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <div>
+                                            <label for="slots">
+                                                <h6>Slots</h6>
+                                            </label>
+                                            <select class="shadow-sm form-select form-control" name="slots">
+                                                <option selected disabled>Select</option>
+                                                <option value="100">100</option>
+                                                <option value="200">200</option>
+                                                <option value="300">300</option>
+                                            </select>
 
-                                    @error('slots')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                            @error('slots')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                                <div>
-                                    <label for="start_date">
-                                        <h6>Start Date</h6>
-                                    </label>
-                                    <input class="shadow-sm form-control form-control" type="text" id="start_date"
-                                        name="start_date" value="{{ date('Y-m-d', time()) }}" readonly="true">
+                                    <div class="col-lg">
+                                        <div>
+                                            <label for="start_date">
+                                                <h6>Start Date</h6>
+                                            </label>
+                                            <input class="shadow-sm form-control form-control" type="text" id="start_date"
+                                                name="start_date" value="{{ date('Y-m-d', time()) }}" readonly="true">
 
-                                    @error('start_date')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                            @error('start_date')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div>
+                                            <label for="end_date">
+                                                <h6>End Date</h6>
+                                            </label>
+                                            <input class="shadow-sm form-control form-control" type="date" id="end_date" name="end_date"
+                                                value="{{ old('end_date') }}">
 
-                                <div>
-                                    <label for="end_date">
-                                        <h6>End Date</h6>
-                                    </label>
-                                    <input class="shadow-sm form-control form-control" type="date" id="end_date" name="end_date"
-                                        value="{{ old('end_date') }}">
+                                            @error('end_date')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div>
+                                            <label for="batch">
+                                                <h6>Batch</h6>
+                                            </label>
+                                            <input class="shadow-sm form-control form-control" type="text" id="batch" name="batch"
+                                                value="{{ old('batch') }}">
 
-                                    @error('end_date')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div>
-                                    <label for="batch">
-                                        <h6>Batch</h6>
-                                    </label>
-                                    <input class="shadow-sm form-control form-control" type="text" id="batch" name="batch"
-                                        value="{{ old('batch') }}">
-
-                                    @error('batch')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
+                                            @error('batch')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -73,7 +81,7 @@
                             <hr>
                             <h5 class="mt-4">Pre-evaluation</h5>
                             <div class="row">
-                                <div class="col-6 mt-2">
+                                <div class="col-lg-6 mt-2">
                                     <div>
                                         <label for="educational_attainment">
                                             <h6>Educational Attainment</h6>
@@ -88,7 +96,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div class="mt-3">
                                                 <label for="family_income">
                                                     <h6>Family Income</h6>
@@ -107,10 +115,10 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div class="mt-3">
                                                 <label for="gwa">
-                                                    <h6>General Weighted Average</h6>
+                                                    <h6>GWA</h6>
                                                 </label>
                                                 <select class="shadow-sm form-select form-control" name="gwa">
                                                     <option selected disabled>Select</option>
@@ -129,9 +137,9 @@
                                     </div>
 
                                 </div>
-                                <div class="col-6 mt-2">
+                                <div class="col-lg-6 mt-2">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div>
                                                 <label for="city">
                                                     <h6>City</h6>
@@ -146,7 +154,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div>
                                                 <label for="registered_voter">
                                                     <h6>Registered Voter</h6>
@@ -164,7 +172,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div class="mt-3">
                                                 <label for="years_in_city">
                                                     <h6>No. of year resident in City</h6>
@@ -183,7 +191,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6">
                                             <div class="mt-3">
                                                 <label for="nationality">
                                                     <h6>Nationality</h6>
@@ -207,26 +215,32 @@
                             <p>Pre-registration will automatically read by the system based on applicant basic information.
                             </p>
                             <hr>
-                            <div class="d-flex mt-4 justify-content-between">
-                                <h5 class="mt-2">Step 2: Documentary Requirements</h5>
-                                <div>
+                            <div class="row mt-4">
+                                <div class="col-lg">
+                                    <h5 class="mt-2">Step 2: Documentary Requirements</h5>
+                                </div>
+                                <div class="col-lg">
                                     <input type="file" name="documentary_requirement" class="shadow-sm form-control" accept="application/pdf" value="{{ old('documentary_requirement') }}">
                                 </div>
+
+                                @error('documentary_requirement')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
-                            @error('documentary_requirement')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
                             <hr>
-                            <div class="d-flex mt-4 justify-content-between">
-                                <h5 class="mt-2">Step 3: Application Form</h5>
-                                <div>
+                            <div class="row mt-4">
+                                <div class="col-lg">
+                                    <h5 class="mt-2">Step 3: Application Form</h5>
+                                </div>
+                                <div class="col-lg">
                                     <input type="file" name="application_form" class="shadow-sm form-control" accept="application/pdf" value="{{ old('application_form') }}">
+
                                 </div>
 
+                                @error('application_form')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
-                            @error('application_form')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
                             <hr>
                             <div>
                                 <button type="submit" class="btn btn-outline-primary float-end form-control">
@@ -240,4 +254,5 @@
         </x-layout>
     </section>
 </x-navbar>
+
 

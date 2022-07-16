@@ -2,8 +2,8 @@
     <section>
         <x-layout>
             <div class="d-flex justify-content-between">
-                <h4 class="mt-3">Application</h4>
-                <a href="/applications/create" class="btn btn-outline-primary mt-2 mb-3 shadow-sm"
+                <h4 class="mt-2">Application</h4>
+                <a href="/applications/create" class="btn btn-outline-primary mb-3 shadow-sm"
                 data-bs-toggle="tooltip" data-bs-placement="left" title="Create Application">
                     <i class="bi bi-file-earmark-plus-fill"></i>
                 </a>
@@ -11,13 +11,13 @@
             <table class="table table-striped table-bordered shadow-sm">
                 <thead class="text-center">
                     <tr>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total Submissions</th>
-                        <th scope="col">Applicants</th>
-                        <th scope="col">Action</th>
+                        <th class="fw-normal">Batch</th>
+                        <th class="fw-normal">Start Date</th>
+                        <th class="fw-normal">End Date</th>
+                        <th class="fw-normal">Status</th>
+                        <th class="fw-normal">Total Submissions</th>
+                        <th class="fw-normal">Applicants</th>
+                        <th class="fw-normal">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">

@@ -63,9 +63,9 @@ Route::group(['middleware' => 'auth'], function() {
                 ]);
             });
             // Application details update
-            Route::put('/applications/{application}', [CoordinatorController::class, 'applicationDetailsUpdate']);
+            Route::patch('/applications/{application}/details', [CoordinatorController::class, 'applicationDetailsUpdate']);
             // Application files update
-            Route::put('/applications/{application}', [CoordinatorController::class, 'applicationFilesUpdate']);
+            Route::patch('/applications/{application}/files', [CoordinatorController::class, 'applicationFilesUpdate']);
 
             // Submissions
             Route::get('/applications/{application}/submissions', [CoordinatorController::class, 'submissions']);

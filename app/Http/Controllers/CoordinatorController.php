@@ -139,8 +139,8 @@ class CoordinatorController extends Controller
             'application_form' => ['required', 'mimes:pdf']
         ]);
 
-        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
-        $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
+        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('application_files', 'public');
+        $formFields['application_form'] = $request->file('application_form')->store('application_files', 'public');
 
         $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
 
@@ -178,38 +178,44 @@ class CoordinatorController extends Controller
     public function applicationDetailsUpdate(Request $request, Application $application)
     {
 
-        $formFields = $request->validate([
-            'slots' => 'required',
-            'end_date' => 'required',
-            'batch' => 'required',
+        /* Updating to Applications Table
+        * if there is no changes it cannot be updated
+        *
+        * Getting the current updated date of application
+        */
+        $currentUpdatedApplication = $application->updated_at;
 
-            'description' => 'required',
-            'years_in_city' => 'required',
-            'family_income' => 'required',
-            'educational_attainment' => 'required',
-            'gwa' => 'required',
-            'nationality' => 'required',
-            'city' => 'required',
-            'registered_voter' => 'required'
-        ]);
+        $application->slots = $request->input('slots');
+        $application->end_date = $request->input('end_date');
+        $application->batch = $request->input('batch');
+        $application->save();
 
-        $application->update([
-            'slots' => $formFields['slots'],
-            'end_date' => $formFields['end_date'],
-            'batch' => $formFields['batch']
-        ]);
+        /**
+         * Updating to ApplicationDetails Table
+         * if there is no changes it cannot be updated
+         *
+         * Getting the current updated date of application details
+         */
+        $applicationDetail = ApplicationDetail::find($application->id);
+        $currentUpdatedDetail = $applicationDetail->updated_at;
 
-        ApplicationDetail::where('applications_id', $application->id)->update([
+        $applicationDetail->description = $request->input('description');
+        $applicationDetail->years_in_city = $request->input('years_in_city');
+        $applicationDetail->family_income =$request->input('family_income');
+        $applicationDetail->educational_attainment = $request->input('educational_attainment');
+        $applicationDetail->gwa = $request->input('gwa');
+        $applicationDetail->nationality = $request->input('nationality');
+        $applicationDetail->city = $request->input('city');
+        $applicationDetail->registered_voter = $request->input('registered_voter');
+        $applicationDetail->save();
 
-            'description' => $formFields['description'],
-            'years_in_city' => $formFields['years_in_city'],
-            'family_income' => $formFields['family_income'],
-            'educational_attainment' => $formFields['educational_attainment'],
-            'gwa' => $formFields['gwa'],
-            'nationality' => $formFields['nationality'],
-            'city' => $formFields['city'],
-            'registered_voter' => $formFields['registered_voter']
-        ]);
+        if($currentUpdatedApplication != $application->updated_at){
+            return back()->with('success', 'Application updated successfully!');
+        }
+
+        if($currentUpdatedDetail != $applicationDetail->updated_at){
+            return back()->with('success', 'Application updated successfully!');
+        }
 
         return back();
     }
@@ -220,21 +226,44 @@ class CoordinatorController extends Controller
     public function applicationFilesUpdate(Request $request, Application $application)
     {
 
-        $formFields = $request->validate([
+        $formFields = [
 
-            'documentary_requirement' => ['sometimes', 'mimes:pdf'],
-            'application_form' => ['sometimes', 'mimes:pdf']
-        ]);
+            'documentary_requirement' => '',
+            'application_form' => ''
+        ];
 
-        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('files', 'public');
-        $formFields['application_form'] = $request->file('application_form')->store('files', 'public');
+        if($request->hasFile('documentary_requirement')){
+            $temp = $request->validate(['documentary_requirement' => 'mimes:pdf']);
+            if($temp){
 
-        ApplicationDetail::where('applications_id', $application->id)->update([
+                $formFields['documentary_requirement'] = $request
+                ->file('documentary_requirement')
+                ->store('files', 'public');
+            }
+        }
 
-            'documentary_requirement' => $formFields['documentary_requirement'],
-            'application_form' => $formFields['application_form']
-        ]);
+        if($request->hasFile('application_form')){
+            $temp = $request->validate(['application_form' => 'mimes:pdf']);
+            if($temp){
 
+                $formFields['application_form'] = $request
+                ->file('application_form')
+                ->store('files', 'public');
+            }
+        }
+
+        // Validation if there are changes in Application's file
+        // and if there are no changes, it cannot update.
+        $applicationFiles = ApplicationDetail::find($application->id);
+        $currentUpdated = $applicationFiles->updated_at; // Getting the current updated date of application detail
+
+        $applicationFiles->documentary_requirement = $formFields['documentary_requirement'] != '' ? $formFields['documentary_requirement'] : $applicationFiles->documentary_requirement;
+        $applicationFiles->application_form = $formFields['application_form'] != '' ? $formFields['application_form'] : $applicationFiles->application_form;
+        $applicationFiles->save();
+
+        if($applicationFiles->updated_at != $currentUpdated){
+            return back()->with('success', 'Files updated successfully!');
+        }
         return back();
     }
 
@@ -247,6 +276,7 @@ class CoordinatorController extends Controller
             ->where('applications_id', $application->id)
             ->where('review', null)
             ->filter(request(['search']))
+            ->orderBy('applicant_lists.created_at','desc')
             ->paginate(10);
 
         return view('coordinator.submission', [
@@ -337,10 +367,16 @@ class CoordinatorController extends Controller
      */
     public function qualifiedApplicant()
     {
-
+        /**
+         * Retrieving the list of applications in QualifiedApplicants table
+         * and filter it with unique applications_id, to avoid duplications
+         */
         return view('coordinator.qualified_applicant',[
-            'qualifiedApplicant' => QualifiedApplicant::latest()->paginate(10)
+            'qualifiedApplicant' => QualifiedApplicant::distinct(['applications_id'])
+            ->orderBy('created_at','desc')
+            ->paginate(10)
         ]);
+
     }
 
     /**
@@ -352,6 +388,7 @@ class CoordinatorController extends Controller
         $qualifiedApplicantList = QualifiedApplicant::
                 leftJoin('applicants', 'applicants.id' , '=', 'qualified_applicants.applicants_id')
                 ->where('applications_id', $application->id)->filter(request(['search']))
+                ->orderBy('qualified_applicants.created_at','desc')
                 ->paginate(10);
 
         return view('coordinator.qualified_applicant_list',[
@@ -367,7 +404,9 @@ class CoordinatorController extends Controller
     {
 
         return view('coordinator.rejected_applicant',[
-            'rejectedApplicant' => RejectedApplicant::latest()->paginate(10)
+            'rejectedApplicant' => RejectedApplicant::distinct(['applications_id'])
+            ->orderBy('created_at','desc')
+            ->paginate(10)
         ]);
     }
 
@@ -379,6 +418,7 @@ class CoordinatorController extends Controller
         $rejectedApplicantList = RejectedApplicant::
                 leftJoin('applicants', 'applicants.id' , '=', 'rejected_applicants.applicants_id')
                 ->where('applications_id', $application->id)->filter(request(['search']))
+                ->orderBy('rejected_applicants.created_at','desc')
                 ->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[

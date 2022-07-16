@@ -170,7 +170,7 @@
                                                     <h6>Note: You may only submit once, make sure you uploaded the right
                                                         file. <br> File should be pdf format.</h6>
                                                     <input type="file" class="form-control mt-4 mb-4"
-                                                        name="document">
+                                                        name="document" accept="application/pdf">
 
                                                     @error('document')
                                                         @php
