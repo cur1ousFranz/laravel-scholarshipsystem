@@ -252,8 +252,10 @@ class CoordinatorController extends Controller
             }
         }
 
-        // Validation if there are changes in Application's file
-        // and if there are no changes, it cannot update.
+        /*
+        *  Validation if there are changes in Application's file
+        *  and if there are no changes, it cannot update.
+        */
         $applicationFiles = ApplicationDetail::find($application->id);
         $currentUpdated = $applicationFiles->updated_at; // Getting the current updated date of application detail
 
@@ -292,7 +294,7 @@ class CoordinatorController extends Controller
     {
 
         /**
-         * Input has send through checkboxes
+         * Input has sent through checkboxes
          */
         if ($request->input('applicant')) {
             switch ($request->input('action')) {
@@ -300,7 +302,8 @@ class CoordinatorController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicant = ApplicantList::where('applicants_id', $applicantID)->first();
+                        $applicant = ApplicantList::where(['applicants_id' => $applicantID,
+                        'applications_id' => $application->id])->first();
                         $document = $applicant->document;
 
                         /** Getting the current count of qualified applicants, for validating the slots */
@@ -338,13 +341,19 @@ class CoordinatorController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicant = ['applications_id' => $application->id, 'applicants_id' => $applicantID];
+                        $applicant = ApplicantList::where(['applicants_id' => $applicantID,
+                        'applications_id' => $application->id])->first();
+                        $document = $applicant->document;
 
-                        RejectedApplicant::create([
+                        $applicant = [
                             'applications_id' => $application->id,
                             'applicants_id' => $applicantID,
+                            'document' => $document,
                             'added' => auth()->user()->username
-                        ]);
+
+                            ];
+
+                        RejectedApplicant::create($applicant);
 
                         // Setting the applicant review to Yes
                         ApplicantList::where('applicants_id', $applicantID)->update([

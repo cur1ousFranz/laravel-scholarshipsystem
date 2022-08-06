@@ -13,6 +13,7 @@ class RejectedApplicant extends Model
     protected $fillable = [
         'applications_id',
         'applicants_id',
+        'document',
         'added'
     ];
 
