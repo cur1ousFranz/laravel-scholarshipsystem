@@ -273,12 +273,8 @@ class CoordinatorController extends Controller
     public function submissions(Application $application)
     {
 
-        $applicantList = ApplicantList::
-            leftJoin('applicants', 'applicants.id' , '=', 'applicant_lists.applicants_id')
-            ->where('applications_id', $application->id)
-            ->where('review', null)
-            ->filter(request(['search']))
-            ->orderBy('applicant_lists.created_at','desc')
+        $applicantList = ApplicantList::where(['applications_id' => $application->id, 'review' => null])
+            ->latest()
             ->paginate(10);
 
         return view('coordinator.submission', [
@@ -394,10 +390,8 @@ class CoordinatorController extends Controller
     public function qualifiedApplicantList(Application $application){
 
         // Getting all qualified applicants and fetching data for search query
-        $qualifiedApplicantList = QualifiedApplicant::
-                leftJoin('applicants', 'applicants.id' , '=', 'qualified_applicants.applicants_id')
-                ->where('applications_id', $application->id)->filter(request(['search']))
-                ->orderBy('qualified_applicants.created_at','desc')
+        $qualifiedApplicantList = QualifiedApplicant::where('applications_id', $application->id)
+                ->latest()
                 ->paginate(10);
 
         return view('coordinator.qualified_applicant_list',[
@@ -424,10 +418,8 @@ class CoordinatorController extends Controller
      */
     public function rejectedApplicantList(Application $application){
 
-        $rejectedApplicantList = RejectedApplicant::
-                leftJoin('applicants', 'applicants.id' , '=', 'rejected_applicants.applicants_id')
-                ->where('applications_id', $application->id)->filter(request(['search']))
-                ->orderBy('rejected_applicants.created_at','desc')
+        $rejectedApplicantList = RejectedApplicant::where('applications_id', $application->id)
+                ->latest()
                 ->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[

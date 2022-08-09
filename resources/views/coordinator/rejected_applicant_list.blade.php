@@ -26,12 +26,6 @@
                                 </span>
                             @endif
 
-                            <span data-bs-toggle="tooltip" data-bs-placement="left" title="Show All Applicants">
-                                <a href="/applicants/rejected/list/{{ $application->id }}" class="btn btn-outline-warning me-2">
-                                    <i class="bi bi-arrow-up-square-fill"></i>
-                                </a>
-                            </span>
-
                             {{-- MESSAGE MODAL --}}
                             <div class="modal fade" id="message">
                                 <div class="modal-dialog modal-lg modal-dialog-centered text-center">
@@ -79,17 +73,11 @@
                             </div>
 
                         </div>
-                        <form action="">
-                            <div class="input-group">
-                                <div class="form-outline">
-                                    <input type="search" id="form1" class="form-control shadow-sm" name="search"/>
-                                </div>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-search"></i>
-                                </button>
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input type="text" id="search-applicant" class="form-control shadow-sm" placeholder="Search" onkeyup="searchApplicant()"/>
                             </div>
-                        </form>
-
+                        </div>
                     </div>
                 </div>
 
@@ -160,7 +148,7 @@
                                     ->first();
 
                                 ?>
-                        <tr>
+                        <tr class="tbl-row">
                             <td class="d-flex">
                                 <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Added by: {{ $rejectedApplicantLists->added }}">
@@ -218,3 +206,55 @@
         </x-layout>
     </section>
 </x-navbar>
+
+<script>
+
+    function searchApplicant(){
+
+        let input = document.getElementById('search-applicant');
+        let searchValue = input.value.toLowerCase();
+        let row = document.getElementsByClassName('tbl-row');
+
+        for(let i=0; i<row.length; i++){
+            let colObj = {};
+
+            for(let j=1; j<=24; j++){
+                let column = row[i].getElementsByTagName('td')[j];
+                // storing current column text to object 'colObj'
+                colObj[j] = column.textContent.toLowerCase();
+            }
+
+            if(colObj['1'].indexOf(searchValue) != -1 ||
+            colObj['2'].indexOf(searchValue) != -1  ||
+            colObj['3'].indexOf(searchValue) != -1  ||
+            colObj['4'].indexOf(searchValue) != -1  ||
+            colObj['5'].indexOf(searchValue) != -1  ||
+            colObj['6'].indexOf(searchValue) != -1  ||
+            colObj['7'].indexOf(searchValue) != -1  ||
+            colObj['8'].indexOf(searchValue) != -1 ||
+            colObj['9'].indexOf(searchValue) != -1 ||
+            colObj['10'].indexOf(searchValue) != -1 ||
+            colObj['11'].indexOf(searchValue) != -1 ||
+            colObj['12'].indexOf(searchValue) != -1 ||
+            colObj['13'].indexOf(searchValue) != -1 ||
+            colObj['14'].indexOf(searchValue) != -1 ||
+            colObj['15'].indexOf(searchValue) != -1 ||
+            colObj['16'].indexOf(searchValue) != -1 ||
+            colObj['17'].indexOf(searchValue) != -1 ||
+            colObj['18'].indexOf(searchValue) != -1 ||
+            colObj['19'].indexOf(searchValue) != -1 ||
+            colObj['20'].indexOf(searchValue) != -1 ||
+            colObj['21'].indexOf(searchValue) != -1 ||
+            colObj['22'].indexOf(searchValue) != -1 ||
+            colObj['23'].indexOf(searchValue) != -1 ||
+            colObj['24'].indexOf(searchValue) != -1){
+
+                row[i].style.display = '';
+            }else{
+                row[i].style.display = 'none';
+            }
+
+        }
+
+    }
+</script>

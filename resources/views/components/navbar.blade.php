@@ -12,11 +12,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ESAMS</title>
-
-    <!-- CHART -->
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="public/assets/demo/chart-area-demo.js"></script>
-    <script src="public/assets/demo/chart-bar-demo.js"></script> --}}
+    {{-- This is to resolve passive events problem in console --}}
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
     <!-- ALPINE JS -->
     <script src="//unpkg.com/alpinejs" defer></script>
