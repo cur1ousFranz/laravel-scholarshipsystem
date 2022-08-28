@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="row">
                 <div class="col-lg d-flex">
                     <h4 class="mt-2">Rejected Applicant List</h4>
@@ -203,7 +203,7 @@
             <div class="container mt-3">
                 {{ $rejectedApplicantList->links('pagination::bootstrap-5') }}
             </div>
-        </x-layout>
+        </x-container>
     </section>
     <script src="{{ asset('scripts/dynamic-search.js') }}"></script>
-</x-navbar>
+</x-layout>

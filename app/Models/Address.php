@@ -21,4 +21,13 @@ class Address extends Model
         'zipcode'
 
     ];
+
+    protected $with = [
+        'applicant',
+    ];
+
+    public function applicant(){
+
+        return $this->belongsTo(Applicant::class);
+    }
 }

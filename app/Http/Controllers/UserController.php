@@ -18,9 +18,6 @@ class UserController extends Controller
 
     use Notifiable;
 
-    /**
-     * Create account of applicant
-     */
     public function createAccount(Request $request){
 
         $formFields = $request->validate([
@@ -64,7 +61,7 @@ class UserController extends Controller
 
         $user = DB::table('users')->where('username', $formFields['username'])->first();
 
-        // Check if the user is a teacher
+        // Applicant
         if(Auth::attempt($formFields)){
             if($user->role == "applicant"){
                 $request->session()->regenerate();
@@ -72,7 +69,7 @@ class UserController extends Controller
             }
         }
 
-        // Check if the user is a student
+        // Coordinator
         if(Auth::attempt($formFields)){
             if($user->role == "coordinator"){
                 $request->session()->regenerate();
@@ -84,9 +81,7 @@ class UserController extends Controller
         return back()->with('error', 'Invalid Credentials!');
     }
 
-    /**
-     * Logout the logged in user
-     */
+
     public function logout(Request $request){
         auth()->logout();
 

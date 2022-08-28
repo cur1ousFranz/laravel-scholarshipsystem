@@ -6,10 +6,8 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Applicant;
 use App\Models\Application;
-use App\Models\Coordinator;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
-use Illuminate\Validation\Rule;
 use App\Models\ApplicationDetail;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
@@ -120,10 +118,8 @@ class CoordinatorController extends Controller
      */
     public function applicationStore(Request $request)
     {
-
         $formFields = $request->validate([
             'slots' => 'required',
-            'start_date' => 'required',
             'batch' => 'required',
             'end_date' => 'required',
 
@@ -147,7 +143,7 @@ class CoordinatorController extends Controller
         $application = Application::create([
             'coordinators_id' => $coordinatorID->id,
             'slots' => $formFields['slots'],
-            'start_date' => $formFields['start_date'],
+            'start_date' => request('start_date'),
             'end_date' => $formFields['end_date'],
             'batch' => $formFields['batch'],
             'status' => "On-going"

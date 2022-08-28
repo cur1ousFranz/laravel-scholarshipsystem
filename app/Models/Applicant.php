@@ -31,9 +31,18 @@ class Applicant extends Model
         'gwa'
     ];
 
-    public function applicant(){
+    protected $with = [
+        'user',
+        'school',
+        'address',
+        'contact',
+        'applicantList',
+        'qualifiedApplicant',
+    ];
 
-        return $this->belongsTo(User::class, 'users_id');
+    public function user(){
+
+        return $this->belongsTo(User::class);
     }
 
     public function school(){
@@ -53,11 +62,11 @@ class Applicant extends Model
 
     public function applicantList(){
 
-        return $this->belongsTo(ApplicantList::class, 'applicants_id');
+        return $this->belongsTo(ApplicantList::class);
     }
 
     public function qualifiedApplicant(){
 
-        return $this->belongsTo(QualifiedApplicant::class, 'applicants_id');
+        return $this->belongsTo(QualifiedApplicant::class);
     }
 }

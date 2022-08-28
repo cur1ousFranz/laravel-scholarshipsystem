@@ -1,5 +1,5 @@
-<x-navbar>
-    <x-layout>
+<x-layout>
+    <x-container>
         <div class="container w-50">
             <div class="card">
                 <div class="card-body">
@@ -72,5 +72,5 @@
                 </div>
             </div>
         </div>
-    </x-layout>
-</x-navbar>
+    </x-container>
+</x-layout>

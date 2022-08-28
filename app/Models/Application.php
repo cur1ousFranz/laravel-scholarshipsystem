@@ -23,9 +23,17 @@ class Application extends Model
         'status'
     ];
 
-    public function application(){
+    // protected $with = [
+    //     'coordinator',
+    //     'applicationDetail',
+    //     'applicantList',
+    //     'qualifiedApplicant',
+    //     'rejectedApplicant',
+    // ];
 
-        $this->belongsTo(Coordinator::class, 'coordinators_id');
+    public function coordinator(){
+
+        return $this->belongsTo(Coordinator::class, 'id');
     }
 
     public function applicationDetail(){

@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="row">
                 <div class="col-lg d-flex">
                     <h4 class="mt-2">Applicant List</h4>
@@ -98,72 +98,55 @@
                                 <th class="fw-normal">Family Income</th>
                                 <th class="fw-normal">Registered Voter</th>
                                 <th class="fw-normal">GWA</th>
-
                             </tr>
                         </thead>
-                        {{-- RETRIEVING APPLICANT DATA ACCORDING TO ITS CURRENT ID IN LOOP --}}
                         <tbody class="text-center" id="applicantListHeader">
-                        <?php
-
-                            if(!$applicantList->isEmpty()){
-
-                                foreach($applicantList as $applicantsLists){
-                                    $applicant = App\Models\Applicant::
-                                    where('id', $applicantsLists->applicants_id)
-                                    ->first();
-
-                                    ?>
-                                        <tr class="tbl-row">
-                                            <td>
-                                                <input type="checkbox" name="applicant[]" value="{{ $applicant->id }}"
-                                                    class="form-check-input mt-1"
-                                                    onchange="document.getElementById('checkBox1').disabled = !this.checked;
-                                                    document.getElementById('checkBox2').disabled = !this.checked;">
-                                            </td>
-                                            <td>Test</td>
-                                            <td>
-                                                <a class="text-decoration-none" href="/storage/{{ $applicantsLists->document }}"
-                                                    target="_blank">View</a>
-                                            </td>
-                                            <td>{{ $applicant->first_name }}</td>
-                                            <td>{{ $applicant->middle_name }}</td>
-                                            <td>{{ $applicant->last_name }}</td>
-                                            <td>{{ $applicant->age }}</td>
-                                            <td>{{ $applicant->gender }}</td>
-                                            <td>{{ $applicant->civil_status }}</td>
-                                            <td>{{ $applicant->address->street }}</td>
-                                            <td>{{ $applicant->address->barangay }}</td>
-                                            <td>{{ $applicant->address->city }}</td>
-                                            <td>{{ $applicant->address->province }}</td>
-                                            <td>{{ $applicant->address->region }}</td>
-                                            <td>{{ $applicant->address->zipcode }}</td>
-                                            <td>{{ $applicant->contact->contact_number }}</td>
-                                            <td>{{ $applicant->contact->email }}</td>
-                                            <td>{{ $applicant->school->desired_school }}</td>
-                                            <td>{{ $applicant->school->course_name }}</td>
-                                            <td>{{ $applicant->school->hei_type }}</td>
-                                            <td>{{ $applicant->school->school_last_attended }}</td>
-                                            <td>{{ $applicant->nationality }}</td>
-                                            <td>{{ $applicant->educational_attainment }}</td>
-                                            <td>{{ $applicant->years_in_city }}</td>
-                                            <td>{{ $applicant->family_income }}</td>
-                                            <td>{{ $applicant->registered_voter }}</td>
-                                            <td>{{ $applicant->gwa }}</td>
-                                        </tr>
-                                    <?php
-
-                                }
-
-                            }   else{
-
-                                ?>
+                            @if (!$applicantList->isEmpty())
+                                @foreach ($applicantList as $list)
+                                    <tr class="tbl-row">
+                                        <td>
+                                            <input type="checkbox" name="applicant[]"
+                                            value="{{ $list->applicant->first()->id }}"
+                                            class="form-check-input mt-1"
+                                            onchange="document.getElementById('checkBox1').disabled = !this.checked;
+                                            document.getElementById('checkBox2').disabled = !this.checked;">
+                                        </td>
+                                        <td>Test</td>
+                                        <td>
+                                            <a class="text-decoration-none" href="/storage/{{ $list->document }}"
+                                                target="_blank">View</a>
+                                        </td>
+                                        <td>{{ $list->applicant->first()->first_name }}</td>
+                                        <td>{{ $list->applicant->first()->middle_name }}</td>
+                                        <td>{{ $list->applicant->first()->last_name }}</td>
+                                        <td>{{ $list->applicant->first()->age }}</td>
+                                        <td>{{ $list->applicant->first()->gender }}</td>
+                                        <td>{{ $list->applicant->first()->civil_status }}</td>
+                                        <td>{{ $list->applicant->first()->address->street }}</td>
+                                        <td>{{ $list->applicant->first()->address->barangay }}</td>
+                                        <td>{{ $list->applicant->first()->address->city }}</td>
+                                        <td>{{ $list->applicant->first()->address->province }}</td>
+                                        <td>{{ $list->applicant->first()->address->region }}</td>
+                                        <td>{{ $list->applicant->first()->address->zipcode }}</td>
+                                        <td>{{ $list->applicant->first()->contact->contact_number }}</td>
+                                        <td>{{ $list->applicant->first()->contact->email }}</td>
+                                        <td>{{ $list->applicant->first()->school->desired_school }}</td>
+                                        <td>{{ $list->applicant->first()->school->course_name }}</td>
+                                        <td>{{ $list->applicant->first()->school->hei_type }}</td>
+                                        <td>{{ $list->applicant->first()->school->school_last_attended }}</td>
+                                        <td>{{ $list->applicant->first()->nationality }}</td>
+                                        <td>{{ $list->applicant->first()->educational_attainment }}</td>
+                                        <td>{{ $list->applicant->first()->years_in_city }}</td>
+                                        <td>{{ $list->applicant->first()->family_income }}</td>
+                                        <td>{{ $list->applicant->first()->registered_voter }}</td>
+                                        <td>{{ $list->applicant->first()->gwa }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
                                     <td colspan="25">No submissions yet</td>
                                 </tr>
-                                <?php
-
-                                }
-                        ?>
+                            @endif
                         </tbody>
                     </table>
                 </form>
@@ -220,7 +203,7 @@
                   </div>
                 </div>
               </div>
-        </x-layout>
+        </x-container>
     </section>
 
     {{-- Script for select box in table --}}
@@ -236,5 +219,5 @@
 
     </script>
     <script src="{{ asset('scripts/dynamic-search.js') }}"></script>
-</x-navbar>
+</x-layout>
 

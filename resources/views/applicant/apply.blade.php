@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="card shadow-sm" style="margin-top: 110px">
                 <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     <div class="container text-center">
@@ -21,19 +21,19 @@
                             <div class="col-md-10">
                                 <h5>1. Complete your profile to be able to proceed.</h5>
                             </div>
-                            <div class="col-2 d-flex align-items-center justify-content-center">
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
 
                                 @if (Auth::user())
                                     @if ($applicant->first_name != null)
-                                        <button class="btn btn-outline-success shadow-sm">
+                                        <button class="btn btn-outline-success shadow-sm form-control">
                                             &nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>
                                             &nbsp;
                                         </button>
                                     @else
-                                        <button class="btn btn-outline-danger shadow-sm" disabled>Not Set</button>
+                                        <button class="btn btn-outline-danger shadow-sm form-control" disabled>Not Set</button>
                                     @endif
                                 @else
-                                    <button class="btn btn-outline-primary shadow-sm" disabled>Not Set</button>
+                                    <button class="btn btn-outline-primary shadow-sm form-control" disabled>Not Set</button>
                                 @endif
 
                             </div>
@@ -50,9 +50,9 @@
                                     school seal is needed, Photocopy only of PSA Authenticated BC is needed, etc.
                                 </p>
                             </div>
-                            <div class="col-2 d-flex align-items-center justify-content-center">
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
                                 <a href="/storage/{{ $applicationDetail->documentary_requirement }}"
-                                    class="btn btn-outline-success" target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
+                                    class="btn btn-outline-success form-control" target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
                         <hr>
@@ -69,8 +69,8 @@
 
                                 </p>
                             </div>
-                            <div class="col-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-outline-success"
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-outline-success form-control"
                                     target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                     DOCUMENTS WILL BE ACCEPTED
                                 </p>
                             </div>
-                            <div class="col-2 d-flex align-items-center justify-content-center">
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
                                 {{-- CHECKING IF THE USER IS ALREADY APPLIED TO CURRENT APPLICATION.
                                     IT WILL DISABLE THE UPLOAD BUTTON IF ITS TRUE --}}
                                 <?php
@@ -119,7 +119,7 @@
 
                                         if ($isApplied) {
                                             ?>
-                                                <button class="btn btn-outline-success" disabled>
+                                                <button class="btn btn-outline-success form-control" disabled>
                                                     Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
                                                 </button>
                                             <?php
@@ -127,13 +127,13 @@
 
                                             if ($applicant->first_name != null) {
                                                 ?>
-                                                    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#uploadFile">
+                                                    <button class="btn btn-outline-success form-control" data-bs-toggle="modal" data-bs-target="#uploadFile">
                                                         Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
                                                     </button>
                                                 <?php
                                             }else{
                                                 ?>
-                                                    <button class="btn btn-outline-success" disabled>
+                                                    <button class="btn btn-outline-success form-control" disabled>
                                                         Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
                                                     </button>
                                                 <?php
@@ -144,7 +144,7 @@
                                     // Optional if the user manipulates the inspect element
                                     } else {
                                         ?>
-                                            <button class="btn btn-outline-success" disabled>
+                                            <button class="btn btn-outline-success form-control" disabled>
                                                 Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
                                             </button>
                                         <?php
@@ -199,6 +199,6 @@
                 </div>
             </div>
 
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>

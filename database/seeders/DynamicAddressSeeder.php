@@ -17,7 +17,7 @@ class DynamicAddressSeeder extends Seeder
     {
 
         /** BANGA CITY */
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -25,7 +25,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -33,7 +33,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -41,7 +41,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -49,7 +49,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -57,7 +57,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -65,7 +65,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -73,7 +73,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -81,7 +81,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -89,7 +89,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -97,7 +97,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -105,7 +105,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -113,7 +113,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -121,7 +121,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -129,7 +129,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -137,7 +137,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -145,7 +145,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -153,7 +153,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -161,7 +161,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -169,7 +169,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -177,7 +177,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -185,7 +185,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Banga',
@@ -196,7 +196,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** GENERAL SANTOS CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -204,7 +204,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -212,7 +212,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -220,7 +220,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -228,7 +228,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -236,7 +236,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -244,7 +244,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -252,7 +252,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -260,7 +260,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -268,7 +268,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -276,7 +276,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -284,7 +284,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -292,7 +292,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -300,7 +300,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -308,7 +308,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -316,7 +316,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -324,7 +324,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -332,7 +332,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -340,7 +340,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -348,7 +348,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -356,7 +356,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -364,7 +364,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -372,7 +372,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -380,7 +380,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -388,7 +388,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -396,7 +396,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'General Santos',
@@ -406,7 +406,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** KORONADAL CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -414,7 +414,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -422,7 +422,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -430,7 +430,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -438,7 +438,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -446,7 +446,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -454,7 +454,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -462,7 +462,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -470,7 +470,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -478,7 +478,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -486,7 +486,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -494,7 +494,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -502,7 +502,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -510,7 +510,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -518,7 +518,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -526,7 +526,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -534,7 +534,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -542,7 +542,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -550,7 +550,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -558,7 +558,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -566,7 +566,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -574,7 +574,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -582,7 +582,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -590,7 +590,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -598,7 +598,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -606,7 +606,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -614,7 +614,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Koronadal',
@@ -624,7 +624,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** LAKE SEBU CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -632,7 +632,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -640,7 +640,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -648,7 +648,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -656,7 +656,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -664,7 +664,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -672,7 +672,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -680,7 +680,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -688,7 +688,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -696,7 +696,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -704,7 +704,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -712,7 +712,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -720,7 +720,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -728,7 +728,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -736,7 +736,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -744,7 +744,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -752,7 +752,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -760,7 +760,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -768,7 +768,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -776,7 +776,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Lake Sebu',
@@ -787,7 +787,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** NORALA CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -795,7 +795,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -803,7 +803,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -811,7 +811,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -819,7 +819,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -827,7 +827,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -835,7 +835,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -843,7 +843,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -851,7 +851,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -859,7 +859,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -867,7 +867,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -875,7 +875,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -883,7 +883,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -891,7 +891,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Norala',
@@ -902,7 +902,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** POLOMOLOK CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -910,7 +910,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -918,7 +918,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -926,7 +926,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -934,7 +934,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -942,7 +942,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -950,7 +950,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -958,7 +958,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -966,7 +966,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -974,7 +974,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -982,7 +982,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -990,7 +990,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -998,7 +998,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1006,7 +1006,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1014,7 +1014,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1022,7 +1022,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1030,7 +1030,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1038,7 +1038,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1046,7 +1046,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1054,7 +1054,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1062,7 +1062,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1070,7 +1070,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1078,7 +1078,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Polomolok',
@@ -1088,7 +1088,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** SANTO NINO CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1096,7 +1096,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1104,7 +1104,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1112,7 +1112,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1120,7 +1120,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1128,7 +1128,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1136,7 +1136,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1144,7 +1144,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1152,7 +1152,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1160,7 +1160,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Santo Niño',
@@ -1170,7 +1170,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** SURALLAH CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1178,7 +1178,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1186,7 +1186,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1194,7 +1194,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1202,7 +1202,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1210,7 +1210,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1218,7 +1218,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1226,7 +1226,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1234,7 +1234,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1242,7 +1242,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1250,7 +1250,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1258,7 +1258,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1266,7 +1266,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1274,7 +1274,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1282,7 +1282,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1290,7 +1290,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1298,7 +1298,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Surallah',
@@ -1309,7 +1309,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** T'BOLI CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1317,7 +1317,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1325,7 +1325,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1333,7 +1333,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1341,7 +1341,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1349,7 +1349,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1357,7 +1357,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1365,7 +1365,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1373,7 +1373,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1381,7 +1381,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1389,7 +1389,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1397,7 +1397,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1405,7 +1405,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1413,7 +1413,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1421,7 +1421,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1429,7 +1429,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1437,7 +1437,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1445,7 +1445,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1453,7 +1453,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1461,7 +1461,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1469,7 +1469,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1477,7 +1477,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1485,7 +1485,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1493,7 +1493,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1501,7 +1501,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'T-Boli',
@@ -1512,7 +1512,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** TAMPAKAN CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1520,7 +1520,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1528,7 +1528,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1536,7 +1536,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1544,7 +1544,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1552,7 +1552,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1560,7 +1560,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1568,7 +1568,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1576,7 +1576,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1584,7 +1584,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1592,7 +1592,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1600,7 +1600,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1608,7 +1608,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1616,7 +1616,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tampakan',
@@ -1627,7 +1627,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** TANTANGAN CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1635,7 +1635,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1643,7 +1643,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1651,7 +1651,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1659,7 +1659,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1667,7 +1667,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1675,7 +1675,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1683,7 +1683,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1691,7 +1691,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1699,7 +1699,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1707,7 +1707,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1715,7 +1715,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1723,7 +1723,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tantangan',
@@ -1734,7 +1734,7 @@ class DynamicAddressSeeder extends Seeder
 
         /** TUPI CITY */
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1742,7 +1742,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1750,7 +1750,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1758,7 +1758,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1766,7 +1766,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1774,7 +1774,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1782,7 +1782,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1790,7 +1790,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1798,7 +1798,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1806,7 +1806,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1814,7 +1814,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1822,7 +1822,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1830,7 +1830,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1838,7 +1838,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',
@@ -1846,7 +1846,7 @@ class DynamicAddressSeeder extends Seeder
 
         ]);
 
-        DB::table('dynamic_address')->insert([
+        DB::table('dynamic_addresses')->insert([
             'country' => 'Philippines',
             'province' => 'South Cotabato',
             'city' => 'Tupi',

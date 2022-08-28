@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="d-flex justify-content-between">
                 <h4 class="mt-2">Application</h4>
                 <a href="/applications/create" class="btn btn-outline-primary mb-3 shadow-sm"
@@ -54,6 +54,6 @@
             <div class="container mt-3">
                 {{ $application->links('pagination::bootstrap-5') }}
             </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>

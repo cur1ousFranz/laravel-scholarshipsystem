@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout class="d-flex justify-content-center">
+        <x-container class="d-flex justify-content-center">
             <div class="card shadow-sm w-75 mt-4" >
                 <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     @php
@@ -18,6 +18,6 @@
                     </div>
                 </div>
             </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>

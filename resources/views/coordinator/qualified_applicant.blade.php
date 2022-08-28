@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="container">
                 <div class="d-flex justify-content-between">
                     <h4 class="mt-2">Qualified Applicant</h4>
@@ -60,6 +60,6 @@
             <div class="container mt-3">
                 {{ $qualifiedApplicant->links('pagination::bootstrap-5') }}
             </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>

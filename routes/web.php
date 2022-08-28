@@ -96,9 +96,9 @@ Route::group(['middleware' => 'auth'], function() {
         // Applicant profile page
         Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
         // Applicant edit profile page
-        Route::get('/profiles/{profile}/edit', [ApplicantController::class, 'applicantProfileEdit']);
+        Route::get('/profiles/{applicant}/edit', [ApplicantController::class, 'applicantProfileEdit']);
         // Applicant profile update
-        Route::put('/profiles/{profile}', [ApplicantController::class, 'applicantProfileUpdate']);
+        Route::put('/profiles/{applicant}', [ApplicantController::class, 'applicantProfileUpdate']);
         // Applicant notification
         Route::get('/notifications/{id}', [ApplicantController::class, 'notificationMessage']);
 

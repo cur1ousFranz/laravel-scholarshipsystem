@@ -1,92 +1,71 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3 mt-2">
-                            <div class="card">
-                                <div class="card-body border-bottom border-5 border-primary">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div>
-                                                <h5 style="font-size: 17px">
-                                                    <i class="bi bi-person-fill"></i>
-                                                    Applicants
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mt-1">
-                                                <h1 class="float-end">{{ $totalApplicants->count() }}</h1>
-                                            </div>
-                                        </div>
+                            <x-card-row-col class="border-primary">
+                                <x-slot name="first">
+                                    <h5 style="font-size: 17px">
+                                        <i class="bi bi-person-fill"></i>
+                                        Applicants
+                                    </h5>
+                                </x-slot>
+                                <x-slot name="second">
+                                    <div class="mt-1">
+                                        <h1 class="float-end">{{ $totalApplicants->count() }}</h1>
                                     </div>
-                                </div>
-                            </div>
+                                </x-slot>
+                            </x-card-row-col>
                         </div>
+
                         <div class="col-lg-3 mt-2">
-                            <div class="card">
-                                <div class="card-body border-bottom border-5 border-warning">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div>
-                                                <h5 style="font-size: 17px">
-                                                    <i class="bi bi-journal-text"></i></i>
-                                                    Applications
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mt-1">
-                                                <h1 class="float-end">{{ $totalApplications->count() }}</h1>
-                                            </div>
-                                        </div>
+                            <x-card-row-col class="border-danger">
+                                <x-slot name="first">
+                                    <h5 style="font-size: 17px">
+                                        <i class="bi bi-journal-text"></i>
+                                        Applications
+                                    </h5>
+                                </x-slot>
+                                <x-slot name="second">
+                                    <div class="mt-1">
+                                        <h1 class="float-end">{{ $totalApplications->count() }}</h1>
                                     </div>
-                                </div>
-                              </div>
+                                </x-slot>
+                            </x-card-row-col>
                         </div>
+
                         <div class="col-lg-3 mt-2">
-                            <div class="card">
-                                <div class="card-body border-bottom border-5 border-success">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div>
-                                                <h5 style="font-size: 17px">
-                                                    <i class="bi bi-card-checklist"></i>
-                                                    Submissions
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mt-1">
-                                                <h1 class="float-end">{{ $totalSubmissions->count() }}</h1>
-                                            </div>
-                                        </div>
+                            <x-card-row-col class="border-warning">
+                                <x-slot name="first">
+                                    <h5 style="font-size: 17px">
+                                        <i class="bi bi-card-checklist"></i>
+                                        Submissions
+                                    </h5>
+                                </x-slot>
+                                <x-slot name="second">
+                                    <div class="mt-1">
+                                        <h1 class="float-end">{{ $totalSubmissions->count() }}</h1>
                                     </div>
-                                </div>
-                              </div>
+                                </x-slot>
+                            </x-card-row-col>
                         </div>
+
                         <div class="col-lg-3 mt-2">
-                            <div class="card">
-                                <div class="card-body border-bottom border-5 border-danger">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div>
-                                                <h5 style="font-size: 17px">
-                                                    <i class="bi bi-person-fill"></i>
-                                                    SampleText
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mt-1">
-                                                <h1 class="float-end">0</h1>
-                                            </div>
-                                        </div>
+                            <x-card-row-col class="border-success">
+                                <x-slot name="first">
+                                    <h5 style="font-size: 17px">
+                                        <i class="bi bi-person-fill"></i>
+                                        SampleText
+                                    </h5>
+                                </x-slot>
+                                <x-slot name="second">
+                                    <div class="mt-1">
+                                        <h1 class="float-end">0</h1>
                                     </div>
-                                </div>
-                              </div>
+                                </x-slot>
+                            </x-card-row-col>
                         </div>
                     </div>
                     {{-- CHARTS --}}
@@ -128,9 +107,9 @@
 
                 </div>
               </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>
 
 {{-- CHART CDN AND LINK JS FILE --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

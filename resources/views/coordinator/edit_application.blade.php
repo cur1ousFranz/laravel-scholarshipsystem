@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="container-fluid mb-5">
                 <div class="container m-auto w-75">
 
@@ -306,6 +306,6 @@
 
                 </div>
             </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>

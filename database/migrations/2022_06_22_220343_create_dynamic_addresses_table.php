@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dynamic_address', function (Blueprint $table) {
+        Schema::create('dynamic_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('country');
             $table->string('province');
             $table->string('city');
             $table->string('barangay');
-
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dynamic_address');
+        Schema::dropIfExists('dynamic_addresses');
     }
 };

@@ -1,4 +1,4 @@
-<x-navbar>
+<x-layout>
     <section>
         <div class="container-fluid" style="margin-top: 60px; height: 100vh;">
 
@@ -69,7 +69,7 @@
             </div>
         </div>
     </section>
-
+{{--
     <section>
         <div class="container-fluid mt-5 h-100">
             <div class="row">
@@ -117,5 +117,5 @@
                 </div>
             </div>
         </div>
-    </section>
-</x-navbar>
+    </section> --}}
+</x-layout>

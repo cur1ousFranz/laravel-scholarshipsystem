@@ -14,4 +14,13 @@ class Contact extends Model
         'email',
         'applicants_id'
     ];
+
+    protected $with = [
+        'applicant',
+    ];
+
+    public function applicant(){
+
+        return $this->belongsTo(Applicant::class);
+    }
 }

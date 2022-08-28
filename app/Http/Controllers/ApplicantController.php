@@ -6,6 +6,9 @@ use App\Models\School;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\Applicant;
+use App\Models\EducationalAttainment;
+use App\Models\Nationality;
+use Database\Seeders\EducationalAttainmentSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -14,16 +17,24 @@ use Illuminate\Support\Facades\Notification;
 
 class ApplicantController extends Controller
 {
+
+    private $applicant;
+
+    private function getApplicant(){
+
+        $this->applicant = Applicant::where('users_id', Auth::user()->id)->first();
+
+        return $this->applicant;
+    }
+
     /**
      * Applicant profile page
      */
     public function applicantProfile()
     {
 
-        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
-
         return view('applicant.profile', [
-            'applicant' => $applicant
+            'applicant' => $this->getApplicant()
 
         ]);
     }
@@ -32,17 +43,18 @@ class ApplicantController extends Controller
     public function applicantProfileEdit()
     {
 
-        $applicant = Applicant::where('users_id', Auth::user()->id)->first();
         $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
 
         $school_list = DB::table('school_courses')->groupBy('school')->get();
-        $dynamic_address = DB::table('dynamic_address')->groupBy('country')->get();
+        $dynamic_address = DB::table('dynamic_addresses')->groupBy('country')->get();
 
         return view('applicant.profile_edit', [
-            'applicant' => $applicant,
+            'applicant' => $this->getApplicant(),
             'age' => $ageArray,
             'school_list' => $school_list,
-            'dynamic_address' => $dynamic_address
+            'dynamic_address' => $dynamic_address,
+            'nationalities' => Nationality::all(),
+            'educational' => EducationalAttainment::all(),
         ]);
     }
 
@@ -79,7 +91,7 @@ class ApplicantController extends Controller
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
-        $data = DB::table('dynamic_address')
+        $data = DB::table('dynamic_addresses')
             ->where($select, $value)
             ->groupBy($dependent)
             ->get();
@@ -92,9 +104,8 @@ class ApplicantController extends Controller
 
 
     // Update Profile of Applicant
-    public function applicantProfileUpdate(Request $request)
+    public function applicantProfileUpdate(Request $request, Applicant $applicant)
     {
-
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
             'middle_name' => ['required', 'min:2'],
@@ -123,13 +134,11 @@ class ApplicantController extends Controller
             'zipcode' => 'required',
 
             'contact_number' => 'required',         // Contact Table
-            'email' => 'required',
+            'email' => ['required', Rule::unique('contacts', 'email')->ignore($applicant)],
 
         ]);
 
-        $applicant = DB::table('applicants')->where('users_id', Auth::user()->id)->first();
-
-        Applicant::where('id', $applicant->id)->update([
+        Applicant::where('id', $this->getApplicant()->id)->update([
 
             'first_name' => ucwords($formFields['first_name']),
             'middle_name' => ucwords($formFields['middle_name']),
@@ -145,7 +154,7 @@ class ApplicantController extends Controller
             'gwa' => $formFields['gwa'],
         ]);
 
-        School::where('applicants_id', $applicant->id)->update([
+        School::where('applicants_id', $this->getApplicant()->id)->update([
 
             'desired_school' => $formFields['desired_school'],
             'course_name' => $formFields['course_name'],
@@ -153,7 +162,7 @@ class ApplicantController extends Controller
             'school_last_attended' => ucwords($formFields['school_last_attended']),
         ]);
 
-        Address::where('applicants_id', $applicant->id)->update([
+        Address::where('applicants_id', $this->getApplicant()->id)->update([
 
             'country' => $formFields['country'],
             'province' => $formFields['province'],
@@ -164,7 +173,7 @@ class ApplicantController extends Controller
             'zipcode' => $formFields['zipcode'],
         ]);
 
-        Contact::where('applicants_id', $applicant->id)->update([
+        Contact::where('applicants_id', $this->getApplicant()->id)->update([
 
             'contact_number' => $formFields['contact_number'],
             'email' => $formFields['email'],

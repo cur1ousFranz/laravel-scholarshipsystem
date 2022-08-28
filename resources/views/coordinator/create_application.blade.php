@@ -1,6 +1,6 @@
-<x-navbar>
+<x-layout>
     <section>
-        <x-layout>
+        <x-container>
             <div class="container-fluid d-flex justify-content-center mb-5">
                 <div class="card w-75 shadow-sm">
                     <div class="card-body border-top border-top-4 border-primary">
@@ -12,61 +12,26 @@
                             <div class="d-flex justify-content-around mt-3">
                                 <div class="row">
                                     <div class="col-lg">
-                                        <div>
-                                            <label for="slots">
-                                                <h6>Slots</h6>
-                                            </label>
-                                            <select class="shadow-sm form-select form-control" name="slots">
-                                                <option selected disabled>Select</option>
-                                                <option value="100">100</option>
-                                                <option value="200">200</option>
-                                                <option value="300">300</option>
-                                            </select>
-
-                                            @error('slots')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                        <x-form.label name="slots"/>
+                                        <select class="shadow-sm form-select form-control" name="slots">
+                                            <option selected disabled>Select</option>
+                                            <option value="100">100</option>
+                                            <option value="200">200</option>
+                                            <option value="300">300</option>
+                                        </select>
+                                        <x-form.error name="slots"/>
                                     </div>
 
                                     <div class="col-lg">
-                                        <div>
-                                            <label for="start_date">
-                                                <h6>Start Date</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control" type="text" id="start_date"
-                                                name="start_date" value="{{ date('Y-m-d', time()) }}" readonly="true">
-
-                                            @error('start_date')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                        <x-form.input name="start_date" readonly="true" :value="date('Y-m-d', time())"/>
                                     </div>
-                                    <div class="col-lg">
-                                        <div>
-                                            <label for="end_date">
-                                                <h6>End Date</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control" type="date" id="end_date" name="end_date"
-                                                value="{{ old('end_date') }}">
 
-                                            @error('end_date')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                    <div class="col-lg">
+                                        <x-form.input name="end_date" type="date" :value="old('end_date')"/>
                                     </div>
-                                    <div class="col-lg">
-                                        <div>
-                                            <label for="batch">
-                                                <h6>Batch</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control form-control" type="text" id="batch" name="batch"
-                                                value="{{ old('batch') }}">
 
-                                            @error('batch')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                    <div class="col-lg">
+                                        <x-form.input name="batch" :value="old('batch')"/>
                                     </div>
                                 </div>
                             </div>
@@ -74,33 +39,22 @@
                             <hr>
                             <h5 class="mt-3">Description</h5>
                             <textarea id="editor" name="description">{{ old('description') }}</textarea>
+                            <x-form.error name="description"/>
 
-                            @error('description')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
                             <hr>
                             <h5 class="mt-4">Pre-evaluation</h5>
                             <div class="row">
                                 <div class="col-lg-6 mt-2">
-                                    <div>
-                                        <label for="educational_attainment">
-                                            <h6>Educational Attainment</h6>
-                                        </label>
-                                        <select class="shadow-sm form-select form-control" name="educational_attainment">
-                                            <option selected disabled>Select</option>
-                                            <option value="Incoming College / College">Incoming College / College</option>
-                                        </select>
-                                        @error('educational_attainment')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                                    <x-form.label name="educational_attainement"/>
+                                    <select class="shadow-sm form-select form-control" name="educational_attainment">
+                                        <option selected disabled>Select</option>
+                                        <option value="Incoming College / College">Incoming College / College</option>
+                                    </select>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <label for="family_income">
-                                                    <h6>Family Income</h6>
-                                                </label>
+                                                <x-form.label name="family_income"/>
                                                 <select class="shadow-sm form-select form-control" name="family_income">
                                                     <option selected disabled>Select</option>
                                                     <option value="8000">8,000 PHP</option>
@@ -109,17 +63,12 @@
                                                     <option value="20000">20,000 PHP</option>
                                                     <option value="20000">25,000 PHP</option>
                                                 </select>
-
-                                                @error('family_income')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                <x-form.error name="family_income"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <label for="gwa">
-                                                    <h6>GWA</h6>
-                                                </label>
+                                                <x-form.label name="general_average"/>
                                                 <select class="shadow-sm form-select form-control" name="gwa">
                                                     <option selected disabled>Select</option>
                                                     <option value="75">75</option>
@@ -128,10 +77,7 @@
                                                     <option value="90">90</option>
                                                     <option value="95">95</option>
                                                 </select>
-
-                                                @error('gwa')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                <x-form.error name="gwa"/>
                                             </div>
                                         </div>
                                     </div>
@@ -140,43 +86,27 @@
                                 <div class="col-lg-6 mt-2">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div>
-                                                <label for="city">
-                                                    <h6>City</h6>
-                                                </label>
-                                                <select class="shadow-sm form-select form-control" name="city">
-                                                    <option selected disabled>Select</option>
-                                                    <option value="General Santos City">General Santos City</option>
-                                                </select>
-
-                                                @error('city')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                            <x-form.label name="city"/>
+                                            <select class="shadow-sm form-select form-control" name="city">
+                                                <option selected disabled>Select</option>
+                                                <option value="General Santos City">General Santos City</option>
+                                            </select>
+                                            <x-form.error name="city"/>
                                         </div>
                                         <div class="col-lg-6">
-                                            <div>
-                                                <label for="registered_voter">
-                                                    <h6>Registered Voter</h6>
-                                                </label>
-                                                <select class="shadow-sm form-select form-control" name="registered_voter">
-                                                    <option selected disabled>Select</option>
-                                                    <option value="Yes">Yes</option>
-                                                </select>
-
-                                                @error('registered_voter')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                            <x-form.label name="registered_voter"/>
+                                            <select class="shadow-sm form-select form-control" name="registered_voter">
+                                                <option selected disabled>Select</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                            <x-form.error name="registered_voter"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <label for="years_in_city">
-                                                    <h6>No. of year resident in City</h6>
-                                                </label>
+                                                <x-form.label name="years_in_city"/>
                                                 <select class="shadow-sm form-select form-control" name="years_in_city">
                                                     <option selected disabled>Select</option>
                                                     <option value="1">1 year</option>
@@ -185,29 +115,20 @@
                                                     <option value="4">4 years</option>
                                                     <option value="5">5 years</option>
                                                 </select>
-
-                                                @error('years_in_city')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                <x-form.error name="years_in_city"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <label for="nationality">
-                                                    <h6>Nationality</h6>
-                                                </label>
+                                                <x-form.label name="nationality"/>
                                                 <select class="shadow-sm form-select form-control" name="nationality">
                                                     <option selected disabled>Select</option>
                                                     <option value="Filipino">Filipino</option>
                                                 </select>
-
-                                                @error('nationality')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                <x-form.error name="nationality"/>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <hr>
@@ -221,11 +142,8 @@
                                 </div>
                                 <div class="col-lg">
                                     <input type="file" name="documentary_requirement" class="shadow-sm form-control" accept="application/pdf" value="{{ old('documentary_requirement') }}">
+                                    <x-form.error name="documentary_requirement"/>
                                 </div>
-
-                                @error('documentary_requirement')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                             <hr>
                             <div class="row mt-4">
@@ -234,25 +152,17 @@
                                 </div>
                                 <div class="col-lg">
                                     <input type="file" name="application_form" class="shadow-sm form-control" accept="application/pdf" value="{{ old('application_form') }}">
-
+                                    <x-form.error name="application_form"/>
                                 </div>
-
-                                @error('application_form')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                             <hr>
-                            <div>
-                                <button type="submit" class="btn btn-outline-primary float-end form-control">
-                                    Create
-                                </button>
-                            </div>
+                            <x-form.button class="form-control">Create</x-form.button>
                         </form>
                     </div>
                 </div>
             </div>
-        </x-layout>
+        </x-container>
     </section>
-</x-navbar>
+</x-layout>
 
 

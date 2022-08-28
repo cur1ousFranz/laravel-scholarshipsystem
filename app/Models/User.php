@@ -43,13 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userApplicant(){
+    protected $with = [
+        'applicant',
+    ];
+
+    public function applicant(){
 
         return $this->hasMany(Applicant::class, 'users_id');
     }
 
-    // public function userCoordinator(){
-
-    //     return $this->hasMany(Coordinator::class, '')
-    // }
 }

@@ -10,8 +10,10 @@ class Coordinator extends Model
 {
     use HasFactory;
 
-    public function coordinator(){
+    // protected $with = ['application'];
 
-        $this->hasMany(Application::class, 'coordinators_id');
+    public function application(){
+
+       return $this->hasMany(Application::class);
     }
 }
