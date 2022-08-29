@@ -7,12 +7,12 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: qualifiedApplicant,
+    labels: rejectedApplicant,
     datasets: [{
-      label: "Qualified Applicant",
+      label: "Rejected Applicant",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: qualifiedApplicantCount,
+      data: rejectedApplicantCount,
     }],
   },
   options: {
@@ -31,7 +31,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 250,
+          max: 500,
           maxTicksLimit: 6
         },
         gridLines: {

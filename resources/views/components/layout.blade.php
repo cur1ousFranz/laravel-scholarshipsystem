@@ -114,11 +114,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
-                    {{-- CONDITION IF THE USER IS GUEST OR AUTHENTICATED --}}
                     @auth
                         @if (auth()->user()->role == 'applicant')
                             <li class="nav-item mt-lg-1">
-                                <a class="btn nav-link text-dark" href="/">
+                                <a class="nav-link text-dark" href="/">
                                     <i class="bi bi-house-door" style="font-size: 19px"></i>
                                 </a>
                             </li>
@@ -126,42 +125,51 @@
                             <li class="nav-item mt-lg-1">
 
                                 <div class="dropdown show">
-                                    <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                        <i class="bi bi-bell" style="font-size: 19px"></i>
+                                    <a class="btn nav-link text-dark position-relative" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        <i class="bi bi-bell" style="font-size: 19px">
+                                        </i>
                                         @if (auth()->user()->unreadNotifications->count())
-                                            <span class="badge bg-danger">
+                                            <span class="position-absolute mt-3 translate-middle badge rounded-pill bg-danger">
                                                 {{ auth()->user()->unreadNotifications->count() }}
                                             </span>
                                         @endif
                                     </a>
 
                                     <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink">
-
+                                        <h5 class="fw-bold mt-2">Notifications</h5>
                                         <ul class="list-group ">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notifications)
-                                                    <li class="list-group-item" style="background-color: #B5CBF6">
-                                                        <a class=" text-decoration-none text-dark" href="/notifications/{{ $notifications->id }}"
-                                                            class="dropdown-item"> {{ $notifications->data['title'] }}
+                                                    <li class="list-group-item border-0">
+                                                        <a class="text-decoration-none text-dark dropdown-item" href="/notifications/{{ $notifications->id }}">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    {{ $notifications->data['title'] }}
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <span class="badge rounded-pill ms-5 bg-primary">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                                {{ $notifications->created_at->diffForHumans() }}
+                                                            </p>
                                                         </a>
-                                                        <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                            {{ $notifications->created_at->format('d M') }}
-                                                        </p>
                                                     </li>
                                                 @endforeach
                                                 @foreach ( auth()->user()->readNotifications as $notifications )
-                                                    <li class="list-group-item">
+                                                    <li class="list-group-item border-0">
                                                         <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
                                                             {{ $notifications->data['title'] }}
                                                         </a>
                                                         <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                            {{ $notifications->created_at->format('d M') }}
+                                                            {{ $notifications->created_at->diffForHumans() }}
                                                         </p>
                                                     </li>
-
                                                 @endforeach
                                             @else
-                                                    <li class="list-group-item">No notification yet.</li>
+                                                <hr class="mt-1 mb-1">
+                                                <li class="list-group-item border-0 text-muted">Nothing to show</li>
                                             @endif
 
                                         </ul>
@@ -173,22 +181,15 @@
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                        <?php
-                                        // $applicant = Illuminate\Support\Facades\DB::table('applicants')
-                                        //     ->where('users_id', auth()->user()->id)
-                                        //     ->first();
-                                        echo auth()->user()->username;
-                                        ?><i class="ms-1 bi bi-caret-down-fill"></i>
+                                        {{ auth()->user()->username }}
+                                        <i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
-
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="/profile">Profile</a>
                                         <div class="dropdown-divider"></div>
-                                        <form action="/logout" method="post" class="dropdown-item">
-                                            @csrf
-                                            <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
-                                        </form>
-
+                                        <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
+                                            Logout
+                                        </a>
                                     </div>
                                 </div>
                             </li>
@@ -204,7 +205,6 @@
                                     <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                         Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
-
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="/applicants/qualified">Qualified Applicants</a>
                                         <div class="dropdown-divider"></div>
@@ -217,15 +217,12 @@
                                     <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                         {{ auth()->user()->username }}<i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
-
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="#">Profile</a>
                                         <div class="dropdown-divider"></div>
-                                        <form action="/logout" method="post" class="dropdown-item">
-                                            @csrf
-                                            <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
-                                        </form>
-
+                                        <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
+                                            Logout
+                                        </a>
                                     </div>
                                 </div>
                             </li>
@@ -239,13 +236,11 @@
                                 href="">Sign in</a>
                         </li>
                     @endauth
-
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Modal -->
     <div class="modal fade" id="signinModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content border border-1 border-dark">
@@ -253,7 +248,7 @@
                     <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="/login" method="post">
+                    <form action="login" method="POST">
                         @csrf
 
                         <div class="row">

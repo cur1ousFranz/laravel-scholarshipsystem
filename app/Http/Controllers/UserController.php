@@ -18,7 +18,16 @@ class UserController extends Controller
 
     use Notifiable;
 
-    public function createAccount(Request $request){
+    public function index(){
+
+        return view('welcome');
+    }
+    public function signup(){
+
+        return view('signup');
+    }
+
+    public function create(Request $request){
 
         $formFields = $request->validate([
             'username' => ['required', Rule::unique('users', 'username')],
@@ -52,7 +61,8 @@ class UserController extends Controller
         return back()->with('success', 'Created account succesfully!');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
         $formFields = $request->validate([
             'username' => 'required',

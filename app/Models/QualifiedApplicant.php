@@ -18,6 +18,11 @@ class QualifiedApplicant extends Model
         'added'
     ];
 
+    protected $with = [
+        'application',
+        'applicant',
+    ];
+
     public function application(){
 
         return $this->belongsTo(Application::class, 'applications_id');
@@ -25,6 +30,6 @@ class QualifiedApplicant extends Model
 
     public function applicant(){
 
-        return $this->hasMany(Applicant::class, 'applicants_id', 'id');
+        return $this->hasMany(Applicant::class, 'id');
     }
 }

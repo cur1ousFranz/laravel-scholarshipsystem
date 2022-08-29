@@ -8,16 +8,16 @@
                     <i class="bi bi-file-earmark-plus-fill"></i>
                 </a>
             </div>
-            <table class="table table-striped table-bordered shadow-sm">
+            <x-table.table>
                 <thead class="text-center">
                     <tr>
-                        <th class="fw-normal">Batch</th>
-                        <th class="fw-normal">Start Date</th>
-                        <th class="fw-normal">End Date</th>
-                        <th class="fw-normal">Status</th>
-                        <th class="fw-normal">Total Submissions</th>
-                        <th class="fw-normal">Applicants</th>
-                        <th class="fw-normal">Action</th>
+                        <x-table.th>Batch</x-table.th>
+                        <x-table.th>Start Date</x-table.th>
+                        <x-table.th>End Date</x-table.th>
+                        <x-table.th>Status</x-table.th>
+                        <x-table.th>Total Submissions</x-table.th>
+                        <x-table.th>Applicants</x-table.th>
+                        <x-table.th>Action</x-table.th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -49,7 +49,7 @@
                         </tr>
                     @endif
                 </tbody>
-            </table>
+            </x-table.table>
 
             <div class="container mt-3">
                 {{ $application->links('pagination::bootstrap-5') }}

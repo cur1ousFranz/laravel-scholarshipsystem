@@ -5,28 +5,23 @@
                 <div class="d-flex justify-content-between">
                     <h4 class="mt-2">Qualified Applicant</h4>
                 </div>
-                <table class="table table-striped table-bordered shadow-sm">
+                <x-table.table>
                     <thead class="text-center">
                         <tr>
-                            <th class="fw-normal">Batch</th>
-                            <th class="fw-normal">Status</th>
-                            <th class="fw-normal">Last Date Modfied</th>
-                            <th class="fw-normal">No. Applicants</th>
-                            <th class="fw-normal">Applicants</th>
+                            <x-table.th>Batch</x-table.th>
+                            <x-table.th>Status</x-table.th>
+                            <x-table.th>Last Date Modfied</x-table.th>
+                            <x-table.th>No. Applicants</x-table.th>
+                            <x-table.th>Applicants</x-table.th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <?php
-
-                        if (!$qualifiedApplicant->isEmpty()) {
-
-                            $applicationArray = array();
-
-                            foreach ($qualifiedApplicant as $qualifiedApplicants) {
-
-                                if(!in_array($qualifiedApplicants->applications_id, $applicationArray)){
-                                $applicationArray[] = $qualifiedApplicants->applications_id
-                                ?>
+                        @if (!$qualifiedApplicant->isEmpty())
+                            @foreach ($qualifiedApplicant as $qualifiedApplicants)
+                                @if (!in_array($qualifiedApplicants->applications_id, $applicationArray))
+                                    @php
+                                        $applicationArray[] = $qualifiedApplicants->applications_id
+                                    @endphp
                                     <tr>
                                         <td>{{ $qualifiedApplicants->application->batch }}</td>
                                         <td class="{{ $qualifiedApplicants->application->status == "On-going" ? 'text-success' : 'text-danger'}}">
@@ -38,24 +33,19 @@
                                         ->count() . ' / ' . $qualifiedApplicants->application->slots }}
                                         </td>
                                         <td>
-                                            <a href="/applicants/qualified/list/{{ $qualifiedApplicants->applications_id }}"
+                                            <a href="/applicants/qualified/{{ $qualifiedApplicants->applications_id }}"
                                                 class="text-decoration-none">View</a>
                                         </td>
                                     </tr>
-                                <?php
-                                }
-                            }
-                        } else {
-                            ?>
-                                <tr>
-                                    <td colspan="5" class="text-center">No applicants yet</td>
-                                </tr>
-                            <?php
-                        }
-
-                        ?>
+                                @endif
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center">No applicants yet</td>
+                            </tr>
+                        @endif
                     </tbody>
-                </table>
+                </x-table.table>
             </div>
             <div class="container mt-3">
                 {{ $qualifiedApplicant->links('pagination::bootstrap-5') }}

@@ -31,73 +31,73 @@
                         <form action="">
                             <div class="input-group">
                                 <div class="shadow-sm form-outline">
-                                    <input type="search" id="search-applicant-list" onkeyup="searchApplicantList()" class="form-control" autocomplete="off" name="search" placeholder="Search"/>
+                                    <input type="search"
+                                    id="search-applicant-list"
+                                    onkeyup="searchApplicantList()"
+                                    class="form-control"
+                                    autocomplete="off"
+                                    name="search"
+                                    placeholder="Search"/>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                {{-- MODAL --}}
                 <div class="modal fade" id="infoModal">
                     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                         <div class="modal-content bg-secondary">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-light"><i class="bi bi-info-circle"></i></h5>
-                            <button type="button" class="close border-0 float-start" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-light">
-                            <p>To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from the list.</p>
-                        </div>
-
+                            <div class="modal-header">
+                                <h5 class="modal-title text-light"><i class="bi bi-info-circle"></i></h5>
+                                <button type="button" class="close border-0 float-start" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-light">
+                                <p>To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from the list.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
             <div class="scroll shadow-sm mt-2">
-                <form action="/submissions/listing/{{ $application->id }}" method="POST" id="checkboxForm">
+                <form action="/applicants/{{ $application->id }}" method="POST" id="checkboxForm">
                     @csrf
-                    <table class="table table-striped table-bordered">
+                    <x-table.table>
                         <thead class="text-center text-dark" id="applicantListHeader">
                             <tr>
-                                <th scope="col" class="bg-light">
+                                <x-table.th class="bg-light">
                                     <input type="checkbox" class="mb-1 form-check-input" name="selectAll"
                                     onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
-                                </th>
-                                <th class="bg-light fw-normal">Rating</th>
-                                <th class="bg-light fw-normal">Document</th>
-                                <th class="fw-normal">First Name</th>
-                                <th class="fw-normal">Middle Name</th>
-                                <th class="fw-normal">Last Name</th>
-                                <th class="fw-normal">Age</th>
-                                <th class="fw-normal">Gender</th>
-                                <th class="fw-normal">Civil Status</th>
-
-                                <th class="fw-normal">Street</th>
-                                <th class="fw-normal">Barangay</th>
-                                <th class="fw-normal">City</th>
-                                <th class="fw-normal">Province</th>
-                                <th class="fw-normal">Region</th>
-                                <th class="fw-normal">Zipcode</th>
-
-                                <th class="fw-normal">Contact Number</th>
-                                <th class="fw-normal">Contact Email</th>
-
-                                <th class="fw-normal">Desired School</th>
-                                <th class="fw-normal">Course</th>
-                                <th class="fw-normal">HEI Type</th>
-                                <th class="fw-normal">School Last Attended</th>
-
-                                <th class="fw-normal">Nationality</th>
-                                <th class="fw-normal">Educational Attainment</th>
-                                <th class="fw-normal">No. Years in City</th>
-                                <th class="fw-normal">Family Income</th>
-                                <th class="fw-normal">Registered Voter</th>
-                                <th class="fw-normal">GWA</th>
+                                </x-table.th>
+                                <x-table.th class="bg-light">Rating</x-table.th>
+                                <x-table.th class="bg-light">Document</x-table.th>
+                                <x-table.th>First Name</x-table.th>
+                                <x-table.th>Midle Name</x-table.th>
+                                <x-table.th>Last Name</x-table.th>
+                                <x-table.th>Age</x-table.th>
+                                <x-table.th>Gender</x-table.th>
+                                <x-table.th>Civil Status</x-table.th>
+                                <x-table.th>Street</x-table.th>
+                                <x-table.th>Barangay</x-table.th>
+                                <x-table.th>City</x-table.th>
+                                <x-table.th>Province</x-table.th>
+                                <x-table.th>Region</x-table.th>
+                                <x-table.th>Zipcode</x-table.th>
+                                <x-table.th>Contact Number</x-table.th>
+                                <x-table.th>Contact Email</x-table.th>
+                                <x-table.th>Course</x-table.th>
+                                <x-table.th>HEI Type</x-table.th>
+                                <x-table.th>Desired School</x-table.th>
+                                <x-table.th>School Last Attended<</x-table.th>
+                                <x-table.th>Nationality</x-table.th>
+                                <x-table.th>Educational Attainment School</x-table.th>
+                                <x-table.th>No. Years in City</x-table.th>
+                                <x-table.th>Family Income</x-table.th>
+                                <x-table.th>Registered Voter</x-table.th>
+                                <x-table.th>GWA</x-table.th>
                             </tr>
                         </thead>
                         <tbody class="text-center" id="applicantListHeader">
@@ -148,65 +148,44 @@
                                 </tr>
                             @endif
                         </tbody>
-                    </table>
+                    </x-table.table>
                 </form>
             </div>
-            {{-- PAGINATION --}}
+
             <div class="container mt-3">
                 {{ $applicantList->links('pagination::bootstrap-5') }}
             </div>
 
-            {{-- QualifiedApplicant Button Modal --}}
-            <div class="modal fade" id="qualifiedApplicant">
-                <div class="modal-dialog modal-dialog-centered text-center" >
-                  <div class="modal-content border border-success">
-                    <div class="modal-header d-flex justify-content-center">
-                        <h4 class="modal-title">Qualified Applicant</h4>
-                    </div>
-                    <div class="modal-body">
+              <x-modal name="qualifiedApplicant">
+                <x-slot name="header">Qualified Applicant</x-slot>
+                <x-slot name="body">Are you sure you want to proceed?</x-slot>
+                <x-slot name="footer">
+                    <x-form.button type="button" class="btn-outline-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </x-form.button>
+                    <x-form.button type="submit" class="btn-outline-primary"
+                    form="checkboxForm" name="action" value="qualified">
+                        Confirm
+                    </x-form.button>
+                </x-slot>
+            </x-modal>
 
-                        <h5>Are you sure you want to proceed?</h5>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-danger"
-                        data-bs-dismiss="modal">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-outline-primary"
-                        form="checkboxForm" name="action" value="qualified">
-                            Confirm
-                        </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            {{-- RejectedApplicant Button Modal --}}
-            <div class="modal fade" id="rejectedApplicant">
-                <div class="modal-dialog modal-dialog-centered text-center" >
-                  <div class="modal-content border border-danger">
-                    <div class="modal-header d-flex justify-content-center">
-                        <h4 class="modal-title">Rejected Applicant</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Are you sure you want to proceed?</h5>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-outline-primary"
-                        form="checkboxForm" name="action" value="rejected">
-                            Confirm
-                        </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <x-modal name="rejectedApplicant">
+                <x-slot name="header">Rejected Applicant</x-slot>
+                <x-slot name="body">Are you sure you want to proceed?</x-slot>
+                <x-slot name="footer">
+                    <x-form.button type="button" class="btn-outline-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </x-form.button>
+                    <x-form.button type="submit" class="btn-outline-primary"
+                    form="checkboxForm" name="action" value="rejected">
+                        Confirm
+                    </x-form.button>
+                </x-slot>
+            </x-modal>
         </x-container>
     </section>
 
-    {{-- Script for select box in table --}}
     <script>
         $(function() {
             jQuery("[name=selectAll]").click(function(source) {
@@ -216,7 +195,6 @@
                 }
             });
         })
-
     </script>
     <script src="{{ asset('scripts/dynamic-search.js') }}"></script>
 </x-layout>

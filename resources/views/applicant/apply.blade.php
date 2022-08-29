@@ -10,7 +10,6 @@
                     <div class="container mt-4 mb-4">
                         <div class="container">
                             <h4 class="mb-4">Description</h4>
-                            {{-- DECODING THE HTML TAGS FROM DATABASE --}}
                             {!! $applicationDetail->description !!}
                         </div>
                         <hr class="mt-5">
@@ -161,12 +160,11 @@
                                                     <h4 class="">Upload File</h4>
                                                 </div>
                                             </div>
-                                            <form action="/submissions/{{ $application->id }}" method="POST"
+                                            <form action="/apply/{{ $application->id }}" method="POST"
                                                 enctype="multipart/form-data">
-
                                                 @csrf
-                                                <div class="modal-body">
 
+                                                <div class="modal-body">
                                                     <h6>Note: You may only submit once, make sure you uploaded the right
                                                         file. <br> File should be pdf format.</h6>
                                                     <input type="file" class="form-control mt-4 mb-4"

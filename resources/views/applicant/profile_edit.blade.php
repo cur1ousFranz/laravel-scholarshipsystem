@@ -296,7 +296,7 @@
                 var dependent = $(this).data('dependent');
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url: "{{ route('applicantcontroller.fetch') }}",
+                    url: "{{ route('dynamicdropdowncontroller.fetch') }}",
                     method: "POST",
                     data: {
                         select: select,
@@ -332,7 +332,7 @@
             var dependent = $(this).data('dependent');
             var _token = $('input[name="_token"]').val();
             $.ajax({
-                url: "{{ route('applicantcontroller.fetchAddress') }}",
+                url: "{{ route('dynamicdropdowncontroller.fetchAddress') }}",
                 method: "POST",
                 data: {
                     select: select,

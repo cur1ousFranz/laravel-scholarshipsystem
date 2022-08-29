@@ -1,117 +1,70 @@
 <?php
 
-use App\Models\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CoordinatorController;
+use App\Http\Controllers\DynamicDropdownController;
+use App\Http\Controllers\ListingApplicantController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\QualifiedApplicantController;
+use App\Http\Controllers\RejectedApplicantController;
+use App\Http\Controllers\ScholarshipApplicationController;
+use App\Http\Controllers\SubmissionController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/signup', function () {
-    return view('signup');
-})->middleware('guest');
-
-/**
- * User Controller
- *
- */
-
-// Create Account of User
-Route::post('/users', [UserController::class,'createAccount'])->middleware('guest');
-// Login User
-Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
-// Logout User
-Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/', [UserController::class, 'index']);
+Route::get('/signup', [UserController::class, 'signup'])->middleware('guest');
+Route::post('/users', [UserController::class,'create'])->middleware('guest');
+Route::post('login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'coordinator'], function(){
 
-            /**
-             * Coordinator Controller
-             */
-            // Dashboard page
-            Route::get('/dashboard', [CoordinatorController::class, 'dashboard'])->name('dashboard');
-            // Application Page
-            Route::get('/applications', [CoordinatorController::class, 'application'])->name('application');
-            // Application Form
-            Route::get('/applications/create', function() {
-                return view('coordinator.create_application');
-            });
-            // Application Store
-            Route::post('/applications/store', [CoordinatorController::class, 'applicationStore']);
-            // Application Edit View
-            Route::get('/applications/{application}/edit', function(Application $application) {
+            Route::get('/dashboard', [CoordinatorController::class, 'dashboard']);
+            Route::get('/applications', [CoordinatorController::class, 'application']);
 
-                return view('coordinator.edit_application', [
-                    'application' => $application
-                ]);
-            });
-            // Application details update
-            Route::patch('/applications/{application}/details', [CoordinatorController::class, 'applicationDetailsUpdate']);
-            // Application files update
-            Route::patch('/applications/{application}/files', [CoordinatorController::class, 'applicationFilesUpdate']);
+            Route::get('/applications/create', [ScholarshipApplicationController::class, 'create']);
+            Route::post('/applications/create', [ScholarshipApplicationController::class, 'store']);
+            Route::get('/applications/{application}/edit', [ScholarshipApplicationController::class, 'edit']);
 
-            // Submissions
-            Route::get('/applications/{application}/submissions', [CoordinatorController::class, 'submissions']);
-            // Listing Applicant if Qualified or Rejected
-            Route::post('/submissions/listing/{application}', [CoordinatorController::class, 'listingApplicant']);
+            Route::patch('/applications/{application}/details', [ScholarshipApplicationController::class, 'updateDetails']);
+            Route::patch('/applications/{application}/files', [ScholarshipApplicationController::class, 'updateFiles']);
 
-            // Qualified Applicant Table
-            Route::get('/applicants/qualified', [CoordinatorController::class, 'qualifiedApplicant']);
-            // Qualified Applicant List Table
-            Route::get('/applicants/qualified/list/{application}', [CoordinatorController::class, 'qualifiedApplicantList']);
-            // Send notification to Qualified Applicants
-            Route::post('/applicants/qualified/message/{application}', [CoordinatorController::class, 'qualifiedApplicantNotification']);
+            Route::get('/applications/{application}/submissions', [SubmissionController::class, 'show']);
 
-            // Rejected Applicant Table
-            Route::get('/applicants/rejected', [CoordinatorController::class, 'rejectedApplicant']);
-            // Rejected Applicant List Table
-            Route::get('/applicants/rejected/list/{application}', [CoordinatorController::class, 'rejectedApplicantList']);
-            // Send notification to Rejected Applicants
-            Route::post('/applicants/rejected/message/{application}', [CoordinatorController::class, 'rejectedApplicantNotification']);
+            Route::post('/applicants/{application}', [ListingApplicantController::class, 'store']);
+
+            Route::get('/applicants/qualified', [QualifiedApplicantController::class, 'index']);
+            Route::get('/applicants/qualified/{application}', [QualifiedApplicantController::class, 'show']);
+
+            Route::get('/applicants/rejected', [RejectedApplicantController::class, 'index']);
+            Route::get('/applicants/rejected/{application}', [RejectedApplicantController::class, 'show']);
+
+            Route::post('/applicants/qualified/message/{application}', [NotificationController::class, 'storeQualified']);
+            Route::post('/applicants/rejected/message/{application}', [NotificationController::class, 'storeRejected']);
 
     });
 
     Route::group(['middleware' => 'applicant'], function() {
 
-        /**
-         * Applicant Controller
-         */
-        // Applicant profile page
-        Route::get('/profile', [ApplicantController::class, 'applicantProfile']);
-        // Applicant edit profile page
-        Route::get('/profiles/{applicant}/edit', [ApplicantController::class, 'applicantProfileEdit']);
-        // Applicant profile update
-        Route::put('/profiles/{applicant}', [ApplicantController::class, 'applicantProfileUpdate']);
-        // Applicant notification
-        Route::get('/notifications/{id}', [ApplicantController::class, 'notificationMessage']);
+        Route::get('/profile', [ApplicantController::class, 'index']);
+        Route::get('/profiles/{applicant}/edit', [ApplicantController::class, 'edit']);
+        Route::put('/profiles/{applicant}', [ApplicantController::class, 'update']);
+        Route::get('/notifications/{notification}', [NotificationController::class, 'show']);
 
         // Fetch Method of Address Dynamic Dependent
-        Route::post('/applicantcontroller/fetchAddress', [ApplicantController::class, 'fetchAddress'])->name('applicantcontroller.fetchAddress');
+        Route::post('/applicantcontroller/fetchAddress', [DynamicDropdownController::class, 'fetchAddress'])
+        ->name('dynamicdropdowncontroller.fetchAddress');
         // Fetch Method of School Courses Dynamic Dependent
-        Route::post('/applicantcontroller/fetch', [ApplicantController::class, 'fetch'])->name('applicantcontroller.fetch');
+        Route::post('/applicantcontroller/fetch', [DynamicDropdownController::class, 'fetch'])
+        ->name('dynamicdropdowncontroller.fetch');
 
-        /** Application Controller */
-        // Application Form
-        Route::get('/apply', [ApplicationController::class, 'apply'])->name('apply');
-        // Submission Store
-        Route::post('/submissions/{application}', [ApplicationController::class, 'submissionStore']);
+        Route::get('/apply', [ApplicationController::class, 'index']);
+        Route::post('/apply/{application}', [ApplicationController::class, 'store']);
 
     });
 

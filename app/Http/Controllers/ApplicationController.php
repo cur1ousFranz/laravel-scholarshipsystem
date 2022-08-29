@@ -15,18 +15,13 @@ class ApplicationController extends Controller
 {
 
     private $applicant;
-
     private function getApplicant(){
 
         $this->applicant = Applicant::where('users_id', Auth::user()->id)->first();
-
         return $this->applicant;
     }
 
-    /**
-     * Applicaiton Form
-     */
-    public function apply(){
+    public function index(){
 
         $application = DB::table('applications')->where('status', 'On-going')->latest()->first();
 
@@ -40,15 +35,13 @@ class ApplicationController extends Controller
                 'applicationDetail' => $applicationDetail,
             ]);
 
-        // Returning back to page if there is no application On-going.
         }else{
             return back();
         }
 
     }
 
-    // Submission Store
-    public function submissionStore(Request $request, Application $application)
+    public function store(Request $request, Application $application)
     {
 
         $formFields = $request->validate([

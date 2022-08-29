@@ -5,54 +5,44 @@
                 <div class="d-flex justify-content-between">
                     <h4 class="mt-2">Rejected Applicant</h4>
                 </div>
-                <table class="table table-striped table-bordered shadow-sm">
+                <x-table.table>
                     <thead class="text-center">
                         <tr>
-                            <th scope="col">Batch</th>
-                            <th scope="col">Last Date Modfied</th>
-                            <th scope="col">No. Applicants</th>
-                            <th scope="col">Applicants</th>
+                            <x-table.th>Batch</x-table.th>
+                            <x-table.th>Last Date Modfied</x-table.th>
+                            <x-table.th>No. Applicants</x-table.th>
+                            <x-table.th>Applicants</x-table.th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <?php
-
-                        if (!$rejectedApplicant->isEmpty()) {
-                            $applicationArray = array();
-
-                            foreach ($rejectedApplicant as $rejectedApplicants) {
-
-                                if(!in_array($rejectedApplicants->applications_id, $applicationArray)){
-                                $applicationArray[] = $rejectedApplicants->applications_id
-                                ?>
+                        @if (!$rejectedApplicant->isEmpty())
+                            @foreach ($rejectedApplicant as $list)
+                                @if (!in_array($list->applications_id, $applicationArray))
+                                    @php
+                                        $applicationArray[] = $list->applications_id
+                                    @endphp
                                     <tr>
-                                        <td>{{ $rejectedApplicants->application->batch }}</td>
-                                        <td>{{ date('F j, Y', strtotime($rejectedApplicants->created_at )). " - " .
-                                        date('H:i', strtotime($rejectedApplicants->created_at)) }}
+                                        <td>{{ $list->application->batch }}</td>
+                                        <td>{{ date('F j, Y', strtotime($list->created_at )). " - " .
+                                        date('H:i', strtotime($list->created_at)) }}
                                         </td>
-                                        <td>{{ $rejectedApplicants->where('applications_id', $rejectedApplicants->applications_id)
+                                        <td>{{ $list->where('applications_id', $list->applications_id)
                                         ->count() }}
                                         </td>
                                         <td>
-                                            <a href="/applicants/rejected/list/{{ $rejectedApplicants->applications_id }}"
+                                            <a href="/applicants/rejected/{{ $list->applications_id }}"
                                                 class="text-decoration-none">View</a>
                                         </td>
                                     </tr>
-                                <?php
-                                }
-                            }
-                        } else{
-                            ?>
-                                <tr>
-                                    <td colspan="4" class="text-center">No applicants yet</td>
-                                </tr>
-                            <?php
-                        }
-
-                    ?>
-
+                                @endif
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="4" class="text-center">No applicants yet</td>
+                            </tr>
+                        @endif
                     </tbody>
-                </table>
+                </x-table.table>
             </div>
             <div class="container mt-3">
                 {{ $rejectedApplicant->links('pagination::bootstrap-5') }}

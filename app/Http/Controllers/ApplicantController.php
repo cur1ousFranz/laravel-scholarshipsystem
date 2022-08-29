@@ -8,18 +8,14 @@ use App\Models\Contact;
 use App\Models\Applicant;
 use App\Models\EducationalAttainment;
 use App\Models\Nationality;
-use Database\Seeders\EducationalAttainmentSeeder;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 
 class ApplicantController extends Controller
 {
 
     private $applicant;
-
     private function getApplicant(){
 
         $this->applicant = Applicant::where('users_id', Auth::user()->id)->first();
@@ -27,20 +23,14 @@ class ApplicantController extends Controller
         return $this->applicant;
     }
 
-    /**
-     * Applicant profile page
-     */
-    public function applicantProfile()
+    public function index()
     {
-
         return view('applicant.profile', [
             'applicant' => $this->getApplicant()
-
         ]);
     }
 
-    // Applicant profile edit form
-    public function applicantProfileEdit()
+    public function edit()
     {
 
         $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
@@ -58,55 +48,9 @@ class ApplicantController extends Controller
         ]);
     }
 
-    /**
-     * This is used for Dynamic Dependent Dropdown
-     * of School and Courses
-     * AJAX
-     */
-    public function fetch(Request $request)
+    public function update(Applicant $applicant)
     {
-
-        $select = $request->get('select');
-        $value = $request->get('value');
-        $dependent = $request->get('dependent');
-        $data = DB::table('school_courses')
-            ->where($select, $value)
-            ->groupBy($dependent)
-            ->get();
-        $output = '<option value="">Select ' . ucfirst($dependent) . '</option>';
-        foreach ($data as $row) {
-            $output .= '<option value="' . $row->$dependent . '">' . $row->$dependent . '</option>';
-        }
-        echo $output;
-    }
-
-    /**
-     * This is used for Dynamic Dependent Dropdown
-     * of Addresses
-     * AJAX
-     */
-    public function fetchAddress(Request $request)
-    {
-
-        $select = $request->get('select');
-        $value = $request->get('value');
-        $dependent = $request->get('dependent');
-        $data = DB::table('dynamic_addresses')
-            ->where($select, $value)
-            ->groupBy($dependent)
-            ->get();
-        $output = '<option value="">Select ' . ucfirst($dependent) . '</option>';
-        foreach ($data as $row) {
-            $output .= '<option value="' . $row->$dependent . '">' . $row->$dependent . '</option>';
-        }
-        echo $output;
-    }
-
-
-    // Update Profile of Applicant
-    public function applicantProfileUpdate(Request $request, Applicant $applicant)
-    {
-        $formFields = $request->validate([
+        $formFields = request()->validate([
             'first_name' => ['required', 'min:2'],
             'middle_name' => ['required', 'min:2'],
             'last_name' => ['required', 'min:2'],
@@ -182,15 +126,4 @@ class ApplicantController extends Controller
         return redirect('/profile')->with('success', 'Profile updated successfully!');
     }
 
-    /**
-     * Applicant Notification message
-     */
-    public function notificationMessage(Request $request){
-
-        $notification = DB::table('notifications')->where('id', $request->route('id'))->first();
-
-        return view('applicant.notification',[
-            'notification' => $notification
-        ]);
-    }
 }

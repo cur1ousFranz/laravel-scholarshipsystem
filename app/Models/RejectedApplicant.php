@@ -16,9 +16,19 @@ class RejectedApplicant extends Model
         'document',
         'added'
     ];
+    protected $with = [
+        'application',
+        'applicant',
+    ];
 
     public function application(){
 
         return $this->belongsTo(Application::class, 'applications_id');
     }
+
+    public function applicant(){
+
+        return $this->hasMany(Applicant::class, 'id');
+    }
+
 }

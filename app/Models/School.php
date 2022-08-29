@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Applicant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class School extends Model
 {
@@ -17,4 +18,13 @@ class School extends Model
         'school_last_attended',
 
     ];
+
+    protected $with = [
+        'applicant',
+    ];
+
+    public function applicant(){
+
+        return $this->belongsTo(Applicant::class);
+    }
 }

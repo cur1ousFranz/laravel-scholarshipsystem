@@ -84,7 +84,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    Qualified Applicants
+                                    Rejected Applicants
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
@@ -118,8 +118,8 @@
     var appliedApplicant = JSON.parse('{!! json_encode($appliedApplicantYears) !!}');
     var appliedApplicantCount = JSON.parse('{!! json_encode($appliedApplicantYearCount) !!}');
 
-    var qualifiedApplicant = JSON.parse('{!! json_encode($qualifiedApplicantYears) !!}');
-    var qualifiedApplicantCount = JSON.parse('{!! json_encode($qualifiedApplicantYearCount) !!}');
+    var rejectedApplicant = JSON.parse('{!! json_encode($rejectedApplicantYears) !!}');
+    var rejectedApplicantCount = JSON.parse('{!! json_encode($rejectedApplicantYearCount) !!}');
 
     var applicantFamilyIncome = JSON.parse('{!! json_encode($applicantFamilyIncome) !!}');
 
@@ -127,6 +127,6 @@
 </script>
 
 <script src="{{ asset('chart/chart-area-applied-applicant.js') }}"></script>
-<script src="{{ asset('chart/chart-bar-qualified-appplicant.js') }}"></script>
+<script src="{{ asset('chart/chart-bar-rejected-appplicant.js') }}"></script>
 <script src="{{ asset('chart/chart-pie-family-income.js') }}"></script>
 

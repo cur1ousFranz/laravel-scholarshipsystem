@@ -48,12 +48,12 @@ class Application extends Model
 
     public function qualifiedApplicant(){
 
-        return $this->hasMany(QualifiedApplicant::class, 'appications_id');
+        return $this->hasMany(QualifiedApplicant::class, 'applications_id');
     }
 
     public function rejectedApplicant(){
 
-        return $this->hasMany(RejectedApplicant::class, 'appications_id');
+        return $this->hasMany(RejectedApplicant::class, 'applications_id');
     }
 
 }

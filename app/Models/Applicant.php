@@ -67,6 +67,6 @@ class Applicant extends Model
 
     public function qualifiedApplicant(){
 
-        return $this->belongsTo(QualifiedApplicant::class);
+        return $this->belongsTo(QualifiedApplicant::class, 'applicants_id');
     }
 }
