@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Create Application">
     <section>
         <x-container>
             <div class="container-fluid d-flex justify-content-center mb-5">

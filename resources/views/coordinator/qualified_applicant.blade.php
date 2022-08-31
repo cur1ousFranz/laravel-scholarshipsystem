@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Qualifed Applicant">
     <section>
         <x-container>
             <div class="container">
@@ -47,9 +47,9 @@
                     </tbody>
                 </x-table.table>
             </div>
-            <div class="container mt-3">
+            {{-- <div class="container mt-3">
                 {{ $qualifiedApplicant->links('pagination::bootstrap-5') }}
-            </div>
+            </div> --}}
         </x-container>
     </section>
 </x-layout>

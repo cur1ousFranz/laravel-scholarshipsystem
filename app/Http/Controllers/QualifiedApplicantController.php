@@ -15,7 +15,7 @@ class QualifiedApplicantController extends Controller
          * and filter it with unique applications_id, to avoid duplications
          */
         return view('coordinator.qualified_applicant',[
-            'qualifiedApplicant' => QualifiedApplicant::distinct(['applications_id'])
+            'qualifiedApplicant' => QualifiedApplicant::select('applications_id')->distinct()
             ->orderBy('created_at','desc')
             ->paginate(10),
             'applicationArray' => array()

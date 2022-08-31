@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Apply | Scholarship">
     <section>
         <x-container>
             <div class="card shadow-sm" style="margin-top: 110px">

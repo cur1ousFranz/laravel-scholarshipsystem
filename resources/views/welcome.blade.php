@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Edukar Scholarship">
     <section>
         <div class="container-fluid" style="margin-top: 60px; height: 100vh;">
 

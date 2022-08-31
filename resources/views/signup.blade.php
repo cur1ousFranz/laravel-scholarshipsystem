@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Sign up">
     <x-container>
         <div class="container w-50">
             <div class="card">

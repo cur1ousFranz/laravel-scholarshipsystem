@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Profile | Settings">
     <x-container>
         <div class="row">
             <div class="col-lg-3">

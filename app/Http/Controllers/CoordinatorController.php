@@ -47,33 +47,33 @@ class CoordinatorController extends Controller
         /**
          * This is for the Pie Chart with family income data
          */
-        $applicant = Applicant::get();
-        $applicantFamilyIncome = [0, 0, 0, 0, 0];
-        foreach($applicant as $applicants){
+        // $applicant = Applicant::get();
+        // $applicantFamilyIncome = [0, 0, 0, 0, 0];
+        // foreach($applicant as $applicants){
 
-            switch($applicants->family_income){
-                case 8000:
-                    $applicantFamilyIncome[0]++;
-                    break;
+        //     switch($applicants->family_income){
+        //         case 8000:
+        //             $applicantFamilyIncome[0]++;
+        //             break;
 
-                case 12000:
-                    $applicantFamilyIncome[1]++;
-                    break;
+        //         case 12000:
+        //             $applicantFamilyIncome[1]++;
+        //             break;
 
-                case 16000:
-                    $applicantFamilyIncome[2]++;
-                    break;
+        //         case 16000:
+        //             $applicantFamilyIncome[2]++;
+        //             break;
 
-                case 20000:
-                    $applicantFamilyIncome[3]++;
-                    break;
+        //         case 20000:
+        //             $applicantFamilyIncome[3]++;
+        //             break;
 
-                case 24000:
-                    $applicantFamilyIncome[4]++;
-                    break;
+        //         case 24000:
+        //             $applicantFamilyIncome[4]++;
+        //             break;
 
-            }
-        }
+        //     }
+        // }
 
         return view('coordinator.dashboard',[
             'appliedApplicantYears' => $appliedApplicantYears,
@@ -82,7 +82,7 @@ class CoordinatorController extends Controller
             'rejectedApplicantYears' => $rejectedApplicantYears,
             'rejectedApplicantYearCount' => $rejectedApplicantYearCount,
 
-            'applicantFamilyIncome' => $applicantFamilyIncome,
+            // 'applicantFamilyIncome' => $applicantFamilyIncome,
 
             'totalApplicants' => Applicant::get(),
             'totalApplications' => Application::get(),

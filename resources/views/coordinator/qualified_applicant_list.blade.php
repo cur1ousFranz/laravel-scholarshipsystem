@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Qualifed Applicant">
     <section>
         <x-container style="margin-top: 80px">
             <div class="row">

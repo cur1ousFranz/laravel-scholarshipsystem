@@ -11,7 +11,7 @@
     <!-- BOOTSTRAP Link -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <title>ESAMS</title>
+    <title>@isset($title){{ $title }}@endisset</title>
     {{-- This is to resolve passive events problem in console --}}
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
@@ -243,7 +243,7 @@
 
     <div class="modal fade" id="signinModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border border-1 border-dark">
+            <div class="modal-content border border-1 border-dark" style="max-width: 450px">
                 <div class="modal-header d-flex justify-content-center">
                     <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
                 </div>
@@ -251,46 +251,16 @@
                     <form action="login" method="POST">
                         @csrf
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container">
-                                    <div>
-                                        <label for="username">
-                                            <h6>Username</h6>
-                                        </label>
-                                        <input class="form-control form-control" type="text" id="username"
-                                            name="username" value="{{ old('username') }}">
+                        <div class="container">
+                            <x-form.input name="username"/>
+                            <x-form.input class="mt-2" name="password" type="password"/>
 
-                                        @error('username')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-3">
-                                        <label for="password">
-                                            <h6>Password</h6>
-                                        </label>
-                                        <input class="form-control form-control" type="password" id="password"
-                                            name="password" value="{{ old('password') }}">
-                                    </div>
-
-                                    <div class="row mt-4 ">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <h6 class="text-primary">Forgot Password?</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="modal-foote">
-                                            <div>
-                                                <button type="submit"
-                                                    class="btn btn-primary form-control form-control-lg mt-3">
-                                                    Sign in
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row mt-3 ">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <a href="#" class="text-primary">Forgot Password?</a>
                                 </div>
                             </div>
+                            <x-form.button class="mt-3 mb-3 form-control">Sign in</x-form.button>
                         </div>
                     </form>
                 </div>
@@ -298,25 +268,34 @@
         </div>
     </div>
 
-        @if (session()->has('success'));
-            <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
-                <div style="margin-top: 80px" class="alert alert-success w-25" x-data="{show: true}" x-init="setTimeout(() => show = false, 1000)" x-show="show">
-                    <p> {{ session('success') }}</p>
-                </div>
+    @if (session()->has('success'));
+        <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
+            <div style="margin-top: 80px"
+            class="alert alert-success w-25"
+            x-data="{show: true}"
+            x-init="setTimeout(() => show = false, 1000)"
+            x-show="show">
+                <p> {{ session('success') }}</p>
             </div>
-        @endif
+        </div>
+    @endif
 
-        @if (session()->has('error'));
-            <div class="d-flex justify-content-center ms-3 text-center" id="alertError">
-                <div style="margin-top: 80px" class="alert alert-danger w-25 top-0 position-static" x-data="{show: true}" x-init="setTimeout(() => show = false, 1000)" x-show="show">
-                    <p> {{ session('error') }}</p>
-                </div>
+    @if (session()->has('error'));
+        <div class="d-flex justify-content-center ms-3 text-center" id="alertError">
+            <div style="margin-top: 80px"
+            class="alert alert-danger w-25 top-0 position-static"
+            x-data="{show: true}"
+            x-init="setTimeout(() => show = false, 1000)"
+            x-show="show">
+                <p> {{ session('error') }}</p>
             </div>
-        @endif
-        {{ $slot }}
+        </div>
+    @endif
+    {{ $slot }}
 
     <!-- Footer -->
-    <footer class="page-footer font-small text-dark border-top border-top-4 border-secondary mt-auto" style="background-color: #fffcff">
+    <footer class="page-footer font-small text-dark border-top border-top-4 border-secondary mt-auto"
+    style="background-color: #fffcff">
 
         <div class="footer-copyright text-center py-3">
             © 2022 All rights reserved.

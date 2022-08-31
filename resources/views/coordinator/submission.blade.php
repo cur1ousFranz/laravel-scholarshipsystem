@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Submissions">
     <section>
         <x-container>
             <div class="row">

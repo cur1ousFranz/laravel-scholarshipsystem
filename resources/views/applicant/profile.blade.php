@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Profile | Settings">
     <section>
         <x-container>
             <div class="row">

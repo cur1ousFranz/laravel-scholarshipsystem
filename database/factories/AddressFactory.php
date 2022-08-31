@@ -27,7 +27,8 @@ class AddressFactory extends Factory
         ]);
 
         ApplicantList::factory()->create([
-            'applicants_id' => $applicant
+            'applicants_id' => $applicant,
+            'created_at' => date("2022-m-d H:i:s")
         ]);
 
         School::factory()->create([

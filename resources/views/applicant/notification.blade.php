@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Notification">
     <section>
         <x-container class="d-flex justify-content-center">
             <div class="card shadow-sm w-75 mt-4" >

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Application">
     <section>
         <x-container>
             <div class="d-flex justify-content-between">

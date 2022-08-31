@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Rejected Applicant">
     <section>
         <x-container>
             <div class="row">

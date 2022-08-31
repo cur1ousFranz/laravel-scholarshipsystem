@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Dashboard">
     <section>
         <x-container>
             <div class="card">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-
+{{--
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="card mb-4">
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6"></div>
-                    </div>
+                    </div> --}}
 
                 </div>
               </div>
@@ -121,12 +121,10 @@
     var rejectedApplicant = JSON.parse('{!! json_encode($rejectedApplicantYears) !!}');
     var rejectedApplicantCount = JSON.parse('{!! json_encode($rejectedApplicantYearCount) !!}');
 
-    var applicantFamilyIncome = JSON.parse('{!! json_encode($applicantFamilyIncome) !!}');
-
-
 </script>
 
 <script src="{{ asset('chart/chart-area-applied-applicant.js') }}"></script>
 <script src="{{ asset('chart/chart-bar-rejected-appplicant.js') }}"></script>
-<script src="{{ asset('chart/chart-pie-family-income.js') }}"></script>
+{{-- <script src="{{ asset('chart/chart-pie-family-income.js') }}"></script> --}}
+{{-- // var applicantFamilyIncome = JSON.parse('{!! json_encode($applicantFamilyIncome) !!}'); --}}
 

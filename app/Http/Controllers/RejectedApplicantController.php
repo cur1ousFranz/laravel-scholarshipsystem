@@ -12,7 +12,7 @@ class RejectedApplicantController extends Controller
     {
 
         return view('coordinator.rejected_applicant',[
-            'rejectedApplicant' => RejectedApplicant::distinct(['applications_id'])
+            'rejectedApplicant' => RejectedApplicant::select('applications_id')->distinct()
             ->orderBy('created_at','desc')
             ->paginate(10),
             'applicationArray' => array()
