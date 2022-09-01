@@ -12,7 +12,9 @@ class RejectedApplicantController extends Controller
     {
 
         return view('coordinator.rejected_applicant',[
-            'rejectedApplicant' => RejectedApplicant::select('applications_id')->distinct()
+            'rejectedApplicant' => RejectedApplicant::with('applicant', 'application')
+            ->select('applications_id')
+            ->distinct()
             ->orderBy('created_at','desc')
             ->paginate(10),
             'applicationArray' => array()
@@ -21,9 +23,10 @@ class RejectedApplicantController extends Controller
 
     public function show(Application $application){
 
-        $rejectedApplicantList = RejectedApplicant::where('applications_id', $application->id)
-                ->latest()
-                ->paginate(10);
+        $rejectedApplicantList = RejectedApplicant::with('applicant', 'application')
+        ->where('applications_id', $application->id)
+        ->latest()
+        ->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[
             'rejectedApplicantList' => $rejectedApplicantList,

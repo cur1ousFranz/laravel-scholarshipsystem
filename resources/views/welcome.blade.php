@@ -45,7 +45,7 @@
                         </div>
                         <div class="d-flex justify-content-center ms-3 mt-2">
                             @php
-                                    $application = Illuminate\Support\Facades\DB::table('applications')
+                                $application = Illuminate\Support\Facades\DB::table('applications')
                                 ->where('status', 'On-going')
                                 ->first();
                                 if (!$application == null) {

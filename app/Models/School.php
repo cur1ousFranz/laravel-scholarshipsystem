@@ -19,10 +19,6 @@ class School extends Model
 
     ];
 
-    protected $with = [
-        'applicant',
-    ];
-
     public function applicant(){
 
         return $this->belongsTo(Applicant::class);

@@ -7,16 +7,17 @@ use App\Models\ApplicantList;
 
 class SubmissionController extends Controller
 {
-       public function show(Application $application)
-       {
+    public function show(Application $application)
+    {
 
-           $applicantList = ApplicantList::where(['applications_id' => $application->id, 'review' => null])
-               ->latest()
-               ->paginate(10);
+        $applicantList = ApplicantList::with('applicant', 'application')
+        ->where(['applications_id' => $application->id, 'review' => null])
+        ->latest()
+        ->paginate(10);
 
-           return view('coordinator.submission', [
-               'applicantList' => $applicantList,
-               'application' => $application
-           ]);
-       }
+        return view('coordinator.submission', [
+            'applicantList' => $applicantList,
+            'application' => $application
+        ]);
+    }
 }

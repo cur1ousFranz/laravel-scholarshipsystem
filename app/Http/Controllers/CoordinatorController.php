@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use App\Models\Applicant;
 use App\Models\Application;
 use App\Models\ApplicantList;
-use App\Models\QualifiedApplicant;
 use App\Models\RejectedApplicant;
 
 class CoordinatorController extends Controller
@@ -84,7 +83,7 @@ class CoordinatorController extends Controller
 
             // 'applicantFamilyIncome' => $applicantFamilyIncome,
 
-            'totalApplicants' => Applicant::get(),
+            'totalApplicants' => Applicant::without('school', 'address', 'contact')->get(),
             'totalApplications' => Application::get(),
             'totalSubmissions' => ApplicantList::get()
         ]);
@@ -95,7 +94,7 @@ class CoordinatorController extends Controller
     {
 
         return view('coordinator.application', [
-            'application' => Application::latest()->paginate(10)
+            'application' => Application::with('applicantList')->latest()->paginate(10)
         ]);
     }
 

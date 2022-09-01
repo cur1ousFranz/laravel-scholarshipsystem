@@ -24,11 +24,6 @@ class ApplicationDetail extends Model
         'application_form'
     ];
 
-    protected $with = [
-        'application',
-
-    ];
-
     public function application(){
 
         return $this->belongsTo(Application::class);

@@ -9,7 +9,6 @@ use App\Models\Contact;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 
@@ -69,7 +68,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        $user = DB::table('users')->where('username', $formFields['username'])->first();
+        $user = User::where('username', $formFields['username'])->first();
 
         // Applicant
         if(Auth::attempt($formFields)){
@@ -90,7 +89,6 @@ class UserController extends Controller
 
         return back()->with('error', 'Invalid Credentials!');
     }
-
 
     public function logout(Request $request){
         auth()->logout();

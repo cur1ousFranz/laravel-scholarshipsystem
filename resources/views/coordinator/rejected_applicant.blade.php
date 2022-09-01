@@ -30,7 +30,7 @@
                                         ->count() }}
                                         </td>
                                         <td>
-                                            <a href="/applicants/rejected/{{ $list->applications_id }}"
+                                            <a href="/rejected/{{ $list->applications_id }}"
                                                 class="text-decoration-none">View</a>
                                         </td>
                                     </tr>

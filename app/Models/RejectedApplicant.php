@@ -16,10 +16,6 @@ class RejectedApplicant extends Model
         'document',
         'added'
     ];
-    protected $with = [
-        'application',
-        'applicant',
-    ];
 
     public function application(){
 
@@ -28,7 +24,7 @@ class RejectedApplicant extends Model
 
     public function applicant(){
 
-        return $this->hasMany(Applicant::class, 'id');
+        return $this->hasMany(Applicant::class, 'id', 'applicants_id');
     }
 
 }

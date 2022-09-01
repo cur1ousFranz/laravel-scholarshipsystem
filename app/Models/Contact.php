@@ -15,10 +15,6 @@ class Contact extends Model
         'applicants_id'
     ];
 
-    protected $with = [
-        'applicant',
-    ];
-
     public function applicant(){
 
         return $this->belongsTo(Applicant::class);

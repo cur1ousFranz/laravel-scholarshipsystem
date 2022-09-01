@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicationDetail;
-use Illuminate\Support\Facades\DB;
+use App\Models\Coordinator;
 use Illuminate\Support\Facades\Auth;
 
 class ScholarshipApplicationController extends Controller
@@ -37,7 +37,7 @@ class ScholarshipApplicationController extends Controller
         $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('application_files', 'public');
         $formFields['application_form'] = $request->file('application_form')->store('application_files', 'public');
 
-        $coordinatorID = DB::table('coordinators')->where('users_id', Auth::user()->id)->first();
+        $coordinatorID = Coordinator::where('users_id', Auth::user()->id)->first();
 
         $application = Application::create([
             'coordinators_id' => $coordinatorID->id,

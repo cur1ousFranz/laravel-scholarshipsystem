@@ -19,8 +19,6 @@ class ApplicantList extends Model
         'document',
     ];
 
-    protected $with = ['applicant', 'application'];
-
     public function applicant(){
 
         return $this->hasMany(Applicant::class, 'id');
@@ -28,6 +26,6 @@ class ApplicantList extends Model
 
     public function application(){
 
-        return $this->belongsTo(Application::class, 'applications_id');
+        return $this->belongsTo(Application::class);
     }
 }

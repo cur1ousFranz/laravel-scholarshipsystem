@@ -6,6 +6,7 @@ use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
+use App\Models\ApplicationDetail;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Support\Facades\DB;
@@ -17,17 +18,18 @@ class ApplicationController extends Controller
     private $applicant;
     private function getApplicant(){
 
-        $this->applicant = Applicant::where('users_id', Auth::user()->id)->first();
+        $this->applicant = Applicant::without('school', 'address', 'contact')
+        ->where('users_id', Auth::user()->id)->first();
+
         return $this->applicant;
     }
 
     public function index(){
 
-        $application = DB::table('applications')->where('status', 'On-going')->latest()->first();
+        $application = Application::where('status', 'On-going')->latest()->first();
 
         if($application != null){
-            $applicationDetail = DB::table('application_details')
-            ->where('applications_id', $application->id)->first();
+            $applicationDetail = ApplicationDetail::where('applications_id', $application->id)->first();
 
             return view('applicant.apply',[
                 'applicant' => $this->getApplicant(),

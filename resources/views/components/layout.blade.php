@@ -206,9 +206,9 @@
                                         Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="/applicants/qualified">Qualified Applicants</a>
+                                        <a class="dropdown-item" href="/qualified">Qualified Applicants</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/applicants/rejected">Rejected Applicants</a>
+                                        <a class="dropdown-item" href="/rejected">Rejected Applicants</a>
                                     </div>
                                 </div>
                             </li>

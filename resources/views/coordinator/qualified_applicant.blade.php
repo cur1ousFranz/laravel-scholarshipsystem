@@ -33,7 +33,7 @@
                                         ->count() . ' / ' . $qualifiedApplicants->application->slots }}
                                         </td>
                                         <td>
-                                            <a href="/applicants/qualified/{{ $qualifiedApplicants->applications_id }}"
+                                            <a href="/qualified/{{ $qualifiedApplicants->applications_id }}"
                                                 class="text-decoration-none">View</a>
                                         </td>
                                     </tr>

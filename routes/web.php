@@ -14,57 +14,74 @@ use App\Http\Controllers\ScholarshipApplicationController;
 use App\Http\Controllers\SubmissionController;
 
 
-Route::get('/', [UserController::class, 'index']);
-Route::get('/signup', [UserController::class, 'signup'])->middleware('guest');
-Route::post('/users', [UserController::class,'create'])->middleware('guest');
-Route::post('login', [UserController::class, 'login'])->name('login')->middleware('guest');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+Route::controller(UserController::class)->group(function(){
+    Route::get('/', 'index');
+    Route::get('/signup', 'signup')->middleware('guest');
+    Route::post('/users', 'create')->middleware('guest');
+    Route::post('login', 'login')->name('login')->middleware('guest');
+    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+});
 
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'coordinator'], function(){
 
-            Route::get('/dashboard', [CoordinatorController::class, 'dashboard']);
-            Route::get('/applications', [CoordinatorController::class, 'application']);
+            Route::controller(CoordinatorController::class)->group(function(){
+                Route::get('/dashboard', 'dashboard');
+                Route::get('/applications', 'application');
+            });
 
-            Route::get('/applications/create', [ScholarshipApplicationController::class, 'create']);
-            Route::post('/applications/create', [ScholarshipApplicationController::class, 'store']);
-            Route::get('/applications/{application}/edit', [ScholarshipApplicationController::class, 'edit']);
+            Route::controller(ScholarshipApplicationController::class)->group(function(){
+                Route::get('/applications/create','create');
+                Route::post('/applications/create','store');
+                Route::get('/applications/{application}/edit','edit');
+                Route::patch('/applications/{application}/details','updateDetails');
+                Route::patch('/applications/{application}/files','updateFiles');
+            });
 
-            Route::patch('/applications/{application}/details', [ScholarshipApplicationController::class, 'updateDetails']);
-            Route::patch('/applications/{application}/files', [ScholarshipApplicationController::class, 'updateFiles']);
+            Route::controller(QualifiedApplicantController::class)->group(function(){
+                Route::get('/qualified', 'index');
+                Route::get('/qualified/{application}','show');
+            });
+
+            Route::controller(RejectedApplicantController::class)->group(function(){
+                Route::get('/rejected','index');
+                Route::get('/rejected/{application}','show');
+            });
+
+            Route::controller(NotificationController::class)->group(function(){
+                Route::post('/applicants/qualified/message/{application}', 'storeQualified');
+                Route::post('/applicants/rejected/message/{application}','storeRejected');
+            });
 
             Route::get('/applications/{application}/submissions', [SubmissionController::class, 'show']);
-
             Route::post('/applicants/{application}', [ListingApplicantController::class, 'store']);
-
-            Route::get('/applicants/qualified', [QualifiedApplicantController::class, 'index']);
-            Route::get('/applicants/qualified/{application}', [QualifiedApplicantController::class, 'show']);
-
-            Route::get('/applicants/rejected', [RejectedApplicantController::class, 'index']);
-            Route::get('/applicants/rejected/{application}', [RejectedApplicantController::class, 'show']);
-
-            Route::post('/applicants/qualified/message/{application}', [NotificationController::class, 'storeQualified']);
-            Route::post('/applicants/rejected/message/{application}', [NotificationController::class, 'storeRejected']);
 
     });
 
     Route::group(['middleware' => 'applicant'], function() {
 
-        Route::get('/profile', [ApplicantController::class, 'index']);
-        Route::get('/profiles/{applicant}/edit', [ApplicantController::class, 'edit']);
-        Route::put('/profiles/{applicant}', [ApplicantController::class, 'update']);
+        Route::controller(ApplicantController::class)->group(function(){
+            Route::get('/profile', 'index');
+            Route::get('/profiles/{applicant}/edit', 'edit');
+            Route::put('/profiles/{applicant}', 'update');
+        });
+
+        Route::controller(DynamicDropdownController::class)->group(function(){
+            // Fetch Method of Address Dynamic Dependent
+            Route::post('/applicantcontroller/fetchAddress', 'fetchAddress')
+            ->name('dynamicdropdowncontroller.fetchAddress');
+            // Fetch Method of School Courses Dynamic Dependent
+            Route::post('/applicantcontroller/fetch', 'fetch')
+            ->name('dynamicdropdowncontroller.fetch');
+        });
+
+        Route::controller(ApplicationController::class)->group(function(){
+            Route::get('/apply', 'index');
+            Route::post('/apply/{application}', 'store');
+        });
+
         Route::get('/notifications/{notification}', [NotificationController::class, 'show']);
-
-        // Fetch Method of Address Dynamic Dependent
-        Route::post('/applicantcontroller/fetchAddress', [DynamicDropdownController::class, 'fetchAddress'])
-        ->name('dynamicdropdowncontroller.fetchAddress');
-        // Fetch Method of School Courses Dynamic Dependent
-        Route::post('/applicantcontroller/fetch', [DynamicDropdownController::class, 'fetch'])
-        ->name('dynamicdropdowncontroller.fetch');
-
-        Route::get('/apply', [ApplicationController::class, 'index']);
-        Route::post('/apply/{application}', [ApplicationController::class, 'store']);
 
     });
 

@@ -32,12 +32,9 @@ class Applicant extends Model
     ];
 
     protected $with = [
-        'user',
         'school',
         'address',
         'contact',
-        'applicantList',
-        'qualifiedApplicant',
     ];
 
     public function user(){
