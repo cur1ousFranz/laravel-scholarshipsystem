@@ -8,21 +8,23 @@
                             <img src="{{ asset('storage/img/profile-img.jpg') }}" alt=""
                             class="rounded-circle mb-2 img-fluid" width="150px">
                             <div class="container-fluid me-5">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <i class="bi bi-person-square"></i>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-person-square"></i>
+                                        </div>
+                                        <div class="col-10 mt-1 ">
+                                            <h6>{{ auth()->user()->username }}</h6>
+                                        </div>
                                     </div>
-                                    <div class="col-10 mt-1 ">
-                                        <h6 class="float-start">{{ auth()->user()->username }}</h6>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-2">
-                                        <i class="bi bi-envelope-fill"></i>
-                                    </div>
-                                    <div class="col-10 mt-1">
-                                        <h6 class="float-start">{{ $applicant->contact->email }}</h6>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="col-10 mt-1" >
+                                            <h6>{{ $applicant->contact->email }}</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,10 +57,21 @@
 
                                         <x-form.row-col>
                                             <x-slot name="first">
-                                                <x-form.input name="age" :value="old('age', $applicant->age)" />
+                                                <x-form.input name="age" :value="old('age', $applicant->age)"
+                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2"/>
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.input name="gender" :value="old('gender', $applicant->gender)" />
+                                                <x-form.label name="gender"/>
+                                                <select class="shadow-sm form-select form-control" name="gender">
+                                                    <option selected disabled>Select</option>
+                                                    <option
+                                                        {{ $applicant->gender === 'Male' ? 'selected' : '' }}
+                                                        value="Male">Male</option>
+                                                    <option
+                                                        {{ $applicant->gender === 'Female' ? 'selected' : '' }}
+                                                        value="Female">Female</option>
+                                                </select>
+                                                <x-form.error name="gender"/>
                                             </x-slot>
                                         </x-form.row-col>
 
@@ -146,7 +159,7 @@
                                                 <x-form.error name="hei_type"/>
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.input name="gwa" :value="old('gwa', $applicant->gwa)" type="number"
+                                                <x-form.input name="gwa" :value="old('gwa', $applicant->gwa)"
                                                     onkeypress="return /[0-9.]/i.test(event.key)" maxlength="5" min="70" max="99"/>
                                             </x-slot>
                                         </x-form.row-col>

@@ -15,9 +15,9 @@
                                         <x-form.label name="slots"/>
                                         <select class="shadow-sm form-select form-control" name="slots">
                                             <option selected disabled>Select</option>
-                                            <option value="100">100</option>
-                                            <option value="200">200</option>
-                                            <option value="300">300</option>
+                                            <option value="100" {{ old('slots') == 100 ? 'selected' : '' }}>100</option>
+                                            <option value="200" {{ old('slots') == 200 ? 'selected' : '' }}>200</option>
+                                            <option value="300" {{ old('slots') == 300 ? 'selected' : '' }}>300</option>
                                         </select>
                                         <x-form.error name="slots"/>
                                     </div>
@@ -48,7 +48,8 @@
                                     <x-form.label name="educational_attainement"/>
                                     <select class="shadow-sm form-select form-control" name="educational_attainment">
                                         <option selected disabled>Select</option>
-                                        <option value="Incoming College / College">Incoming College / College</option>
+                                        <option {{ old('educational_attainment') == 'Incoming College / College' ? 'selected' : '' }} value="Incoming College / College">Incoming College / College
+                                        </option>
                                     </select>
 
                                     <div class="row">
@@ -57,11 +58,11 @@
                                                 <x-form.label name="family_income"/>
                                                 <select class="shadow-sm form-select form-control" name="family_income">
                                                     <option selected disabled>Select</option>
-                                                    <option value="8000">8,000 PHP</option>
-                                                    <option value="12000">12,000 PHP</option>
-                                                    <option value="16000">16,000 PHP</option>
-                                                    <option value="20000">20,000 PHP</option>
-                                                    <option value="20000">25,000 PHP</option>
+                                                    <option {{ old('family_income') == 8000 ? 'selected' : '' }} value="8000">8,000 PHP</option>
+                                                    <option {{ old('family_income') == 12000 ? 'selected' : '' }} value="12000">12,000 PHP</option>
+                                                    <option {{ old('family_income') == 16000 ? 'selected' : '' }} value="16000">16,000 PHP</option>
+                                                    <option {{ old('family_income') == 20000 ? 'selected' : '' }} value="20000">20,000 PHP</option>
+                                                    <option {{ old('family_income') == 20000 ? 'selected' : '' }} value="20000">25,000 PHP</option>
                                                 </select>
                                                 <x-form.error name="family_income"/>
                                             </div>
@@ -71,11 +72,11 @@
                                                 <x-form.label name="general_average"/>
                                                 <select class="shadow-sm form-select form-control" name="gwa">
                                                     <option selected disabled>Select</option>
-                                                    <option value="75">75</option>
-                                                    <option value="80">80</option>
-                                                    <option value="85">85</option>
-                                                    <option value="90">90</option>
-                                                    <option value="95">95</option>
+                                                    <option {{ old('gwa') == 75 ? 'selected' : '' }} value="75">75</option>
+                                                    <option {{ old('gwa') == 80 ? 'selected' : '' }} value="80">80</option>
+                                                    <option {{ old('gwa') == 85 ? 'selected' : '' }} value="85">85</option>
+                                                    <option {{ old('gwa') == 90 ? 'selected' : '' }} value="90">90</option>
+                                                    <option {{ old('gwa') == 95 ? 'selected' : '' }} value="95">95</option>
                                                 </select>
                                                 <x-form.error name="gwa"/>
                                             </div>
@@ -89,7 +90,8 @@
                                             <x-form.label name="city"/>
                                             <select class="shadow-sm form-select form-control" name="city">
                                                 <option selected disabled>Select</option>
-                                                <option value="General Santos City">General Santos City</option>
+                                                <option {{ old('city') == "General Santos City" ? 'selected' : '' }}
+                                                value="General Santos City">General Santos City</option>
                                             </select>
                                             <x-form.error name="city"/>
                                         </div>
@@ -97,7 +99,7 @@
                                             <x-form.label name="registered_voter"/>
                                             <select class="shadow-sm form-select form-control" name="registered_voter">
                                                 <option selected disabled>Select</option>
-                                                <option value="Yes">Yes</option>
+                                                <option {{ old('registered_voter') == "Yes" ? 'selected' : '' }} value="Yes">Yes</option>
                                             </select>
                                             <x-form.error name="registered_voter"/>
                                         </div>
@@ -109,11 +111,11 @@
                                                 <x-form.label name="years_in_city"/>
                                                 <select class="shadow-sm form-select form-control" name="years_in_city">
                                                     <option selected disabled>Select</option>
-                                                    <option value="1">1 year</option>
-                                                    <option value="2">2 years</option>
-                                                    <option value="3">3 years</option>
-                                                    <option value="4">4 years</option>
-                                                    <option value="5">5 years</option>
+                                                    <option {{ old('years_in_city') == "1" ? 'selected' : '' }} value="1">1 year</option>
+                                                    <option {{ old('years_in_city') == "2" ? 'selected' : '' }} value="2">2 years</option>
+                                                    <option {{ old('years_in_city') == "3" ? 'selected' : '' }} value="3">3 years</option>
+                                                    <option {{ old('years_in_city') == "4" ? 'selected' : '' }} value="4">4 years</option>
+                                                    <option {{ old('years_in_city') == "5" ? 'selected' : '' }} value="5">5 years</option>
                                                 </select>
                                                 <x-form.error name="years_in_city"/>
                                             </div>
@@ -123,7 +125,7 @@
                                                 <x-form.label name="nationality"/>
                                                 <select class="shadow-sm form-select form-control" name="nationality">
                                                     <option selected disabled>Select</option>
-                                                    <option value="Filipino">Filipino</option>
+                                                    <option {{ old('nationality') == "Filipino" ? 'selected' : '' }} value="Filipino">Filipino</option>
                                                 </select>
                                                 <x-form.error name="nationality"/>
                                             </div>

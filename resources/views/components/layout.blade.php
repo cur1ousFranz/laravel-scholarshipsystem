@@ -107,7 +107,12 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom" style="background-color: #fffcff">
         <div class="container ">
 
-            <a class="navbar-brand" href="/">Edukar Scholarship</a>
+            <a class="navbar-brand lead" href="/" style="font-family: Arial, Helvetica, sans-serif">
+                EDUKAR SCHOLARSHIP
+                {{-- <img src="{{ asset('/storage/img/logo_70.png') }}"
+                class="img-fluid"
+                style="width: 150px; height: 50px;"> --}}
+            </a>
 
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <i class="bi bi-list"></i>
@@ -228,10 +233,10 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item border border-2 border-warning">
+                        <li class="nav-item  border-warning">
                             <a class="nav-link text-dark" href="/signup">Sign up</a>
                         </li>
-                        <li class="nav-item border border-2 border-warning ms-lg-2">
+                        <li class="nav-item  border-warning ms-lg-2">
                             <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#signinModal"
                                 href="">Sign in</a>
                         </li>
@@ -243,12 +248,12 @@
 
     <div class="modal fade" id="signinModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border border-1 border-dark" style="max-width: 450px">
+            <div class="modal-content border" style="max-width: 450px">
                 <div class="modal-header d-flex justify-content-center">
                     <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="login" method="POST">
+                    <form action="authenticate" method="POST">
                         @csrf
 
                         <div class="container">
@@ -273,7 +278,7 @@
             <div style="margin-top: 80px"
             class="alert alert-success w-25"
             x-data="{show: true}"
-            x-init="setTimeout(() => show = false, 1000)"
+            x-init="setTimeout(() => show = false, 3000)"
             x-show="show">
                 <p> {{ session('success') }}</p>
             </div>
@@ -285,7 +290,7 @@
             <div style="margin-top: 80px"
             class="alert alert-danger w-25 top-0 position-static"
             x-data="{show: true}"
-            x-init="setTimeout(() => show = false, 1000)"
+            x-init="setTimeout(() => show = false, 3000)"
             x-show="show">
                 <p> {{ session('error') }}</p>
             </div>

@@ -11,10 +11,19 @@
                         <hr>
                     </div>
                     <div class="container mt-5">
-                        <h5>{{ json_decode($notification->data)->title; }}</h5>
+                        <p style="font-size: 16px;">{{ date("F j, Y", strtotime($notification->created_at));  }}</p >
                     </div>
                     <div class="container mt-5">
-                        <h5>{!! json_decode($notification->data)->message; !!}</h5>
+                        <p style="font-size: 16px;">{{ json_decode($notification->data)->title; }},</p >
+                    </div>
+                    <div class="container mt-3">
+                        <p style="font-size: 16px;">{!! json_decode($notification->data)->message; !!}</p>
+                    </div>
+                    <div class="container mt-5">
+                        <div class="clearfix">
+                            <p class="mb-0 float-end" style="font-size: 16px;">Jose Abad Santos</p >
+                        </div>
+                        <p class="mt-0 float-end">Scholarship Coordinator</p >
                     </div>
                 </div>
             </div>

@@ -10,40 +10,39 @@
                         <tr>
                             <x-table.th>Batch</x-table.th>
                             <x-table.th>Status</x-table.th>
-                            <x-table.th>Last Date Modfied</x-table.th>
+                            <x-table.th>Time Updated</x-table.th>
                             <x-table.th>No. Applicants</x-table.th>
                             <x-table.th>Applicants</x-table.th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        @if (!$qualifiedApplicant->isEmpty())
-                            @foreach ($qualifiedApplicant as $qualifiedApplicants)
-                                @if (!in_array($qualifiedApplicants->applications_id, $applicationArray))
-                                    @php
-                                        $applicationArray[] = $qualifiedApplicants->applications_id
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $qualifiedApplicants->application->batch }}</td>
-                                        <td class="{{ $qualifiedApplicants->application->status == "On-going" ? 'text-success' : 'text-danger'}}">
-                                            {{ $qualifiedApplicants->application->status }}
-                                        </td>
-                                        <td>{{ date('F j, Y', strtotime($qualifiedApplicants->created_at )). " - " .
-                                            date('H:i', strtotime($qualifiedApplicants->created_at)) }}</td>
-                                        <td>{{ $qualifiedApplicants->where('applications_id', $qualifiedApplicants->applications_id)
-                                        ->count() . ' / ' . $qualifiedApplicants->application->slots }}
-                                        </td>
-                                        <td>
-                                            <a href="/qualified/{{ $qualifiedApplicants->applications_id }}"
-                                                class="text-decoration-none">View</a>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        @else
+                        @forelse ($qualifiedApplicant as $list)
+                            @if (!in_array($list->applications_id, $applicationArray))
+                                @php
+                                    $applicationArray[] = $list->applications_id
+                                @endphp
+                                <tr>
+                                    <td>{{ $list->application->batch }}</td>
+                                    <td class="{{ $list->application->status == "On-going" ? 'text-success' : 'text-danger'}}">
+                                        {{ $list->application->status }}
+                                    </td>
+                                    <td>{{ $list->where('applications_id', $list->applications_id)
+                                    ->latest()->first()->updated_at->diffForHumans() }}
+                                    </td>
+                                    <td>{{ $list->where('applications_id', $list->applications_id)
+                                    ->count() . ' / ' . $list->application->slots }}
+                                    </td>
+                                    <td>
+                                        <a href="/qualified/{{ $list->applications_id }}"
+                                            class="text-decoration-none">View</a>
+                                    </td>
+                                </tr>
+                            @endif
+                        @empty
                             <tr>
                                 <td colspan="5" class="text-center">No applicants yet</td>
                             </tr>
-                        @endif
+                        @endforelse
                     </tbody>
                 </x-table.table>
             </div>

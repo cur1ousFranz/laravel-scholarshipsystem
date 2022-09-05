@@ -19,8 +19,7 @@ class NotificationController extends Controller
      */
     public function show(Request $request){
 
-        $notification = DB::table('notifications')->where('id', $request->route('id'))->first();
-
+        $notification = DB::table('notifications')->where('id', $request->route('notification'))->first();
         return view('applicant.notification',[
             'notification' => $notification
         ]);
@@ -39,26 +38,26 @@ class NotificationController extends Controller
         /**  Get all applicants that belongs to qualified table
          *   according to the current application id
          */
-        $qualifiedApplicantList = QualifiedApplicant::where(
+        $qualifiedApplicants = QualifiedApplicant::where(
             'applications_id', $application->id)->latest()->get();
 
         /**
          * Looping through Applicant table that is match in qualified
          * applicant list, and store it to an array
          */
-        $applicantList = array();
-        foreach($qualifiedApplicantList as $qualifiedApplicantLists){
+        $applicants = array();
+        foreach($qualifiedApplicants as $applicant){
 
-            $applicantList[] = Applicant::where('id', $qualifiedApplicantLists->applicants_id)->first();
+            $applicants[] = Applicant::where('id', $applicant->applicants_id)->first();
         }
 
         /**
          * Looping through applicant list and store their users_id
          * to an array
          */
-        $applicantsListID = array();
-        foreach($applicantList as $applicantLists){
-            $applicantsListID[] = $applicantLists->users_id;
+        $applicantsID = array();
+        foreach($applicants as $applicant){
+            $applicantsID[] = $applicant->users_id;
         }
 
         /**
@@ -70,7 +69,7 @@ class NotificationController extends Controller
         $applicantNotif = array();
         foreach($user as $users){
 
-            if(in_array($users->id, $applicantsListID)){
+            if(in_array($users->id, $applicantsID)){
 
                 $applicantNotif[] = $users->id;
             }

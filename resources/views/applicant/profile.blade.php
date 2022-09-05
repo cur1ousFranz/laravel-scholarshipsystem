@@ -13,8 +13,8 @@
                                         <div class="col-2">
                                             <i class="bi bi-person-square"></i>
                                         </div>
-                                        <div class="col-10 mt-1 ">
-                                            <h6 class="float-start">{{ auth()->user()->username }}</h6>
+                                        <div class="col-10 mt-1 text-start">
+                                            <h6>{{ auth()->user()->username }}</h6>
                                         </div>
                                     </div>
 
@@ -22,8 +22,8 @@
                                         <div class="col-2">
                                             <i class="bi bi-envelope-fill"></i>
                                         </div>
-                                        <div class="col-10 mt-1">
-                                            <h6 class="float-start">{{ $applicant->contact->email }}</h6>
+                                        <div class="col-10 mt-1 text-start">
+                                            <h6>{{ $applicant->contact->email }}</h6>
                                         </div>
                                     </div>
                                 </div>

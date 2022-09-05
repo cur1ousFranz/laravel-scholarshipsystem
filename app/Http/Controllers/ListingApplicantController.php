@@ -50,6 +50,7 @@ class ListingApplicantController extends Controller
 
                         }else{
 
+                            Application::where('id', $application->id)->update(['status' => 'Closed']);
                             return back()->with('error', 'No more slots available!');
                         }
 

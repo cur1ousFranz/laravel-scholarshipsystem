@@ -1,6 +1,6 @@
 <x-layout title="Sign up">
     <x-container>
-        <div class="container w-50">
+        <div class="container" style="min-width: 200px; max-width: 450px">
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">

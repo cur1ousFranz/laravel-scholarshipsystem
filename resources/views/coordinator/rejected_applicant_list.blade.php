@@ -119,48 +119,46 @@
                         </tr>
                     </thead>
                     <tbody class="text-center" id="applicantListHeader">
-                        @if (!$rejectedApplicantList->isEmpty())
-                            @foreach ($rejectedApplicantList as $list)
-                                <tr class="tbl-row">
-                                    <td class="d-flex">
-                                        <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
-                                            title="Added by: {{ $list->added }}">
-                                            <i class="bi bi-gear-fill"></i>
-                                        </p>
-                                        <a class="text-decoration-none ms-2" href="/storage/{{ $list->document }}"
-                                            target="_blank">View</a>
-                                    </td>
-                                    <td>{{ $list->applicant->first()->first_name }}</td>
-                                    <td>{{ $list->applicant->first()->middle_name }}</td>
-                                    <td>{{ $list->applicant->first()->last_name }}</td>
-                                    <td>{{ $list->applicant->first()->age }}</td>
-                                    <td>{{ $list->applicant->first()->gender }}</td>
-                                    <td>{{ $list->applicant->first()->civil_status }}</td>
-                                    <td>{{ $list->applicant->first()->address->street }}</td>
-                                    <td>{{ $list->applicant->first()->address->barangay }}</td>
-                                    <td>{{ $list->applicant->first()->address->city }}</td>
-                                    <td>{{ $list->applicant->first()->address->province }}</td>
-                                    <td>{{ $list->applicant->first()->address->region }}</td>
-                                    <td>{{ $list->applicant->first()->address->zipcode }}</td>
-                                    <td>{{ $list->applicant->first()->contact->contact_number }}</td>
-                                    <td>{{ $list->applicant->first()->contact->email }}</td>
-                                    <td>{{ $list->applicant->first()->school->desired_school }}</td>
-                                    <td>{{ $list->applicant->first()->school->course_name }}</td>
-                                    <td>{{ $list->applicant->first()->school->hei_type }}</td>
-                                    <td>{{ $list->applicant->first()->school->school_last_attended }}</td>
-                                    <td>{{ $list->applicant->first()->nationality }}</td>
-                                    <td>{{ $list->applicant->first()->educational_attainment }}</td>
-                                    <td>{{ $list->applicant->first()->years_in_city }}</td>
-                                    <td>{{ $list->applicant->first()->family_income }}</td>
-                                    <td>{{ $list->applicant->first()->registered_voter }}</td>
-                                    <td>{{ $list->applicant->first()->gwa }}</td>
-                                </tr>
-                            @endforeach
-                        @else
+                        @forelse ($rejectedApplicantList as $list)
+                            <tr class="tbl-row">
+                                <td class="d-flex">
+                                    <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
+                                        title="Added by: {{ $list->added }}">
+                                        <i class="bi bi-gear-fill"></i>
+                                    </p>
+                                    <a class="text-decoration-none ms-2" href="/storage/{{ $list->document }}"
+                                        target="_blank">View</a>
+                                </td>
+                                <td>{{ $list->applicant->first()->first_name }}</td>
+                                <td>{{ $list->applicant->first()->middle_name }}</td>
+                                <td>{{ $list->applicant->first()->last_name }}</td>
+                                <td>{{ $list->applicant->first()->age }}</td>
+                                <td>{{ $list->applicant->first()->gender }}</td>
+                                <td>{{ $list->applicant->first()->civil_status }}</td>
+                                <td>{{ $list->applicant->first()->address->street }}</td>
+                                <td>{{ $list->applicant->first()->address->barangay }}</td>
+                                <td>{{ $list->applicant->first()->address->city }}</td>
+                                <td>{{ $list->applicant->first()->address->province }}</td>
+                                <td>{{ $list->applicant->first()->address->region }}</td>
+                                <td>{{ $list->applicant->first()->address->zipcode }}</td>
+                                <td>{{ $list->applicant->first()->contact->contact_number }}</td>
+                                <td>{{ $list->applicant->first()->contact->email }}</td>
+                                <td>{{ $list->applicant->first()->school->desired_school }}</td>
+                                <td>{{ $list->applicant->first()->school->course_name }}</td>
+                                <td>{{ $list->applicant->first()->school->hei_type }}</td>
+                                <td>{{ $list->applicant->first()->school->school_last_attended }}</td>
+                                <td>{{ $list->applicant->first()->nationality }}</td>
+                                <td>{{ $list->applicant->first()->educational_attainment }}</td>
+                                <td>{{ $list->applicant->first()->years_in_city }}</td>
+                                <td>{{ $list->applicant->first()->family_income }}</td>
+                                <td>{{ $list->applicant->first()->registered_voter }}</td>
+                                <td>{{ $list->applicant->first()->gwa }}</td>
+                            </tr>
+                        @empty
                             <tr>
                                 <td colspan="25">No submissions yet</td>
                             </tr>
-                        @endif
+                        @endforelse
                     </tbody>
                 </x-table.table>
             </div>

@@ -120,8 +120,7 @@
                     </thead>
                     {{-- RETRIEVING APPLICANT DATA ACCORDING TO ITS CURRENT ID IN LOOP --}}
                     <tbody class="text-center" id="applicantListHeader">
-                        @if (!$qualifiedApplicantList->isEmpty())
-                            @foreach ($qualifiedApplicantList as $list)
+                        @forelse ($qualifiedApplicantList as $list)
                             <tr class="tbl-row">
                                 <td class="d-flex">
                                     <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
@@ -157,12 +156,11 @@
                                 <td>{{ $list->applicant->first()->registered_voter }}</td>
                                 <td>{{ $list->applicant->first()->gwa }}</td>
                             </tr>
-                            @endforeach
-                        @else
+                        @empty
                             <tr>
                                 <td colspan="25">No qualified applicant yet</td>
                             </tr>
-                        @endif
+                        @endforelse
                     </tbody>
                 </x-table.table>
             </div>

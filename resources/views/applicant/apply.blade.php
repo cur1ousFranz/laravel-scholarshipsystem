@@ -154,7 +154,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="uploadFile">
                                     <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content border-top border-bottom border-1 border-primary">
+                                        <div class="modal-content">
                                             <div class="modal-header">
                                                 <div class="container text-center">
                                                     <h4 class="">Upload File</h4>

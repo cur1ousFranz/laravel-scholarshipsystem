@@ -18,7 +18,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/', 'index');
     Route::get('/signup', 'signup')->middleware('guest');
     Route::post('/users', 'create')->middleware('guest');
-    Route::post('login', 'login')->name('login')->middleware('guest');
+    Route::post('authenticate', 'login')->name('login')->middleware('guest');
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });
 
