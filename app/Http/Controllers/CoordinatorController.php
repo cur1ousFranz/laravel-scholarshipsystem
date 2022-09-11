@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Carbon\Carbon;
 use App\Models\Applicant;
 use App\Models\Application;
@@ -10,6 +11,13 @@ use App\Models\RejectedApplicant;
 
 class CoordinatorController extends Controller
 {
+    public function home(){
+
+        return view('coordinator.home', [
+            'activities' => Activity::latest()->limit(5)->get(),
+            'applications' => Application::latest()->get()
+        ]);
+    }
 
     public function dashboard(){
 
@@ -74,7 +82,7 @@ class CoordinatorController extends Controller
         //     }
         // }
 
-        return view('coordinator.dashboard',[
+        return view('coordinator.report',[
             'appliedApplicantYears' => $appliedApplicantYears,
             'appliedApplicantYearCount' => $appliedApplicantYearCount,
 

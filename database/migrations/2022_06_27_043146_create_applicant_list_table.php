@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\RatingReport;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('applications_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('applicants_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('rating')->nullable();
             $table->string('document')->nullable();
             $table->string('review')->nullable();
             $table->timestamps();

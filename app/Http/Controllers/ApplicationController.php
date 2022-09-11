@@ -9,6 +9,7 @@ use App\Models\ApplicantList;
 use App\Models\ApplicationDetail;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
+use App\Models\RatingReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,7 +83,11 @@ class ApplicationController extends Controller
             abort('403', 'Unauthorized Action');
         } else {
 
-            ApplicantList::create($formFields);
+            $applicant = ApplicantList::create($formFields);
+            RatingReport::create(['applicant_lists_id' => $applicant->id, 'rating' => 'Test']);
+            //TODO :::
+
+
 
             return back()->with('success', 'Application submitted successfully!');
         }

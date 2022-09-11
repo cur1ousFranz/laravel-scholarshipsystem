@@ -33,14 +33,11 @@ class ApplicantController extends Controller
     public function edit()
     {
 
-        $ageArray = ['17', '18', '19', '20', '21', '22', '23', '24', '25'];
-
         $school_list = DB::table('school_courses')->groupBy('school')->get();
         $dynamic_address = DB::table('dynamic_addresses')->groupBy('country')->get();
 
         return view('applicant.profile_edit', [
             'applicant' => $this->getApplicant(),
-            'age' => $ageArray,
             'school_list' => $school_list,
             'dynamic_address' => $dynamic_address,
             'nationalities' => Nationality::all(),
@@ -51,9 +48,9 @@ class ApplicantController extends Controller
     public function update(Applicant $applicant)
     {
         $formFields = request()->validate([
-            'first_name' => ['required', 'min:2'],
-            'middle_name' => ['required', 'min:2'],
-            'last_name' => ['required', 'min:2'],
+            'first_name' => 'required',
+            // 'middle_name' => 'required',
+            'last_name' => 'required',
             'age' => 'required',
             'gender' => 'required',
             'civil_status' => 'required',
@@ -84,9 +81,9 @@ class ApplicantController extends Controller
 
         Applicant::where('id', $this->getApplicant()->id)->update([
 
-            'first_name' => ucwords($formFields['first_name']),
-            'middle_name' => ucwords($formFields['middle_name']),
-            'last_name' => ucwords($formFields['last_name']),
+            'first_name' => ucwords(strtolower($formFields['first_name'])),
+            'middle_name' => request()->has('middle_name') ? ucwords(strtolower(request('middle_name'))) : NULL,
+            'last_name' => ucwords(strtolower($formFields['last_name'])),
             'age' => $formFields['age'],
             'gender' => $formFields['gender'],
             'civil_status' => $formFields['civil_status'],
@@ -103,7 +100,7 @@ class ApplicantController extends Controller
             'desired_school' => $formFields['desired_school'],
             'course_name' => $formFields['course_name'],
             'hei_type' => $formFields['hei_type'],
-            'school_last_attended' => ucwords($formFields['school_last_attended']),
+            'school_last_attended' => ucwords(strtolower($formFields['school_last_attended'])),
         ]);
 
         Address::where('applicants_id', $this->getApplicant()->id)->update([
@@ -112,7 +109,7 @@ class ApplicantController extends Controller
             'province' => $formFields['province'],
             'city' => $formFields['city'],
             'barangay' => $formFields['barangay'],
-            'street' => ucwords($formFields['street']),
+            'street' => ucwords(strtolower($formFields['street'])),
             'region' => $formFields['region'],
             'zipcode' => $formFields['zipcode'],
         ]);

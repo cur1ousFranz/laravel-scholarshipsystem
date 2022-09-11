@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\ApplicantList;
+use App\Models\RatingReport;
 
 class SubmissionController extends Controller
 {
     public function show(Application $application)
     {
-
-        $applicantList = ApplicantList::with('applicant', 'application')
+        $applicantList = ApplicantList::with('applicant', 'application', 'ratingReport')
         ->where(['applications_id' => $application->id, 'review' => null])
         ->latest()
         ->paginate(10);

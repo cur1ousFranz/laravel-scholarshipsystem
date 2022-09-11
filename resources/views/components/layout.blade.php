@@ -98,6 +98,73 @@
 
         }
 
+        /* Slide Show */
+
+
+      /* Slideshow container */
+      .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /*Style for ">" next and "<" previous buttons */
+        .slider-btn{
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 8px 16px;
+            margin-top: -22px;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        /* setting the position of the previous button towards left */
+        .previous {
+            left: 2%;
+        }
+        /* setting the position of the next button towards right */
+        .next {
+            right: 2%;
+        }
+
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Fading animation */
+        .fading {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+        }
+
+        /* CUT TEXT */
+        .cut-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* after 3 line show ... */
+            -webkit-box-orient: vertical;
+        }
     </style>
 
 </head>
@@ -106,13 +173,17 @@
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom" style="background-color: #fffcff">
         <div class="container ">
-
-            <a class="navbar-brand lead" href="/" style="font-family: Arial, Helvetica, sans-serif">
-                EDUKAR SCHOLARSHIP
-                {{-- <img src="{{ asset('/storage/img/logo_70.png') }}"
-                class="img-fluid"
-                style="width: 150px; height: 50px;"> --}}
-            </a>
+            @if (Auth::check() || Auth::guest())
+                @if (Auth::check() && auth()->user()->role === 'coordinator')
+                    <a class="navbar-brand lead" href="/home" style="font-family: Arial, Helvetica, sans-serif">
+                        EDUKAR SCHOLARSHIP
+                    </a>
+                @else
+                    <a class="navbar-brand lead" href="/" style="font-family: Arial, Helvetica, sans-serif">
+                        EDUKAR SCHOLARSHIP
+                    </a>
+                @endif
+            @endif
 
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <i class="bi bi-list"></i>
@@ -122,7 +193,7 @@
                     @auth
                         @if (auth()->user()->role == 'applicant')
                             <li class="nav-item mt-lg-1">
-                                <a class="nav-link text-dark" href="/">
+                                <a class="nav-link text-dark d-flex justify-content-center" href="/">
                                     <i class="bi bi-house-door" style="font-size: 19px"></i>
                                 </a>
                             </li>
@@ -200,15 +271,18 @@
                             </li>
                         @elseif(auth()->user()->role == 'coordinator')
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
+                                <a class="nav-link text-dark text-center" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="/applications">Application</a>
+                                <a class="nav-link text-dark text-center" href="/report">Report</a>
                             </li>
                             <li class="nav-item">
-                                <div class="dropdown show">
+                                <a class="nav-link text-dark text-center" href="/applications">Application</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown show text-center">
                                     <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                        Applicant<i class="ms-1 bi bi-caret-down-fill"></i>
+                                        Applicant
                                     </a>
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="/qualified">Qualified Applicants</a>
@@ -218,14 +292,14 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <div class="dropdown show">
+                                <div class="dropdown show text-center">
                                     <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                        {{ auth()->user()->username }}<i class="ms-1 bi bi-caret-down-fill"></i>
+                                        {{ auth()->user()->username }}
                                     </a>
                                     <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Profile</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
+                                        {{-- <a class="dropdown-item" href="#">Profile</a>
+                                        <div class="dropdown-divider"></div> --}}
+                                        <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="/logout">
                                             Logout
                                         </a>
                                     </div>
@@ -234,10 +308,10 @@
                         @endif
                     @else
                         <li class="nav-item  border-warning">
-                            <a class="nav-link text-dark" href="/signup">Sign up</a>
+                            <a class="nav-link text-dark text-center" href="/signup">Sign up</a>
                         </li>
-                        <li class="nav-item  border-warning ms-lg-2">
-                            <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#signinModal"
+                        <li class="nav-item border-warning ms-lg-2">
+                            <a class="nav-link text-dark text-center" data-bs-toggle="modal" data-bs-target="#signinModal"
                                 href="">Sign in</a>
                         </li>
                     @endauth
@@ -259,12 +333,7 @@
                         <div class="container">
                             <x-form.input name="username"/>
                             <x-form.input class="mt-2" name="password" type="password"/>
-
-                            <div class="row mt-3 ">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a href="#" class="text-primary">Forgot Password?</a>
-                                </div>
-                            </div>
+                            <hr>
                             <x-form.button class="mt-3 mb-3 form-control">Sign in</x-form.button>
                         </div>
                     </form>
@@ -296,6 +365,7 @@
             </div>
         </div>
     @endif
+
     {{ $slot }}
 
     <!-- Footer -->

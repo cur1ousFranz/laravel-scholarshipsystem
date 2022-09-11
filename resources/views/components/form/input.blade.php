@@ -7,7 +7,7 @@
     style="background-color: #fff;"
     {{ $disable ? 'disabled' : '' }}
     {{ $attributes(['value' => old($name), 'readonly' => false]) }}
-    >
+    autocomplete="off">
 
     <x-form.error :name="$name"/>
 </div>

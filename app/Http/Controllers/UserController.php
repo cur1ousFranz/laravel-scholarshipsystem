@@ -6,7 +6,10 @@ use App\Models\User;
 use App\Models\School;
 use App\Models\Address;
 use App\Models\Contact;
+use App\Models\Activity;
 use App\Models\Applicant;
+use App\Models\Application;
+use App\Models\Scholar;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +22,14 @@ class UserController extends Controller
 
     public function index(){
 
-        return view('welcome');
+        if(Auth::check() && auth()->user()->role === 'coordinator'){
+            abort(403, 'Unauthorized Action');
+        }
+        return view('welcome', [
+            'activities' => Activity::latest()->limit(3)->get(),
+            'application' => Application::where('status', 'On-going')->first(),
+            'scholars' => Scholar::latest()->get()
+        ]);
     }
     public function signup(){
 
@@ -82,7 +92,7 @@ class UserController extends Controller
         if(Auth::attempt($formFields)){
             if($user->role == "coordinator"){
                 $request->session()->regenerate();
-                return redirect('/dashboard')->with('success', 'You logged in!');
+                return redirect('/home')->with('success', 'You logged in!');
             }
 
         }

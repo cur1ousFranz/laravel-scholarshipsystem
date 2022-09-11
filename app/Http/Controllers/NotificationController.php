@@ -6,14 +6,50 @@ use App\Models\User;
 use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use PHPMailer\PHPMailer\SMTP;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Support\Facades\DB;
+use PHPMailer\PHPMailer\Exception;
+
+use PHPMailer\PHPMailer\PHPMailer;
 use App\Notifications\ApplicantNotification;
 use Illuminate\Support\Facades\Notification;
 
+require 'PHPMailer/vendor/autoload.php';
+
 class NotificationController extends Controller
 {
+
+    protected function sendMail($title, $body, $applicants)
+    {
+        try{
+            $mail = new PHPMailer(true);
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host       = 'smtp-relay.sendinblue.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'blessedperson88@gmail.com';
+            $mail->Password   = '03LQbMzypZrW2IsH';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port       = 587;
+            $mail->setFrom('blessedperson88@gmail.com', 'Edukar Scholarship');
+
+            $mail->isHTML(true);
+            $mail->Subject = $title;
+            $mail->Body    = '<p>' . $body . '</p';
+
+            foreach($applicants as $applicant){
+                $mail->addAddress($applicant->contact->email);
+            }
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+
+        $mail->send();
+
+    }
+
     /**
      * Applicant Notification message
      */
@@ -87,6 +123,8 @@ class NotificationController extends Controller
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
 
+        $this->sendMail($request->title, $request->message, $applicants);
+
         return back()->with('success', 'Announcement sent successfully!');
 
     }
@@ -111,19 +149,19 @@ class NotificationController extends Controller
          * Looping through Applicant table that is match in rejected
          * applicant list, and store it to an array
          */
-        $applicantList = array();
+        $applicants = array();
         foreach($rejectedApplicantList as $rejectedApplicantLists){
 
-            $applicantList[] = Applicant::where('id', $rejectedApplicantLists->applicants_id)->first();
+            $applicants[] = Applicant::where('id', $rejectedApplicantLists->applicants_id)->first();
         }
 
         /**
          * Looping through applicant list and store their users_id
          * to an array
          */
-        $applicantsListID = array();
-        foreach($applicantList as $applicantLists){
-            $applicantsListID[] = $applicantLists->users_id;
+        $applicantsID = array();
+        foreach($applicants as $applicant){
+            $applicantsID[] = $applicant->users_id;
         }
 
         /**
@@ -135,7 +173,7 @@ class NotificationController extends Controller
         $applicantNotif = array();
         foreach($user as $users){
 
-            if(in_array($users->id, $applicantsListID)){
+            if(in_array($users->id, $applicantsID)){
 
                 $applicantNotif[] = $users->id;
             }
@@ -152,6 +190,7 @@ class NotificationController extends Controller
         }
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
+        $this->sendMail($request->title, $request->message, $applicants);
 
         return back()->with('success', 'Announcement sent successfully!');
 

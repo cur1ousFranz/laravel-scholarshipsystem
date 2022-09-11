@@ -24,7 +24,7 @@
                     @forelse ($application as $applications)
                         <tr>
                             <td>{{ $applications->batch }}</td>
-                            <td>{{ date('F j, Y', strtotime($applications->created_at)) }}</td>
+                            <td>{{ date('F j, Y', strtotime($applications->start_date)) }}</td>
                             <td>{{ date('F j, Y', strtotime($applications->end_date)) }}</td>
                             <td class="{{ $applications->status == "On-going" ? "text-success" : "text-danger" }}">
                                 {{ $applications->status }}

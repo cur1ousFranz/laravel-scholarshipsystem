@@ -91,7 +91,7 @@
                                 <x-table.th>Course</x-table.th>
                                 <x-table.th>HEI Type</x-table.th>
                                 <x-table.th>Desired School</x-table.th>
-                                <x-table.th>School Last Attended<</x-table.th>
+                                <x-table.th>School Last Attended</x-table.th>
                                 <x-table.th>Nationality</x-table.th>
                                 <x-table.th>Educational Attainment School</x-table.th>
                                 <x-table.th>No. Years in City</x-table.th>
@@ -110,9 +110,9 @@
                                         onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>
-                                    <td>Test</td>
+                                    <td><a href="/applicant/evaluation/{{ $list->id }}" target="_blank">100%</a>   </td>
                                     <td>
-                                        <a class="text-decoration-none" href="/storage/{{ $list->document }}"
+                                        <a href="/storage/{{ $list->document }}"
                                             target="_blank">View</a>
                                     </td>
                                     <td>{{ $list->applicant->first()->first_name }}</td>

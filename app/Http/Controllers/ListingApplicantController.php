@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class ListingApplicantController extends Controller
 {
+
+    public function index(ApplicantList $applicantlist){
+
+        return view('coordinator.evaluation', [
+            'applicantlist' => ApplicantList::with('application')->where('id', $applicantlist->id)->first()
+
+        ]);
+    }
+
     public function store(Request $request, Application $application)
     {
 

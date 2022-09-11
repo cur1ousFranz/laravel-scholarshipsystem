@@ -8,23 +8,21 @@
                             <img src="{{ asset('storage/img/profile-img.jpg') }}" alt=""
                             class="rounded-circle mb-2 img-fluid" width="150px">
                             <div class="container-fluid me-5">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <i class="bi bi-person-square"></i>
-                                        </div>
-                                        <div class="col-10 mt-1 ">
-                                            <h6>{{ auth()->user()->username }}</h6>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="bi bi-person-square"></i>
                                     </div>
+                                    <div class="col-10 mt-1 text-start">
+                                        <h6>{{ auth()->user()->username }}</h6>
+                                    </div>
+                                </div>
 
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <i class="bi bi-envelope-fill"></i>
-                                        </div>
-                                        <div class="col-10 mt-1" >
-                                            <h6>{{ $applicant->contact->email }}</h6>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </div>
+                                    <div class="col-10 mt-1 text-start" >
+                                        <h6>{{ $applicant->contact->email }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -48,10 +46,13 @@
 
                                         <x-form.row-col>
                                             <x-slot name="first">
-                                                <x-form.input name="middle_name" :value="old('middle_name', $applicant->middle_name)" />
+                                                {{-- <x-form.input name="middle_name" :value="old('middle_name', $applicant->middle_name)" /> --}}
+                                                <x-form.label name="middle_name (optional)"/>
+                                                <input class="shadow-sm form-control" type="text" id="middle_name" name="middle_name"
+                                                style="background-color: #fff;" value="{{ old('middle_name') ?? $applicant->middle_name }}">
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.input name="last_name" :value="old('middle_name', $applicant->last_name)" />
+                                                <x-form.input name="last_name" :value="old('last_name', $applicant->last_name)" />
                                             </x-slot>
                                         </x-form.row-col>
 
@@ -89,9 +90,6 @@
                                                     <option
                                                         {{ $applicant->civil_status === 'Widowed' ? 'selected' : '' }}
                                                         value="Widowed">Widowed </option>
-                                                    <option
-                                                        {{ $applicant->civil_status === 'Divorced' ? 'selected' : '' }}
-                                                        value="Divorced">Divorced</option>
                                                 </select>
                                                 <x-form.error name="civil_status"/>
                                             </x-slot>
@@ -269,12 +267,7 @@
                                                 <x-form.label name="region"/>
                                                 <select class="shadow-sm form-select form-control" name="region">
                                                     <option selected disabled>Select</option>
-                                                    @for ($i = 1; $i <= 12; $i++)
-                                                        <option
-                                                            {{ $applicant->address->region == $i ? 'selected' : '' }}
-                                                            value="{{ $i }}">
-                                                            {{ $i }}</option>
-                                                    @endfor
+                                                    <option {{ old('region') == '12' ? 'selected' : '' }} value="12">12</option>
                                                 </select>
                                                 <x-form.error name="region"/>
                                             </x-slot>

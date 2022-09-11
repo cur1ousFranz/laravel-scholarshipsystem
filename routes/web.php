@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplicantController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\ListingApplicantController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QualifiedApplicantController;
 use App\Http\Controllers\RejectedApplicantController;
+use App\Http\Controllers\ScholarController;
 use App\Http\Controllers\ScholarshipApplicationController;
 use App\Http\Controllers\SubmissionController;
 
@@ -22,12 +24,16 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });
 
+Route::get('activity', [ActivityController::class, 'index']);
+Route::get('activity/{activity:slug}', [ActivityController::class, 'show']);
+
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'coordinator'], function(){
 
             Route::controller(CoordinatorController::class)->group(function(){
-                Route::get('/dashboard', 'dashboard');
+                Route::get('/home', 'home');
+                Route::get('/report', 'dashboard');
                 Route::get('/applications', 'application');
             });
 
@@ -55,7 +61,11 @@ Route::group(['middleware' => 'auth'], function() {
             });
 
             Route::get('/applications/{application}/submissions', [SubmissionController::class, 'show']);
+            Route::get('/applicant/evaluation/{applicantlist}', [ListingApplicantController::class, 'index']);
             Route::post('/applicants/{application}', [ListingApplicantController::class, 'store']);
+
+            Route::post('/activity', [ActivityController::class, 'store']);
+            Route::post('/scholar', [ScholarController::class, 'store']);
 
     });
 

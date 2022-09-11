@@ -7,7 +7,7 @@
                         auth()->user()->unreadNotifications->where('id', $notification->id)->markAsRead();
                     @endphp
                     <div class="container text-center">
-                        <h4 class=" text-uppercase text-decoration-underline">Announcement</h4>
+                        <h4 class=" text-uppercase">Announcement</h4>
                         <hr>
                     </div>
                     <div class="container mt-5">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="container mt-5">
                         <div class="clearfix">
-                            <p class="mb-0 float-end" style="font-size: 16px;">Jose Abad Santos</p >
+                            <p class="mb-0 float-end" style="font-size: 16px;">Finn & Jake</p >
                         </div>
                         <p class="mt-0 float-end">Scholarship Coordinator</p >
                     </div>
