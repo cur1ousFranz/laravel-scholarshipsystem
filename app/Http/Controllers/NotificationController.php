@@ -27,13 +27,13 @@ class NotificationController extends Controller
             $mail = new PHPMailer(true);
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
-            $mail->Host       = 'smtp-relay.sendinblue.com';
+            $mail->Host       = config('mail.mailers.smtp.host');
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'blessedperson88@gmail.com';
-            $mail->Password   = '03LQbMzypZrW2IsH';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port       = 587;
-            $mail->setFrom('blessedperson88@gmail.com', 'Edukar Scholarship');
+            $mail->Username   = config('mail.mailers.smtp.username');
+            $mail->Password   = config('mail.mailers.smtp.password');
+            $mail->SMTPSecure = config('mail.mailers.smtp.encryption');
+            $mail->Port       = config('mail.mailers.smtp.port');
+            $mail->setFrom(config('mail.mailers.smtp.username'), 'Edukar Scholarship');
 
             $mail->isHTML(true);
             $mail->Subject = $title;

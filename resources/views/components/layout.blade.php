@@ -194,7 +194,7 @@
                         @if (auth()->user()->role == 'applicant')
                             <li class="nav-item mt-lg-1">
                                 <a class="nav-link text-dark d-flex justify-content-center" href="/">
-                                    <i class="bi bi-house-door" style="font-size: 19px"></i>
+                                    <i class="bi bi-house-door" style="font-size: 18px"></i>
                                 </a>
                             </li>
 
@@ -202,7 +202,7 @@
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark position-relative" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                                        <i class="bi bi-bell" style="font-size: 19px">
+                                        <i class="bi bi-bell" style="font-size: 18px">
                                         </i>
                                         @if (auth()->user()->unreadNotifications->count())
                                             <span class="position-absolute mt-3 translate-middle badge rounded-pill bg-danger">
@@ -253,7 +253,7 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item mt-lg-2">
+                            <li class="nav-item mt-lg-1">
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">

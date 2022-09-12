@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(){
 
         if(Auth::check() && auth()->user()->role === 'coordinator'){
-            abort(403, 'Unauthorized Action');
+            return redirect('/home');
         }
         return view('welcome', [
             'activities' => Activity::latest()->limit(3)->get(),
