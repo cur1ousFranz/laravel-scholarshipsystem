@@ -72,7 +72,7 @@
             background-color: white;
         }
 
-        /* This is for qualified applicant list table */
+        /* This is for qualified applicant and rejected list table */
         .scroll2 {
             overflow-x: auto;
             max-width: auto;
@@ -83,6 +83,13 @@
         .scroll2 td:nth-child(1){
             position: sticky;
             left: 0px;
+            background-color: white;
+        }
+
+        .scroll2 th:nth-child(2),
+        .scroll2 td:nth-child(2){
+            position: sticky;
+            left: 59.9px;
             background-color: white;
         }
 
@@ -211,9 +218,9 @@
                                         @endif
                                     </a>
 
-                                    <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink" style="max-height: 275px; overflow-y: auto">
                                         <h5 class="fw-bold mt-2">Notifications</h5>
-                                        <ul class="list-group ">
+                                        <ul class="list-group" size="5">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notifications)
                                                     <li class="list-group-item border-0">

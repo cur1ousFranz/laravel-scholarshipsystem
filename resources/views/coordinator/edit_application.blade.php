@@ -42,47 +42,17 @@
                                     <h5 class="mt-4">Pre-evaluation</h5>
                                     <div class="row">
                                         <div class="col-lg-6 mt-2">
-                                            <x-form.label name="educational_attainment"/>
-                                            <select class="shadow-sm form-select form-control"
-                                                name="educational_attainment">
-                                                <option value="Incoming College / College">Incoming College /
-                                                    College
-                                                </option>
-                                            </select>
-                                            <x-form.error name="educational_attainment"/>
+                                            <x-form.input name="educational_attainement" disable="true" value="Incoming College / College Level"/>
 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="mt-3">
-                                                        <x-form.label name="family_income"/>
-                                                        <select class="shadow-sm form-select form-control"
-                                                            name="family_income">
-                                                            <option
-                                                                value="{{ old('family_income') ?? $application->applicationDetail->family_income }}">
-                                                                {{ old('family_income') ?? $application->applicationDetail->family_income }}
-                                                                PHP
-                                                            </option>
-                                                            <option value="8000">8,000 PHP</option>
-                                                            <option value="12000">12,000 PHP</option>
-                                                            <option value="16000">16,000 PHP</option>
-                                                            <option value="20000">20,000 PHP</option>
-                                                        </select>
-                                                        <x-form.error name="family_income"/>
+                                                        <x-form.input name="family_income" disable="true" value="Less than ₱10,957"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mt-3">
-                                                        <x-form.label name="gwa"/>
-                                                        <select class="shadow-sm form-select form-control" name="gwa">
-                                                            <option value="{{ old('gwa') ?? $application->applicationDetail->gwa }}">
-                                                                {{ old('gwa') ?? $application->applicationDetail->gwa }}
-                                                            </option>
-                                                            <option value="75">75</option>
-                                                            <option value="80">80</option>
-                                                            <option value="85">85</option>
-                                                            <option value="90">90</option>
-                                                        </select>
-                                                        <x-form.error name="gwa"/>
+                                                        <x-form.input name="general_average" disable="true" value="80"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,51 +61,22 @@
                                         <div class="col-lg-6 mt-2">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <x-form.label name="city"/>
-                                                    <select class="shadow-sm form-select form-control" name="city">
-                                                        <option value="General Santos City">General Santos City
-                                                        </option>
-                                                    </select>
-                                                    <x-form.error name="city"/>
+                                                    <x-form.input name="city" disable="true" value="General Santos"/>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <x-form.label name="registered_voter"/>
-                                                    <select class="shadow-sm form-select form-control"
-                                                        name="registered_voter">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                    <x-form.error name="registered_voter"/>
+                                                    <x-form.input name="registered_voter" disable="true" value="Yes"/>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="mt-3">
-                                                        <x-form.label name="years_in_city"/>
-                                                        <select class="shadow-sm form-select form-control"
-                                                            name="years_in_city">
-                                                            <option
-                                                                value="{{ old('years_in_city') ?? $application->applicationDetail->years_in_city }}">
-                                                                {{ old('years_in_city') ?? $application->applicationDetail->years_in_city }}
-                                                                year
-                                                            </option>
-                                                            <option value="1">1 year</option>
-                                                            <option value="2">2 year</option>
-                                                            <option value="3">3 year</option>
-                                                            <option value="4">4 year</option>
-                                                        </select>
-                                                        <x-form.error name="years_in_city"/>
+                                                        <x-form.input name="years_in_city" disable="true" value="3"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mt-3">
-                                                        <x-form.label name="nationality"/>
-                                                        <select class="shadow-sm form-select form-control"
-                                                            name="nationality">
-                                                            <option value="Filipino">Filipino</option>
-                                                        </select>
-                                                        <x-form.error name="nationality"/>
+                                                        <x-form.input name="nationality" disable="true" value="Filipino"/>
                                                     </div>
                                                 </div>
                                             </div>

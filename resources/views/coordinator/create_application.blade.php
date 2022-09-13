@@ -45,40 +45,17 @@
                             <h5 class="mt-4">Pre-evaluation</h5>
                             <div class="row">
                                 <div class="col-lg-6 mt-2">
-                                    <x-form.label name="educational_attainement"/>
-                                    <select class="shadow-sm form-select form-control" name="educational_attainment">
-                                        <option selected disabled>Select</option>
-                                        <option {{ old('educational_attainment') == 'Incoming College / College' ? 'selected' : '' }} value="Incoming College / College">Incoming College / College
-                                        </option>
-                                    </select>
+                                    <x-form.input name="educational_attainment" readonly="true" value="Incoming College / College Level"/>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <x-form.label name="family_income"/>
-                                                <select class="shadow-sm form-select form-control" name="family_income">
-                                                    <option selected disabled>Select</option>
-                                                    <option {{ old('family_income') == 8000 ? 'selected' : '' }} value="8000">8,000 PHP</option>
-                                                    <option {{ old('family_income') == 12000 ? 'selected' : '' }} value="12000">12,000 PHP</option>
-                                                    <option {{ old('family_income') == 16000 ? 'selected' : '' }} value="16000">16,000 PHP</option>
-                                                    <option {{ old('family_income') == 20000 ? 'selected' : '' }} value="20000">20,000 PHP</option>
-                                                    <option {{ old('family_income') == 20000 ? 'selected' : '' }} value="20000">25,000 PHP</option>
-                                                </select>
-                                                <x-form.error name="family_income"/>
+                                                <x-form.input name="family_income" readonly="true" value="Less than ₱10,957"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <x-form.label name="general_average"/>
-                                                <select class="shadow-sm form-select form-control" name="gwa">
-                                                    <option selected disabled>Select</option>
-                                                    <option {{ old('gwa') == 75 ? 'selected' : '' }} value="75">75</option>
-                                                    <option {{ old('gwa') == 80 ? 'selected' : '' }} value="80">80</option>
-                                                    <option {{ old('gwa') == 85 ? 'selected' : '' }} value="85">85</option>
-                                                    <option {{ old('gwa') == 90 ? 'selected' : '' }} value="90">90</option>
-                                                    <option {{ old('gwa') == 95 ? 'selected' : '' }} value="95">95</option>
-                                                </select>
-                                                <x-form.error name="gwa"/>
+                                                <x-form.input name="gwa" readonly="true" value="80"/>
                                             </div>
                                         </div>
                                     </div>
@@ -87,47 +64,22 @@
                                 <div class="col-lg-6 mt-2">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <x-form.label name="city"/>
-                                            <select class="shadow-sm form-select form-control" name="city">
-                                                <option selected disabled>Select</option>
-                                                <option {{ old('city') == "General Santos City" ? 'selected' : '' }}
-                                                value="General Santos City">General Santos City</option>
-                                            </select>
-                                            <x-form.error name="city"/>
+                                            <x-form.input name="city" readonly="true" value="General Santos"/>
                                         </div>
                                         <div class="col-lg-6">
-                                            <x-form.label name="registered_voter"/>
-                                            <select class="shadow-sm form-select form-control" name="registered_voter">
-                                                <option selected disabled>Select</option>
-                                                <option {{ old('registered_voter') == "Yes" ? 'selected' : '' }} value="Yes">Yes</option>
-                                            </select>
-                                            <x-form.error name="registered_voter"/>
+                                            <x-form.input name="registered_voter" readonly="true" value="Yes"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <x-form.label name="years_in_city"/>
-                                                <select class="shadow-sm form-select form-control" name="years_in_city">
-                                                    <option selected disabled>Select</option>
-                                                    <option {{ old('years_in_city') == "1" ? 'selected' : '' }} value="1">1 year</option>
-                                                    <option {{ old('years_in_city') == "2" ? 'selected' : '' }} value="2">2 years</option>
-                                                    <option {{ old('years_in_city') == "3" ? 'selected' : '' }} value="3">3 years</option>
-                                                    <option {{ old('years_in_city') == "4" ? 'selected' : '' }} value="4">4 years</option>
-                                                    <option {{ old('years_in_city') == "5" ? 'selected' : '' }} value="5">5 years</option>
-                                                </select>
-                                                <x-form.error name="years_in_city"/>
+                                                <x-form.input name="years_in_city" readonly="true" value="3"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <x-form.label name="nationality"/>
-                                                <select class="shadow-sm form-select form-control" name="nationality">
-                                                    <option selected disabled>Select</option>
-                                                    <option {{ old('nationality') == "Filipino" ? 'selected' : '' }} value="Filipino">Filipino</option>
-                                                </select>
-                                                <x-form.error name="nationality"/>
+                                                <x-form.input name="nationality" readonly="true" value="Filipino"/>
                                             </div>
                                         </div>
                                     </div>

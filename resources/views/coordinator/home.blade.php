@@ -8,7 +8,7 @@
                             <div class="h5">Activities</div>
                             <hr>
                             <ul class="list-group">
-                                @foreach ($activities as $activity)
+                                @forelse ($activities as $activity)
                                     <li class="list-group-item border-0">
                                         <div class="d-flex">
                                             <div class="h4 fw-bold pt-1">
@@ -25,10 +25,16 @@
                                         </div>
                                     </li>
                                     <hr>
-                                @endforeach
-                                <div class="d-flex justify-content-center mt-3">
-                                    <a href="/activity" class="btn btn-secondary">View All</a>
-                                </div>
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <a href="/activity" class="btn btn-secondary">View All</a>
+                                    </div>
+                                @empty
+                                <li class="list-group-item border-0">
+                                    <div class="h6 pt-1 text-center">
+                                        No activity post yet.
+                                    </div>
+                                </li>
+                                @endforelse
                             </ul>
                         </x-card-primary-border>
                     </div>
@@ -57,7 +63,7 @@
                         <x-card-primary-border>
                             <div class="h6 fw-bold">Scholarship Applications</div>
                             <ul class="list-group border-0">
-                                @foreach ($applications as $application)
+                                @forelse ($applications as $application)
                                     <li class="list-group-item border-0">
                                         {{ $application->batch }}
                                         <span class="float-end fw-bold {{ $application->status === "On-going" ? 'text-success' : text-danger }}">
@@ -65,7 +71,11 @@
                                         </span>
                                         <hr>
                                     </li>
-                                @endforeach
+                                @empty
+                                    <li class="list-group-item border-0 text-center">
+                                        <p>No applications yet.</p>
+                                    </li>
+                                @endforelse
                               </ul>
                         </x-card-primary-border>
                     </div>
@@ -94,13 +104,26 @@
                                                 @php
                                                     back()->with('error', 'Title already exist!');
                                                 @endphp
-                                            <p class="text-danger">{{ $message }}</p>
+                                                <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="text-start">
-                                            <x-form.input name="image" type="file"/>
+                                            <x-form.label name="image"/>
+                                            <input class="shadow-sm form-control" id="image" name="image"
+                                            style="background-color: #fff;" type="file" accept="image/png, image/jpg, image/jpeg">
+
+                                            @error('image')
+                                                @php
+                                                    back()->with('error', 'Invalid format!');
+                                                @endphp
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
+                                            <div class="text-start">
+                                                <p>Format must be: PNG, JPG, JPEG</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +161,7 @@
                                         @php
                                             back()->with('error', 'Invalid format!');
                                         @endphp
-                                    <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
 
                                     <div class="text-start">

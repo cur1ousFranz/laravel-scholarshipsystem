@@ -110,7 +110,11 @@
                                         onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>
-                                    <td><a href="/applicant/evaluation/{{ $list->id }}" target="_blank">100%</a>   </td>
+                                    <td>
+                                        <a href="/applicant/evaluation/{{ $list->id }}" target="_blank">
+                                        {{ $list->ratingReport->rating }}%
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href="/storage/{{ $list->document }}"
                                             target="_blank">View</a>

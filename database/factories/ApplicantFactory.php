@@ -21,8 +21,8 @@ class ApplicantFactory extends Factory
     {
         $gender = ['Male', 'Female'];
         $civil_status = ['Single', 'Married', 'Widowed', 'Divorced'];
-        $nationality = Nationality::all();
-        $education = EducationalAttainment::all();
+        $nationality = ['Yes', 'No'];
+        $education = ['Yes', 'No'];
         $family_income = [8000, 12000, 16000, 20000, 24000];
         $registered_voter = ['Yes', 'No'];
 
@@ -34,8 +34,8 @@ class ApplicantFactory extends Factory
             'age' => rand(16, 30),
             'gender' => $gender[rand(0,1)],
             'civil_status' => $civil_status[rand(0,3)],
-            'nationality' => $nationality[rand(0, 29)]->name,
-            'educational_attainment' => $education[rand(0,9)]->name,
+            'nationality' => $nationality[rand(0,1)],
+            'educational_attainment' => $education[rand(0,1)],
             'years_in_city' => rand(1, 5),
             'family_income' => $family_income[rand(0, 4)],
             'registered_voter' => $registered_voter[rand(0, 1)],

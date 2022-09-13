@@ -31,6 +31,16 @@ class ApplicantList extends Model
 
     public function ratingReport(){
 
-    return $this->hasOne(RatingReport::class, 'applicant_lists_id');
+        return $this->hasOne(RatingReport::class, 'applicant_lists_id');
+    }
+
+    public function qualifiedApplicant(){
+
+        return $this->hasMany(QualifiedApplicant::class, 'applicant_lists_id');
+    }
+
+    public function rejectedApplicant(){
+
+        return $this->hasMany(RejectedApplicant::class, 'applicant_lists_id');
     }
 }

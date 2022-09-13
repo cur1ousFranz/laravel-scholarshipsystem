@@ -18,7 +18,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(DynamicAddressSeeder::class);
         $this->call(SchoolCourseSeeder::class);
-        $this->call(NationalitySeeder::class);
-        $this->call(EducationalAttainmentSeeder::class);
     }
 }

@@ -94,30 +94,31 @@
                                                 <x-form.error name="civil_status"/>
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.label name="nationality"/>
+                                                <x-form.label name="nationality (Filipino)"/>
                                                 <select class="shadow-sm form-select form-control" name="nationality">
                                                     <option selected disabled>Select</option>
-                                                    @foreach ($nationalities as $nationality)
-                                                        <option {{ ($nationality->name === $applicant->nationality) ? 'selected'
-                                                        : ($nationality->name === old('nationality') ? 'selected' : '') }}
-                                                            value="{{  $nationality->name }}">
-                                                            {{  $nationality->name }}
-                                                        </option>
-                                                    @endforeach
+                                                    <option {{ $applicant->nationality == 'Yes' ? 'selected' : '' }}
+                                                        value="Yes">
+                                                        Yes
+                                                    </option>
+                                                    <option {{ $applicant->nationality == 'No' ? 'selected' : '' }}
+                                                        value="No">
+                                                        No
+                                                    </option>
                                                 </select>
                                                 <x-form.error name="nationality"/>
                                             </x-slot>
                                         </x-form.row-col>
 
-                                        <x-form.label class="mt-2" name="educational_attainment"/>
+                                        <x-form.label class="mt-2" name="educational_attainment (College)"/>
                                         <select class="shadow-sm form-select form-control" name="educational_attainment">
                                             <option selected disabled>Select</option>
-                                            @foreach ($educational as $education)
-                                            <option  {{ $applicant->educational_attainment === $education->name ? 'selected'
-                                            : (old('educational_attainment') === $education->name ? 'selected' : '') }}
-                                                value="{{ $education->name }}">{{ $education->name }}
-                                                </option>
-                                            @endforeach
+                                            <option {{ $applicant->educational_attainment == 'Yes' ? 'selected' : '' }} value="Yes">
+                                                Yes
+                                            </option>
+                                            <option {{ $applicant->educational_attainment == 'No' ? 'selected' : '' }} value="No">
+                                                No
+                                            </option>
                                         </select>
                                         <x-form.error name="educational_attainment"/>
 
@@ -164,7 +165,7 @@
                                     </x-slot>
 
                                     <x-slot name="second">
-                                        <x-form.label name="registered_voter"/>
+                                        <x-form.label name="registered_voter (Applicant or Guardian)"/>
                                         <select class="shadow-sm form-select form-control" name="registered_voter">
                                             <option selected disabled>Select</option>
                                             <option
@@ -186,35 +187,41 @@
                                                 <x-form.label name="years_in_city"/>
                                                 <select class="shadow-sm form-select form-control" name="years_in_city">
                                                     <option selected disabled>Select</option>
-                                                    @for ($i = 1; $i <= 5; $i++)
+                                                    @for ($i = 1; $i <= 3; $i++)
                                                         <option
                                                             {{ $applicant->years_in_city == $i ? 'selected'
                                                             : (old('years_in_city') == $i ? 'selected' : '' )}}
-                                                            value="{{ $i }}"> {{ $i }}
+                                                            value="{{ $i }}"> {{ $i }}@if($i == 3)+ @endif
                                                         </option>
                                                     @endfor
                                                 </select>
                                                 <x-form.error name="years_in_city"/>
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.label name="family_income"/>
+                                                <x-form.label name="family_income (Monthly)"/>
                                                 <select class="shadow-sm form-select form-control" name="family_income">
                                                     <option selected disabled>Select</option>
                                                     <option
-                                                        {{ $applicant->family_income == 8000 ? 'selected' : '' }}
-                                                        value="8000">8,000 PHP</option>
+                                                        {{ $applicant->family_income == 'Less than ₱10,957' ? 'selected' : '' }}
+                                                        value="Less than ₱10,957">Less than ₱10,957</option>
                                                     <option
-                                                        {{ $applicant->family_income == 12000 ? 'selected' : '' }}
-                                                        value="12000">12,000 PHP</option>
+                                                        {{ $applicant->family_income == '₱10,957 to ₱21,914' ? 'selected' : '' }}
+                                                        value="₱10,957 to ₱21,914">₱10,957 to ₱21,914</option>
                                                     <option
-                                                        {{ $applicant->family_income == 16000 ? 'selected' : '' }}
-                                                        value="16000">16,000 PHP</option>
+                                                        {{ $applicant->family_income == '₱21,914 to ₱43,828' ? 'selected' : '' }}
+                                                        value="₱21,914 to ₱43,828">₱21,914 to ₱43,828</option>
                                                     <option
-                                                        {{ $applicant->family_income == 20000 ? 'selected' : '' }}
-                                                        value="20000">20,000 PHP</option>
+                                                        {{ $applicant->family_income == '₱43,828 to ₱76,669' ? 'selected' : '' }}
+                                                        value="₱43,828 to ₱76,669">₱43,828 to ₱76,669</option>
                                                     <option
-                                                        {{ $applicant->family_income == 24000 ? 'selected' : '' }}
-                                                        value="24000">24,000 PHP</option>
+                                                        {{ $applicant->family_income == '₱76,669 to ₱131,484' ? 'selected' : '' }}
+                                                        value="₱76,669 to ₱131,484">₱76,669 to ₱131,484</option>
+                                                    <option
+                                                        {{ $applicant->family_income == '₱131,483 to ₱219,140' ? 'selected' : '' }}
+                                                        value="₱131,483 to ₱219,140">₱131,483 to ₱219,140</option>
+                                                    <option
+                                                        {{ $applicant->family_income == '₱219,140 and above' ? 'selected' : '' }}
+                                                        value="₱219,140 and above">₱219,140 and above</option>
                                                 </select>
                                                 <x-form.error name="family_income"/>
                                             </x-slot>

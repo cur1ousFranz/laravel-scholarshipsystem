@@ -15,7 +15,7 @@ class ListingApplicantController extends Controller
     public function index(ApplicantList $applicantlist){
 
         return view('coordinator.evaluation', [
-            'applicantlist' => ApplicantList::with('application')->where('id', $applicantlist->id)->first()
+            'applicantlist' => ApplicantList::where('id', $applicantlist->id)->first()
 
         ]);
     }
@@ -32,9 +32,9 @@ class ListingApplicantController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicant = ApplicantList::where(['applicants_id' => $applicantID,
+                        $applicantList = ApplicantList::where(['applicants_id' => $applicantID,
                         'applications_id' => $application->id])->first();
-                        $document = $applicant->document;
+                        $document = $applicantList->document;
 
                         /** Getting the current count of qualified applicants, for validating the slots */
                         $qualifiedApplicantCount = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
@@ -44,6 +44,7 @@ class ListingApplicantController extends Controller
                             $applicant = [
                                 'applications_id' => $application->id,
                                 'applicants_id' => $applicantID,
+                                'applicant_lists_id' => $applicantList->id,
                                 'document' => $document,
                                 'added' => auth()->user()->username
                             ];
@@ -72,13 +73,14 @@ class ListingApplicantController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicant = ApplicantList::where(['applicants_id' => $applicantID,
+                        $applicantList = ApplicantList::where(['applicants_id' => $applicantID,
                         'applications_id' => $application->id])->first();
-                        $document = $applicant->document;
+                        $document = $applicantList->document;
 
                         $applicant = [
                             'applications_id' => $application->id,
                             'applicants_id' => $applicantID,
+                            'applicant_lists_id' => $applicantList->id,
                             'document' => $document,
                             'added' => auth()->user()->username
 

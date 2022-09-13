@@ -21,15 +21,7 @@ class ScholarshipApplicationController extends Controller
             'slots' => 'required',
             'batch' => 'required',
             'end_date' => 'required',
-
             'description' => 'required',
-            'years_in_city' => 'required',
-            'family_income' => 'required',
-            'educational_attainment' => 'required',
-            'gwa' => 'required',
-            'nationality' => 'required',
-            'city' => 'required',
-            'registered_voter' => 'required',
             'documentary_requirement' => ['required', 'mimes:pdf'],
             'application_form' => ['required', 'mimes:pdf']
         ]);
@@ -52,13 +44,13 @@ class ScholarshipApplicationController extends Controller
 
             'applications_id' => $application->id,
             'description' => $formFields['description'],
-            'years_in_city' => $formFields['years_in_city'],
-            'family_income' => $formFields['family_income'],
-            'educational_attainment' => $formFields['educational_attainment'],
-            'gwa' => $formFields['gwa'],
-            'nationality' => $formFields['nationality'],
-            'city' => $formFields['city'],
-            'registered_voter' => $formFields['registered_voter'],
+            'years_in_city' => $request->years_in_city,
+            'family_income' => $request->family_income,
+            'educational_attainment' => $request->educational_attainment,
+            'gwa' => $request->gwa,
+            'nationality' => $request->nationality,
+            'city' => $request->city,
+            'registered_voter' => $request->registered_voter,
             'documentary_requirement' => $formFields['documentary_requirement'],
             'application_form' => $formFields['application_form']
 

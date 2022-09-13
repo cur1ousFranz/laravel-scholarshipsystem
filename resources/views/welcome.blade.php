@@ -69,7 +69,7 @@
     <section>
         <div class="h1 text-center mt-5 fw-bold" style="font-family: Fantasy;">Scholars</div>
         <div class="container slideshow-container">
-            @foreach ($scholars as $scholar)
+            @forelse ($scholars as $scholar)
                 <div class="mySlides fading">
                     <div class="card mb-5">
                         <div class="card-body">
@@ -78,10 +78,14 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                <a class="slider-btn previous" onclick="plusSlides(-1)">❮</a>
+                <a class="slider-btn next" onclick="plusSlides(1)">❯</a>
+            @empty
+                <div class="h4 text-center mt-5">
+                    Nothing to show scholars yet. Please come back later.
+                </div>
+            @endforelse
 
-            <a class="slider-btn previous" onclick="plusSlides(-1)">❮</a>
-            <a class="slider-btn next" onclick="plusSlides(1)">❯</a>
         </div>
     </section>
 
@@ -89,7 +93,7 @@
         <div class="h2 text-center mt-5 fw-bold" style="font-family: Fantasy;">Activities</div>
         <div class="container-fluid mt-4">
             <div class="row d-flex">
-                @foreach ($activities as $activity)
+                @forelse ($activities as $activity)
                     <div class="col-lg-4 d-flex justify-content-center @if(!$loop->first) mt-5 mt-lg-0 @endif">
                         <div class="card position-relative border-0 shadow" style="width: 350px">
                             <a href="/activity/{{ $activity->slug }}">
@@ -113,12 +117,16 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="row">
-                <div class="d-flex justify-content-center mt-5">
-                    <a href="/activity" class="btn btn-secondary">View All</a>
-                </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-center mt-5">
+                            <a href="/activity" class="btn btn-secondary">View All</a>
+                        </div>
+                    </div>
+                @empty
+                    <div class="h4 text-center mt-5">
+                        Nothing to show activities yet. Please come back later.
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

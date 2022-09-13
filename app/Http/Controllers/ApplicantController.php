@@ -40,8 +40,6 @@ class ApplicantController extends Controller
             'applicant' => $this->getApplicant(),
             'school_list' => $school_list,
             'dynamic_address' => $dynamic_address,
-            'nationalities' => Nationality::all(),
-            'educational' => EducationalAttainment::all(),
         ]);
     }
 

@@ -91,6 +91,7 @@
                 <x-table.table>
                     <thead class="text-center text-dark" id="applicantListHeader">
                         <tr>
+                            <x-table.th class="bg-light">Rating</x-table.th>
                             <x-table.th class="bg-light">Document</x-table.th>
                             <x-table.th>First Name</x-table.th>
                             <x-table.th>Middle Name</x-table.th>
@@ -121,12 +122,13 @@
                     <tbody class="text-center" id="applicantListHeader">
                         @forelse ($rejectedApplicantList as $list)
                             <tr class="tbl-row">
-                                <td class="d-flex">
-                                    <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        title="Added by: {{ $list->added }}">
-                                        <i class="bi bi-gear-fill"></i>
-                                    </p>
-                                    <a class="text-decoration-none ms-2" href="/storage/{{ $list->document }}"
+                                <td>
+                                    <a href="/applicant/evaluation/{{ $list->applicant_lists_id }}" target="_blank">
+                                    {{ $list->applicantList->ratingReport->rating }}%
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/storage/{{ $list->document }}"
                                         target="_blank">View</a>
                                 </td>
                                 <td>{{ $list->applicant->first()->first_name }}</td>

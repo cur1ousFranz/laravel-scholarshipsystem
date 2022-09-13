@@ -37,7 +37,7 @@ class NotificationController extends Controller
 
             $mail->isHTML(true);
             $mail->Subject = $title;
-            $mail->Body    = '<p>' . $body . '</p';
+            $mail->Body = $body;
 
             foreach($applicants as $applicant){
                 $mail->addAddress($applicant->contact->email);
