@@ -85,7 +85,6 @@
                     Nothing to show scholars yet. Please come back later.
                 </div>
             @endforelse
-
         </div>
     </section>
 
@@ -93,40 +92,42 @@
         <div class="h2 text-center mt-5 fw-bold" style="font-family: Fantasy;">Activities</div>
         <div class="container-fluid mt-4">
             <div class="row d-flex">
-                @forelse ($activities as $activity)
-                    <div class="col-lg-4 d-flex justify-content-center @if(!$loop->first) mt-5 mt-lg-0 @endif">
-                        <div class="card position-relative border-0 shadow" style="width: 350px">
-                            <a href="/activity/{{ $activity->slug }}">
-                                <img class="card-img-top" src="{{ asset('storage/' . $activity->image) }}" alt="Card image cap">
-                            </a>
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <div class="h6">{{ strtoupper(date('F j, Y', strtotime($activity->created_at ))) }}</div>
-                                    <div class="h5">
-                                        <a class="fw-bold text-muted text-decoration-none" href="/activity/{{ $activity->slug }}">
-                                            {{ $activity->title }}
-                                        </a>
+                @if (!$activities->isEmpty())
+                    @foreach ($activities as $activity)
+                        <div class="col-lg-4 d-flex justify-content-center @if(!$loop->first) mt-5 mt-lg-0 @endif">
+                            <div class="card position-relative border-0 shadow" style="width: 350px">
+                                <a href="/activity/{{ $activity->slug }}">
+                                    <img class="card-img-top" src="{{ asset('storage/' . $activity->image) }}" alt="Card image cap">
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div class="h6">{{ strtoupper(date('F j, Y', strtotime($activity->created_at ))) }}</div>
+                                        <div class="h5">
+                                            <a class="fw-bold text-muted text-decoration-none" href="/activity/{{ $activity->slug }}">
+                                                {{ $activity->title }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="cut-text">
+                                        <p class="card-text">{!! $activity->body !!}</p>
                                     </div>
                                 </div>
-                                <div class="cut-text">
-                                    <p class="card-text">{!! $activity->body !!}</p>
+                                <div class="container mb-3">
+                                    <a href="/activity/{{ $activity->slug }}" class="btn btn-secondary float-end">Read more</a>
                                 </div>
                             </div>
-                            <div class="container mb-3">
-                                <a href="/activity/{{ $activity->slug }}" class="btn btn-secondary float-end">Read more</a>
-                            </div>
                         </div>
-                    </div>
+                    @endforeach
                     <div class="row">
                         <div class="d-flex justify-content-center mt-5">
                             <a href="/activity" class="btn btn-secondary">View All</a>
                         </div>
                     </div>
-                @empty
+                @else
                     <div class="h4 text-center mt-5">
                         Nothing to show activities yet. Please come back later.
                     </div>
-                @endforelse
+                @endif
             </div>
         </div>
     </section>

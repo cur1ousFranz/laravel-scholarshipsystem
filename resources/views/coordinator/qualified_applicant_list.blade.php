@@ -37,19 +37,35 @@
 
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="text-start">
-                                                            <x-form.input name="title" maxlength="15"/>
-                                                        </div>
+                                                    <div class="col-6 text-start">
+                                                        <x-form.label name="title"/>
+                                                        <input class="shadow-sm form-control" id="title" name="title"
+                                                        style="background-color: #fff;"
+                                                        autocomplete="off" value="{{ old('title') }}"
+                                                        maxlength="15">
+
+                                                        @error('title')
+                                                            @php
+                                                                back()->with('error', 'Provide all fields!');
+                                                            @endphp
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="text-start mt-2">
                                                     <x-form.label name="message"/>
-                                                    <textarea class="form-control shadow-sm" name="message" id="editor"></textarea>
+                                                    <textarea class="form-control shadow-sm" name="message" id="editor">{{ old('message') }}</textarea>
+
+                                                    @error('message')
+                                                        @php
+                                                            back()->with('error', 'Provide all fields!');
+                                                        @endphp
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="text-start ms-3 text-muted">
-                                                <p>Note: This announcement will automatically send to all qualified applicants in this batch through notification.</p>
+                                                <p>Note: This announcement will automatically send to all qualified applicants in this batch through notification and email.</p>
                                             </div>
                                             <div class="modal-footer d-flex justify-content-end">
                                                 <x-form.button class="btn-outline-secondary" type="button" data-bs-dismiss="modal">Cancel</x-form.button>

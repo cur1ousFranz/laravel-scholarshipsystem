@@ -1,13 +1,13 @@
-<x-layout title="Rating Evaluation">
+<x-layout title="Summary Evaluation">
     <section>
         <x-container class="w-75">
             <div class="row">
-                <h4 class="mt-2">Applicant Evaluation</h4>
+                <h4 class="mt-2">Summary</h4>
             </div>
             <x-table.table>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <div class="h5 mt-1 mb-1 fw-bold">Phase 1</div>
+                        <div class="h5 mt-1 mb-1 fw-bold">Pre evaluation</div>
                     </td>
                 </tr>
                 <tr>
@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <div class="h5 mt-1 mb-1 fw-bold">Phase 2</div>
+                        <div class="h5 mt-1 mb-1 fw-bold">&nbsp;</div>
                     </td>
                 </tr>
                 <tr>

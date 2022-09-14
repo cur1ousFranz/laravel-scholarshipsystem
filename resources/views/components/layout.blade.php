@@ -199,11 +199,11 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         @if (auth()->user()->role == 'applicant')
-                            <li class="nav-item mt-lg-1">
+                            {{-- <li class="nav-item mt-lg-1">
                                 <a class="nav-link text-dark d-flex justify-content-center" href="/">
                                     <i class="bi bi-house-door" style="font-size: 18px"></i>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item mt-lg-1">
 
@@ -334,7 +334,7 @@
                     <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="authenticate" method="POST">
+                    <form action="/authenticate" method="POST">
                         @csrf
 
                         <div class="container">
@@ -354,7 +354,7 @@
             <div style="margin-top: 80px"
             class="alert alert-success w-25"
             x-data="{show: true}"
-            x-init="setTimeout(() => show = false, 3000)"
+            x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
                 <p> {{ session('success') }}</p>
             </div>
@@ -366,7 +366,7 @@
             <div style="margin-top: 80px"
             class="alert alert-danger w-25 top-0 position-static"
             x-data="{show: true}"
-            x-init="setTimeout(() => show = false, 3000)"
+            x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
                 <p> {{ session('error') }}</p>
             </div>

@@ -6,47 +6,28 @@ use App\Models\User;
 use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
-use PHPMailer\PHPMailer\SMTP;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Support\Facades\DB;
-use PHPMailer\PHPMailer\Exception;
 
-use PHPMailer\PHPMailer\PHPMailer;
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\ApplicantNotification;
 use Illuminate\Support\Facades\Notification;
-
-require 'PHPMailer/vendor/autoload.php';
 
 class NotificationController extends Controller
 {
 
     protected function sendMail($title, $body, $applicants)
     {
-        try{
-            $mail = new PHPMailer(true);
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->isSMTP();
-            $mail->Host       = config('mail.mailers.smtp.host');
-            $mail->SMTPAuth   = true;
-            $mail->Username   = config('mail.mailers.smtp.username');
-            $mail->Password   = config('mail.mailers.smtp.password');
-            $mail->SMTPSecure = config('mail.mailers.smtp.encryption');
-            $mail->Port       = config('mail.mailers.smtp.port');
-            $mail->setFrom(config('mail.mailers.smtp.username'), 'Edukar Scholarship');
+        $data = array('body' => $body);
 
-            $mail->isHTML(true);
-            $mail->Subject = $title;
-            $mail->Body = $body;
+        foreach($applicants as $applicant){
 
-            foreach($applicants as $applicant){
-                $mail->addAddress($applicant->contact->email);
-            }
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            Mail::send('email.email-content', $data, function($message) use ($applicant, $title){
+
+                $message->to($applicant->contact->email)->subject($title);
+            });
         }
-
-        $mail->send();
 
     }
 
@@ -66,10 +47,10 @@ class NotificationController extends Controller
      */
     public function storeQualified(Request $request, Application $application){
 
-        $formFields = [
-            'title'=> $request->title,
-            'message' => $request->message
-        ];
+        $formFields = $request->validate([
+            'title'=> 'required',
+            'message' => 'required'
+        ]);
 
         /**  Get all applicants that belongs to qualified table
          *   according to the current application id
@@ -122,7 +103,6 @@ class NotificationController extends Controller
         }
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
-
         $this->sendMail($request->title, $request->message, $applicants);
 
         return back()->with('success', 'Announcement sent successfully!');
@@ -134,10 +114,10 @@ class NotificationController extends Controller
      */
     public function storeRejected(Request $request, Application $application){
 
-        $formFields = [
-            'title'=> $request->title,
-            'message' => $request->message
-        ];
+        $formFields = $request->validate([
+            'title'=> 'required',
+            'message' => 'required'
+        ]);
 
         /**  Get all applicants that belongs to rejected table
          *   according to the current application id

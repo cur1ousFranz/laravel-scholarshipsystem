@@ -8,33 +8,35 @@
                             <div class="h5">Activities</div>
                             <hr>
                             <ul class="list-group">
-                                @forelse ($activities as $activity)
-                                    <li class="list-group-item border-0">
-                                        <div class="d-flex">
-                                            <div class="h4 fw-bold pt-1">
-                                                <span class="text-muted me-2">{{ strtoupper(date('j F', strtotime($activity->created_at ))) }}</span>
-                                                {{ strtoupper($activity->title) }}
-                                            </div>
+                                @if (!$activities->isEmpty())
+                                    @foreach ($activities as $activity)
+                                        <li class="list-group-item border-0">
+                                            <div class="d-flex">
+                                                <div class="h4 fw-bold pt-1">
+                                                    <span class="text-muted me-2">{{ strtoupper(date('j F', strtotime($activity->created_at ))) }}</span>
+                                                    {{ strtoupper($activity->title) }}
+                                                </div>
 
-                                        </div>
-                                        <div class="cut-text">
-                                            {!! $activity->body !!}
-                                        </div>
-                                        <div class="mb-2 mt-3">
-                                            <a class="btn btn-primary float-end" href="/activity/{{ $activity->slug }}">Read more</a>
-                                        </div>
-                                    </li>
-                                    <hr>
+                                            </div>
+                                            <div class="cut-text">
+                                                {!! $activity->body !!}
+                                            </div>
+                                            <div class="mb-2 mt-3">
+                                                <a class="btn btn-primary float-end" href="/activity/{{ $activity->slug }}">Read more</a>
+                                            </div>
+                                        </li>
+                                        <hr>
+                                    @endforeach
                                     <div class="d-flex justify-content-center mt-3">
                                         <a href="/activity" class="btn btn-secondary">View All</a>
                                     </div>
-                                @empty
-                                <li class="list-group-item border-0">
-                                    <div class="h6 pt-1 text-center">
-                                        No activity post yet.
-                                    </div>
-                                </li>
-                                @endforelse
+                                @else
+                                    <li class="list-group-item border-0">
+                                        <div class="h6 pt-1 text-center">
+                                            No activity post yet.
+                                        </div>
+                                    </li>
+                                @endif
                             </ul>
                         </x-card-primary-border>
                     </div>
