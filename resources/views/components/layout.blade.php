@@ -178,21 +178,25 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom" style="background-color: #fffcff">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom"
+    style="background-color: #fffcff">
         <div class="container ">
             @if (Auth::check() || Auth::guest())
                 @if (Auth::check() && auth()->user()->role === 'coordinator')
-                    <a class="navbar-brand lead" href="/home" style="font-family: Arial, Helvetica, sans-serif">
+                    <a class="navbar-brand lead" href="/home"
+                    style="font-family: Arial, Helvetica, sans-serif">
                         EDUKAR SCHOLARSHIP
                     </a>
                 @else
-                    <a class="navbar-brand lead" href="/" style="font-family: Arial, Helvetica, sans-serif">
+                    <a class="navbar-brand lead" href="/"
+                    style="font-family: Arial, Helvetica, sans-serif">
                         EDUKAR SCHOLARSHIP
                     </a>
                 @endif
             @endif
 
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <button type="button" class="navbar-toggler"
+            data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <i class="bi bi-list"></i>
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
@@ -208,7 +212,8 @@
                             <li class="nav-item mt-lg-1">
 
                                 <div class="dropdown show">
-                                    <a class="btn nav-link text-dark position-relative" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    <a class="btn nav-link text-dark position-relative"
+                                    role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                         <i class="bi bi-bell" style="font-size: 18px">
                                         </i>
                                         @if (auth()->user()->unreadNotifications->count())
@@ -218,13 +223,15 @@
                                         @endif
                                     </a>
 
-                                    <div class="dropdown-menu text-center p-0" aria-labelledby="dropdownMenuLink" style="max-height: 275px; overflow-y: auto">
+                                    <div class="dropdown-menu text-center p-0 position-absolute"
+                                    style="max-height: 275px; width: 200px; overflow-y: auto">
                                         <h5 class="fw-bold mt-2">Notifications</h5>
-                                        <ul class="list-group" size="5">
+                                        <ul class="list-group">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notifications)
                                                     <li class="list-group-item border-0">
-                                                        <a class="text-decoration-none text-dark dropdown-item" href="/notifications/{{ $notifications->id }}">
+                                                        <a class="text-decoration-none text-dark dropdown-item"
+                                                        href="/notifications/{{ $notifications->id }}">
                                                             <div class="row">
                                                                 <div class="col-6">
                                                                     {{ $notifications->data['title'] }}
@@ -241,13 +248,13 @@
                                                     </li>
                                                 @endforeach
                                                 @foreach ( auth()->user()->readNotifications as $notifications )
-                                                    <li class="list-group-item border-0">
+                                                    <li class="list-group-item border-0 @if($loop->last) mb-2 @endif">
                                                         <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
                                                             {{ $notifications->data['title'] }}
+                                                            <p class="p-0 m-0 text-end" style="font-size: 11px">
+                                                                {{ $notifications->created_at->diffForHumans() }}
+                                                            </p>
                                                         </a>
-                                                        <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                            {{ $notifications->created_at->diffForHumans() }}
-                                                        </p>
                                                     </li>
                                                 @endforeach
                                             @else
@@ -263,11 +270,11 @@
                             <li class="nav-item mt-lg-1">
 
                                 <div class="dropdown show">
-                                    <a class="btn nav-link text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    <a class="btn nav-link text-dark" data-bs-toggle="dropdown">
                                         {{ auth()->user()->username }}
                                         <i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
-                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-menu text-center position-absolute">
                                         <a class="dropdown-item" href="/profile">Profile</a>
                                         <div class="dropdown-divider"></div>
                                         <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
@@ -288,10 +295,10 @@
                             </li>
                             <li class="nav-item">
                                 <div class="dropdown show text-center">
-                                    <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    <a class="btn text-dark" data-bs-toggle="dropdown">
                                         Applicant
                                     </a>
-                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-menu text-center">
                                         <a class="dropdown-item" href="/qualified">Qualified Applicants</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/rejected">Rejected Applicants</a>
@@ -300,10 +307,10 @@
                             </li>
                             <li class="nav-item">
                                 <div class="dropdown show text-center">
-                                    <a class="btn text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                    <a class="btn text-dark" data-bs-toggle="dropdown">
                                         {{ auth()->user()->username }}
                                     </a>
-                                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-menu text-center">
                                         {{-- <a class="dropdown-item" href="#">Profile</a>
                                         <div class="dropdown-divider"></div> --}}
                                         <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="/logout">
@@ -327,11 +334,11 @@
         </div>
     </nav>
 
-    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="signinModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content border" style="max-width: 450px">
                 <div class="modal-header d-flex justify-content-center">
-                    <h2 class="modal-title" id="exampleModalCenterTitle">Sign in</h2>
+                    <h2 class="modal-title">Sign in</h2>
                 </div>
                 <div class="modal-body">
                     <form action="/authenticate" method="POST">

@@ -1,3 +1,3 @@
-<span class="badge bg-success">
+<span {{ $attributes->merge(['class' => 'badge bg-success' ]) }}>
     {{ $slot }}
 </span>

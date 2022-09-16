@@ -2,7 +2,127 @@
     <section>
         <x-container class="w-75">
             <div class="row">
-                <h4 class="mt-2">Summary</h4>
+                <div class="col-lg d-flex">
+                    <h4 class="mt-2">Summary</h4>
+                    <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
+                        <i class="bi bi-info-circle"></i>
+                    </p>
+                </div>
+
+                <div class="modal fade" id="infoModal">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-info-circle"></i>
+                                    Pre evaluation
+                                </h5>
+                                <button type="button" class="close border-0 float-start" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-light" style="max-height: 500px; overflow-y: auto">
+                              <x-table.table>
+                                <tr class="text-center">
+                                    <td>Educational Attainment (College)</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td >Nationality (Filipino)</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td>Registered Voter (Applicant or Guardian)</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td>City</td>
+                                    <td>General Santos</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <div class="h5 mt-1 mb-1 fw-bold">&nbsp;</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">No. years in city (3 years or more)</td>
+                                    <td>
+                                        <ul class="list-group border-0">
+                                            <li class="list-group-item border-0">
+                                                3 years and above
+                                                <x-evaluation.badge-success class="float-end mt-1">15%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                2 years
+                                                <x-evaluation.badge-success class="float-end mt-1">7%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                1 year and below
+                                                <x-evaluation.badge-success class="float-end mt-1">3%</x-evaluation.badge-success>
+                                            </li>
+                                          </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">General Weighted Average</td>
+                                    <td>
+                                        <ul class="list-group border-0">
+                                            <li class="list-group-item border-0">
+                                                80 and above
+                                                <x-evaluation.badge-success class="float-end mt-1">35%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                79 - 75
+                                                <x-evaluation.badge-success class="float-end mt-1">17%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                74 and below
+                                                <x-evaluation.badge-success class="float-end mt-1">8%</x-evaluation.badge-success>
+                                            </li>
+                                          </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">Family Income</td>
+                                    <td>
+                                        <ul class="list-group border-0">
+                                            <li class="list-group-item border-0">
+                                                Less than ₱10,957
+                                                <x-evaluation.badge-success class="float-end mt-1">50%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱10,957 to ₱21,194
+                                                <x-evaluation.badge-success class="float-end mt-1">42%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱21,194 to ₱43,828
+                                                <x-evaluation.badge-success class="float-end mt-1">35%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱43,828 to ₱76,669
+                                                <x-evaluation.badge-success class="float-end mt-1">28%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱76,669 to ₱131,484
+                                                <x-evaluation.badge-success class="float-end mt-1">21%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱131,484 to ₱219,140
+                                                <x-evaluation.badge-success class="float-end mt-1">14%</x-evaluation.badge-success>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                ₱219,140 and above
+                                                <x-evaluation.badge-success class="float-end mt-1">7%</x-evaluation.badge-success>
+                                            </li>
+                                          </ul>
+                                    </td>
+                                </tr>
+                              </x-table.table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <x-table.table>
                 <tr>
@@ -101,7 +221,7 @@
                 </tr>
                 <tr>
                     <td class="text-center h6">
-                        No. years in city (3 years or more)
+                        No. years in city (3 years and above)
                     </td>
                     <td>
                         @if ($applicantlist->applicant->first()->years_in_city == 1 && $applicantlist->ratingReport->rating != 0)
