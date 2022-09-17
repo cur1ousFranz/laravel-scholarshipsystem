@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ActivityController extends Controller

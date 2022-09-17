@@ -92,8 +92,8 @@ class CoordinatorController extends Controller
             // 'applicantFamilyIncome' => $applicantFamilyIncome,
 
             'totalApplicants' => Applicant::without('school', 'address', 'contact')->get(),
-            'totalApplications' => Application::get(),
-            'totalSubmissions' => ApplicantList::get()
+            'totalApplications' => Application::all(),
+            'totalSubmissions' => ApplicantList::all()
         ]);
 
     }

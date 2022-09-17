@@ -159,7 +159,7 @@
                                             </x-slot>
                                             <x-slot name="second">
                                                 <x-form.input name="gwa" :value="old('gwa', $applicant->gwa)"
-                                                    onkeypress="return /[0-9.]/i.test(event.key)" maxlength="5" min="70" max="99"/>
+                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2" min="70" max="99"/>
                                             </x-slot>
                                         </x-form.row-col>
                                     </x-slot>
@@ -205,11 +205,11 @@
                                                         {{ $applicant->family_income == 'Less than ₱10,957' ? 'selected' : '' }}
                                                         value="Less than ₱10,957">Less than ₱10,957</option>
                                                     <option
-                                                        {{ $applicant->family_income == '₱10,957 to ₱21,914' ? 'selected' : '' }}
-                                                        value="₱10,957 to ₱21,914">₱10,957 to ₱21,914</option>
+                                                        {{ $applicant->family_income == '₱10,957 to ₱21,194' ? 'selected' : '' }}
+                                                        value="₱10,957 to ₱21,194">₱10,957 to ₱21,194</option>
                                                     <option
-                                                        {{ $applicant->family_income == '₱21,914 to ₱43,828' ? 'selected' : '' }}
-                                                        value="₱21,914 to ₱43,828">₱21,914 to ₱43,828</option>
+                                                        {{ $applicant->family_income == '₱21,194 to ₱43,828' ? 'selected' : '' }}
+                                                        value="₱21,194 to ₱43,828">₱21,194 to ₱43,828</option>
                                                     <option
                                                         {{ $applicant->family_income == '₱43,828 to ₱76,669' ? 'selected' : '' }}
                                                         value="₱43,828 to ₱76,669">₱43,828 to ₱76,669</option>
@@ -217,8 +217,8 @@
                                                         {{ $applicant->family_income == '₱76,669 to ₱131,484' ? 'selected' : '' }}
                                                         value="₱76,669 to ₱131,484">₱76,669 to ₱131,484</option>
                                                     <option
-                                                        {{ $applicant->family_income == '₱131,483 to ₱219,140' ? 'selected' : '' }}
-                                                        value="₱131,483 to ₱219,140">₱131,483 to ₱219,140</option>
+                                                        {{ $applicant->family_income == '₱131,484 to ₱219,140' ? 'selected' : '' }}
+                                                        value="₱131,484 to ₱219,140">₱131,484 to ₱219,140</option>
                                                     <option
                                                         {{ $applicant->family_income == '₱219,140 and above' ? 'selected' : '' }}
                                                         value="₱219,140 and above">₱219,140 and above</option>

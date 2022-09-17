@@ -135,7 +135,6 @@
                             <x-table.th>GWA</x-table.th>
                         </tr>
                     </thead>
-                    {{-- RETRIEVING APPLICANT DATA ACCORDING TO ITS CURRENT ID IN LOOP --}}
                     <tbody class="text-center" id="applicantListHeader">
                         @forelse ($qualifiedApplicantList as $list)
                             <tr class="tbl-row">
@@ -145,10 +144,6 @@
                                     </a>
                                 </td>
                                 <td>
-                                    {{-- <p style="font-size: 11px;" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Added by: {{ $list->added }}">
-                                    <i class="bi bi-gear-fill"></i>
-                                    </p> --}}
                                     <a href="/storage/{{ $list->document }}"
                                         target="_blank">View
                                     </a>

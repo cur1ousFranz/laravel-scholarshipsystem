@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\School;
-use App\Models\Address;
-use App\Models\Contact;
 use App\Models\Applicant;
-use App\Models\EducationalAttainment;
-use App\Models\Nationality;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +42,6 @@ class ApplicantController extends Controller
     {
         $formFields = request()->validate([
             'first_name' => 'required',
-            // 'middle_name' => 'required',
             'last_name' => 'required',
             'age' => 'required',
             'gender' => 'required',
@@ -77,7 +71,7 @@ class ApplicantController extends Controller
 
         ]);
 
-        Applicant::where('id', $this->getApplicant()->id)->update([
+        $this->getApplicant()->update([
 
             'first_name' => ucwords(strtolower($formFields['first_name'])),
             'middle_name' => request()->has('middle_name') ? ucwords(strtolower(request('middle_name'))) : NULL,
@@ -93,16 +87,14 @@ class ApplicantController extends Controller
             'gwa' => $formFields['gwa'],
         ]);
 
-        School::where('applicants_id', $this->getApplicant()->id)->update([
-
+        $this->getApplicant()->school()->update([
             'desired_school' => $formFields['desired_school'],
             'course_name' => $formFields['course_name'],
             'hei_type' => $formFields['hei_type'],
             'school_last_attended' => ucwords(strtolower($formFields['school_last_attended'])),
         ]);
 
-        Address::where('applicants_id', $this->getApplicant()->id)->update([
-
+        $this->getApplicant()->address()->update([
             'country' => $formFields['country'],
             'province' => $formFields['province'],
             'city' => $formFields['city'],
@@ -112,8 +104,7 @@ class ApplicantController extends Controller
             'zipcode' => $formFields['zipcode'],
         ]);
 
-        Contact::where('applicants_id', $this->getApplicant()->id)->update([
-
+        $this->getApplicant()->contact()->update([
             'contact_number' => $formFields['contact_number'],
             'email' => $formFields['email'],
         ]);

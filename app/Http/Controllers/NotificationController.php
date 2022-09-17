@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ApplicantNotification;
 use Illuminate\Support\Facades\Notification;
@@ -25,7 +23,7 @@ class NotificationController extends Controller
 
             Mail::send('email.email-content', $data, function($message) use ($applicant, $title){
 
-                $message->to($applicant->contact->email)->subject($title);
+                $message->to($applicant->first()->contact->email)->subject($title);
             });
         }
 
@@ -55,7 +53,7 @@ class NotificationController extends Controller
         /**  Get all applicants that belongs to qualified table
          *   according to the current application id
          */
-        $qualifiedApplicants = QualifiedApplicant::where(
+        $qualifiedApplicants = QualifiedApplicant::with('applicant')->where(
             'applications_id', $application->id)->latest()->get();
 
         /**
@@ -63,19 +61,20 @@ class NotificationController extends Controller
          * applicant list, and store it to an array
          */
         $applicants = array();
-        foreach($qualifiedApplicants as $applicant){
+        foreach($qualifiedApplicants as $list){
 
-            $applicants[] = Applicant::where('id', $applicant->applicants_id)->first();
+            $applicants[] = $list->applicant;
         }
-
         /**
          * Looping through applicant list and store their users_id
          * to an array
          */
+
         $applicantsID = array();
         foreach($applicants as $applicant){
-            $applicantsID[] = $applicant->users_id;
+            $applicantsID[] = $applicant->first()->users_id;
         }
+
 
         /**
          * Getting all the users from Users table and looping on it.
@@ -97,9 +96,9 @@ class NotificationController extends Controller
          * applicantNotifs array
          */
         $users = array();
-        foreach($applicantNotif as $applicantNotifs){
+        foreach($applicantNotif as $id){
 
-            $users[] = User::where('id', $applicantNotifs)->first();
+            $users[] = User::where('id', $id)->first();
         }
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
@@ -130,9 +129,8 @@ class NotificationController extends Controller
          * applicant list, and store it to an array
          */
         $applicants = array();
-        foreach($rejectedApplicantList as $rejectedApplicantLists){
-
-            $applicants[] = Applicant::where('id', $rejectedApplicantLists->applicants_id)->first();
+        foreach($rejectedApplicantList as $list){
+            $applicants[] = $list->applicant;
         }
 
         /**
@@ -141,7 +139,7 @@ class NotificationController extends Controller
          */
         $applicantsID = array();
         foreach($applicants as $applicant){
-            $applicantsID[] = $applicant->users_id;
+            $applicantsID[] = $applicant->first()->users_id;
         }
 
         /**
@@ -164,9 +162,9 @@ class NotificationController extends Controller
          * applicantNotifs array
          */
         $users = array();
-        foreach($applicantNotif as $applicantNotifs){
+        foreach($applicantNotif as $id){
 
-            $users[] = User::where('id', $applicantNotifs)->first();
+            $users[] = User::where('id', $id)->first();
         }
 
         Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));

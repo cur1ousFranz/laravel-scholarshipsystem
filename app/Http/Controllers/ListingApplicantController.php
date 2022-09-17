@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\ApplicantList;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
-use Illuminate\Support\Facades\Redirect;
 
 class ListingApplicantController extends Controller
 {
@@ -34,39 +33,31 @@ class ListingApplicantController extends Controller
 
                         $applicantList = ApplicantList::where(['applicants_id' => $applicantID,
                         'applications_id' => $application->id])->first();
-                        $document = $applicantList->document;
 
                         /** Getting the current count of qualified applicants, for validating the slots */
-                        $qualifiedApplicantCount = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
+                        $count = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
 
                         // Validating if there is slot available
-                        if($qualifiedApplicantCount < $application->slots){
+                        if($count < $application->slots){
                             $applicant = [
                                 'applications_id' => $application->id,
                                 'applicants_id' => $applicantID,
                                 'applicant_lists_id' => $applicantList->id,
-                                'document' => $document,
+                                'document' => $applicantList->document,
                                 'added' => auth()->user()->username
                             ];
 
-                            // Adding to Qualified Applicant
                             QualifiedApplicant::create($applicant);
-
-                            // Setting the applicant review to Yes
-                            ApplicantList::where('applicants_id', $applicantID)->update([
-
-                                'review' => 'Yes'
-                            ]);
+                            $applicantList->update(['review' => 'Yes']);
 
                         }else{
 
-                            Application::where('id', $application->id)->update(['status' => 'Closed']);
+                            $application->update(['status' => 'Closed']);
                             return back()->with('error', 'No more slots available!');
                         }
 
                     }
                     return back()->with('success', 'Added to qualified successfully!');
-
                     break;
 
                 case 'rejected':
@@ -75,32 +66,25 @@ class ListingApplicantController extends Controller
 
                         $applicantList = ApplicantList::where(['applicants_id' => $applicantID,
                         'applications_id' => $application->id])->first();
-                        $document = $applicantList->document;
 
                         $applicant = [
                             'applications_id' => $application->id,
                             'applicants_id' => $applicantID,
                             'applicant_lists_id' => $applicantList->id,
-                            'document' => $document,
+                            'document' => $applicantList->document,
                             'added' => auth()->user()->username
 
-                            ];
+                        ];
 
                         RejectedApplicant::create($applicant);
-
-                        // Setting the applicant review to Yes
-                        ApplicantList::where('applicants_id', $applicantID)->update([
-
-                            'review' => 'Yes'
-                        ]);
+                        $applicantList->update(['review' => 'Yes']);
                     }
-                    return back()->with('success', 'Added to rejected successfully!');
 
+                    return back()->with('success', 'Added to rejected successfully!');
                     break;
             }
         } else {
-            return Redirect::back()->with('error', 'No applicants selected!');
-            // return back()->with('error', 'No applicants selected!');
+            return back()->with('error', 'No applicants selected!');
         }
     }
 }

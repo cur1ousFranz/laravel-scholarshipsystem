@@ -17,6 +17,7 @@ class ApplicantList extends Model
         'applications_id',
         'applicants_id',
         'document',
+        'review',
     ];
 
     public function applicant(){

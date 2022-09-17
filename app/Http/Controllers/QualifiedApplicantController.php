@@ -27,7 +27,7 @@ class QualifiedApplicantController extends Controller
     public function show(Application $application){
 
         // Getting all qualified applicants and fetching data for search query
-        $qualifiedApplicantList = QualifiedApplicant::with('applicant', 'application')
+        $qualifiedApplicantList = QualifiedApplicant::with('applicant', 'application', 'applicantList')
         ->where('applications_id', $application->id)
         ->latest()
         ->paginate(10);

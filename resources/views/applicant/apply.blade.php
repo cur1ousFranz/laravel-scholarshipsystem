@@ -10,7 +10,7 @@
                     <div class="container mt-4 mb-4">
                         <div class="container">
                             <h4 class="mb-4">Description</h4>
-                            {!! $applicationDetail->description !!}
+                            {!! $application->applicationDetail->description !!}
                         </div>
                         <hr class="mt-5">
                     </div>
@@ -50,7 +50,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->documentary_requirement }}"
+                                <a href="/storage/{{ $application->applicationDetail->documentary_requirement }}"
                                     class="btn btn-outline-success form-control" target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $applicationDetail->application_form }}" class="btn btn-outline-success form-control"
+                                <a href="/storage/{{ $application->applicationDetail->application_form }}" class="btn btn-outline-success form-control"
                                     target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
@@ -88,68 +88,26 @@
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
                                 {{-- CHECKING IF THE USER IS ALREADY APPLIED TO CURRENT APPLICATION.
                                     IT WILL DISABLE THE UPLOAD BUTTON IF ITS TRUE --}}
-                                <?php
-                                    if ($application) {
-                                        $isApplied = false;
+                                @if ($application)
+                                    @php
+                                        $exist = $application->applicantList
+                                        ->where('applicants_id', $applicant->id);
+                                    @endphp
 
-                                        // Validating if applicant is exist in ApplicantList
-                                        $applicantList = App\Models\ApplicantList::where([
-                                            'applications_id' => $application->id,
-                                            'applicants_id' => $applicant->id
-                                        ])->exists();
-
-                                        // Validating if applicant is exist in QualifiedApplicant list
-                                        $qualifiedList = App\Models\QualifiedApplicant::where([
-                                            'applications_id' => $application->id,
-                                            'applicants_id' => $applicant->id
-                                        ])->exists();
-
-                                        // Validating if applicant is exist in RejectedApplicant list
-                                        $rejectedList = App\Models\RejectedApplicant::where([
-                                            'applications_id' => $application->id,
-                                            'applicants_id' => $applicant->id
-                                        ])->exists();
-
-
-                                        if($applicantList || $qualifiedList || $rejectedList){
-
-                                            $isApplied = true;
-                                        }
-
-                                        if ($isApplied) {
-                                            ?>
-                                                <button class="btn btn-outline-success form-control" disabled>
-                                                    Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
-                                                </button>
-                                            <?php
-                                        }else {
-
-                                            if ($applicant->first_name != null) {
-                                                ?>
-                                                    <button class="btn btn-outline-success form-control" data-bs-toggle="modal" data-bs-target="#uploadFile">
-                                                        Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
-                                                    </button>
-                                                <?php
-                                            }else{
-                                                ?>
-                                                    <button class="btn btn-outline-success form-control" disabled>
-                                                        Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
-                                                    </button>
-                                                <?php
-                                            }
-
-                                        }
-
-                                    // Optional if the user manipulates the inspect element
-                                    } else {
-                                        ?>
-                                            <button class="btn btn-outline-success form-control" disabled>
-                                                Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
-                                            </button>
-                                        <?php
-                                    }
-
-                                ?>
+                                    @if (!$exist->isEmpty() || $applicant->first_name == null)
+                                        <button class="btn btn-outline-success form-control" disabled>
+                                            Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn btn-outline-success form-control" data-bs-toggle="modal" data-bs-target="#uploadFile">
+                                            Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                        </button>
+                                    @endif
+                                @else
+                                    <button class="btn btn-outline-success form-control" disabled>
+                                        Upload&nbsp;<i class="bi bi-filetype-pdf"></i>
+                                    </button>
+                                @endif
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="uploadFile">

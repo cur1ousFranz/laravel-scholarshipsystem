@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\ApplicantList;
-use App\Models\RatingReport;
 
 class SubmissionController extends Controller
 {

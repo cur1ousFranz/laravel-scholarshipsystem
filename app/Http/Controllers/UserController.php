@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\School;
-use App\Models\Address;
-use App\Models\Contact;
 use App\Models\Activity;
-use App\Models\Applicant;
 use App\Models\Application;
 use App\Models\Scholar;
 use Illuminate\Http\Request;
@@ -50,22 +46,10 @@ class UserController extends Controller
             'role' => 'applicant'
         ]);
 
-        $applicant = Applicant::create([
-            'users_id' => $user->id
-        ]);
-
-        Contact::create([
-            'email' => $formFields['email'],
-            'applicants_id' => $applicant->id
-        ]);
-
-        Address::create([
-            'applicants_id' => $applicant->id
-        ]);
-
-        School::create([
-            'applicants_id' => $applicant->id
-        ]);
+        $applicant = $user->applicant()->create();
+        $applicant->contact()->create(['email' => $formFields['email']]);
+        $applicant->address()->create();
+        $applicant->school()->create();
 
         return back()->with('success', 'Created account succesfully!');
     }
