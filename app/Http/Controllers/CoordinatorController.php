@@ -91,9 +91,11 @@ class CoordinatorController extends Controller
 
             // 'applicantFamilyIncome' => $applicantFamilyIncome,
 
-            'totalApplicants' => Applicant::without('school', 'address', 'contact')->get(),
-            'totalApplications' => Application::all(),
-            'totalSubmissions' => ApplicantList::all()
+            'totalApplicants' => Applicant::without(['school', 'address', 'contact'])
+                                ->select('id')
+                                ->get(),
+            'totalApplications' => Application::select('id')->get(),
+            'totalSubmissions' => ApplicantList::select('id')->get()
         ]);
 
     }
@@ -102,7 +104,10 @@ class CoordinatorController extends Controller
     {
 
         return view('coordinator.application', [
-            'application' => Application::with('applicantList')->latest()->paginate(10)
+            'applications' => Application::with([
+                                'applicantList:applications_id'
+                            ])
+                            ->latest()->paginate(10)
         ]);
     }
 

@@ -14,9 +14,15 @@ class ListingApplicantController extends Controller
     public function index(ApplicantList $applicantlist){
 
         return view('coordinator.evaluation', [
-            'applicantlist' => ApplicantList::where('id', $applicantlist->id)->first()
+            'applicantlist' => ApplicantList::with([
+                                'applicant:id,educational_attainment,nationality,registered_voter,years_in_city,gwa,family_income',
+                                'applicant.address:applicants_id,city',
+                                'ratingReport:applicant_lists_id,rating',
+                                ])
+                                ->where('id', $applicantlist->id)
+                                ->first()
+                            ]);
 
-        ]);
     }
 
     public function store(Request $request, Application $application)
@@ -31,11 +37,17 @@ class ListingApplicantController extends Controller
 
                     foreach ($request->input('applicant') as $applicantID) {
 
-                        $applicantList = ApplicantList::where(['applicants_id' => $applicantID,
-                        'applications_id' => $application->id])->first();
+                        $applicantList = ApplicantList::where([
+                            'applicants_id' => $applicantID,
+                            'applications_id' => $application->id
+                            ])
+                            ->first();
 
                         /** Getting the current count of qualified applicants, for validating the slots */
-                        $count = QualifiedApplicant::where('applications_id', $application->id)->get()->count();
+                        $count = QualifiedApplicant::where('applications_id', $application->id)
+                                    ->select('id')
+                                    ->get()
+                                    ->count();
 
                         // Validating if there is slot available
                         if($count < $application->slots){

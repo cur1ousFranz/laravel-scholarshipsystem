@@ -1,5 +1,6 @@
 <x-layout title="Summary Evaluation">
     <section>
+        {{-- @dd($applicantlist->applicant) --}}
         <x-container class="w-75">
             <div class="row">
                 <div class="col-lg d-flex">
@@ -83,7 +84,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center align-middle">Family Income</td>
+                                    <td class="text-center align-middle">Family Income (Monthly)</td>
                                     <td>
                                         <ul class="list-group border-0">
                                             <li class="list-group-item border-0">

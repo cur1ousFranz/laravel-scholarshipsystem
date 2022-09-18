@@ -21,21 +21,21 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    @forelse ($application as $applications)
+                    @forelse ($applications as $application)
                         <tr>
-                            <td>{{ $applications->batch }}</td>
-                            <td>{{ date('F j, Y', strtotime($applications->start_date)) }}</td>
-                            <td>{{ date('F j, Y', strtotime($applications->end_date)) }}</td>
-                            <td class="{{ $applications->status == "On-going" ? "text-success" : "text-danger" }}">
-                                {{ $applications->status }}
+                            <td>{{ $application->batch }}</td>
+                            <td>{{ date('F j, Y', strtotime($application->start_date)) }}</td>
+                            <td>{{ date('F j, Y', strtotime($application->end_date)) }}</td>
+                            <td class="{{ $application->status == "On-going" ? "text-success" : "text-danger" }}">
+                                {{ $application->status }}
                             </td>
-                            <td>{{ $applications->applicantList->count() }}
+                            <td>{{ $application->applicantList->count() }}
                             </td>
                             <td>
-                                <a class="text-decoration-none" href="/applications/{{ $applications->id }}/submissions">View</a>
+                                <a class="text-decoration-none" href="/applications/{{ $application->id }}/submissions">View</a>
                             </td>
                             <td class="d-flex justify-content-center">
-                                <a href="/applications/{{ $applications->id }}/edit" class="btn btn-sm btn-outline-success me-1" data-bs-toggle="tooltip"
+                                <a href="/applications/{{ $application->id }}/edit" class="btn btn-sm btn-outline-success me-1" data-bs-toggle="tooltip"
                                 data-bs-placement="left" title="Edit Application">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
@@ -50,7 +50,7 @@
             </x-table.table>
 
             <div class="container mt-3">
-                {{ $application->links('pagination::bootstrap-5') }}
+                {{ $applications->links('pagination::bootstrap-5') }}
             </div>
         </x-container>
     </section>

@@ -34,7 +34,9 @@ class NotificationController extends Controller
      */
     public function show(Request $request){
 
-        $notification = DB::table('notifications')->where('id', $request->route('notification'))->first();
+        $notification = DB::table('notifications')
+                        ->where('id', $request->route('notification'))
+                        ->first();
         return view('applicant.notification',[
             'notification' => $notification
         ]);

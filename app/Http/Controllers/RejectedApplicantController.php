@@ -23,13 +23,27 @@ class RejectedApplicantController extends Controller
 
     public function show(Application $application){
 
-        $rejectedApplicantList = RejectedApplicant::with('applicant', 'application')
-        ->where('applications_id', $application->id)
-        ->latest()
-        ->paginate(10);
+        $list = RejectedApplicant::with([
+            'applicant:id,first_name,middle_name,last_name,age,gender,civil_status,nationality,educational_attainment,years_in_city,family_income,registered_voter,gwa',
+            'applicant.school:applicants_id,desired_school,course_name,hei_type,school_last_attended',
+            'applicant.address:applicants_id,country,province,city,barangay,street,region,zipcode',
+            'applicant.contact:applicants_id,contact_number,email',
+            'application:id',
+            'applicantList:id',
+            'applicantList.ratingReport:applicant_lists_id,rating',
+            ])
+            ->where('applications_id', $application->id)
+            ->select(
+                'applicants_id',
+                'applications_id',
+                'applicant_lists_id',
+                'document',
+            )
+            ->latest()
+            ->paginate(10);
 
         return view('coordinator.rejected_applicant_list',[
-            'rejectedApplicantList' => $rejectedApplicantList,
+            'rejectedApplicantList' => $list,
             'application' => $application
         ]);
     }

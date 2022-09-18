@@ -29,10 +29,10 @@ class ScholarshipApplicationController extends Controller
         $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('application_files', 'public');
         $formFields['application_form'] = $request->file('application_form')->store('application_files', 'public');
 
-        $coordinatorID = Coordinator::where('users_id', Auth::user()->id)->first();
+        $coordinator = Coordinator::where('users_id', Auth::user()->id)->first();
 
         $application = Application::create([
-            'coordinators_id' => $coordinatorID->id,
+            'coordinators_id' => $coordinator->id,
             'slots' => $formFields['slots'],
             'start_date' => request('start_date'),
             'end_date' => $formFields['end_date'],
@@ -40,9 +40,8 @@ class ScholarshipApplicationController extends Controller
             'status' => "On-going"
         ]);
 
-        ApplicationDetail::create([
+        $application->applicationDetail()->create([
 
-            'applications_id' => $application->id,
             'description' => $formFields['description'],
             'years_in_city' => $request->years_in_city,
             'family_income' => $request->family_income,
@@ -55,6 +54,21 @@ class ScholarshipApplicationController extends Controller
             'application_form' => $formFields['application_form']
 
         ]);
+        // ApplicationDetail::create([
+
+        //     'applications_id' => $application->id,
+        //     'description' => $formFields['description'],
+        //     'years_in_city' => $request->years_in_city,
+        //     'family_income' => $request->family_income,
+        //     'educational_attainment' => $request->educational_attainment,
+        //     'gwa' => $request->gwa,
+        //     'nationality' => $request->nationality,
+        //     'city' => $request->city,
+        //     'registered_voter' => $request->registered_voter,
+        //     'documentary_requirement' => $formFields['documentary_requirement'],
+        //     'application_form' => $formFields['application_form']
+
+        // ]);
 
         return redirect('/applications')->with('success', 'Application created successfully!');
     }
@@ -91,7 +105,7 @@ class ScholarshipApplicationController extends Controller
 
         $applicationDetail->description = $request->input('description');
         $applicationDetail->years_in_city = $request->input('years_in_city');
-        $applicationDetail->family_income =$request->input('family_income');
+        $applicationDetail->family_income = $request->input('family_income');
         $applicationDetail->educational_attainment = $request->input('educational_attainment');
         $applicationDetail->gwa = $request->input('gwa');
         $applicationDetail->nationality = $request->input('nationality');

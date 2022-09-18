@@ -31,12 +31,6 @@ class Applicant extends Model
         'gwa'
     ];
 
-    protected $with = [
-        'school',
-        'address',
-        'contact',
-    ];
-
     public function user(){
 
         return $this->belongsTo(User::class);
