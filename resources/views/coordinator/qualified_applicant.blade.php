@@ -26,9 +26,11 @@
                                     <td class="{{ $list->application->status == "On-going" ? 'text-success' : 'text-danger'}}">
                                         {{ $list->application->status }}
                                     </td>
-                                    <td>{{ $list->select('created_at')->latest()->first()->created_at->diffForHumans() }}
+                                    <td>{{ $list->where('applications_id', $list->applications_id)
+                                        ->latest()->first()->updated_at->diffForHumans() }}
                                     </td>
-                                    <td>{{ $list->application->count() . ' / ' . $list->application->slots }}
+                                    <td>{{ $list->where('applications_id', $list->applications_id)
+                                        ->count() . ' / ' . $list->application->slots }}
                                     </td>
                                     <td>
                                         <a href="/qualified/{{ $list->applications_id }}"

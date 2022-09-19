@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Applicant;
 use App\Models\Application;
+use App\Models\RatingReport;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
-use App\Models\RatingReport;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -105,9 +106,9 @@ class ApplicationController extends Controller
                     case 3 : $rating += 15; break;
                 }
 
-                RatingReport::create([
+                Rating::create([
                     'applicant_lists_id' => ApplicantList::create($formFields)->id,
-                    'rating' => $rating
+                    'rate' => $rating
                 ]);
 
             }else{
@@ -119,8 +120,8 @@ class ApplicationController extends Controller
                     'review' => 'Yes',
                 ]);
 
-                $applicantList->ratingReport()->create([
-                    'rating' => 0
+                $applicantList->rating()->create([
+                    'rate' => 0
                 ]);
 
                 $applicantList->rejectedApplicant()->create([

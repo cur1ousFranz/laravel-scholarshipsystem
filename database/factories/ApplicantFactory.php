@@ -20,10 +20,18 @@ class ApplicantFactory extends Factory
     public function definition()
     {
         $gender = ['Male', 'Female'];
-        $civil_status = ['Single', 'Married', 'Widowed', 'Divorced'];
+        $civil_status = ['Single', 'Married', 'Widowed'];
         $nationality = ['Yes', 'No'];
         $education = ['Yes', 'No'];
-        $family_income = [8000, 12000, 16000, 20000, 24000];
+        $family_income = [
+            'Less than ₱10,957',
+            '₱10,957 to ₱21,194',
+            '₱21,194 to ₱43,828',
+            '₱43,828 to ₱76,669',
+            '₱76,669 to ₱131,484',
+            '₱131,484 to ₱219,140',
+            '₱219,140 and above'
+        ];
         $registered_voter = ['Yes', 'No'];
 
         return [
@@ -33,12 +41,15 @@ class ApplicantFactory extends Factory
             'last_name' => $this->faker->name,
             'age' => rand(16, 30),
             'gender' => $gender[rand(0,1)],
-            'civil_status' => $civil_status[rand(0,3)],
-            'nationality' => $nationality[rand(0,1)],
-            'educational_attainment' => $education[rand(0,1)],
-            'years_in_city' => rand(1, 5),
-            'family_income' => $family_income[rand(0, 4)],
-            'registered_voter' => $registered_voter[rand(0, 1)],
+            'civil_status' => $civil_status[rand(0,2)],
+            // 'nationality' => $nationality[rand(0,1)],
+            'nationality' => $nationality[0],
+            // 'educational_attainment' => $education[rand(0,1)],
+            'educational_attainment' => $education[0],
+            'years_in_city' => rand(1, 3),
+            'family_income' => $family_income[rand(0, 6)],
+            // 'registered_voter' => $registered_voter[rand(0, 1)],
+            'registered_voter' => $registered_voter[0],
             'gwa' => rand(70, 99),
             'created_at' => now(),
         ];

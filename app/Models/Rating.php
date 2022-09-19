@@ -6,13 +6,13 @@ use App\Models\ApplicantList;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class RatingReport extends Model
+class Rating extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'applicant_lists_id',
-        'rating'
+        'rate'
     ];
 
     protected $with = ['applicantList'];

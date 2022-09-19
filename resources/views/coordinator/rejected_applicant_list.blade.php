@@ -142,7 +142,7 @@
                             <tr class="tbl-row">
                                 <td>
                                     <a href="/applicant/evaluation/{{ $list->applicant_lists_id }}" target="_blank">
-                                    {{ $list->applicantList->ratingReport->rating }}%
+                                    {{ $list->applicantList->rating->rate }}%
                                     </a>
                                 </td>
                                 <td>

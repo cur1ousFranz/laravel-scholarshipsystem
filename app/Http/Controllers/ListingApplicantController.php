@@ -17,7 +17,7 @@ class ListingApplicantController extends Controller
             'applicantlist' => ApplicantList::with([
                                 'applicant:id,educational_attainment,nationality,registered_voter,years_in_city,gwa,family_income',
                                 'applicant.address:applicants_id,city',
-                                'ratingReport:applicant_lists_id,rating',
+                                'rating:applicant_lists_id,rate',
                                 ])
                                 ->where('id', $applicantlist->id)
                                 ->first()

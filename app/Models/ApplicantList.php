@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Rating;
 use App\Models\Applicant;
 use App\Models\Application;
-use App\Models\RatingReport;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,9 +30,9 @@ class ApplicantList extends Model
         return $this->belongsTo(Application::class, 'id');
     }
 
-    public function ratingReport(){
+    public function rating(){
 
-        return $this->hasOne(RatingReport::class, 'applicant_lists_id');
+        return $this->hasOne(Rating::class, 'applicant_lists_id');
     }
 
     public function qualifiedApplicant(){

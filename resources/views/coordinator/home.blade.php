@@ -22,7 +22,7 @@
                                                 {!! $activity->body !!}
                                             </div>
                                             <div class="mb-2 mt-3">
-                                                <a class="btn btn-primary float-end" href="/activity/{{ $activity->slug }}">Read more</a>
+                                                <a class="btn btn-primary float-end" target="_blank" href="/activity/{{ $activity->slug }}">Read more</a>
                                             </div>
                                         </li>
                                         <hr>
@@ -64,13 +64,14 @@
                     <div class="card mt-3">
                         <x-card-primary-border>
                             <div class="h6 fw-bold">Scholarship Applications</div>
-                            <ul class="list-group border-0">
+                            <ul class="list-group border-0"  style="max-height: 230px; overflow-y: auto">
                                 @forelse ($applications as $application)
                                     <li class="list-group-item border-0">
                                         {{ $application->batch }}
-                                        <span class="float-end fw-bold {{ $application->status === "On-going" ? 'text-success' : text-danger }}">
+                                        <span class="float-end fw-bold {{ $application->status === "On-going" ? 'text-success' : 'text-danger' }}">
                                             {{ $application->status }}
                                         </span>
+                                        <p style="font-size: 12px">{{ date('F j, Y', strtotime($application->created_at)) }}</p>
                                         <hr>
                                     </li>
                                 @empty

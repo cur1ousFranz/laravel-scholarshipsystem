@@ -30,7 +30,7 @@ class RejectedApplicantController extends Controller
             'applicant.contact:applicants_id,contact_number,email',
             'application:id',
             'applicantList:id',
-            'applicantList.ratingReport:applicant_lists_id,rating',
+            'applicantList.rating:applicant_lists_id,rate',
             ])
             ->where('applications_id', $application->id)
             ->select(
