@@ -77,11 +77,19 @@
                             </div>
 
                         </div>
-                        <div class="input-group">
-                            <div class="form-outline">
-                                <input type="text" class="form-control shadow-sm" onkeyup="searchApplicant()" id="search-applicant" placeholder="Search"/>
+                        <form action="">
+                            <div class="input-group">
+                                <div class="shadow-sm form-outline">
+                                    <input type="search"
+                                    id="search-applicant-list"
+                                    class="form-control"
+                                    autocomplete="off"
+                                    name="search"
+                                    placeholder="Search"
+                                    value="{{ request()->has('search') ? request()->input('search') : '' }}"/>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 

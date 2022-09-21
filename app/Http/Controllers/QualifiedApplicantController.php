@@ -16,7 +16,7 @@ class QualifiedApplicantController extends Controller
          */
         return view('coordinator.qualified_applicant',[
             'qualifiedApplicant' => QualifiedApplicant::with([
-                                'application'
+                                'application',
                                 ])
                                 ->select('applications_id')->distinct()
                                 ->orderBy('created_at','desc')
@@ -29,22 +29,18 @@ class QualifiedApplicantController extends Controller
     public function show(Application $application){
 
         $list = QualifiedApplicant::with([
-                    'applicant:id,first_name,middle_name,last_name,age,gender,civil_status,nationality,educational_attainment,years_in_city,family_income,registered_voter,gwa',
-                    'applicant.school:applicants_id,desired_school,course_name,hei_type,school_last_attended',
-                    'applicant.address:applicants_id,country,province,city,barangay,street,region,zipcode',
-                    'applicant.contact:applicants_id,contact_number,email',
+                    'applicant',
+                    'applicant.school',
+                    'applicant.address',
+                    'applicant.contact',
                     'application:id',
                     'applicantList:id',
                     'applicantList.rating:applicant_lists_id,rate',
                 ])
+                ->leftJoin('applicants', 'applicants.id' , '=', 'qualified_applicants.applicants_id')
                 ->where('applications_id', $application->id)
-                ->select(
-                    'applicants_id',
-                    'applications_id',
-                    'applicant_lists_id',
-                    'document',
-                )
-                ->latest()
+                ->filter(request(['search']))
+                ->orderBy('qualified_applicants.created_at','desc')
                 ->paginate(10);
 
         return view('coordinator.qualified_applicant_list',[

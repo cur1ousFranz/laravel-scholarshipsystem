@@ -33,11 +33,11 @@
                                 <div class="shadow-sm form-outline">
                                     <input type="search"
                                     id="search-applicant-list"
-                                    onkeyup="searchApplicantList()"
                                     class="form-control"
                                     autocomplete="off"
                                     name="search"
-                                    placeholder="Search"/>
+                                    placeholder="Search"
+                                    value="{{ request()->has('search') ? request()->input('search') : '' }}"/>
                                 </div>
                             </div>
                         </form>
@@ -65,7 +65,7 @@
                 <form action="/applicants/{{ $application->id }}" method="POST" id="checkboxForm">
                     @csrf
                     <x-table.table>
-                        <thead class="text-center text-dark" id="applicantListHeader">
+                        <thead class="text-dark" id="applicantListHeader">
                             <tr>
                                 <x-table.th class="bg-light">
                                     <input type="checkbox" class="mb-1 form-check-input" name="selectAll"
@@ -100,7 +100,7 @@
                                 <x-table.th>GWA</x-table.th>
                             </tr>
                         </thead>
-                        <tbody class="text-center" id="applicantListHeader">
+                        <tbody class="text-start" id="applicantListHeader">
                             @forelse ($applicantList as $list)
                                 <tr class="tbl-row">
                                     <td>
@@ -110,14 +110,16 @@
                                         onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>
-                                    <td>
-                                        <a href="/applicant/evaluation/{{ $list->id }}" target="_blank">
+                                    <td class="text-center">
+                                        <a class=" fw-bold" href="/applicant/evaluation/{{ $list->id }}" target="_blank">
                                         {{ $list->rating->rate }}%
                                         </a>
                                     </td>
-                                    <td>
-                                        <a href="/storage/{{ $list->document }}"
-                                            target="_blank">View</a>
+                                    <td class="text-center">
+                                        <a class="fw-bold text-danger" href="/storage/{{ $list->document }}"
+                                            target="_blank" style="font-size: 22px">
+                                            <i class="bi bi-file-earmark-pdf"></i>
+                                        </a>
                                     </td>
                                     <td>{{ $list->applicant->first()->first_name }}</td>
                                     <td>{{ $list->applicant->first()->middle_name }}</td>
@@ -145,7 +147,7 @@
                                     <td>{{ $list->applicant->first()->gwa }}</td>
                                 </tr>
                             @empty
-                                <tr>
+                                <tr class="text-center">
                                     <td colspan="25">No submissions yet</td>
                                 </tr>
                             @endforelse
