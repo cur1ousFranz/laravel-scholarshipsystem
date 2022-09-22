@@ -5,7 +5,9 @@
                 <div class="col-8">
                     <div class="card">
                         <x-card-primary-border>
-                            <div class="h5">Activities</div>
+                            <div class="h5">
+                                Activities
+                            </div>
                             <hr>
                             <ul class="list-group">
                                 @if (!$activities->isEmpty())
@@ -47,13 +49,15 @@
                             <ul class="list-group border-0">
                                 <li class="list-group-item border-0">
                                     <button class="btn form-control text-start"
-                                    data-bs-toggle="modal"data-bs-target="#activity">Activities
+                                    data-bs-toggle="modal"data-bs-target="#activity">
+                                    <i class="bi bi-card-checklist me-2"></i>Activities
                                         <span><i class="bi bi-plus-square float-end"></i></span>
                                     </button>
                                 </li>
                                 <li class="list-group-item border border-top border-1 border-bottom-0 border-end-0 border-start-0">
                                     <button class="btn form-control text-start"
-                                    data-bs-toggle="modal"data-bs-target="#scholars">Scholars
+                                    data-bs-toggle="modal"data-bs-target="#scholars">
+                                    <i class="bi bi-card-image me-2"></i>Scholars
                                         <span><i class="bi bi-plus-square float-end"></i></span>
                                     </button>
                                 </li>
@@ -63,7 +67,9 @@
 
                     <div class="card mt-3">
                         <x-card-primary-border>
-                            <div class="h6 fw-bold">Scholarship Applications</div>
+                            <div class="h6 fw-bold"><i class="bi bi-card-heading me-1"></i>
+                                Scholarship Applications
+                            </div>
                             <ul class="list-group border-0"  style="max-height: 230px; overflow-y: auto">
                                 @forelse ($applications as $application)
                                     <li class="list-group-item border-0">

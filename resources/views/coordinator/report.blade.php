@@ -1,8 +1,9 @@
 <x-layout title="Report | Edukar Scholarship">
     <section>
-        <x-container>
-            <h4 class="mt-2">Data Report</h4>
-            <div class="card">
+        <x-container class="border shadow-sm">
+            <h4 class="mt-3">Data Report</h4>
+            <hr>
+            <div class="card mt-3 mb-3 border-0">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3 mt-2">

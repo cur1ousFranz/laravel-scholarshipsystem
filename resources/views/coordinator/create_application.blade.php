@@ -50,7 +50,9 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mt-3">
-                                                <x-form.input name="family_income" readonly="true" value="Less than ₱10,957"/>
+                                                <x-form.label name="family_income (Monthly)"/>
+                                                <input class="shadow-sm form-control" name="family_income"
+                                                style="background-color: #fff;" readonly="true" value="Less than ₱10,957">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">

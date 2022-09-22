@@ -1,10 +1,10 @@
 <x-layout title="Submissions">
     <section>
-        <x-container>
-            <div class="row">
+        <x-container class="border shadow-sm">
+            <div class="row mt-3">
                 <div class="col-lg d-flex">
                     <h4 class="mt-2">Applicant List</h4>
-                    <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
+                    <p class="mt-2 ms-3" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#infoModal">
                         <i class="bi bi-info-circle"></i>
                     </p>
                 </div>
@@ -61,11 +61,12 @@
                 </div>
 
             </div>
+            <hr class="mt-1">
             <div class="scroll shadow-sm mt-2">
                 <form action="/applicants/{{ $application->id }}" method="POST" id="checkboxForm">
                     @csrf
                     <x-table.table>
-                        <thead class="text-dark" id="applicantListHeader">
+                        <thead class="text-dark text-center" id="applicantListHeader">
                             <tr>
                                 <x-table.th class="bg-light">
                                     <input type="checkbox" class="mb-1 form-check-input" name="selectAll"
@@ -100,7 +101,7 @@
                                 <x-table.th>GWA</x-table.th>
                             </tr>
                         </thead>
-                        <tbody class="text-start" id="applicantListHeader">
+                        <tbody id="applicantListHeader">
                             @forelse ($applicantList as $list)
                                 <tr class="tbl-row">
                                     <td>
@@ -111,7 +112,7 @@
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>
                                     <td class="text-center">
-                                        <a class=" fw-bold" href="/applicant/evaluation/{{ $list->id }}" target="_blank">
+                                        <a href="/applicant/evaluation/{{ $list->id }}" target="_blank">
                                         {{ $list->rating->rate }}%
                                         </a>
                                     </td>

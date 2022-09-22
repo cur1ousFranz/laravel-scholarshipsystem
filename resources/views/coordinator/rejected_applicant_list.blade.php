@@ -1,10 +1,10 @@
 <x-layout title="Rejected Applicant">
     <section>
-        <x-container>
-            <div class="row">
+        <x-container class="border shadow-sm">
+            <div class="row mt-3">
                 <div class="col-lg d-flex">
                     <h4 class="mt-2">Rejected Applicant List</h4>
-                    <p class="mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#infoModal">
+                    <p class="mt-2 ms-3" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#infoModal">
                         <i class="bi bi-info-circle"></i>
                     </p>
                 </div>
@@ -14,13 +14,13 @@
                         <div>
                             @if (!$rejectedApplicantList->isEmpty())
                                 <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
-                                    <button class="btn btn-outline-primary me-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#message">
+                                    <button class="btn btn-outline-success me-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#message">
                                         <i class="bi bi-envelope-plus-fill"></i>
                                     </button>
                                 </span>
                             @else
                                 <span data-bs-toggle="tooltip" data-bs-placement="left" title="Send Announcement">
-                                    <button class="btn btn-outline-primary me-1 shadow-sm" disabled>
+                                    <button class="btn btn-outline-success me-1 shadow-sm" disabled>
                                         <i class="bi bi-envelope-plus-fill"></i>
                                     </button>
                                 </span>
@@ -113,6 +113,7 @@
                 </div>
 
             </div>
+            <hr class="mt-1">
             <div class="scroll2 shadow-sm">
                 <x-table.table>
                     <thead class="text-center text-dark" id="applicantListHeader">
@@ -145,17 +146,19 @@
                             <x-table.th>GWA</x-table.th>
                         </tr>
                     </thead>
-                    <tbody class="text-center" id="applicantListHeader">
+                    <tbody id="applicantListHeader">
                         @forelse ($rejectedApplicantList as $list)
                             <tr class="tbl-row">
-                                <td>
+                                <td class="text-center">
                                     <a href="/applicant/evaluation/{{ $list->applicant_lists_id }}" target="_blank">
                                     {{ $list->applicantList->rating->rate }}%
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="/storage/{{ $list->document }}"
-                                        target="_blank">View</a>
+                                <td class="text-center">
+                                    <a class="fw-bold text-danger" href="/storage/{{ $list->document }}"
+                                        target="_blank" style="font-size: 22px">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                    </a>
                                 </td>
                                 <td>{{ $list->applicant->first()->first_name }}</td>
                                 <td>{{ $list->applicant->first()->middle_name }}</td>

@@ -1,13 +1,14 @@
 <x-layout title="Application">
     <section>
-        <x-container>
-            <div class="d-flex justify-content-between">
+        <x-container class="border shadow-sm">
+            <div class="d-flex justify-content-between mt-3">
                 <h4 class="mt-2">Application</h4>
-                <a href="/applications/create" class="btn btn-outline-primary mb-3 shadow-sm"
+                <a href="/applications/create" class="btn btn-primary mb-3 shadow-sm"
                 data-bs-toggle="tooltip" data-bs-placement="left" title="Create Application">
-                    <i class="bi bi-file-earmark-plus-fill"></i>
+                    Create Application
                 </a>
             </div>
+            <hr class="mt-0">
             <x-table.table>
                 <thead class="text-center">
                     <tr>

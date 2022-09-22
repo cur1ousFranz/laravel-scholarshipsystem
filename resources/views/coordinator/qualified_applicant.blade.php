@@ -1,10 +1,11 @@
 <x-layout title="Qualifed Applicant">
     <section>
-        <x-container>
-            <div class="container">
+        <x-container class="border shadow-sm">
+            <div class="container mt-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="mt-2">Qualified Applicant</h4>
                 </div>
+                <hr class="mt-1">
                 <x-table.table>
                     <thead class="text-center">
                         <tr>

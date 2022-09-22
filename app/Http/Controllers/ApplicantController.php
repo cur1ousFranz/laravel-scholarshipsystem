@@ -67,7 +67,7 @@ class ApplicantController extends Controller
             'zipcode' => 'required',
 
             'contact_number' => 'required',         // Contact Table
-            'email' => ['required', Rule::unique('contacts', 'email')->ignore($applicant)],
+            'email' => ['required','email', Rule::unique('contacts', 'email')->ignore($applicant)],
 
         ]);
 
