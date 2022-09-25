@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ScholarController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\ExportDataController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CoordinatorController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\DynamicDropdownController;
 use App\Http\Controllers\ListingApplicantController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\QualifiedApplicantController;
 use App\Http\Controllers\RejectedApplicantController;
-use App\Http\Controllers\ScholarController;
+use App\Http\Controllers\QualifiedApplicantController;
 use App\Http\Controllers\ScholarshipApplicationController;
-use App\Http\Controllers\SubmissionController;
 
 
 Route::controller(UserController::class)->group(function(){
@@ -33,9 +34,11 @@ Route::group(['middleware' => 'auth'], function() {
 
             Route::controller(CoordinatorController::class)->group(function(){
                 Route::get('/home', 'home');
-                Route::get('/report', 'dashboard');
+                Route::get('/report', 'report');
                 Route::get('/applications', 'application');
             });
+
+            Route::post('/report/export', [ExportDataController::class, 'show']);
 
             Route::controller(ScholarshipApplicationController::class)->group(function(){
                 Route::get('/applications/create','create');

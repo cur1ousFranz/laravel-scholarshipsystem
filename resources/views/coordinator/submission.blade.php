@@ -161,7 +161,7 @@
                 {{ $applicantList->links('pagination::bootstrap-5') }}
             </div>
 
-              <x-modal name="qualifiedApplicant">
+            <x-modal name="qualifiedApplicant">
                 <x-slot name="header">Qualified Applicant</x-slot>
                 <x-slot name="body">Are you sure you want to proceed?</x-slot>
                 <x-slot name="footer">
@@ -201,6 +201,5 @@
             });
         })
     </script>
-    <script src="{{ asset('scripts/dynamic-search.js') }}"></script>
 </x-layout>
 

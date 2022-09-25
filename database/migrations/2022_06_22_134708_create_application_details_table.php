@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('application_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applications_id')->constrained()->cascadeOnDelete();
-            $table->string('description');
+            $table->text('description');
             $table->string('years_in_city');
             $table->string('family_income');
             $table->string('educational_attainment');

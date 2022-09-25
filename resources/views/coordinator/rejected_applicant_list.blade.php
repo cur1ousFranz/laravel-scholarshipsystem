@@ -198,5 +198,4 @@
             </div>
         </x-container>
     </section>
-    <script src="{{ asset('scripts/dynamic-search.js') }}"></script>
 </x-layout>

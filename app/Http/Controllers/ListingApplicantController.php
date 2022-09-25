@@ -63,9 +63,16 @@ class ListingApplicantController extends Controller
                             $applicantList->update(['review' => 'Yes']);
 
                         }else{
-
-                            $application->update(['status' => 'Closed']);
                             return back()->with('error', 'No more slots available!');
+                        }
+
+                        // CLosing the current application if slots has been fulfilled
+                        $latestCount = QualifiedApplicant::where('applications_id', $application->id)
+                                    ->select('id')
+                                    ->get()
+                                    ->count();
+                        if($latestCount == $application->slots){
+                            $application->update(['status' => 'Closed']);
                         }
 
                     }

@@ -82,7 +82,7 @@ class AddressFactory extends Factory
             $applicantList = ApplicantList::factory()->create([
                 'applicants_id' =>  $applicant,
                 'review' => 'Yes',
-                'created_at' => date("2021-m-d H:i:s") //change this
+                'created_at' => date("2022-m-d H:i:s") //change this
             ]);
 
             $applicantList->rating()->create([

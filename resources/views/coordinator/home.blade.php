@@ -67,7 +67,7 @@
 
                     <div class="card mt-3">
                         <x-card-primary-border>
-                            <div class="h6 fw-bold"><i class="bi bi-card-heading me-1"></i>
+                            <div class="h6"><i class="bi bi-card-heading me-1"></i>
                                 Scholarship Applications
                             </div>
                             <ul class="list-group border-0"  style="max-height: 230px; overflow-y: auto">

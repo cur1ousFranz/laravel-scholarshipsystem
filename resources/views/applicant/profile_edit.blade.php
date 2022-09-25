@@ -58,8 +58,17 @@
 
                                         <x-form.row-col>
                                             <x-slot name="first">
-                                                <x-form.input name="age" :value="old('age', $applicant->age)"
-                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2"/>
+                                                {{-- <x-form.input name="age" :value="old('age', $applicant->age)"
+                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2" max="30"/> --}}
+                                                <x-form.label name="age"/>
+                                                <select class="shadow-sm form-select form-control" name="age">
+                                                    <option selected disabled>Select</option>
+                                                    @for ($i=16; $i<=30 ; $i++)
+                                                        <option {{ old('age') ?? $applicant->age }}
+                                                        value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                                <x-form.error name="age"/>
                                             </x-slot>
                                             <x-slot name="second">
                                                 <x-form.label name="gender"/>

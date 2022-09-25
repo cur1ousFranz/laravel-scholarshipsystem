@@ -18,7 +18,7 @@
                         <x-table.th>Status</x-table.th>
                         <x-table.th>Total Submissions</x-table.th>
                         <x-table.th>Applicants</x-table.th>
-                        <x-table.th>Action</x-table.th>
+                        <x-table.th></x-table.th>
                     </tr>
                 </thead>
                 <tbody class="text-center">

@@ -19,7 +19,7 @@ class CoordinatorController extends Controller
         ]);
     }
 
-    public function dashboard(){
+    public function report(){
 
         /**
          * This is for Applied Applicants chart in dashboard
