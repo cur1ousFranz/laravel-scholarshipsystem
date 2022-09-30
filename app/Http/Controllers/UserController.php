@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest as RequestsCreateUserRequest;
 use App\Models\User;
+use App\Models\Scholar;
 use App\Models\Activity;
 use App\Models\Application;
-use App\Models\Scholar;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\LoginUserRequest;
 use Illuminate\Notifications\Notifiable;
 
 class UserController extends Controller
@@ -32,53 +34,42 @@ class UserController extends Controller
         return view('signup');
     }
 
-    public function create(Request $request){
+    public function create(CreateUserRequest $request){
 
-        $formFields = $request->validate([
-            'username' => ['required', Rule::unique('users', 'username')],
-            'email' => ['required', 'email', Rule::unique('contacts', 'email')],
-            'password' => ['required', 'confirmed', 'min:6']
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
-            'username' => $formFields['username'],
-            'password' => bcrypt($formFields['password']),
+            'username' => $validated['username'],
+            'password' => bcrypt($validated['password']),
             'role' => 'applicant'
         ]);
 
         $applicant = $user->applicant()->create();
-        $applicant->contact()->create(['email' => $formFields['email']]);
+        $applicant->contact()->create(['email' => $validated['email']]);
         $applicant->address()->create();
         $applicant->school()->create();
 
         return back()->with('success', 'Created account succesfully!');
     }
 
-    public function login(Request $request)
+    public function login(LoginUserRequest $request)
     {
 
-        $formFields = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+        $validated = $request->validated();
+        $user = User::where('username', $validated['username'])->first();
 
-        $user = User::where('username', $formFields['username'])->first();
-
-        // Applicant
-        if(Auth::attempt($formFields)){
+        if(Auth::attempt($validated)){
             if($user->role == "applicant"){
                 $request->session()->regenerate();
                 return redirect('/')->with('success', 'You logged in!');
             }
         }
 
-        // Coordinator
-        if(Auth::attempt($formFields)){
+        if(Auth::attempt($validated)){
             if($user->role == "coordinator"){
                 $request->session()->regenerate();
                 return redirect('/home')->with('success', 'You logged in!');
             }
-
         }
 
         return back()->with('error', 'Invalid Credentials!');
@@ -86,10 +77,8 @@ class UserController extends Controller
 
     public function logout(Request $request){
         auth()->logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }

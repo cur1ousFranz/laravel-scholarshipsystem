@@ -12,9 +12,7 @@ class ExportDataController extends Controller
 
     public function show(){
 
-        $year = request()->validate([
-            'school_year' => 'required',
-        ]);
+        $year = request()->validate(['school_year' => 'required']);
 
         $applicantList = ApplicantList::with('applicant', 'applicant.school')
                         ->whereYear('created_at', $year['school_year'])

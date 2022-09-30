@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Applicant\UpdateApplicantRequest;
 use App\Models\Applicant;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -38,75 +39,45 @@ class ApplicantController extends Controller
         ]);
     }
 
-    public function update(Applicant $applicant)
+    public function update(UpdateApplicantRequest $request)
     {
-        $formFields = request()->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'age' => 'required',
-            'gender' => 'required',
-            'civil_status' => 'required',
-            'nationality' => 'required',            // Applicant Table
-            'educational_attainment' => 'required',
-            'years_in_city' => 'required',
-            'family_income' => 'required',
-            'registered_voter' => 'required',
-            'gwa' => 'required',
-
-            'desired_school' => 'required',
-            'hei_type' => 'required',               // School Table
-            'school_last_attended' => 'required',
-            'course_name' => 'required',
-
-            'country' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'barangay' => 'required',               // Address Table
-            'street' => 'required',
-            'region' => 'required',
-            'zipcode' => 'required',
-
-            'contact_number' => 'required',         // Contact Table
-            'email' => ['required','email', Rule::unique('contacts', 'email')->ignore($applicant)],
-
-        ]);
+        $validated = $request->validated();
 
         $this->getApplicant()->update([
-
-            'first_name' => ucwords(strtolower($formFields['first_name'])),
+            'first_name' => ucwords(strtolower($validated['first_name'])),
             'middle_name' => request()->has('middle_name') ? ucwords(strtolower(request('middle_name'))) : NULL,
-            'last_name' => ucwords(strtolower($formFields['last_name'])),
-            'age' => $formFields['age'],
-            'gender' => $formFields['gender'],
-            'civil_status' => $formFields['civil_status'],
-            'nationality' => $formFields['nationality'],
-            'educational_attainment' => $formFields['educational_attainment'],
-            'years_in_city' => $formFields['years_in_city'],
-            'family_income' => $formFields['family_income'],
-            'registered_voter' => $formFields['registered_voter'],
-            'gwa' => $formFields['gwa'],
+            'last_name' => ucwords(strtolower($validated['last_name'])),
+            'age' => $validated['age'],
+            'gender' => $validated['gender'],
+            'civil_status' => $validated['civil_status'],
+            'nationality' => $validated['nationality'],
+            'educational_attainment' => $validated['educational_attainment'],
+            'years_in_city' => $validated['years_in_city'],
+            'family_income' => $validated['family_income'],
+            'registered_voter' => $validated['registered_voter'],
+            'gwa' => $validated['gwa'],
         ]);
 
         $this->getApplicant()->school()->update([
-            'desired_school' => $formFields['desired_school'],
-            'course_name' => $formFields['course_name'],
-            'hei_type' => $formFields['hei_type'],
-            'school_last_attended' => ucwords(strtolower($formFields['school_last_attended'])),
+            'desired_school' => $validated['desired_school'],
+            'course_name' => $validated['course_name'],
+            'hei_type' => $validated['hei_type'],
+            'school_last_attended' => ucwords(strtolower($validated['school_last_attended'])),
         ]);
 
         $this->getApplicant()->address()->update([
-            'country' => $formFields['country'],
-            'province' => $formFields['province'],
-            'city' => $formFields['city'],
-            'barangay' => $formFields['barangay'],
-            'street' => ucwords(strtolower($formFields['street'])),
-            'region' => $formFields['region'],
-            'zipcode' => $formFields['zipcode'],
+            'country' => $validated['country'],
+            'province' => $validated['province'],
+            'city' => $validated['city'],
+            'barangay' => $validated['barangay'],
+            'street' => ucwords(strtolower($validated['street'])),
+            'region' => $validated['region'],
+            'zipcode' => $validated['zipcode'],
         ]);
 
         $this->getApplicant()->contact()->update([
-            'contact_number' => $formFields['contact_number'],
-            'email' => $formFields['email'],
+            'contact_number' => $validated['contact_number'],
+            'email' => $validated['email'],
         ]);
 
         return redirect('/profile')->with('success', 'Profile updated successfully!');

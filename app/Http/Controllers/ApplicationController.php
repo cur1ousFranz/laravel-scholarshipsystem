@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Rating;
 use App\Models\Applicant;
 use App\Models\Application;
-use App\Models\RatingReport;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
 use Illuminate\Support\Facades\Auth;
@@ -41,10 +40,7 @@ class ApplicationController extends Controller
     public function store(Request $request, Application $application)
     {
 
-        $formFields = $request->validate([
-
-            'document' => ['required', 'mimes:pdf']
-        ]);
+        $formFields = $request->validate([ 'document' => ['required', 'mimes:pdf'] ]);
 
         $formFields['document'] = $request->file('document')->store('application_submissions', 'public');
         $formFields['applications_id'] = $application->id;

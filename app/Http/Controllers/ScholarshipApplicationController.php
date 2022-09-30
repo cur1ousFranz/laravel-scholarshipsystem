@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Coordinator\StoreApplicationRequest;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicationDetail;
@@ -15,16 +16,9 @@ class ScholarshipApplicationController extends Controller
         return view('coordinator.create_application');
     }
 
-    public function store(Request $request)
+    public function store(StoreApplicationRequest $request)
     {
-        $formFields = $request->validate([
-            'slots' => 'required',
-            'batch' => 'required',
-            'end_date' => 'required',
-            'description' => 'required',
-            'documentary_requirement' => ['required', 'mimes:pdf'],
-            'application_form' => ['required', 'mimes:pdf']
-        ]);
+        $formFields = $request->validated();
 
         $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('application_files', 'public');
         $formFields['application_form'] = $request->file('application_form')->store('application_files', 'public');
@@ -54,21 +48,6 @@ class ScholarshipApplicationController extends Controller
             'application_form' => $formFields['application_form']
 
         ]);
-        // ApplicationDetail::create([
-
-        //     'applications_id' => $application->id,
-        //     'description' => $formFields['description'],
-        //     'years_in_city' => $request->years_in_city,
-        //     'family_income' => $request->family_income,
-        //     'educational_attainment' => $request->educational_attainment,
-        //     'gwa' => $request->gwa,
-        //     'nationality' => $request->nationality,
-        //     'city' => $request->city,
-        //     'registered_voter' => $request->registered_voter,
-        //     'documentary_requirement' => $formFields['documentary_requirement'],
-        //     'application_form' => $formFields['application_form']
-
-        // ]);
 
         return redirect('/applications')->with('success', 'Application created successfully!');
     }
@@ -128,7 +107,6 @@ class ScholarshipApplicationController extends Controller
     {
 
         $formFields = [
-
             'documentary_requirement' => '',
             'application_form' => ''
         ];
