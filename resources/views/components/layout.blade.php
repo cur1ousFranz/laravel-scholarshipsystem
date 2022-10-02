@@ -183,14 +183,16 @@
         <div class="container ">
             @if (Auth::check() || Auth::guest())
                 @if (Auth::check() && auth()->user()->role === 'coordinator')
-                    <a class="navbar-brand lead" href="/home"
-                    style="font-family: Arial, Helvetica, sans-serif">
-                        EDUKAR SCHOLARSHIP
+                    <a class="navbar-brand fw-bolder" href="/home"
+                    style="letter-spacing: 3px">
+                    <img style="width: 100px; height: 30px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
+                    EDUKAR
                     </a>
                 @else
-                    <a class="navbar-brand lead" href="/"
-                    style="font-family: Arial, Helvetica, sans-serif">
-                        EDUKAR SCHOLARSHIP
+                    <a class="navbar-brand fw-bolder" href="/"
+                    style="letter-spacing: 3px">
+                    <img style="width: 100px; height: 30px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
+                    EDUKAR
                     </a>
                 @endif
             @endif
@@ -203,13 +205,7 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         @if (auth()->user()->role == 'applicant')
-                            {{-- <li class="nav-item mt-lg-1">
-                                <a class="nav-link text-dark d-flex justify-content-center" href="/">
-                                    <i class="bi bi-house-door" style="font-size: 18px"></i>
-                                </a>
-                            </li> --}}
-
-                            <li class="nav-item mt-lg-1">
+                            <li class="nav-item">
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark position-relative"
@@ -223,9 +219,9 @@
                                         @endif
                                     </a>
 
-                                    <div class="dropdown-menu text-center p-0 position-absolute"
+                                    <div class="dropdown-menu p-0 position-absolute"
                                     style="max-height: 275px; width: 200px; overflow-y: auto">
-                                        <h5 class="fw-bold mt-2">Notifications</h5>
+                                        <h5 class="fw-bold mt-2 text-center">Notifications</h5>
                                         <ul class="list-group">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notifications)
@@ -233,7 +229,7 @@
                                                         <a class="text-decoration-none text-dark dropdown-item"
                                                         href="/notifications/{{ $notifications->id }}">
                                                             <div class="row">
-                                                                <div class="col-6">
+                                                                <div class="col-6 text-end">
                                                                     {{ $notifications->data['title'] }}
                                                                 </div>
                                                                 <div class="col-6">
@@ -249,7 +245,7 @@
                                                 @endforeach
                                                 @foreach ( auth()->user()->readNotifications as $notifications )
                                                     <li class="list-group-item border-0 @if($loop->last) mb-2 @endif">
-                                                        <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item">
+                                                        <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item text-secondary">
                                                             {{ $notifications->data['title'] }}
                                                             <p class="p-0 m-0 text-end" style="font-size: 11px">
                                                                 {{ $notifications->created_at->diffForHumans() }}
@@ -267,14 +263,14 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item mt-lg-1">
+                            <li class="nav-item">
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark" data-bs-toggle="dropdown">
                                         {{ auth()->user()->username }}
                                         <i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
-                                    <div class="dropdown-menu text-center position-absolute">
+                                    <div class="dropdown-menu text-center">
                                         <a class="dropdown-item" href="/profile">Profile</a>
                                         <div class="dropdown-divider"></div>
                                         <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
@@ -311,8 +307,6 @@
                                         {{ auth()->user()->username }}
                                     </a>
                                     <div class="dropdown-menu text-center">
-                                        {{-- <a class="dropdown-item" href="#">Profile</a>
-                                        <div class="dropdown-divider"></div> --}}
                                         <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="/logout">
                                             Logout
                                         </a>
