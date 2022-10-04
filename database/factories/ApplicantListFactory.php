@@ -17,7 +17,7 @@ class ApplicantListFactory extends Factory
     public function definition()
     {
         return [
-            'applications_id' => 7, // change id for existing application
+            'applications_id' => 1, // change id for existing application
             'applicants_id' => '',
             'document' => '',
             'review' => null,

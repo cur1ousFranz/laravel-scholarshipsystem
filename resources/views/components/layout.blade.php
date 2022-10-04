@@ -255,7 +255,7 @@
                                                 @endforeach
                                             @else
                                                 <hr class="mt-1 mb-1">
-                                                <li class="list-group-item border-0 text-muted">Nothing to show</li>
+                                                <li class="list-group-item border-0 text-muted text-center">Nothing to show</li>
                                             @endif
 
                                         </ul>
@@ -357,7 +357,7 @@
             x-data="{show: true}"
             x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
-                <p> {{ session('success') }}</p>
+                <h6 class="py-1 fw-bold"> {{ session('success') }}</h6>
             </div>
         </div>
     @endif
@@ -369,7 +369,7 @@
             x-data="{show: true}"
             x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
-                <p> {{ session('error') }}</p>
+                <h6 class="py-1 fw-bold"> {{ session('error') }}</h6>
             </div>
         </div>
     @endif

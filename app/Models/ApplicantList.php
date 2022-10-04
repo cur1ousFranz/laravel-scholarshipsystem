@@ -7,6 +7,7 @@ use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 class ApplicantList extends Model
 {
@@ -23,7 +24,9 @@ class ApplicantList extends Model
     public function scopeFilter($query, array $filters){
 
         if($filters['search'] ?? false){
-            $query->where('first_name', 'like', '%' . request('search') .'%')
+
+            $query->leftJoin('applicants', 'applicants.id' , '=', 'applicant_lists.applicants_id')
+            ->where('first_name', 'like', '%' . request('search') .'%')
             ->orWhere('middle_name', 'like', '%' . request('search') .'%')
             ->orWhere('last_name', 'like', '%' . request('search') .'%')
             ->orWhere('age', 'like', '%' . request('search') .'%')
@@ -41,7 +44,7 @@ class ApplicantList extends Model
 
     public function applicant(){
 
-        return $this->hasMany(Applicant::class, 'id');
+        return $this->hasMany(Applicant::class, 'id', 'applicants_id');
     }
 
     public function application(){

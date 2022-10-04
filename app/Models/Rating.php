@@ -19,7 +19,7 @@ class Rating extends Model
 
     public function applicantList(){
 
-        return $this->belongsTo(ApplicantList::class , 'id');
+        return $this->belongsTo(ApplicantList::class);
     }
 
 }
