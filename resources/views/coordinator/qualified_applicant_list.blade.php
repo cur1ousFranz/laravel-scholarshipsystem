@@ -115,32 +115,7 @@
                 <x-table.table>
                     <thead class="text-center text-dark" id="applicantListHeader">
                         <tr>
-                            <x-table.th class="bg-light">Rating</x-table.th>
-                            <x-table.th class="bg-light">Document</x-table.th>
-                            <x-table.th>First Name</x-table.th>
-                            <x-table.th>Middle Name</x-table.th>
-                            <x-table.th>Last Name</x-table.th>
-                            <x-table.th>Age</x-table.th>
-                            <x-table.th>Gender</x-table.th>
-                            <x-table.th>Civil Status</x-table.th>
-                            <x-table.th>Street</x-table.th>
-                            <x-table.th>Barangay</x-table.th>
-                            <x-table.th>City</x-table.th>
-                            <x-table.th>Province</x-table.th>
-                            <x-table.th>Region</x-table.th>
-                            <x-table.th>Zipcode</x-table.th>
-                            <x-table.th>Contact Number</x-table.th>
-                            <x-table.th>Contact Email</x-table.th>
-                            <x-table.th>Desired School</x-table.th>
-                            <x-table.th>Course</x-table.th>
-                            <x-table.th>HEI Type</x-table.th>
-                            <x-table.th>School Last Attended</x-table.th>
-                            <x-table.th>Nationality</x-table.th>
-                            <x-table.th>Educational Attainment</x-table.th>
-                            <x-table.th>No. Years in City</x-table.th>
-                            <x-table.th>Family Income</x-table.th>
-                            <x-table.th>Registered Voter</x-table.th>
-                            <x-table.th>GWA</x-table.th>
+                            <x-table.header/>
                         </tr>
                     </thead>
                     <tbody id="applicantListHeader">
@@ -157,30 +132,7 @@
                                         <i class="bi bi-file-earmark-pdf"></i>
                                     </a>
                                 </td>
-                                <td>{{ $list->applicant->first()->first_name }}</td>
-                                <td>{{ $list->applicant->first()->middle_name }}</td>
-                                <td>{{ $list->applicant->first()->last_name }}</td>
-                                <td>{{ $list->applicant->first()->age }}</td>
-                                <td>{{ $list->applicant->first()->gender }}</td>
-                                <td>{{ $list->applicant->first()->civil_status }}</td>
-                                <td>{{ $list->applicant->first()->address->street }}</td>
-                                <td>{{ $list->applicant->first()->address->barangay }}</td>
-                                <td>{{ $list->applicant->first()->address->city }}</td>
-                                <td>{{ $list->applicant->first()->address->province }}</td>
-                                <td>{{ $list->applicant->first()->address->region }}</td>
-                                <td>{{ $list->applicant->first()->address->zipcode }}</td>
-                                <td>{{ $list->applicant->first()->contact->contact_number }}</td>
-                                <td>{{ $list->applicant->first()->contact->email }}</td>
-                                <td>{{ $list->applicant->first()->school->desired_school }}</td>
-                                <td>{{ $list->applicant->first()->school->course_name }}</td>
-                                <td>{{ $list->applicant->first()->school->hei_type }}</td>
-                                <td>{{ $list->applicant->first()->school->school_last_attended }}</td>
-                                <td>{{ $list->applicant->first()->nationality }}</td>
-                                <td>{{ $list->applicant->first()->educational_attainment }}</td>
-                                <td>{{ $list->applicant->first()->years_in_city }}</td>
-                                <td>{{ $list->applicant->first()->family_income }}</td>
-                                <td>{{ $list->applicant->first()->registered_voter }}</td>
-                                <td>{{ $list->applicant->first()->gwa }}</td>
+                                <x-table.td :applicant="$list->applicant->first()"/>
                             </tr>
                         @empty
                             <tr>
