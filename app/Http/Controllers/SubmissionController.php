@@ -16,7 +16,7 @@ class SubmissionController extends Controller
                         ->where(['applications_id' => $application->id, 'review' => null])
                         ->filter(request(['search']))
                         ->orderBy('applicant_lists.created_at','desc')
-                        ->paginate(10);
+                        ->paginate(100);
 
         return view('coordinator.submission', [
             'applicantList' => $applicantList,

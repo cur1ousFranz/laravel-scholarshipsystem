@@ -9,7 +9,7 @@
                             <form action="/applications/{{ $application->id }}/details" method="post">
                                 @csrf
                                 @method('PATCH')
-                                <h2 class="text-center">Edit Application Details</h2>
+                                <h4>Edit Application Details</h4>
                                 <hr>
                                 <div class="row mt-3">
                                     <div class="col-lg mt-1">
@@ -99,7 +99,7 @@
                             <form action="/applications/{{ $application->id }}/files" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
-                                <h2 class="text-center">Edit Application Files</h2>
+                                <h4>Edit Application Details</h4>
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg">

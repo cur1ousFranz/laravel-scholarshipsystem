@@ -37,13 +37,13 @@ class ScholarshipApplicationController extends Controller
         $application->applicationDetail()->create([
 
             'description' => $formFields['description'],
-            'years_in_city' => $request->years_in_city,
-            'family_income' => $request->family_income,
-            'educational_attainment' => $request->educational_attainment,
-            'gwa' => $request->gwa,
-            'nationality' => $request->nationality,
-            'city' => $request->city,
-            'registered_voter' => $request->registered_voter,
+            'years_in_city' => 3,
+            'family_income' => 'Less than ₱10,957',
+            'educational_attainment' => 'Incoming College / College Level',
+            'gwa' => 80,
+            'nationality' => 'Filipino',
+            'city' => 'General Santos',
+            'registered_voter' => 'Yes',
             'documentary_requirement' => $formFields['documentary_requirement'],
             'application_form' => $formFields['application_form']
 

@@ -226,6 +226,10 @@
 
         </table>
     </div>
+    <div id="signature" style="float: right; margin-top: 50px; margin-bottom: 0;">
+        <p style="margin: 0">____________________</p>
+        <p style="margin-top: 10px">Scholarship Coordinator</p>
+    </div>
     <footer style="position: fixed; left: 0; bottom: 0">
         <img src="{{ public_path('storage/img/footer_logo.png') }}" style="width: 100%;">
     </footer>

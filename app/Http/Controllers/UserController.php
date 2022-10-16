@@ -63,9 +63,7 @@ class UserController extends Controller
                 $request->session()->regenerate();
                 return redirect('/')->with('success', 'You logged in!');
             }
-        }
 
-        if(Auth::attempt($validated)){
             if($user->role == "coordinator"){
                 $request->session()->regenerate();
                 return redirect('/home')->with('success', 'You logged in!');
