@@ -49,7 +49,8 @@ class NotificationController extends Controller
 
         $formFields = $request->validate([
             'title'=> 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'coordinator' => 'required',
         ]);
 
         /**  Get all applicants that belongs to qualified table
@@ -103,7 +104,9 @@ class NotificationController extends Controller
             $users[] = User::where('id', $id)->first();
         }
 
-        Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
+        Notification::send($users,
+        new ApplicantNotification($formFields['title'], $formFields['message'], $formFields['coordinator'] ));
+
         $this->sendMail($request->title, $request->message, $applicants);
 
         return back()->with('success', 'Announcement sent successfully!');
@@ -117,7 +120,8 @@ class NotificationController extends Controller
 
         $formFields = $request->validate([
             'title'=> 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'coordinator' => 'required',
         ]);
 
         /**  Get all applicants that belongs to rejected table
@@ -169,7 +173,9 @@ class NotificationController extends Controller
             $users[] = User::where('id', $id)->first();
         }
 
-        Notification::send($users, new ApplicantNotification($formFields['title'], $formFields['message'] ));
+        Notification::send($users,
+        new ApplicantNotification($formFields['title'], $formFields['message'], $formFields['coordinator'] ));
+
         $this->sendMail($request->title, $request->message, $applicants);
 
         return back()->with('success', 'Announcement sent successfully!');

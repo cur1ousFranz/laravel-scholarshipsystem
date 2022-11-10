@@ -53,7 +53,20 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-6"></div>
+                                                    <div class="col-6 text-start">
+                                                        <x-form.label name="coordinator"/>
+                                                        <input class="shadow-sm form-control" id="coordinator" name="coordinator"
+                                                        style="background-color: #fff;"
+                                                        autocomplete="off" value="{{ old('coordinator') }}"
+                                                        maxlength="20">
+
+                                                        @error('coordinator')
+                                                            @php
+                                                                back()->with('error', 'Provide all fields!');
+                                                            @endphp
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 <div class="text-start mt-2">
                                                     <x-form.label name="message"/>

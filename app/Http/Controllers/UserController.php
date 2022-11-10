@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserRequest as RequestsCreateUserRequest;
 use App\Models\User;
 use App\Models\Scholar;
 use App\Models\Activity;
+use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\User\CreateUserRequest;
-use App\Http\Requests\User\LoginUserRequest;
 use Illuminate\Notifications\Notifiable;
+use App\Http\Requests\User\LoginUserRequest;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\CreateUserRequest as RequestsCreateUserRequest;
 
 class UserController extends Controller
 {

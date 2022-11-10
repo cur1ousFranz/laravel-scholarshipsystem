@@ -14,10 +14,11 @@ class ApplicantNotification extends Notification
      *
      * @return void
      */
-    public function __construct($title, $message)
+    public function __construct($title, $message, $coordinator)
     {
         $this->title = $title;
         $this->message = $message;
+        $this->coordinator = $coordinator;
     }
 
     /**
@@ -41,20 +42,9 @@ class ApplicantNotification extends Notification
     {
         return [
             'title' => $this->title,
-            'message' => $this->message
+            'message' => $this->message,
+            'coordinator' => $this->coordinator
         ];
     }
 
-    // /**
-    //  * Get the array representation of the notification.
-    //  *
-    //  * @param  mixed  $notifiable
-    //  * @return array
-    //  */
-    // public function toArray($notifiable)
-    // {
-    //     return [
-    //         'recipient' => $this->recipient
-    //     ];
-    // }
 }

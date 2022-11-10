@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         $userAdmin = User::create([
 
-            'username' => 'admin2',
-            'password' => bcrypt('1234'),
+            'username' => 'coordinator',
+            'password' => bcrypt('password'),
             'role' => 'coordinator'
 
         ]);

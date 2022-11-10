@@ -46,7 +46,6 @@
 
                                         <x-form.row-col>
                                             <x-slot name="first">
-                                                {{-- <x-form.input name="middle_name" :value="old('middle_name', $applicant->middle_name)" /> --}}
                                                 <x-form.label name="middle_name (optional)"/>
                                                 <input class="shadow-sm form-control" type="text" id="middle_name" name="middle_name"
                                                 style="background-color: #fff;" value="{{ old('middle_name') ?? $applicant->middle_name }}">
@@ -58,8 +57,6 @@
 
                                         <x-form.row-col>
                                             <x-slot name="first">
-                                                {{-- <x-form.input name="age" :value="old('age', $applicant->age)"
-                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2" max="30"/> --}}
                                                 <x-form.label name="age"/>
                                                 <select class="shadow-sm form-select form-control" name="age">
                                                     <option selected disabled>Select</option>
@@ -288,8 +285,12 @@
                                                 <x-form.error name="region"/>
                                             </x-slot>
                                             <x-slot name="second">
-                                                <x-form.input name="zipcode" :value="old('zipcode', $applicant->address->zipcode)"
-                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="4"/>
+                                                <x-form.label name="zipcode"/>
+                                                <select class="shadow-sm form-select form-control" name="zipcode">
+                                                    <option selected disabled>Select</option>
+                                                    <option {{ old('zipcode') == '9500' ? 'selected' : '' }} value="9500">9500</option>
+                                                </select>
+                                                <x-form.error name="zipcode"/>
                                             </x-slot>
                                         </x-form.row-col>
                                     </x-slot>
@@ -340,9 +341,6 @@
 
     });
 
-</script>
-<script>
-
     // This is for Address function
     // dynamic dependent dropdown
     $(document).ready(function() {
@@ -386,5 +384,6 @@
         $('#barangay').val('');
     });
 
-    });
+});
+
 </script>

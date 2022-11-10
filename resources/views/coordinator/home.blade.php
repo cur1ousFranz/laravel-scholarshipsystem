@@ -2,7 +2,7 @@
     <section>
         <x-container>
             <div class="row">
-                <div class="col-8">
+                <div class="col-md-8 mt-3 mt-md-0 order-2 order-md-0">
                     <div class="card">
                         <x-card-primary-border>
                             <div class="h5">
@@ -43,7 +43,7 @@
                         </x-card-primary-border>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 order-1">
                     <div class="card">
                         <x-card-primary-border>
                             <ul class="list-group border-0">

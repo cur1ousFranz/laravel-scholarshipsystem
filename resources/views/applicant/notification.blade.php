@@ -21,7 +21,7 @@
                     </div>
                     <div class="container mt-5">
                         <div class="clearfix">
-                            <p class="mb-0 float-end" style="font-size: 16px;">Finn & Jake</p >
+                            <p class="mb-0 float-end" style="font-size: 16px;">{!! json_decode($notification->data)->coordinator; !!}</p >
                         </div>
                         <p class="mt-0 float-end">Scholarship Coordinator</p >
                     </div>

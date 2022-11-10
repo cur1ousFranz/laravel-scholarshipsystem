@@ -2,7 +2,7 @@
     <section>
         <x-container>
             <div class="row">
-                <div class="col-9">
+                <div class="col-md-9 order-2 order-md-1 mt-3 mt-md-0">
                     <div class="card">
                         <x-card-primary-border>
                             <div class="h5">Data Report</div>
@@ -81,7 +81,7 @@
                         </x-card-primary-border>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 order-1 order-md-2">
                     <div class="card">
                         <x-card-primary-border>
                             <div class="h5">Export Data</div>
