@@ -50,7 +50,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $application->applicationDetail->documentary_requirement }}"
+                                <a href="{{ $application->applicationDetail->documentary_requirement }}"
                                     class="btn btn-outline-success form-control" target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
-                                <a href="/storage/{{ $application->applicationDetail->application_form }}" class="btn btn-outline-success form-control"
+                                <a href="{{ $application->applicationDetail->application_form }}" class="btn btn-outline-success form-control"
                                     target="_blank">&nbsp;View&nbsp;<i class="bi bi-filetype-pdf"></i></a>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-<x-layout title="Sign up">
+<x-layout title="Edukar | Sign up">
     <x-container>
         <div class="container" style="min-width: 200px; max-width: 450px">
             <div class="card">

@@ -15,6 +15,7 @@ class Activity extends Model
         'slug',
         'body',
         'image',
+        'url',
     ];
 
 }

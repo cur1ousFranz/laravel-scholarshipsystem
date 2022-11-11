@@ -19,7 +19,7 @@ use App\Http\Controllers\ScholarshipApplicationController;
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/', 'index');
-    Route::get('/signup', 'signup')->middleware('guest');
+    Route::get('/signup', 'signup')->middleware('guest')->name('signup');
     Route::post('/users', 'create')->middleware('guest');
     Route::post('authenticate', 'login')->name('login')->middleware('guest');
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
@@ -33,9 +33,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'coordinator'], function(){
 
             Route::controller(CoordinatorController::class)->group(function(){
-                Route::get('/home', 'home');
-                Route::get('/report', 'report');
-                Route::get('/applications', 'application');
+                Route::get('/home', 'home')->name('home');
+                Route::get('/report', 'report')->name('report');
+                Route::get('/applications', 'application')->name('applications');
             });
 
             Route::post('/report/export', [ExportDataController::class, 'show']);
@@ -49,12 +49,12 @@ Route::group(['middleware' => 'auth'], function() {
             });
 
             Route::controller(QualifiedApplicantController::class)->group(function(){
-                Route::get('/qualified', 'index');
+                Route::get('/qualified', 'index')->name('qualified');
                 Route::get('/qualified/{application}','show');
             });
 
             Route::controller(RejectedApplicantController::class)->group(function(){
-                Route::get('/rejected','index');
+                Route::get('/rejected','index')->name('rejected');
                 Route::get('/rejected/{application}','show');
             });
 
@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'applicant'], function() {
 
         Route::controller(ApplicantController::class)->group(function(){
-            Route::get('/profile', 'index');
+            Route::get('/profile', 'index')->name('profile');
             Route::get('/profiles/{applicant}/edit', 'edit');
             Route::put('/profiles/{applicant}', 'update');
         });
@@ -94,7 +94,8 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('/apply/{application}', 'store');
         });
 
-        Route::get('/notifications/{notification}', [NotificationController::class, 'show']);
+        Route::get('/notifications/{notification}', [NotificationController::class, 'show'])
+            ->name('notification');
 
     });
 

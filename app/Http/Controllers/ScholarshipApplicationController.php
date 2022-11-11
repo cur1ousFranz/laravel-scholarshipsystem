@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Coordinator\StoreApplicationRequest;
 use App\Models\Application;
+use App\Models\Coordinator;
 use Illuminate\Http\Request;
 use App\Models\ApplicationDetail;
-use App\Models\Coordinator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Coordinator\StoreApplicationRequest;
 
 class ScholarshipApplicationController extends Controller
 {
@@ -20,8 +21,11 @@ class ScholarshipApplicationController extends Controller
     {
         $formFields = $request->validated();
 
-        $formFields['documentary_requirement'] = $request->file('documentary_requirement')->store('application_files', 'public');
-        $formFields['application_form'] = $request->file('application_form')->store('application_files', 'public');
+        $reqPath = $formFields['documentary_requirement']->store('documentary_requirement', 's3');
+        $appPath = $formFields['application_form']->store('application_form', 's3');
+
+        $formFields['documentary_requirement'] = Storage::disk('s3')->url($reqPath);
+        $formFields['application_form'] = Storage::disk('s3')->url($appPath);
 
         $coordinator = Coordinator::where('users_id', Auth::user()->id)->first();
 
@@ -83,13 +87,6 @@ class ScholarshipApplicationController extends Controller
         $currentUpdatedDetail = $applicationDetail->updated_at;
 
         $applicationDetail->description = $request->input('description');
-        $applicationDetail->years_in_city = $request->input('years_in_city');
-        $applicationDetail->family_income = $request->input('family_income');
-        $applicationDetail->educational_attainment = $request->input('educational_attainment');
-        $applicationDetail->gwa = $request->input('gwa');
-        $applicationDetail->nationality = $request->input('nationality');
-        $applicationDetail->city = $request->input('city');
-        $applicationDetail->registered_voter = $request->input('registered_voter');
         $applicationDetail->save();
 
         if($currentUpdatedApplication != $application->updated_at){
@@ -115,9 +112,8 @@ class ScholarshipApplicationController extends Controller
             $temp = $request->validate(['documentary_requirement' => 'mimes:pdf']);
             if($temp){
 
-                $formFields['documentary_requirement'] = $request
-                ->file('documentary_requirement')
-                ->store('files', 'public');
+                $reqPath = $request->file('documentary_requirement')->store('documentary_requirement', 's3');
+                $formFields['documentary_requirement'] = Storage::disk('s3')->url($reqPath);
             }
         }
 
@@ -125,9 +121,8 @@ class ScholarshipApplicationController extends Controller
             $temp = $request->validate(['application_form' => 'mimes:pdf']);
             if($temp){
 
-                $formFields['application_form'] = $request
-                ->file('application_form')
-                ->store('files', 'public');
+                $appPath = $request->file('application_form')->store('application_form', 's3');
+                $formFields['application_form'] = Storage::disk('s3')->url($appPath);
             }
         }
 

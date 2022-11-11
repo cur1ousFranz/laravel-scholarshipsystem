@@ -42,7 +42,7 @@
             padding: 3;
         }
     </style>
-    <title>School Year: {{ $year .' - ' . $year + 1 }}</title>
+    <title>Annual Data Report of Applications: {{ $year .' - ' . $year + 1 }}</title>
 </head>
 <body>
     <header>
@@ -61,9 +61,8 @@
             <p class="text-header"><i>EduKAR GenSan Scholarship Program</i></p>
         </div>
     </div>
-
-    <h4 style="margin-top: 50px;">
-        School Year: <span style="font-weight: normal">{{ $year .' - ' . $year + 1 }}</span>
+    <h4 style="margin-top: 50px">
+        Annual Data Report of Applications: <span style="font-weight: normal">{{ $year .' - ' . $year + 1 }}</span>
     </h4>
     <div id="backround-wrapper">
         <table style="margin-top: 20px">

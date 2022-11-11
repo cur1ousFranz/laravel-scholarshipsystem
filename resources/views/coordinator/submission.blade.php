@@ -92,7 +92,7 @@
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <a class="fw-bold text-danger" href="/storage/{{ $list->document }}"
+                                        <a class="fw-bold text-danger" href="{{ $list->document }}"
                                             target="_blank" style="font-size: 22px">
                                             <i class="bi bi-file-earmark-pdf"></i>
                                         </a>

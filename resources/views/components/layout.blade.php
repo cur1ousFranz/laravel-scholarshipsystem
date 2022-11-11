@@ -224,13 +224,13 @@
                                         <h5 class="fw-bold mt-2 text-center">Notifications</h5>
                                         <ul class="list-group">
                                             @if (auth()->user()->notifications->count() != 0)
-                                                @foreach (auth()->user()->unreadNotifications as $notifications)
+                                                @foreach (auth()->user()->unreadNotifications as $notification)
                                                     <li class="list-group-item border-0">
                                                         <a class="text-decoration-none text-dark dropdown-item"
-                                                        href="/notifications/{{ $notifications->id }}">
+                                                        href="{{ route('notification', $notification->id) }}">
                                                             <div class="row">
                                                                 <div class="col-6 text-end">
-                                                                    {{ $notifications->data['title'] }}
+                                                                    {{ $notification->data['title'] }}
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <span class="badge rounded-pill ms-5 bg-primary">
@@ -238,17 +238,17 @@
                                                                 </div>
                                                             </div>
                                                             <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                                {{ $notifications->created_at->diffForHumans() }}
+                                                                {{ $notification->created_at->diffForHumans() }}
                                                             </p>
                                                         </a>
                                                     </li>
                                                 @endforeach
-                                                @foreach ( auth()->user()->readNotifications as $notifications )
+                                                @foreach ( auth()->user()->readNotifications as $notification )
                                                     <li class="list-group-item border-0 @if($loop->last) mb-2 @endif">
-                                                        <a  href="/notifications/{{ $notifications->id }}" class="dropdown-item text-secondary">
-                                                            {{ $notifications->data['title'] }}
+                                                        <a  href="{{ route('notification', $notification->id) }}" class="dropdown-item text-secondary">
+                                                            {{ $notification->data['title'] }}
                                                             <p class="p-0 m-0 text-end" style="font-size: 11px">
-                                                                {{ $notifications->created_at->diffForHumans() }}
+                                                                {{ $notification->created_at->diffForHumans() }}
                                                             </p>
                                                         </a>
                                                     </li>
@@ -271,33 +271,33 @@
                                         <i class="ms-1 bi bi-caret-down-fill"></i>
                                     </a>
                                     <div class="dropdown-menu text-center">
-                                        <a class="dropdown-item" href="/profile">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="/logout" class="btn mb-0 pb-0 pt-0 text-danger">
+                                        <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0 text-danger">
                                             Logout
                                         </a>
                                     </div>
                                 </div>
                             </li>
                         @elseif(auth()->user()->role == 'coordinator')
-                            <li class="nav-item">
-                                <a class="nav-link text-dark text-center" href="/home">Home</a>
+                            <li class="{{ Route::current()->getName() === 'home' ? 'border-bottom border-2 border-primary' : '' }} nav-item">
+                                <a class="nav-link text-dark text-center" href="{{ route('home') }}">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark text-center" href="/report">Report</a>
+                            <li class="{{ Route::current()->getName() === 'report' ? 'border-bottom border-2 border-primary' : '' }} nav-item">
+                                <a class="nav-link text-dark text-center" href="{{ route('report') }}">Report</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark text-center" href="/applications">Application</a>
+                            <li class="{{ Route::current()->getName() === 'applications' ? 'border-bottom border-2 border-primary' : '' }} nav-item">
+                                <a class="nav-link text-dark text-center" href="{{ route('applications') }}">Application</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="{{ (Route::current()->getName() === 'qualified') ? 'border-bottom border-2 border-primary' : ((Route::current()->getName() === 'rejected') ? 'border-bottom border-2 border-primary' : '') }} nav-item">
                                 <div class="dropdown show text-center">
                                     <a class="btn text-dark" data-bs-toggle="dropdown">
                                         Applicant
                                     </a>
                                     <div class="dropdown-menu text-center">
-                                        <a class="dropdown-item" href="/qualified">Qualified Applicants</a>
+                                        <a class="dropdown-item" href="{{ route('qualified') }}">Qualified Applicants</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/rejected">Rejected Applicants</a>
+                                        <a class="dropdown-item" href="{{ route('rejected') }}">Rejected Applicants</a>
                                     </div>
                                 </div>
                             </li>
@@ -307,7 +307,7 @@
                                         {{ auth()->user()->username }}
                                     </a>
                                     <div class="dropdown-menu text-center">
-                                        <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="/logout">
+                                        <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="{{ route('logout') }}">
                                             Logout
                                         </a>
                                     </div>
@@ -316,7 +316,7 @@
                         @endif
                     @else
                         <li class="nav-item  border-warning">
-                            <a class="nav-link text-dark text-center" href="/signup">Sign up</a>
+                            <a class="nav-link text-dark text-center" href="{{ route('signup') }}">Sign up</a>
                         </li>
                         <li class="nav-item border-warning ms-lg-2">
                             <a class="nav-link text-dark text-center" data-bs-toggle="modal" data-bs-target="#signinModal"

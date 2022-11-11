@@ -8,6 +8,7 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
@@ -55,7 +56,9 @@ class ApplicationController extends Controller
 
         $formFields = $request->validate([ 'document' => ['required', 'mimes:pdf'] ]);
 
-        $formFields['document'] = $request->file('document')->store('application_submissions', 'public');
+        $path = $request->file('document')->store('submissions', 's3');
+
+        $formFields['document'] = Storage::disk('s3')->url($path);
         $formFields['applications_id'] = $application->id;
         $formFields['applicants_id'] = $this->getApplicant()->id;
 

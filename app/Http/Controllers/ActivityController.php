@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
@@ -27,8 +28,11 @@ class ActivityController extends Controller
             'body' => 'required',
         ]);
 
+        $path = $formFields['image']->store('images', 's3');
+
         $formFields['title'] = strtoupper($formFields['title']);
-        $formFields['image'] = request()->file('image')->store('activities', 'public');
+        $formFields['image'] = basename($path);
+        $formFields['url'] = Storage::disk('s3')->url($path);
         $formFields['users_id'] = auth()->user()->id;
         $formFields['slug'] = Str::slug(request()->title);
 

@@ -165,7 +165,7 @@
                                             </x-slot>
                                             <x-slot name="second">
                                                 <x-form.input name="gwa" :value="old('gwa', $applicant->gwa)"
-                                                    onkeypress="return /[0-9]/i.test(event.key)" maxlength="2" min="70" max="99"/>
+                                                    onkeypress="return /[0-9.]/i.test(event.key)" maxlength="5" min="70" max="99"/>
                                             </x-slot>
                                         </x-form.row-col>
                                     </x-slot>

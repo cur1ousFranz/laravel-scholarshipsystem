@@ -111,7 +111,7 @@
                                                 <x-form.input type="file" name="documentary_requirement" accept="application/pdf"/>
                                                 <p class="mt-2"><i
                                                     class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
-                                                <a href="{{ asset('storage/' . $application->applicationDetail->documentary_requirement) }}"
+                                                <a href="{{ $application->applicationDetail->documentary_requirement }}"
                                                     target="_blank">
                                                     View
                                                 </a>
@@ -129,7 +129,7 @@
                                             <div class="col-lg">
                                                 <x-form.input type="file" name="application_form" accept="application/pdf"/>
                                                 <p class="mt-2"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Current File:
-                                                    <a href="{{ asset('storage/' . $application->applicationDetail->application_form) }}"
+                                                    <a href="{{ $application->applicationDetail->application_form }}"
                                                         target="_blank">
                                                         View
                                                     </a>

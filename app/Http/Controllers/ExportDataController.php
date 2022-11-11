@@ -57,7 +57,7 @@ class ExportDataController extends Controller
                 'schoolApplicantsCount' => $schoolApplicantsCount
             ]);
 
-            return $pdf->stream('School-Year-'. $year['school_year'] .'-'. $year['school_year'] + 1 .'.pdf');
+            return $pdf->stream('Annual Data Report of Applications-'. $year['school_year'] .'-'. $year['school_year'] + 1 .'.pdf');
         }
 
         if (request()->input('action') === 'download') {
@@ -69,7 +69,7 @@ class ExportDataController extends Controller
                 'year' => $year['school_year'],
                 'schoolApplicantsCount' => $schoolApplicantsCount
             ]);
-            return $pdf->download('School-Year-'. $year['school_year'] .'-'. $year['school_year'] + 1 .'.pdf');
+            return $pdf->download('Annual Data Report of Applications-'. $year['school_year'] .'-'. $year['school_year'] + 1 .'.pdf');
         }
 
     }

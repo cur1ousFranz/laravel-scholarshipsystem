@@ -73,7 +73,7 @@
                 <div class="mySlides fading">
                     <div class="card mb-5">
                         <div class="card-body">
-                            <img style="" src="{{ asset('storage/' . $scholar->image) }}"
+                            <img style="" src="{{ $scholar->image }}"
                             class="shadow img-fluid" >
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                         <div class="col-lg-4 d-flex justify-content-center @if(!$loop->first) mt-5 mt-lg-0 @endif">
                             <div class="card position-relative border-0 shadow" style="width: 350px">
                                 <a href="/activity/{{ $activity->slug }}">
-                                    <img class="card-img-top" src="{{ asset('storage/' . $activity->image) }}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ $activity->url }}" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <div class="card-title">

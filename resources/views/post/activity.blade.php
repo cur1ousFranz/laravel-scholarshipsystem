@@ -3,7 +3,7 @@
         <x-container>
             @foreach ($activities as $activity)
                 <div class="container d-flex justify-content-center mt-5">
-                    <img class="img-fluid shadow" src="{{ asset('storage/' . $activity->image) }}" alt="">
+                    <img class="img-fluid shadow" src="{{ $activity->url }}" alt="">
                 </div>
                 <div class="container mt-4">
                     <div class="h1 fw-bold pt-1">

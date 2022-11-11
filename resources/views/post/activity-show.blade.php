@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="container d-flex justify-content-center">
-                <img class="img-fluid shadow" src="{{ asset('storage/' . $activity->image) }}" alt="">
+                <img class="img-fluid shadow" src="{{ $activity->url }}" alt="">
             </div>
             <div class="container mt-5">
                 <div class="h5">{!! $activity->body !!}</div>
