@@ -98,16 +98,6 @@
                                 </select>
                                 <x-form.error name="school_year"/>
 
-                                {{-- <x-form.label name="data" class="mt-2"/>
-                                <select class="shadow-sm form-select form-control" name="data">
-                                    <option selected disabled>Select</option>
-                                    <option value="Applicant">Applicant</option>
-                                    <option value="Schools">Schools</option>
-                                    <option value="Family Income">Family Income</option>
-                                    <option value="GWA">GWA</option>
-                                </select>
-                                <x-form.error name="data"/> --}}
-
                                 <div class="d-flex justify-center mt-3">
                                     <button type="submit" class="btn btn-warning form-control btn-sm me-1"
                                     name="action" value="preview">
@@ -128,10 +118,8 @@
         </x-container>
     </section>
 </x-layout>
-
-{{-- CHART CDN AND LINK JS FILE --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-
+<!-- CHART JS -->
 <script type="text/javascript">
     var appliedApplicant = JSON.parse('{!! json_encode($appliedApplicantYears) !!}');
     var appliedApplicantCount = JSON.parse('{!! json_encode($appliedApplicantYearCount) !!}');
@@ -140,6 +128,7 @@
     var rejectedApplicantCount = JSON.parse('{!! json_encode($rejectedApplicantYearCount) !!}');
 </script>
 
-<script src="{{ asset('chart/chart-area-applied-applicant.js') }}"></script>
-<script src="{{ asset('chart/chart-bar-rejected-appplicant.js') }}"></script>
+<script src="{{ asset('js/chart-area-applied-applicant.js') }}"></script>
+<script src="{{ asset('js/chart-bar-rejected-appplicant.js') }}"></script>
+
 

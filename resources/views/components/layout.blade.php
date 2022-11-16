@@ -21,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- BOOTSTRAP CDN -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!-- Decription Box CDN -->
     <script src="https://cdn.tiny.cloud/1/t6ma4oxtlblgdc5mskjxpxgs6ham551qbxdkw09lip31ej1k/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -385,6 +386,7 @@
         </div>
     </footer>
     <!-- Footer -->
+
 </body>
 
 </html>
