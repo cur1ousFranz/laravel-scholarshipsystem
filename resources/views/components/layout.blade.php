@@ -70,7 +70,7 @@
         .scroll td:nth-child(1),
         .scroll td:nth-child(2),
         .scroll td:nth-child(3){
-            background-color: white;
+            background-color: #f7f7f7;
         }
 
         /* This is for qualified applicant and rejected list table */

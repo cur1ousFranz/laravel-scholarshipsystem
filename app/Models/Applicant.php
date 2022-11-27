@@ -20,7 +20,7 @@ class Applicant extends Model
         'first_name',
         'middle_name',
         'last_name',
-        'date_of_birth',
+        'birth_date',
         'gender',
         'civil_status',
         'nationality',

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_lists_id')->constrained()->cascadeOnDelete();
-            $table->string('rate');
+            $table->integer('rate');
             $table->timestamps();
         });
     }

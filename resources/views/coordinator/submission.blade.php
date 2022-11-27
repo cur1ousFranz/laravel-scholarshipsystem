@@ -1,6 +1,6 @@
 <x-layout title="Submissions">
     <section>
-        <x-container class="border shadow-sm">
+        <x-container class="border-top border-top-4 border-bottom border-bottom-4 border-secondary shadow-sm">
             <div class="row mt-3">
                 <div class="col-lg d-flex">
                     <h4 class="mt-2">Applicant List</h4>
@@ -28,7 +28,7 @@
                             </span>
                         </div>
 
-                        <form action="">
+                        <form action="" id="search">
                             <div class="input-group">
                                 <div class="shadow-sm form-outline">
                                     <input type="search"
@@ -54,14 +54,13 @@
                                 </button>
                             </div>
                             <div class="modal-body text-light">
-                                <p>To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically hidden from the list.</p>
+                                <p>To add applicant as qualified or rejected, check boxes must be selected in order to gain access in buttons. Added applicant as qualified or rejected, it will automatically removed from the list.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <hr class="mt-1">
             <div class="scroll shadow-sm mt-2">
                 <form action="/applicants/{{ $application->id }}" method="POST" id="checkboxForm">
                     @csrf
@@ -82,7 +81,7 @@
                                     <td>
                                         <input type="checkbox" name="applicant[]"
                                         value="{{ $list->applicant->first()->id }}"
-                                        class="form-check-input mt-1"
+                                        class="form-check-input mt-1 ms-2"
                                         onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>
@@ -154,4 +153,3 @@
         })
     </script>
 </x-layout>
-

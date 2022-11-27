@@ -1,3 +1,3 @@
-<table {{ $attributes(["class" => "table table-striped table-bordered shadow-sm"]) }}>
+<table {{ $attributes(["class" => "table table-hover"]) }}>
     {{ $slot }}
 </table>

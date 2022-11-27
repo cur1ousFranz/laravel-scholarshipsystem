@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Applicant\UpdateApplicantRequest;
 use App\Models\Applicant;
+use App\Models\Application;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Applicant\UpdateApplicantRequest;
+use App\Http\Requests\Applicant\UpdateApplicantContactRequest;
+use App\Models\Contact;
 
 class ApplicantController extends Controller
 {
@@ -22,30 +26,18 @@ class ApplicantController extends Controller
     public function index()
     {
         $school_list = DB::table('school_courses')->groupBy('school')->get();
-
+        $barangays = DB::table('barangays')->get();
+        $application = Application::with('applicationDetail')->where('status', 'On-going')->latest()->first();
         return view('applicant.profile', [
             'applicant' => $this->getApplicant(),
             'school_list' => $school_list,
-        ]);
-    }
-
-    public function edit()
-    {
-
-        $school_list = DB::table('school_courses')->groupBy('school')->get();
-        $dynamic_address = DB::table('dynamic_addresses')->groupBy('country')->get();
-
-        return view('applicant.profile_edit', [
-            'applicant' => $this->getApplicant(),
-            'school_list' => $school_list,
-            'dynamic_address' => $dynamic_address,
+            'barangays' => $barangays,
+            'application' => $application,
         ]);
     }
 
     public function update(UpdateApplicantRequest $request)
     {
-        // dd($request->all());
-        dd('qwdqildhqwdiugqwd');
         $validated = $request->validated();
 
         $this->getApplicant()->update([
@@ -55,29 +47,27 @@ class ApplicantController extends Controller
             'birth_date' => $validated['birth_date'],
             'gender' => $validated['gender'],
             'civil_status' => $validated['civil_status'],
-            'nationality' => $validated['nationality'],
-            'educational_attainment' => $validated['educational_attainment'],
+            'nationality' => 'Yes',
+            'educational_attainment' => 'Yes',
             'years_in_city' => $validated['years_in_city'],
             'family_income' => $validated['family_income'],
-            'registered_voter' => $validated['registered_voter'],
+            'registered_voter' => 'Yes',
             'gwa' => $validated['gwa'],
         ]);
 
         $this->getApplicant()->school()->update([
             'desired_school' => $validated['desired_school'],
             'course_name' => $validated['course_name'],
-            'hei_type' => $validated['hei_type'],
-            'school_last_attended' => ucwords(strtolower($validated['school_last_attended'])),
         ]);
 
         $this->getApplicant()->address()->update([
-            'country' => $validated['country'],
-            'province' => $validated['province'],
-            'city' => $validated['city'],
+            'country' => 'Philippines',
+            'province' => 'South Cotabato',
+            'city' => 'General Santos',
             'barangay' => $validated['barangay'],
             'street' => ucwords(strtolower($validated['street'])),
-            'region' => $validated['region'],
-            'zipcode' => $validated['zipcode'],
+            'region' => '12',
+            'zipcode' => '9500',
         ]);
 
         $this->getApplicant()->contact()->update([
@@ -86,6 +76,18 @@ class ApplicantController extends Controller
         ]);
 
         return redirect('/profile')->with('success', 'Profile updated successfully!');
+    }
+
+    public function updateContact(UpdateApplicantContactRequest $request)
+    {
+        $validated = $request->validated();
+
+        $contact = Contact::where('applicants_id', $this->getApplicant()->id)->first();
+        $contact->contact_number = $validated['contact_number'];
+        $contact->email = $validated['email'];
+        $contact->save();
+
+        return redirect('/profile')->with('success', 'Contact updated successfully!');
     }
 
 }

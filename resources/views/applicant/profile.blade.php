@@ -5,62 +5,62 @@
                 <div class="col-lg-9 mt-4 mx-auto">
                     <div class="card shadow-sm">
                         <x-card-primary-border>
-                            <h2>Basic Info</h2>
+                            <div class="d-flex justify-content-between">
+                                <h2>Basic Info</h2>
+                                @if ($application != null)
+                                    <a href="{{route('apply')}}" class="btn btn-outline-primary shadow-sm h-100">
+                                        Apply Now
+                                        <i class="bi bi-arrow-right-circle ms-1"></i>
+                                    </a>
+                                @else
+                                    <button class="btn btn-outline-secondary shadow-sm h-100" disabled>
+                                        Apply Now
+                                        <i class="bi bi-arrow-right-circle ms-1"></i>
+                                    </button>
+                                @endif
+                                {{-- <a href="{{ $application != null ? route('apply') : '' }}"
+                                 class="{{ $application != null ? 'btn btn-outline-primary shadow-sm h-100'
+                                 : 'btn btn-outline-secondary shadow-sm h-100' }}" {{ $application != null ? '' : 'disabled' }}>
+                                    Apply Now
+                                    <i class="bi bi-arrow-right-circle ms-1"></i>
+                                </a> --}}
+                            </div>
                             <x-form.row-col>
                                 <x-slot name="first">
                                     <x-form.input name="first_name" disable="true" value="{{ $applicant->first_name }}"/>
 
+                                    <x-form.input class="mt-4" name="middle_name" disable="true" value="{{ $applicant->middle_name }}"/>
+
                                     <x-form.row-col>
                                         <x-slot name="first">
-                                            <x-form.input name="middle_name" disable="true" value="{{ $applicant->middle_name }}"/>
-                                        </x-slot>
-                                        <x-slot name="second">
                                             <x-form.input name="last_name" disable="true" value="{{ $applicant->last_name }}"/>
                                         </x-slot>
-                                    </x-form.row-col>
-
-                                    <x-form.row-col>
-                                        <x-slot name="first">
+                                        <x-slot name="second">
                                             <x-form.input name="birth_date" disable="true" value="{{ $applicant->birth_date }}"/>
                                         </x-slot>
-                                        <x-slot name="second">
-                                            <x-form.input name="gender" disable="true" value="{{ $applicant->gender }}"/>
-                                        </x-slot>
                                     </x-form.row-col>
 
                                     <x-form.row-col>
                                         <x-slot name="first">
-                                            <x-form.input name="civil_status" disable="true" value="{{ $applicant->civil_status }}"/>
+                                            <x-form.input name="gender" disable="true" value="{{ $applicant->gender }}"/>
                                         </x-slot>
                                         <x-slot name="second">
-                                            <x-form.input name="nationality" disable="true" value="{{ $applicant->nationality }}"/>
+                                            <x-form.input name="civil_status" disable="true" value="{{ $applicant->civil_status }}"/>
                                         </x-slot>
                                     </x-form.row-col>
 
+                                    <x-form.input class="mt-4" name="nationality" disable="true" value="{{ $applicant->nationality }}"/>
+
                                     <x-form.input class="mt-4" name="educational_attainment" disable="true" value="{{ $applicant->educational_attainment }}"/>
-                                    <x-form.input class="mt-4" name="school_last_attended" disable="true" value="{{ $applicant->school->school_last_attended }}"/>
+
                                     <x-form.input class="mt-4" name="desired_school" disable="true" value="{{ $applicant->school->desired_school }}"/>
                                     <x-form.input class="mt-4" name="course_name" disable="true" value="{{ $applicant->school->course_name }}"/>
 
                                 </x-slot>
 
                                 <x-slot name="second">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="HEI">
-                                                <h6>HEI</h6>
-                                            </label>
-                                            <input class="shadow-sm form-control"
-                                            name="HEI"
-                                            style="background-color: #fff;"
-                                            autocomplete="off"
-                                            value="{{ $applicant->school->hei_type }}"
-                                            disabled>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <x-form.input name="general_average" disable="true" value="{{ $applicant->gwa }}"/>
-                                        </div>
-                                    </div>
+
+                                    <x-form.input name="general_average" disable="true" value="{{ $applicant->gwa }}"/>
 
                                     <x-form.input name="registered_voter" class="mt-4" disable="true" value="{{ $applicant->registered_voter }}"/>
 
@@ -107,21 +107,26 @@
                             <div class="container d-flex justify-content-between mt-3">
                                 <h2>Contact Info</h2>
                             </div>
-                            <div class="container">
-                                <x-form.row-col>
-                                    <x-slot name="first">
-                                        <x-form.input class="mt-2" name="contact_number" disable="true" value="{{ $applicant->contact->contact_number }}"/>
+                            <form action="/profile/{{ $applicant->id }}/contact" method="POST">
+                                <div class="container">
+                                    @csrf
+                                    @method('PUT')
+                                    <x-form.row-col>
+                                        <x-slot name="first">
+                                            <x-form.input class="mt-2" name="contact_number"
+                                            value="{{ old('contact_number') ?? $applicant->contact->contact_number }}"
+                                            onkeypress="return /[0-9]/i.test(event.key)" maxlength="11"/>
+                                        </x-slot>
+                                        <x-slot name="second">
 
-                                    </x-slot>
-                                    <x-slot name="second">
-
-                                        <x-form.input class="mt-2" name="email" disable="true" value="{{ $applicant->contact->email }}"/>
-                                    </x-slot>
-                                </x-form.row-col>
-                            </div>
-                            <x-form.button class="float-end me-3 mt-3">
-                                Update
-                            </x-form.button>
+                                            <x-form.input class="mt-2" name="email" value="{{ old('email') ?? $applicant->contact->email }}"/>
+                                        </x-slot>
+                                    </x-form.row-col>
+                                </div>
+                                <x-form.button class="float-end me-3 mt-3">
+                                    Save
+                                </x-form.button>
+                            </form>
                         </x-card-primary-border>
                     </div>
                 </div>
@@ -133,8 +138,7 @@
                             <div class="container d-flex justify-content-between mt-3">
                                 <h4>Complete your profile</h4>
                             </div>
-
-                            <form action="/profiles/{{ $applicant->id }}" method="POST">
+                            <form action="/profile/{{ $applicant->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 {{-- FIRST STEP --}}
@@ -144,14 +148,8 @@
                                             <x-form.label name="nationality (Filipino)"/>
                                             <select id="nationality" class="shadow-sm form-select form-control" name="nationality">
                                                 <option selected disabled>Select</option>
-                                                <option {{ $applicant->nationality == 'Yes' ? 'selected' : '' }}
-                                                    value="Yes">
-                                                    Yes
-                                                </option>
-                                                <option {{ $applicant->nationality == 'No' ? 'selected' : '' }}
-                                                    value="No">
-                                                    No
-                                                </option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                             <p id="nationality-message" class="text-danger position-absolute" hidden>Must be Filipino</p>
                                             <x-form.error name="nationality"/>
@@ -160,12 +158,8 @@
                                             <x-form.label name="educational_attainment (College)"/>
                                             <select id="education" class="shadow-sm form-select form-control" name="educational_attainment">
                                                 <option selected disabled>Select</option>
-                                                <option {{ $applicant->educational_attainment == 'Yes' ? 'selected' : '' }} value="Yes">
-                                                    Yes
-                                                </option>
-                                                <option {{ $applicant->educational_attainment == 'No' ? 'selected' : '' }} value="No">
-                                                    No
-                                                </option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                             <p id="education-message" class="text-danger position-absolute" hidden>Must be incoming college or college level</p>
                                             <x-form.error name="educational_attainment"/>
@@ -177,27 +171,19 @@
                                             <x-form.label name="registered_voter (Applicant or Guardian)"/>
                                             <select id="voter" class="shadow-sm form-select form-control" name="registered_voter">
                                                 <option selected disabled>Select</option>
-                                                <option
-                                                    {{ $applicant->registered_voter == 'Yes' ? 'selected' : '' }}
-                                                    value="Yes">Yes</option>
-                                                <option
-                                                    {{ $applicant->registered_voter == 'No' ? 'selected' : '' }}
-                                                    value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                             <p id="voter-message" class="text-danger position-absolute" hidden>Must be registered voter</p>
                                             <x-form.error name="registered_voter"/>
                                         </x-slot>
                                         <x-slot name="second">
                                             <x-form.label name="City (General Santos)"/>
-                                            <select id="city" class="shadow-sm form-select form-control dynamic" name="city"
+                                            <select id="city" class="shadow-sm form-select form-control" name="city"
                                                 id="city">
                                                 <option selected disabled>Select</option>
-                                                <option
-                                                    {{ $applicant->address->city == 'Yes' ? 'selected' : '' }}
-                                                    value="Yes">Yes</option>
-                                                <option
-                                                    {{ $applicant->address->city == 'No' ? 'selected' : '' }}
-                                                    value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                             <p id="city-message" class="text-danger position-absolute" hidden>Must be resident of General Santos</p>
                                             <x-form.error name="city"/>
@@ -211,7 +197,7 @@
                                 <div id="second-step" class="container" hidden>
                                     <x-form.row-col>
                                         <x-slot name="first">
-                                            <x-form.input name="first_name" :value="old('first_name', $applicant->first_name)" />
+                                            <x-form.input id="first_name" name="first_name" :value="old('first_name', $applicant->first_name)" />
 
                                             <x-form.label class="mt-4" name="middle_name (optional)"/>
                                             <input class="shadow-sm form-control" type="text" id="middle_name" name="middle_name"
@@ -219,18 +205,14 @@
 
                                             <x-form.row-col>
                                                 <x-slot name="first">
-                                                    <x-form.input name="last_name" :value="old('last_name', $applicant->last_name)" />
+                                                    <x-form.input id="last_name" name="last_name" :value="old('last_name', $applicant->last_name)" />
                                                 </x-slot>
                                                 <x-slot name="second">
                                                     <x-form.label name="gender"/>
-                                                    <select class="shadow-sm form-select form-control" name="gender">
+                                                    <select id="gender" class="shadow-sm form-select form-control" name="gender">
                                                         <option selected disabled>Select</option>
-                                                        <option
-                                                            {{ $applicant->gender === 'Male' ? 'selected' : '' }}
-                                                            value="Male">Male</option>
-                                                        <option
-                                                            {{ $applicant->gender === 'Female' ? 'selected' : '' }}
-                                                            value="Female">Female</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
                                                     </select>
                                                     <x-form.error name="gender"/>
                                                 </x-slot>
@@ -239,17 +221,11 @@
                                             <x-form.row-col>
                                                 <x-slot name="first">
                                                     <x-form.label name="civil_status"/>
-                                                    <select class="shadow-sm form-select form-control" name="civil_status">
+                                                    <select id="civil_status" class="shadow-sm form-select form-control" name="civil_status">
                                                         <option selected disabled>Select</option>
-                                                        <option
-                                                            {{ $applicant->civil_status === 'Single' ? 'selected' : '' }}
-                                                            value="Single">Single</option>
-                                                        <option
-                                                            {{ $applicant->civil_status === 'Married' ? 'selected' : '' }}
-                                                            value="Married">Married</option>
-                                                        <option
-                                                            {{ $applicant->civil_status === 'Widowed' ? 'selected' : '' }}
-                                                            value="Widowed">Widowed </option>
+                                                        <option value="Single">Single</option>
+                                                        <option value="Married">Married</option>
+                                                        <option value="Widowed">Widowed </option>
                                                     </select>
                                                     <x-form.error name="civil_status"/>
                                                 </x-slot>
@@ -260,9 +236,6 @@
                                                         <p id="30years" class="text-danger position-absolute" hidden>Must not exceed 30 years old</p>
                                                 </x-slot>
                                             </x-form.row-col>
-
-                                            <x-form.input name="school_last_attended" class="mt-4"
-                                            :value="old('school_last_attended', $applicant->school->school_last_attended)" />
 
                                             <x-form.label class="mt-4" name="desired_school"/>
                                             <select class="shadow-sm form-select form-control dynamic" name="desired_school"
@@ -285,30 +258,19 @@
                                         </x-slot>
 
                                         <x-slot name="second">
-                                            <x-form.label name="hei_type"/>
-                                                <select class="shadow-sm form-select form-control" name="hei_type">
-                                                    <option selected disabled>Select</option>
-                                                    <option
-                                                        {{ $applicant->school->hei_type === 'Public' ? 'selected' : '' }}
-                                                        value="Public">Public</option>
-                                                    <option
-                                                        {{ $applicant->school->hei_type === 'Private' ? 'selected' : '' }}
-                                                        value="Private">Private</option>
-                                                </select>
-                                            <x-form.error name="hei_type"/>
 
-                                            <x-form.input class="mt-4" name="gwa" :value="old('gwa', $applicant->gwa)"
+                                            <x-form.input id="gwa" name="gwa" :value="old('gwa', $applicant->gwa)"
                                                 onkeypress="return /[0-9.]/i.test(event.key)" maxlength="5" min="70" max="99"/>
 
-                                            <x-form.input class="mt-4" name="contact_number" type="tel" :value="old('contact_number', $applicant->contact->contact_number)"
+                                            <x-form.input id="contact_number" class="mt-4" name="contact_number" type="tel" :value="old('contact_number', $applicant->contact->contact_number)"
                                                 onkeypress="return /[0-9]/i.test(event.key)" maxlength="11"/>
 
-                                            <x-form.input class="mt-4" name="email" :value="old('email', $applicant->contact->email)"/>
+                                            <x-form.input id="email" class="mt-4" name="email" :value="old('email', $applicant->contact->email)"/>
 
                                             <x-form.row-col>
                                                 <x-slot name="first">
                                                     <x-form.label name="years_in_city"/>
-                                                    <select class="shadow-sm form-select form-control" name="years_in_city">
+                                                    <select id="years_in_city" class="shadow-sm form-select form-control" name="years_in_city">
                                                         <option selected disabled>Select</option>
                                                         @for ($i = 1; $i <= 3; $i++)
                                                             <option
@@ -323,52 +285,39 @@
 
                                                 <x-slot name="second">
                                                     <x-form.label name="family_income (Monthly)"/>
-                                                    <select class="shadow-sm form-select form-control" name="family_income">
+                                                    <select id="family_income" class="shadow-sm form-select form-control" name="family_income">
                                                         <option selected disabled>Select</option>
-                                                        <option
-                                                            {{ $applicant->family_income == 'Less than ₱10,957' ? 'selected' : '' }}
-                                                            value="Less than ₱10,957">Less than ₱10,957</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱10,957 to ₱21,194' ? 'selected' : '' }}
-                                                            value="₱10,957 to ₱21,194">₱10,957 to ₱21,194</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱21,194 to ₱43,828' ? 'selected' : '' }}
-                                                            value="₱21,194 to ₱43,828">₱21,194 to ₱43,828</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱43,828 to ₱76,669' ? 'selected' : '' }}
-                                                            value="₱43,828 to ₱76,669">₱43,828 to ₱76,669</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱76,669 to ₱131,484' ? 'selected' : '' }}
-                                                            value="₱76,669 to ₱131,484">₱76,669 to ₱131,484</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱131,484 to ₱219,140' ? 'selected' : '' }}
-                                                            value="₱131,484 to ₱219,140">₱131,484 to ₱219,140</option>
-                                                        <option
-                                                            {{ $applicant->family_income == '₱219,140 and above' ? 'selected' : '' }}
-                                                            value="₱219,140 and above">₱219,140 and above</option>
+                                                        <option value="Less than ₱10,957">Less than ₱10,957</option>
+                                                        <option value="₱10,957 to ₱21,194">₱10,957 to ₱21,194</option>
+                                                        <option value="₱21,194 to ₱43,828">₱21,194 to ₱43,828</option>
+                                                        <option value="₱43,828 to ₱76,669">₱43,828 to ₱76,669</option>
+                                                        <option value="₱76,669 to ₱131,484">₱76,669 to ₱131,484</option>
+                                                        <option value="₱131,484 to ₱219,140">₱131,484 to ₱219,140</option>
+                                                        <option value="₱219,140 and above">₱219,140 and above</option>
                                                     </select>
                                                     <x-form.error name="family_income"/>
                                                 </x-slot>
                                             </x-form.row-col>
 
                                             <x-form.label class="mt-4" name="barangay"/>
-                                            <select class="shadow-sm form-select form-control" name="barangay"
+                                            <select id="barangay" class="shadow-sm form-select form-control" name="barangay"
                                                 id="barangay">
                                                 <option selected disabled>Select</option>
+                                                @foreach ($barangays as $barangay)
+                                                    <option value="{{ $barangay->barangay }}">{{ $barangay->barangay }}</option>
+                                                @endforeach
                                             </select>
                                             <x-form.error name="barangay"/>
 
-                                            <x-form.input class="mt-4" name="street" :value="old('street', $applicant->address->street)"/>
+                                            <x-form.input id="street" id="street" class="mt-4" name="street" :value="old('street', $applicant->address->street)"/>
 
                                         </x-slot>
                                     </x-form.row-col>
-
-                                    <x-form.button class="float-end mt-3">
+                                    <x-form.button id="submit-btn" class="float-end mt-3" disabled>
                                         Submit
                                     </x-form.button>
                                 </div>
                             </form>
-
                         </x-card-primary-border>
                     </div>
                 </div>
@@ -413,6 +362,7 @@
 
     });
 
+    // STEP 1 MAIN PROFILE COMPLETION
     let nationality = ''
     let education = ''
     let voter = ''
@@ -475,11 +425,133 @@
                     document.querySelector('#first-step').hidden = true
                     document.querySelector('#second-step').hidden = false
                 }
-
             })
         }else{
             nextButton.disabled = true
         }
+    }
+
+    // STEP 2 BASIC PROFILE COMPLETION
+    let first_name = ''
+    let last_name = ''
+    let gender = ''
+    let civil_status = ''
+    let birth_date = ''
+    let desired_school = ''
+    let course_name = ''
+    let gwa = ''
+    let contact_number = ''
+    let email = document.querySelector('#email').getElementsByTagName('input')[0].value
+    let years_in_city = ''
+    let family_income = ''
+    let barangay = ''
+    let street = ''
+
+    document.querySelector('#first_name').addEventListener('change', (e) => {
+        let element = document.querySelector('#first_name')
+        first_name = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+    document.querySelector('#last_name').addEventListener('change', (e) => {
+        let element = document.querySelector('#last_name')
+        last_name = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+    document.querySelector('#gender').addEventListener('change', (e) => {
+        let element = document.querySelector('#gender')
+        gender = element.value
+        enableSubmit()
+    })
+    document.querySelector('#civil_status').addEventListener('change', (e) => {
+        let element = document.querySelector('#civil_status')
+        civil_status = element.value
+        enableSubmit()
+    })
+    document.querySelector('#school').addEventListener('change', (e) => {
+        let element = document.querySelector('#school')
+        desired_school = element.value
+        enableSubmit()
+    })
+    document.querySelector('#course').addEventListener('change', (e) => {
+        let element = document.querySelector('#course')
+        course_name = element.value
+        enableSubmit()
+    })
+    document.querySelector('#gwa').addEventListener('change', (e) => {
+        let element = document.querySelector('#gwa')
+        gwa = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+    document.querySelector('#contact_number').addEventListener('change', (e) => {
+        let element = document.querySelector('#contact_number')
+        contact_number = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+    document.querySelector('#email').addEventListener('change', (e) => {
+        let element = document.querySelector('#email')
+        email = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+    document.querySelector('#years_in_city').addEventListener('change', (e) => {
+        let element = document.querySelector('#years_in_city')
+        years_in_city = element.value
+        enableSubmit()
+    })
+    document.querySelector('#family_income').addEventListener('change', (e) => {
+        let element = document.querySelector('#family_income')
+        family_income = element.value
+        enableSubmit()
+    })
+    document.querySelector('#barangay').addEventListener('change', (e) => {
+        let element = document.querySelector('#barangay')
+        barangay = element.value
+        enableSubmit()
+    })
+    document.querySelector('#street').addEventListener('change', (e) => {
+        let element = document.querySelector('#street')
+        street = element.getElementsByTagName('input')[0].value
+        enableSubmit()
+    })
+
+    // Birth date validation
+    const div = document.getElementById('birth_date')
+    div.addEventListener('change', (e) => {
+
+        let birthDate = div.getElementsByTagName('input')[0]
+        let diff_ms = Date.now() - new Date(birthDate.value)
+        let age_dt = new Date(diff_ms);
+        const year = Math.abs(age_dt.getUTCFullYear() - 1970)
+
+        if(year < 16){
+            birthDate.classList = 'border-danger shadow-sm form-control'
+            document.getElementById('16years').hidden = false
+            document.getElementById('30years').hidden = true
+            document.querySelector('#submit-btn').disabled = true
+        }
+
+        if(year > 30){
+            birthDate.classList = 'border-danger shadow-sm form-control'
+            document.getElementById('30years').hidden = false
+            document.getElementById('16years').hidden = true
+            document.querySelector('#submit-btn').disabled = true
+        }
+
+        if(year > 15 && year <= 30){
+            birthDate.classList = 'shadow-sm form-control'
+            document.getElementById('16years').hidden = true
+            document.getElementById('30years').hidden = true
+            birth_date = birthDate.value
+            enableSubmit()
+        }
+    })
+
+    function enableSubmit(){
+        if(first_name && last_name && gender && civil_status && birth_date && desired_school && course_name
+         && gwa && contact_number && email && years_in_city && family_income && barangay && street){
+            document.querySelector('#submit-btn').disabled = false
+         }else{
+            document.querySelector('#submit-btn').disabled = true
+         }
     }
 
 </script>

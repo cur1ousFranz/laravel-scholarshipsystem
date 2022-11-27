@@ -11,12 +11,8 @@ class School extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'applicants_id',
         'desired_school',
-        'hei_type',
-        'school_last_attended',
-
     ];
 
     public function applicant(){

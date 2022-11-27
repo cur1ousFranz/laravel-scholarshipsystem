@@ -5,8 +5,7 @@
                 <div class="d-flex justify-content-between">
                     <h4 class="mt-2">Rejected Applicant</h4>
                 </div>
-                <hr class="mt-1">
-                <x-table.table>
+                <x-table.table class="mt-2">
                     <thead class="text-center">
                         <tr>
                             <x-table.th>Batch</x-table.th>

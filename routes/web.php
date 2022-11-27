@@ -76,8 +76,8 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::controller(ApplicantController::class)->group(function(){
             Route::get('/profile', 'index')->name('profile');
-            Route::get('/profiles/{applicant}/edit', 'edit');
-            Route::put('/profiles/{applicant}', 'update');
+            Route::put('/profile/{applicant}', 'update');
+            Route::put('/profile/{applicant}/contact', 'updateContact');
         });
 
         Route::controller(DynamicDropdownController::class)->group(function(){
@@ -90,7 +90,7 @@ Route::group(['middleware' => 'auth'], function() {
         });
 
         Route::controller(ApplicationController::class)->group(function(){
-            Route::get('/apply', 'index');
+            Route::get('/apply', 'index')->name('apply');
             Route::post('/apply/{application}', 'store');
         });
 

@@ -36,12 +36,12 @@
                                 </div>
                             </div>
 
-                            <hr>
+                            <hr class="mt-5">
                             <h5 class="mt-3">Description</h5>
                             <textarea id="editor" name="description">{{ old('description') }}</textarea>
                             <x-form.error name="description"/>
 
-                            <hr>
+                            <hr class="mt-5">
                             <h5 class="mt-4">Pre-evaluation</h5>
                             <div class="row">
                                 <div class="col-lg-6 mt-2">
@@ -101,7 +101,7 @@
                                     <x-form.error name="documentary_requirement"/>
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="mt-5">
                             <div class="row mt-4">
                                 <div class="col-lg">
                                     <h5 class="mt-2">Step 3: Application Form</h5>
@@ -111,7 +111,7 @@
                                     <x-form.error name="application_form"/>
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="mt-5">
                             <x-form.button class="form-control">Create</x-form.button>
                         </form>
                     </div>

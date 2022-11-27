@@ -2,6 +2,6 @@
 
 <div {{ $attributes(['class' => '']) }}>
     <label for="{{ $name }}">
-        <h6>{{ ucwords(str_replace('_', ' ', $name)) }}</h6>
+        <h6>{{ $name === 'gwa' ? 'General Weighted Average' :  ucwords(str_replace('_', ' ', $name)) }}</h6>
     </label>
 </div>

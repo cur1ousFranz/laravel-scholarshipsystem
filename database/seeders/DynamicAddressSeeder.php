@@ -18,210 +18,131 @@ class DynamicAddressSeeder extends Seeder
 
         /** GENERAL SANTOS CITY */
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Apopong',
-
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Baluan',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Batomelong',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Buayan',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Bula',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Calumpang',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'City Heights',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Conel',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Dadiangas East',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Dadiangas North',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Dadiangas South',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Dadiangas West',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Fatima',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Katangawan',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Labangal',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Lagao (1st & 3rd)',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Ligaya',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Mabuhay',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Olympog',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'San Isidro (Lagao 2nd)',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'San Jose',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Siguel',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Sinawal',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Tambler',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Tinagacan',
 
         ]);
 
-        DB::table('dynamic_addresses')->insert([
-            'country' => 'Philippines',
-            'province' => 'South Cotabato',
-            'city' => 'General Santos',
+        DB::table('barangays')->insert([
             'barangay' => 'Upper Labay',
 
         ]);

@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicants_id')->constrained()->cascadeOnDelete();
-            $table->string('desired_school')->nullable();;
+            $table->string('desired_school')->nullable();
             $table->string('course_name')->nullable();
-            $table->string('hei_type')->nullable();;
-            $table->string('school_last_attended')->nullable();;
             $table->timestamps();
         });
     }

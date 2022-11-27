@@ -124,9 +124,8 @@
                     </div>
                 </div>
             </div>
-            <hr class="mt-1">
             <div class="scroll2 shadow-sm">
-                <x-table.table>
+                <x-table.table class="mt-2">
                     <thead class="text-center text-dark" id="applicantListHeader">
                         <tr>
                             <x-table.header/>

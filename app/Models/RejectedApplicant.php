@@ -25,15 +25,8 @@ class RejectedApplicant extends Model
             $query->where('first_name', 'like', '%' . request('search') .'%')
             ->orWhere('middle_name', 'like', '%' . request('search') .'%')
             ->orWhere('last_name', 'like', '%' . request('search') .'%')
-            ->orWhere('age', 'like', '%' . request('search') .'%')
             ->orWhere('gender', 'like', '%' . request('search') .'%')
-            ->orWhere('civil_status', 'like', '%' . request('search') .'%')
-            ->orWhere('nationality', 'like', '%' . request('search') .'%')
-            ->orWhere('educational_attainment', 'like', '%' . request('search') .'%')
-            ->orWhere('years_in_city', 'like', '%' . request('search') .'%')
-            ->orWhere('family_income', 'like', '%' . request('search') .'%')
-            ->orWhere('registered_voter', 'like', '%' . request('search') .'%')
-            ->orWhere('gwa', 'like', '%' . request('search') .'%');
+            ->orWhere('civil_status', 'like', '%' . request('search') .'%');
         }
     }
 

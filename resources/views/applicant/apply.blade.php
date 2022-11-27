@@ -4,7 +4,7 @@
             <div class="card shadow-sm" style="margin-top: 110px">
                 <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     <div class="container text-center">
-                        <h4>Apply Edukar Scholarship</h4>
+                        <h4>Apply Scholarship</h4>
                         <hr>
                     </div>
                     <div class="container mt-4 mb-4">
@@ -25,11 +25,14 @@
                                 @if (Auth::user())
                                     @if ($applicant->first_name != null)
                                         <button class="btn btn-outline-success shadow-sm form-control">
-                                            &nbsp;&nbsp;&nbsp;Set&nbsp;<i class="bi bi-check2-circle mt-5"></i>
+                                            &nbsp;&nbsp;&nbsp;Completed&nbsp;<i class="bi bi-check2-circle mt-5"></i>
                                             &nbsp;
                                         </button>
                                     @else
-                                        <button class="btn btn-outline-danger shadow-sm form-control" disabled>Not Set</button>
+                                        <a href="{{ route('profile') }}" class="btn btn-outline-secondary shadow-sm form-control">
+                                            Complete Now
+                                            <i class="bi bi-arrow-right-circle ms-1"></i>
+                                        </a>
                                     @endif
                                 @else
                                     <button class="btn btn-outline-primary shadow-sm form-control" disabled>Not Set</button>
