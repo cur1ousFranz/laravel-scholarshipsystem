@@ -6,15 +6,19 @@ use App\Models\Application;
 use App\Models\Coordinator;
 use Illuminate\Http\Request;
 use App\Models\ApplicationDetail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Coordinator\StoreApplicationRequest;
 
 class ScholarshipApplicationController extends Controller
 {
-    public function create(){
-
-        return view('coordinator.create_application');
+    public function create()
+    {
+        $family_incomes = DB::table('family_incomes')->first();
+        return view('coordinator.create_application', [
+            'family_incomes' => $family_incomes
+        ]);
     }
 
     public function store(StoreApplicationRequest $request)
@@ -56,10 +60,12 @@ class ScholarshipApplicationController extends Controller
         return redirect('/applications')->with('success', 'Application created successfully!');
     }
 
-    public function edit(Application $application){
-
+    public function edit(Application $application)
+    {
+        $family_incomes = DB::table('family_incomes')->first();
         return view('coordinator.edit_application', [
-            'application' => $application
+            'application' => $application,
+            'family_incomes' => $family_incomes
         ]);
     }
 

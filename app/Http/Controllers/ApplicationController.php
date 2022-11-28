@@ -7,6 +7,7 @@ use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicantList;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -63,17 +64,19 @@ class ApplicationController extends Controller
         $formFields['applicants_id'] = $this->getApplicant()->id;
 
         /** MATCH ALGORITHM - RATING PERCENTAGE */
-
+        $family_incomes = DB::table('family_incomes')->first();
+        $range = json_decode($family_incomes->range, true);
         $rating = 0;
+
         switch($this->getApplicant()->family_income){
 
-            case "Less than ₱10,957" : $rating += 50; break;
-            case "₱10,957 to ₱21,194" : $rating += 42; break;
-            case "₱21,194 to ₱43,828" : $rating += 35; break;
-            case "₱43,828 to ₱76,669" : $rating += 28; break;
-            case "₱76,669 to ₱131,484" : $rating += 21; break;
-            case "₱131,484 to ₱219,140" : $rating += 14; break;
-            case "₱219,140 and above" : $rating += 7; break;
+            case $range['bracket1'] : $rating += 50; break;
+            case $range['bracket2'] : $rating += 42; break;
+            case $range['bracket3'] : $rating += 35; break;
+            case $range['bracket4'] : $rating += 28; break;
+            case $range['bracket5'] : $rating += 21; break;
+            case $range['bracket6'] : $rating += 14; break;
+            case $range['bracket7'] : $rating += 7; break;
         }
 
         switch(true){

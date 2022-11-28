@@ -284,16 +284,38 @@
                                                 </x-slot>
 
                                                 <x-slot name="second">
+                                                    @php
+                                                        $range = json_decode($family_incomes->range, true);
+
+                                                        $bracket2 = explode('-', $range['bracket2']);
+                                                        $bracket3 = explode('-', $range['bracket3']);
+                                                        $bracket4 = explode('-', $range['bracket4']);
+                                                        $bracket5 = explode('-', $range['bracket5']);
+                                                        $bracket6 = explode('-', $range['bracket6']);
+                                                        $bracket7 = explode('-', $range['bracket7']);
+
+                                                    @endphp
                                                     <x-form.label name="family_income (Monthly)"/>
                                                     <select id="family_income" class="shadow-sm form-select form-control" name="family_income">
-                                                        <option selected disabled>Select</option>
-                                                        <option value="Less than ₱10,957">Less than ₱10,957</option>
-                                                        <option value="₱10,957 to ₱21,194">₱10,957 to ₱21,194</option>
-                                                        <option value="₱21,194 to ₱43,828">₱21,194 to ₱43,828</option>
-                                                        <option value="₱43,828 to ₱76,669">₱43,828 to ₱76,669</option>
-                                                        <option value="₱76,669 to ₱131,484">₱76,669 to ₱131,484</option>
-                                                        <option value="₱131,484 to ₱219,140">₱131,484 to ₱219,140</option>
-                                                        <option value="₱219,140 and above">₱219,140 and above</option>
+                                                        <option value="{{ $range['bracket1'] }}" selected>{{ 'Less than ₱' . number_format($range['bracket1']) }}</option>
+                                                        <option value="{{ $range['bracket2'] }}">
+                                                            {{ '₱'.number_format($bracket2[0]) . ' to ' . '₱'.number_format($bracket2[1]) }}
+                                                        </option>
+                                                        <option value="{{ $range['bracket3'] }}">
+                                                            {{ '₱'.number_format($bracket3[0]) . ' to ' . '₱'.number_format($bracket3[1]) }}
+                                                        </option>
+                                                        <option value="{{ $range['bracket4'] }}">
+                                                            {{ '₱'.number_format($bracket4[0]) . ' to ' . '₱'.number_format($bracket4[1]) }}
+                                                        </option>
+                                                        <option value="{{ $range['bracket5'] }}">
+                                                            {{ '₱'.number_format($bracket5[0]) . ' to ' . '₱'.number_format($bracket5[1]) }}
+                                                        </option>
+                                                        <option value="{{ $range['bracket6'] }}">
+                                                            {{ '₱'.number_format($bracket6[0]) . ' to ' . '₱'.number_format($bracket6[1]) }}
+                                                        </option>
+                                                        <option value="{{ $range['bracket7'] }}">
+                                                            {{ '₱'.number_format($range['bracket7']) . ' and above' }}
+                                                        </option>
                                                     </select>
                                                     <x-form.error name="family_income"/>
                                                 </x-slot>

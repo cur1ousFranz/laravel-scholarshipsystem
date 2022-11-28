@@ -27,12 +27,14 @@ class ApplicantController extends Controller
     {
         $school_list = DB::table('school_courses')->groupBy('school')->get();
         $barangays = DB::table('barangays')->get();
+        $family_incomes = DB::table('family_incomes')->first();
         $application = Application::with('applicationDetail')->where('status', 'On-going')->latest()->first();
         return view('applicant.profile', [
             'applicant' => $this->getApplicant(),
             'school_list' => $school_list,
             'barangays' => $barangays,
             'application' => $application,
+            'family_incomes' => $family_incomes
         ]);
     }
 

@@ -12,18 +12,7 @@
                                 <h4>Edit Application Details</h4>
                                 <hr>
                                 <div class="row mt-3">
-                                    <div class="col-lg mt-1">
-                                        <x-form.label name="slots"/>
-                                        <select class="shadow-sm form-select form-control" name="slots">
-                                            <option value="{{ old('slots') ?? $application->slots }}" selected>
-                                                {{ old('slots') ?? $application->slots }}
-                                            </option>
-                                            <option value="100">100</option>
-                                            <option value="200">200</option>
-                                            <option value="300">300</option>
-                                        </select>
-                                        <x-form.error name="slots"/>
-                                    </div>
+                                    <x-form.input class="col-lg mt-1" name="slots" :value="$application->slots" readonly="true"/>
 
                                     <x-form.input class="col-lg mt-1" name="start_date" :value="$application->start_date" readonly="true"/>
                                     <x-form.input class="col-lg mt-1" name="end_date" :value="$application->end_date" type="date"/>
@@ -99,7 +88,7 @@
                             <form action="/applications/{{ $application->id }}/files" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
-                                <h4>Edit Application Details</h4>
+                                <h4>Edit Application Documents</h4>
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg">

@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\ApplicantList;
 use App\Models\RejectedApplicant;
 use App\Models\QualifiedApplicant;
+use Illuminate\Support\Facades\DB;
 
 class ListingApplicantController extends Controller
 {
 
     public function index(ApplicantList $applicantlist){
-
+        $family_incomes = DB::table('family_incomes')->first();
         return view('coordinator.evaluation', [
             'applicantlist' => ApplicantList::with([
                                 'applicant:id,educational_attainment,nationality,registered_voter,years_in_city,gwa,family_income',
@@ -20,7 +21,8 @@ class ListingApplicantController extends Controller
                                 'rating:applicant_lists_id,rate',
                                 ])
                                 ->where('id', $applicantlist->id)
-                                ->first()
+                                ->first(),
+            'family_incomes' => $family_incomes
                             ]);
 
     }

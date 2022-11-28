@@ -225,7 +225,7 @@
                         No. years in city (3 years and above)
                     </td>
                     <td>
-                        @if ($applicantlist->applicant->first()->years_in_city == 1 && $applicantlist->rating->rate != 0)
+                        @if ($applicantlist->applicant->first()->years_in_city == 1)
                             <x-evaluation.row-col>
                                 <x-slot name="first">
                                     {{ $applicantlist->applicant->first()->years_in_city }} year and below
@@ -234,7 +234,7 @@
                                     <x-evaluation.badge-success>3 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif ($applicantlist->applicant->first()->years_in_city == 2 && $applicantlist->rating->rate != 0)
+                        @elseif ($applicantlist->applicant->first()->years_in_city == 2)
                             <x-evaluation.row-col>
                                 <x-slot name="first">
                                     {{ $applicantlist->applicant->first()->years_in_city }} years
@@ -243,7 +243,7 @@
                                     <x-evaluation.badge-success>7 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->years_in_city == 3 && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->years_in_city == 3)
                             <x-evaluation.row-col>
                                 <x-slot name="first">
                                     {{ $applicantlist->applicant->first()->years_in_city }} years
@@ -274,7 +274,7 @@
                             </x-slot>
                         </x-evaluation.row-col>
                     @elseif (($applicantlist->applicant->first()->gwa < 80 && $applicantlist->applicant->first()->gwa > 74)
-                    && $applicantlist->rating->rate != 0)
+                   )
                         <x-evaluation.row-col>
                             <x-slot name="first">
                                 {{ $applicantlist->applicant->first()->gwa }}
@@ -283,7 +283,7 @@
                                 <x-evaluation.badge-success>17 %</x-evaluation.badge-success>
                             </x-slot>
                         </x-evaluation.row-col>
-                    @elseif($applicantlist->applicant->first()->gwa < 75 && $applicantlist->rating->rate != 0)
+                    @elseif($applicantlist->applicant->first()->gwa < 75)
                         <x-evaluation.row-col>
                             <x-slot name="first">
                                 {{ $applicantlist->applicant->first()->gwa }}
@@ -303,65 +303,75 @@
                     <td class="text-center h6">
                        Family Income (Monthly)
                     </td>
+                    @php
+                        $range = json_decode($family_incomes->range, true);
+
+                        $bracket2 = explode('-', $range['bracket2']);
+                        $bracket3 = explode('-', $range['bracket3']);
+                        $bracket4 = explode('-', $range['bracket4']);
+                        $bracket5 = explode('-', $range['bracket5']);
+                        $bracket6 = explode('-', $range['bracket6']);
+                        $bracket7 = explode('-', $range['bracket7']);
+                    @endphp
                     <td>
-                        @if ($applicantlist->applicant->first()->family_income === "Less than ₱10,957" && $applicantlist->rating->rate != 0)
+                        @if ($applicantlist->applicant->first()->family_income === $range['bracket1'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ 'Less than ₱' . number_format($range['bracket1']) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>50 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif ($applicantlist->applicant->first()->family_income === "₱10,957 to ₱21,194" && $applicantlist->rating->rate != 0)
+                        @elseif ($applicantlist->applicant->first()->family_income === $range['bracket2'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($bracket2[0]) . ' to ' . '₱'.number_format($bracket2[1]) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>42 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->family_income === "₱21,194 to ₱43,828" && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->family_income === $range['bracket3'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($bracket3[0]) . ' to ' . '₱'.number_format($bracket3[1]) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>35 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->family_income === "₱43,828 to ₱76,669" && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->family_income === $range['bracket4'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($bracket4[0]) . ' to ' . '₱'.number_format($bracket4[1]) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>28 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->family_income === "₱76,669 to ₱131,484" && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->family_income === $range['bracket5'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($bracket5[0]) . ' to ' . '₱'.number_format($bracket5[1]) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>21 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->family_income === "₱131,484 to ₱219,140" && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->family_income === $range['bracket6'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($bracket6[0]) . ' to ' . '₱'.number_format($bracket6[1]) }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>14 %</x-evaluation.badge-success>
                                 </x-slot>
                             </x-evaluation.row-col>
-                        @elseif($applicantlist->applicant->first()->family_income === "₱219,140 and above" && $applicantlist->rating->rate != 0)
+                        @elseif($applicantlist->applicant->first()->family_income === $range['bracket7'])
                             <x-evaluation.row-col>
                                 <x-slot name="first">
-                                    {{ $applicantlist->applicant->first()->family_income }}
+                                    {{ '₱'.number_format($range['bracket7']) . ' and above' }}
                                 </x-slot>
                                 <x-slot name="second">
                                     <x-evaluation.badge-success>7 %</x-evaluation.badge-success>
@@ -378,7 +388,7 @@
                     <td colspan="3" class="text-center">
                         <div class="h5 mt-1 mb-1">
                             Total:
-                            <span class="badge fw-bold {{ $applicantlist->rating->rate != 0 ? 'bg-success' : 'bg-danger' }}">
+                            <span class="badge fw-bold {{ $applicantlist->rating->rate >= 75 ? 'bg-success' : 'bg-danger' }}">
                                 {{ $applicantlist->rating->rate }}%
                             </span>
                         </div>
