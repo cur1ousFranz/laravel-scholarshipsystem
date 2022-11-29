@@ -13,13 +13,13 @@ class ApplicationDetail extends Model
     protected $fillable = [
         'applications_id',
         'description',
-        'years_in_city',
-        'family_income',
-        'educational_attainment',
-        'gwa',
-        'nationality',
-        'city',
-        'registered_voter',
+        // 'years_in_city',
+        // 'family_income',
+        // 'educational_attainment',
+        // 'gwa',
+        // 'nationality',
+        // 'city',
+        // 'registered_voter',
         'documentary_requirement',
         'application_form'
     ];

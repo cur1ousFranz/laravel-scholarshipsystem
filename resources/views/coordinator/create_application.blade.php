@@ -1,4 +1,4 @@
-<x-layout title="Create Application">
+<x-layout title="Create Application | Edukar Scholarship">
     <section>
         <x-container>
             <div class="container-fluid d-flex justify-content-center mb-5">
@@ -41,7 +41,7 @@
                             <textarea id="editor" name="description">{{ old('description') }}</textarea>
                             <x-form.error name="description"/>
 
-                            <hr class="mt-5">
+                            {{-- <hr class="mt-5">
                             <h5 class="mt-4">Pre-evaluation</h5>
                             <div class="row">
                                 <div class="row">
@@ -110,9 +110,6 @@
                                                         {{ '₱'.number_format($range['bracket7']) . ' and above' }}
                                                     </option>
                                             </select>
-                                            {{-- <x-form.label name="family_income (Monthly)"/>
-                                            <input class="shadow-sm form-control" name="family_income"
-                                            style="background-color: #fff;" readonly="true" value="Less than ₱10,957"> --}}
                                             <x-form.error name="family_income"/>
                                         </div>
                                     </div>
@@ -127,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <hr class="mt-5">
                             <div class="row mt-4">
                                 <div class="col-lg">

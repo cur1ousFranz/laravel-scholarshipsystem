@@ -308,7 +308,11 @@
                                         {{ auth()->user()->username }}
                                     </a>
                                     <div class="dropdown-menu text-center">
-                                        <a  class="btn dropdown-item mb-0 pb-0 pt-0 text-danger" href="{{ route('logout') }}">
+                                        <a  class="btn dropdown-item mb-0 py-1" href="{{ route('changes') }}">
+                                            Changes
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a  class="btn dropdown-item mb-0 py-1 text-danger" href="{{ route('logout') }}">
                                             Logout
                                         </a>
                                     </div>

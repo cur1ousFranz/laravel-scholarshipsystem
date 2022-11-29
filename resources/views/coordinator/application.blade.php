@@ -1,4 +1,4 @@
-<x-layout title="Application">
+<x-layout title="Application | Edukar Scholarship">
     <section>
         <x-container class="border shadow-sm">
             <div class="d-flex justify-content-between mt-3">

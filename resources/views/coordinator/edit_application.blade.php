@@ -1,4 +1,4 @@
-<x-layout title="Application">
+<x-layout title="Application | Edukar Scholarship">
     <section>
         <x-container>
             <div class="container-fluid mb-5">
@@ -26,7 +26,7 @@
                                         {{ old('description') ?? $application->applicationDetail->description }}
                                     </textarea>
                                     <x-form.error name="description"/>
-
+{{--
                                     <hr>
                                     <h5 class="mt-4">Pre-evaluation</h5>
                                     <div class="row">
@@ -71,7 +71,7 @@
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 <hr>
                                 <div class="d-flex float-end">
                                     <a href="/applications" class="btn btn-outline-secondary me-2">

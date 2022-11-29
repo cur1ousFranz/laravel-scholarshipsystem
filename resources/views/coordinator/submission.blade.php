@@ -1,4 +1,4 @@
-<x-layout title="Submissions">
+<x-layout title="Submissions | Edukar Scholarship">
     <section>
         <x-container class="border-top border-top-4 border-bottom border-bottom-4 border-secondary shadow-sm">
             <div class="row mt-3">

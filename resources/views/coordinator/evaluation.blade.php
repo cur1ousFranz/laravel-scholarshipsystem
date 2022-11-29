@@ -1,4 +1,4 @@
-<x-layout title="Summary Evaluation">
+<x-layout title="Summary Evaluation | Edukar Scholarship">
     <section>
         {{-- @dd($applicantlist->applicant) --}}
         <x-container class="w-75">

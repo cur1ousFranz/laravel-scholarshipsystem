@@ -15,7 +15,7 @@ use App\Http\Controllers\ListingApplicantController;
 use App\Http\Controllers\RejectedApplicantController;
 use App\Http\Controllers\QualifiedApplicantController;
 use App\Http\Controllers\ScholarshipApplicationController;
-
+use App\Http\Controllers\ChangesController;
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/', 'index');
@@ -69,7 +69,19 @@ Route::group(['middleware' => 'auth'], function() {
 
             Route::post('/activity', [ActivityController::class, 'store']);
             Route::post('/scholar', [ScholarController::class, 'store']);
+            Route::get('/changes', [ChangesController::class, 'index'])->name('changes');
+            Route::put('/changes/income', [ChangesController::class, 'updateIncome']);
+            Route::post('/changes/course', [ChangesController::class, 'store']);
 
+    });
+
+    Route::controller(DynamicDropdownController::class)->group(function(){
+        // Fetch Method of Address Dynamic Dependent
+        Route::post('/applicantcontroller/fetchAddress', 'fetchAddress')
+        ->name('dynamicdropdowncontroller.fetchAddress');
+        // Fetch Method of School Courses Dynamic Dependent
+        Route::post('/applicantcontroller/fetch', 'fetch')
+        ->name('dynamicdropdowncontroller.fetch');
     });
 
     Route::group(['middleware' => 'applicant'], function() {
@@ -80,14 +92,6 @@ Route::group(['middleware' => 'auth'], function() {
             Route::put('/profile/{applicant}/contact', 'updateContact');
         });
 
-        Route::controller(DynamicDropdownController::class)->group(function(){
-            // Fetch Method of Address Dynamic Dependent
-            Route::post('/applicantcontroller/fetchAddress', 'fetchAddress')
-            ->name('dynamicdropdowncontroller.fetchAddress');
-            // Fetch Method of School Courses Dynamic Dependent
-            Route::post('/applicantcontroller/fetch', 'fetch')
-            ->name('dynamicdropdowncontroller.fetch');
-        });
 
         Route::controller(ApplicationController::class)->group(function(){
             Route::get('/apply', 'index')->name('apply');

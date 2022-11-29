@@ -1,4 +1,4 @@
-<x-layout title="Rejected Applicant">
+<x-layout title="Rejected Applicant | Edukar Scholarship">
     <section>
         <x-container class="border shadow-sm">
             <div class="container mt-2">

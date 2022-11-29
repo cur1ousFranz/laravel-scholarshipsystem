@@ -1,4 +1,4 @@
-<x-layout title="Qualifed Applicant">
+<x-layout title="Qualifed Applicant | Edukar Scholarship">
     <section>
         <x-container class="border shadow-sm">
             <div class="container mt-2">
