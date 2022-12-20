@@ -20,4 +20,5 @@
 <p>-Read applicants and document attachments, mark applicant as qualified or rejected (CRUD)</p>
 <p>-Coordinator can read the summary of evaluation based on applicants profile information and rate by percentage</p>
 <p>-Coordinator can send notification to applicants both email and system's notification</p>
-<p>-Coordinator can read data reports every school year and export data as pdf file</p>
+<p>-Coordinator can read data reports every school year and export data as pdf file (CRUD)</p>
+<p>-Coordinator has functionality to update family income ranges as well as adding course in particular school (CRUD)</p>
