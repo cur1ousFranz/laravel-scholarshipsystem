@@ -8,6 +8,7 @@ use App\Models\Applicant;
 use App\Models\RatingReport;
 use App\Models\ApplicantList;
 use App\Models\DynamicAddress;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,65 +29,57 @@ class AddressFactory extends Factory
             'applicants_id' => $applicant
         ]);
 
-        $passed = false;
+        $family_incomes = DB::table('family_incomes')->first();
+        $range = json_decode($family_incomes->range, true);
+        $rating = 0;
 
-        //Matching algorithm
-        if($applicant->educational_attainment == "Yes"
-        && $applicant->nationality == "Yes"
-        && $applicant->registered_voter == "Yes"){
+        switch($applicant->family_income){
 
-            $passed = true;
+            case $range['bracket1'] : $rating += 50; break;
+            case $range['bracket2'] : $rating += 42; break;
+            case $range['bracket3'] : $rating += 35; break;
+            case $range['bracket4'] : $rating += 28; break;
+            case $range['bracket5'] : $rating += 21; break;
+            case $range['bracket6'] : $rating += 14; break;
+            case $range['bracket7'] : $rating += 7; break;
         }
 
-        // STAGE 2
-        if($passed) {
+        switch(true){
 
-            $rating = 0;
-            switch($applicant->family_income){
+            case ($applicant->gwa >= 80): $rating += 35; break;
+            case ($applicant->gwa < 80 && $applicant->gwa >= 75)
+            : $rating += 17; break;
+            case ($applicant->gwa < 75) : $rating += 8; break;
+        }
 
-                case "Less than ₱10,957" : $rating += 50; break;
-                case "₱10,957 to ₱21,194" : $rating += 42; break;
-                case "₱21,194 to ₱43,828" : $rating += 35; break;
-                case "₱43,828 to ₱76,669" : $rating += 28; break;
-                case "₱76,669 to ₱131,484" : $rating += 21; break;
-                case "₱131,484 to ₱219,140" : $rating += 14; break;
-                case "₱219,140 and above" : $rating += 7; break;
-            }
+        switch($applicant->years_in_city){
 
-            switch(true){
+            case 1 : $rating += 3; break;
+            case 2 : $rating += 7; break;
+            case 3 : $rating += 15; break;
+        }
 
-                case ($applicant->gwa >= 80): $rating += 35; break;
-                case ($applicant->gwa < 80 && $applicant->gwa >= 75)
-                : $rating += 17; break;
-                case ($applicant->gwa < 75) : $rating += 8; break;
-            }
-
-            switch($applicant->years_in_city){
-
-                case 1 : $rating += 3; break;
-                case 2 : $rating += 7; break;
-                case 3 : $rating += 15; break;
-            }
+        if($rating >= 75){
 
             $applicantList = ApplicantList::factory()->create([
                 'applicants_id' => $applicant,
-                'created_at' => date("2021-m-d H:i:s") //change this
+                'created_at' => date("2022-m-d H:i:s") //change this
             ]);
 
             $applicantList->rating()->create([
                 'rate' => $rating
             ]);
 
-        } else {
+        }else{
 
             $applicantList = ApplicantList::factory()->create([
-                'applicants_id' =>  $applicant,
+                'applicants_id' => $applicant,
+                'created_at' => date("2022-m-d H:i:s"), //change this
                 'review' => 'Yes',
-                'created_at' => date("2015-m-d H:i:s") //change this
             ]);
 
             $applicantList->rating()->create([
-                'rate' => 0
+                'rate' => $rating
             ]);
 
             $applicantList->rejectedApplicant()->create([
@@ -102,18 +95,17 @@ class AddressFactory extends Factory
             'applicants_id' => $applicant
         ]);
 
-        $address = DynamicAddress::all();
-        $index = rand(0, 225);
+        $barangays = DB::table('barangays')->get();
+        $index = rand(0, 25);
         return [
             'applicants_id' => $applicant,
-            'country' => $address[$index]->country,
-            'province' => $address[$index]->province,
-            // 'city' => $address[$index]->city,
+            'country' => 'Philippines',
+            'province' => 'South Cotabato',
             'city' => 'General Santos',
-            'barangay' => $address[$index]->barangay,
+            'barangay' => $barangays[$index]->barangay,
             'street' => $this->faker->sentence(),
             'region' => 12,
-            'zipcode' => $this->faker->postcode(),
+            'zipcode' => 9500,
             'created_at' => now(),
 
         ];

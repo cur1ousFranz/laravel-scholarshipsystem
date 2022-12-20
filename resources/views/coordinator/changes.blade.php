@@ -17,7 +17,7 @@
                                 $bracket7 = explode('-', $range['bracket7']);
 
                             @endphp
-                            <form action="/settings/income" method="POST">
+                            <form action="/changes/income" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row mt-4">
@@ -173,33 +173,51 @@
                     <div class="card-body border-top border-top-4 border-bottom border-bottom-4 border-primary">
                         <div class="px-5">
                             <h4 class="mt-2">School and Courses</h4>
-                            <form action="/changes/course" method="POST">
+                            <form action="/changes/course" method="POST" id="addCourseForm">
                                 @csrf
                                 <div class="row" style="margin-top: 33px">
                                     <div class="col-md-6">
-                                        <x-form.label class="mt-3" name="school"/>
-                                        <select class="shadow-sm form-select form-control dynamic" name="school">
+                                        <x-form.label class="mt-3" name="school_name"/>
+                                        <select class="shadow-sm form-select form-control" name="school_name" id="school_name" >
                                             <option selected disabled>Select School</option>
                                             @foreach ($school_list as $school)
-                                                <option value="{{ $school->school }}" {{ old('school') === $school->school ? 'selected' : '' }}>
+                                                <option value="{{ $school->school }}" {{ old('school_name') === $school->school ? 'selected' : '' }}>
                                                     {{ $school->school }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <x-form.error name="school"/>
+                                        <x-form.error name="school_name"/>
                                     </div>
                                     <div class="col-md-6">
-                                        <x-form.label class="mt-3" name="course"/>
-                                        <input class="form-control px-2"style="background-color: #fff;" autocomplete="off" name="course" value="{{ old('course') }}">
-                                        <x-form.error name="course"/>
+                                        <x-form.label class="mt-3" name="course_name"/>
+                                        <input class="form-control px-2"style="background-color: #fff;" autocomplete="off" name="course_name" value="{{ old('course_name') }}" id="course_name" >
+                                        <x-form.error name="course_name"/>
                                     </div>
                                     <div class="mt-3">
-                                        <button type="submit" class="w-10 btn btn-outline-primary float-end">
+                                        <button type="button" data-bs-toggle="modal"
+                                        data-bs-target="#addCourse" class="w-10 btn btn-outline-primary float-end" id="addBtn" disabled>
                                             ADD
                                         </button>
                                     </div>
                                 </div>
                             </form>
+
+                            <x-modal name="addCourse">
+                                <x-slot name="header">Add Course</x-slot>
+                                <x-slot name="body">
+                                    <p id="message"></p>
+                                </x-slot>
+                                <x-slot name="footer">
+                                    <x-form.button type="button" class="btn-outline-danger" data-bs-dismiss="modal">
+                                        Cancel
+                                    </x-form.button>
+                                    <x-form.button type="submit" class="btn-outline-primary"
+                                    form="addCourseForm">
+                                        Confirm
+                                    </x-form.button>
+                                </x-slot>
+                            </x-modal>
+
                             <hr class="mt-3">
                             <h5 class="mt-3">Current School and Courses List</h5>
                             <x-form.label class="mt-3" name="Schools"/>
@@ -259,4 +277,27 @@
 
     });
 
+    let school_name = ''
+    let course_name = ''
+    document.querySelector('#school_name').addEventListener('change', (e) => {
+        let element = document.querySelector('#school_name')
+        school_name = element.value
+        enableSubmit()
+    })
+    document.querySelector('#course_name').addEventListener('change', (e) => {
+        let element = document.querySelector('#course_name')
+        course_name = element.value
+        enableSubmit()
+    })
+
+    const enableSubmit = () => {
+        if(school_name && course_name){
+            document.querySelector('#addBtn').disabled = false
+            document.querySelector('#message').innerHTML = `Are you sure you want to add <br> ${course_name} to <br> ${school_name}?`
+        }else{
+            document.querySelector('#addBtn').disabled = true
+        }
+    }
+
 </script>
+

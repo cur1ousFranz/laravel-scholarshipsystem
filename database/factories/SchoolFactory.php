@@ -17,16 +17,13 @@ class SchoolFactory extends Factory
      */
     public function definition()
     {
-        $hei_type = ['Public', 'Private'];
         $school = SchoolCourse::all();
-        $index = rand(0, 61);
+        $index = rand(0, 183);
 
         return [
             'applicants_id' => '',
             'desired_school' => $school[$index]->school,
             'course_name' => $school[$index]->course,
-            'hei_type' => $hei_type[rand(0,1)],
-            'school_last_attended' => $this->faker->sentence(),
             'created_at' => now(),
         ];
     }

@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\EducationalAttainment;
-use App\Models\Nationality;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,36 +20,34 @@ class ApplicantFactory extends Factory
     {
         $gender = ['Male', 'Female'];
         $civil_status = ['Single', 'Married', 'Widowed'];
-        $nationality = ['Yes', 'No'];
-        $education = ['Yes', 'No'];
-        $family_income = [
-            'Less than ₱10,957',
-            '₱10,957 to ₱21,194',
-            '₱21,194 to ₱43,828',
-            '₱43,828 to ₱76,669',
-            '₱76,669 to ₱131,484',
-            '₱131,484 to ₱219,140',
-            '₱219,140 and above'
-        ];
-        $registered_voter = ['Yes', 'No'];
+
+        $family_incomes = DB::table('family_incomes')->first();
+        $range = json_decode($family_incomes->range, true);
+        $family_range = array();
+        array_push($family_range, $range['bracket1']);
+        array_push($family_range, $range['bracket2']);
+        array_push($family_range, $range['bracket3']);
+        array_push($family_range, $range['bracket4']);
+        array_push($family_range, $range['bracket5']);
+        array_push($family_range, $range['bracket6']);
+        array_push($family_range, $range['bracket7']);
+
+        $year = array('1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005');
 
         return [
             'users_id' => User::factory(),
             'first_name' => $this->faker->name,
             'middle_name' => $this->faker->name,
             'last_name' => $this->faker->name,
-            'age' => rand(16, 30),
+            'birth_date' => $year[rand(0, 8)] .'-'. rand(1, 12) . '-' . rand(1, 31),
             'gender' => $gender[rand(0,1)],
             'civil_status' => $civil_status[rand(0,2)],
-            // 'nationality' => $nationality[rand(0,1)],
-            'nationality' => $nationality[0],
-            // 'educational_attainment' => $education[rand(0,1)],
-            'educational_attainment' => $education[0],
+            'nationality' => 'Yes',
+            'educational_attainment' => 'Yes',
             'years_in_city' => rand(1, 3),
-            'family_income' => $family_income[rand(0, 6)],
-            // 'registered_voter' => $registered_voter[rand(0, 1)],
-            'registered_voter' => $registered_voter[0],
-            'gwa' => rand(70, 99),
+            'family_income' => $family_range[rand(0, 6)],
+            'registered_voter' => 'Yes',
+            'gwa' => rand(75, 99),
             'created_at' => now(),
         ];
     }

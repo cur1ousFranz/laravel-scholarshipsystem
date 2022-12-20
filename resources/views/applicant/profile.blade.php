@@ -18,12 +18,6 @@
                                         <i class="bi bi-arrow-right-circle ms-1"></i>
                                     </button>
                                 @endif
-                                {{-- <a href="{{ $application != null ? route('apply') : '' }}"
-                                 class="{{ $application != null ? 'btn btn-outline-primary shadow-sm h-100'
-                                 : 'btn btn-outline-secondary shadow-sm h-100' }}" {{ $application != null ? '' : 'disabled' }}>
-                                    Apply Now
-                                    <i class="bi bi-arrow-right-circle ms-1"></i>
-                                </a> --}}
                             </div>
                             <x-form.row-col>
                                 <x-slot name="first">
@@ -69,7 +63,46 @@
                                             <x-form.input name="years_in_city" disable="true" value="{{ $applicant->years_in_city }}"/>
                                         </x-slot>
                                         <x-slot name="second">
-                                            <x-form.input name="family_income" disable="true" value="{{ $applicant->family_income }}"/>
+                                            @php
+                                                $range = json_decode($family_incomes->range, true);
+
+                                                $bracket2 = explode('-', $range['bracket2']);
+                                                $bracket3 = explode('-', $range['bracket3']);
+                                                $bracket4 = explode('-', $range['bracket4']);
+                                                $bracket5 = explode('-', $range['bracket5']);
+                                                $bracket6 = explode('-', $range['bracket6']);
+                                                $bracket7 = explode('-', $range['bracket7']);
+                                            @endphp
+                                            @if ($range['bracket1'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{  'Less than ₱' . number_format($range['bracket1']) }}"/>
+
+                                            @elseif ($range['bracket2'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($bracket2[0]) . ' to ' . '₱'.number_format($bracket2[1]) }}"/>
+
+                                            @elseif ($range['bracket3'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($bracket3[0]) . ' to ' . '₱'.number_format($bracket3[1]) }}"/>
+
+                                            @elseif ($range['bracket4'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($bracket4[0]) . ' to ' . '₱'.number_format($bracket4[1]) }}"/>
+
+                                            @elseif ($range['bracket5'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($bracket5[0]) . ' to ' . '₱'.number_format($bracket5[1]) }}"/>
+
+                                            @elseif ($range['bracket6'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($bracket6[0]) . ' to ' . '₱'.number_format($bracket6[1]) }}"/>
+
+                                            @elseif ($range['bracket7'] === $applicant->family_income)
+                                                <x-form.input name="family_income" disable="true"
+                                                value="{{ '₱'.number_format($range['bracket7']) . ' and above' }}"/>
+                                            @else
+
+                                            @endif
                                         </x-slot>
                                     </x-form.row-col>
 

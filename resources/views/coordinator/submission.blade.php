@@ -81,7 +81,7 @@
                                     <td>
                                         <input type="checkbox" name="applicant[]"
                                         value="{{ $list->applicant->first()->id }}"
-                                        class="form-check-input mt-1 ms-2"
+                                        class="form-check-input mt-1"
                                         onchange="document.getElementById('checkBox1').disabled = !this.checked;
                                         document.getElementById('checkBox2').disabled = !this.checked;">
                                     </td>

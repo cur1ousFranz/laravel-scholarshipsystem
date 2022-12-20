@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Coordinator\FamilyIncomeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ChangesController extends Controller
 {
@@ -22,13 +23,13 @@ class ChangesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'school' => 'required',
-            'course' => 'required',
+            'school_name' => 'required',
+            'course_name' => 'required',
         ]);
 
         DB::table('school_courses')->insert([
-            'school' => $validated['school'],
-            'course' => $validated['course']
+            'school' => $validated['school_name'],
+            'course' => $validated['course_name']
         ]);
 
         return back()->with('success', 'Course added!');
