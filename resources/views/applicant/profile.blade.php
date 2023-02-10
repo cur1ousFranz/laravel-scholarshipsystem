@@ -330,7 +330,8 @@
                                                     @endphp
                                                     <x-form.label name="family_income (Monthly)"/>
                                                     <select id="family_income" class="shadow-sm form-select form-control" name="family_income">
-                                                        <option value="{{ $range['bracket1'] }}" selected>{{ 'Less than ₱' . number_format($range['bracket1']) }}</option>
+                                                        <option selected disabled>Select</option>
+                                                        <option value="{{ $range['bracket1'] }}">{{ 'Less than ₱' . number_format($range['bracket1']) }}</option>
                                                         <option value="{{ $range['bracket2'] }}">
                                                             {{ '₱'.number_format($bracket2[0]) . ' to ' . '₱'.number_format($bracket2[1]) }}
                                                         </option>
