@@ -11,10 +11,3 @@
 
     <x-form.error :name="$name"/>
 </div>
-
-{{--
-
-<x-form.label name="name"/>
-<x-form.error name="name"/>
-
---}}
