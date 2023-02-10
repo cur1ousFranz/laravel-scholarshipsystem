@@ -173,27 +173,29 @@
             -webkit-line-clamp: 2; /* after 3 line show ... */
             -webkit-box-orient: vertical;
         }
+
+        body {
+            font-family:Arial, Helvetica, sans-serif
+        }
     </style>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom"
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top"
     style="background-color: #fffcff">
         <div class="container ">
             @if (Auth::check() || Auth::guest())
                 @if (Auth::check() && auth()->user()->role === 'coordinator')
                     <a class="navbar-brand fw-bolder" href="/home"
                     style="letter-spacing: 3px">
-                    <img style="width: 100px; height: 30px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
-                    EDUKAR
+                    <img style="width: 100px; height: 40px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
                     </a>
                 @else
                     <a class="navbar-brand fw-bolder" href="/"
                     style="letter-spacing: 3px">
-                    <img style="width: 100px; height: 30px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
-                    EDUKAR
+                    <img style="width: 100px; height: 40px" src="{{ asset('storage/img/aklat_logo.png') }}" alt="">
                     </a>
                 @endif
             @endif
@@ -206,8 +208,10 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         @if (auth()->user()->role == 'applicant')
-                            <li class="nav-item">
-
+                            <li class="nav-item d-lg-none text-center">
+                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                            </li>
+                            <li class="nav-item d-none d-lg-block">
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark position-relative"
                                     role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
@@ -222,7 +226,7 @@
 
                                     <div class="dropdown-menu p-0 position-absolute"
                                     style="max-height: 275px; width: 200px; overflow-y: auto">
-                                        <h5 class="fw-bold mt-2 text-center">Notifications</h5>
+                                        <h6 class="fw-bold mt-2 px-3">Notifications</h6>
                                         <ul class="list-group">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notification)
@@ -263,8 +267,12 @@
                                     </div>
                                 </div>
                             </li>
-
-                            <li class="nav-item">
+                            <li class="nav-item d-lg-none text-center">
+                                <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0">
+                                    Notifications
+                                </a>
+                            </li>
+                            <li class="nav-item d-none d-lg-block">
 
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark" data-bs-toggle="dropdown">
@@ -279,6 +287,11 @@
                                         </a>
                                     </div>
                                 </div>
+                            </li>
+                            <li class="nav-item d-lg-none text-center">
+                                <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0 text-danger">
+                                    Logout
+                                </a>
                             </li>
                         @elseif(auth()->user()->role == 'coordinator')
                             <li class="{{ Route::current()->getName() === 'home' ? 'border-bottom border-2 border-primary' : '' }} nav-item">
@@ -336,8 +349,8 @@
     <div class="modal fade" id="signinModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content border" style="max-width: 450px">
-                <div class="modal-header d-flex justify-content-center">
-                    <h2 class="modal-title">Sign in</h2>
+                <div class="modal-header">
+                    <h2 class="modal-title px-2">Sign in</h2>
                 </div>
                 <div class="modal-body">
                     <form action="/authenticate" method="POST">
@@ -345,9 +358,10 @@
 
                         <div class="container">
                             <x-form.input name="username"/>
-                            <x-form.input class="mt-2" name="password" type="password"/>
+                            <x-form.input class="mt-4" name="password" type="password"/>
+                            <h6 class="text-center mt-4">Don't have an account? <a href="{{ route('signup') }}">Sign up</a></h6>
                             <hr>
-                            <x-form.button class="mt-3 mb-3 form-control">Sign in</x-form.button>
+                            <x-form.button class="mt-2 mb-3 form-control">Sign in</x-form.button>
                         </div>
                     </form>
                 </div>
@@ -358,7 +372,7 @@
     @if (session()->has('success'));
         <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
             <div style="margin-top: 80px"
-            class="alert alert-success w-25"
+            class="alert bg-success text-white"
             x-data="{show: true}"
             x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
@@ -370,7 +384,7 @@
     @if (session()->has('error'));
         <div class="d-flex justify-content-center ms-3 text-center" id="alertError">
             <div style="margin-top: 80px"
-            class="alert alert-danger w-25 top-0 position-static"
+            class="alert  bg-danger text-white top-0 position-static"
             x-data="{show: true}"
             x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
@@ -386,7 +400,7 @@
     style="background-color: #fffcff">
 
         <div class="footer-copyright text-center py-3">
-            © 2022 All rights reserved.
+           © {{ now()->year }} All rights reserved.
         </div>
     </footer>
     <!-- Footer -->
