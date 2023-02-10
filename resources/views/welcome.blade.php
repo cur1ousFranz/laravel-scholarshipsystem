@@ -10,8 +10,9 @@
                 <div class="col-lg-6" style="margin-top: 100px">
 
                     <div class="mt-5 text-center" style="color: #2f4550">
-                        <div class="h1 text-white fw-bold" style="font-family: Arial, sans-serif;"><strong>EDUKAR <span
-                            style="color: #fff01e;"><strong>SCHOLARSHIP</strong></span> <br> OPPORTUNITIES
+                        <div class="h1 text-white fw-bold" style="font-family: Arial, sans-serif;">
+                            <strong>EDUKAR <span><strong>GENSAN</strong></span> <br> <span
+                            style="color: #fff01e;">SCHOLARSHIP</span>
                         </div>
                     </div>
                     <div class="text-dark text-center d-none d-sm-block">
@@ -34,7 +35,7 @@
                                     <br>Until: {{ date('F j, Y', strtotime($application->end_date )) }}
                                 </p>
                             @else
-                                <p class="fw-bold text-danger text-decoration-none mt-4 me-3">Closed</p>
+                                <p class="fw-bold text-danger text-decoration-none mt-3 me-3">Closed</p>
                             @endif
                         </div>
 
