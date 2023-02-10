@@ -3,9 +3,7 @@
         <div class="container" style="min-width: 200px; max-width: 450px">
             <div class="card">
                 <div class="card-body">
-                    <div class="text-center">
-                        <h2>Sign up</h2>
-                    </div>
+                    <h2 class="mb-3 font-weight-bold">Sign up</h2>
                     <form action="/users" method="post">
                         @csrf
                         <x-form.input name="username"/>
