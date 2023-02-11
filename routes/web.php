@@ -16,6 +16,7 @@ use App\Http\Controllers\RejectedApplicantController;
 use App\Http\Controllers\QualifiedApplicantController;
 use App\Http\Controllers\ScholarshipApplicationController;
 use App\Http\Controllers\ChangesController;
+use App\Http\Controllers\ForgotPasswordController;
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/', 'index');
@@ -23,6 +24,13 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/users', 'create')->middleware('guest');
     Route::post('authenticate', 'login')->name('login')->middleware('guest');
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+});
+
+Route::controller(ForgotPasswordController::class)->group(function(){
+    Route::get('/forgot/password', 'create')->name('forgot-password')->middleware('guest');
+    Route::post('/forgot/password/send', 'store')->name('forgot-password-send')->middleware('guest');
+    Route::get('/forgot/password/change', 'show')->name('forgot-password-change')->middleware('guest');
+    Route::put('/forgot/password/update', 'update')->name('forgot-password-update')->middleware('guest');
 });
 
 Route::get('activity', [ActivityController::class, 'index']);
@@ -100,6 +108,9 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('/notifications/{notification}', [NotificationController::class, 'show'])
             ->name('notification');
+
+        Route::get('/notifications', [NotificationController::class, 'index'])
+            ->name('notifications');
 
     });
 
