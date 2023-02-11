@@ -1,7 +1,7 @@
 <x-layout title="Notification">
     <section>
         <x-container class="d-flex justify-content-center">
-            <div class="card shadow-sm w-75 mt-4" >
+            <div class="card shadow-sm mt-4 w-100 sm-w-100 md-w-75">
                 <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     @php
                         auth()->user()->unreadNotifications->where('id', $notification->id)->markAsRead();
