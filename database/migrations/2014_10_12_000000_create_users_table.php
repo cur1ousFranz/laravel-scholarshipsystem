@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('role');
+            $table->rememberToken();
+            $table->string('forgot_password_token')->nullable();
             $table->timestamps();
         });
     }
