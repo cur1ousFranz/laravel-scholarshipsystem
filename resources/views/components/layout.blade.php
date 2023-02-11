@@ -37,6 +37,10 @@
     </script>
 
     <style>
+        
+        body {
+            font-family:Arial, Helvetica, sans-serif
+        }
 
         /* This is for submissions table */
         .scroll {
@@ -174,8 +178,17 @@
             -webkit-box-orient: vertical;
         }
 
-        body {
-            font-family:Arial, Helvetica, sans-serif
+        ::-webkit-scrollbar {
+            width: 0.4em;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #c2bdbd;
+        }
+
+        .hide-background {
+            background-color: transparent;
         }
     </style>
 
@@ -208,7 +221,7 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         @if (auth()->user()->role == 'applicant')
-                            <li class="nav-item d-lg-none text-center">
+                            <li class="nav-item d-lg-none">
                                 <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                             </li>
                             <li class="nav-item d-none d-lg-block">
@@ -226,7 +239,7 @@
 
                                     <div class="dropdown-menu p-0 position-absolute"
                                     style="max-height: 275px; width: 200px; overflow-y: auto">
-                                        <h6 class="fw-bold mt-2 px-3">Notifications</h6>
+                                        <h5 class="fw-bold mt-2 px-3">Notifications</h5>
                                         <ul class="list-group">
                                             @if (auth()->user()->notifications->count() != 0)
                                                 @foreach (auth()->user()->unreadNotifications as $notification)
@@ -267,13 +280,17 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item d-lg-none text-center">
-                                <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0">
+                            <li class="nav-item d-lg-none">
+                                <a href="{{ route('notifications') }}" class="dropdown-item">
                                     Notifications
+                                    @if (auth()->user()->unreadNotifications->count())
+                                        <span class="badge rounded-pill bg-danger mt-1">
+                                            {{ auth()->user()->unreadNotifications->count() }}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                             <li class="nav-item d-none d-lg-block">
-
                                 <div class="dropdown show">
                                     <a class="btn nav-link text-dark" data-bs-toggle="dropdown">
                                         {{ auth()->user()->username }}
@@ -282,14 +299,14 @@
                                     <div class="dropdown-menu text-center">
                                         <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0 text-danger">
+                                        <a href="{{ route('logout') }}" class="dropdown-item">
                                             Logout
                                         </a>
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item d-lg-none text-center">
-                                <a href="{{ route('logout') }}" class="btn mb-0 pb-0 pt-0 text-danger">
+                            <li class="nav-item d-lg-none">
+                                <a href="{{ route('logout') }}" class="dropdown-item">
                                     Logout
                                 </a>
                             </li>
@@ -359,8 +376,19 @@
                         <div class="container">
                             <x-form.input name="username"/>
                             <x-form.input class="mt-4" name="password" type="password"/>
-                            <h6 class="text-center mt-4">Don't have an account? <a href="{{ route('signup') }}">Sign up</a></h6>
+                            <div class="mt-4 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                    <label class="form-check-label" for="remember">
+                                      Remember me
+                                    </label>
+                                  </div>
+                                <h6 class="text-end"><a href="{{ route('forgot-password') }}" class="text-black">
+                                    Forgot Password</a>
+                                </h6>
+                            </div>
                             <hr>
+                            <h6 class="text-center">Don't have an account? <a href="{{ route('signup') }}">Sign up</a></h6>
                             <x-form.button class="mt-2 mb-3 form-control">Sign in</x-form.button>
                         </div>
                     </form>
