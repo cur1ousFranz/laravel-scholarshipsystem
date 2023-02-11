@@ -15,16 +15,16 @@ class ApplicationController extends Controller
 {
 
     private $applicant;
-    private function getApplicant(){
-
+    private function getApplicant()
+    {
         $this->applicant = Applicant::without('school', 'address', 'contact')
         ->where('users_id', Auth::user()->id)->first();
 
         return $this->applicant;
     }
 
-    public function index(){
-
+    public function index()
+    {
         $application = Application::with('applicationDetail')->where('status', 'On-going')->latest()->first();
 
         if($application != null){
@@ -63,7 +63,7 @@ class ApplicationController extends Controller
         $formFields['applications_id'] = $application->id;
         $formFields['applicants_id'] = $this->getApplicant()->id;
 
-        /** MATCH ALGORITHM - RATING PERCENTAGE */
+        /** CALCULATE RATING PERCENTAGE */
         $family_incomes = DB::table('family_incomes')->first();
         $range = json_decode($family_incomes->range, true);
         $rating = 0;

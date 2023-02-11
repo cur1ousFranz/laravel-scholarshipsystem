@@ -10,10 +10,6 @@ class QualifiedApplicantController extends Controller
 
     public function index()
     {
-        /**
-         * Retrieving the list of applications in QualifiedApplicants table
-         * and filter it with unique applications_id, to avoid duplications
-         */
         return view('coordinator.qualified_applicant',[
             'qualifiedApplicant' => QualifiedApplicant::with([
                                 'application',
@@ -26,8 +22,8 @@ class QualifiedApplicantController extends Controller
 
     }
 
-    public function show(Application $application){
-
+    public function show(Application $application)
+    {
         $list = QualifiedApplicant::with([
                     'applicant',
                     'applicant.school',

@@ -10,7 +10,6 @@ class RejectedApplicantController extends Controller
 
     public function index()
     {
-
         return view('coordinator.rejected_applicant',[
             'rejectedApplicant' => RejectedApplicant::with('applicant', 'application')
             ->select('applications_id')
@@ -21,8 +20,8 @@ class RejectedApplicantController extends Controller
         ]);
     }
 
-    public function show(Application $application){
-
+    public function show(Application $application)
+    {
         $list = RejectedApplicant::with([
             'applicant',
             'applicant.school',

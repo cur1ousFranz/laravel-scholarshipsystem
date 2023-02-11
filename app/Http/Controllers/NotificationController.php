@@ -15,10 +15,30 @@ use Illuminate\Support\Facades\Notification;
 class NotificationController extends Controller
 {
 
+    public function index()
+    {
+        $notifications = auth()->user()->notifications;
+        return view('applicant.notifications', compact('notifications'));
+    }
+
+    public function show(Request $request){
+
+        $notification = DB::table('notifications')
+                        ->where('id', $request->route('notification'))
+                        ->first();
+        if($notification) {
+            return view('applicant.notification',[
+                'notification' => $notification
+            ]);
+        }
+
+        return view('page-not-found');
+    }
+
+    
     protected function sendMail($title, $body, $applicants)
     {
         $data = array('body' => $body);
-
         foreach($applicants as $applicant){
 
             Mail::send('email.email-content', $data, function($message) use ($applicant, $title){
@@ -29,61 +49,28 @@ class NotificationController extends Controller
 
     }
 
-    /**
-     * Applicant Notification message
-     */
-    public function show(Request $request){
-
-        $notification = DB::table('notifications')
-                        ->where('id', $request->route('notification'))
-                        ->first();
-        return view('applicant.notification',[
-            'notification' => $notification
-        ]);
-    }
-
-    /**
-     * Send Notification to Qualified Applicant List
-     */
-    public function storeQualified(Request $request, Application $application){
-
+    public function storeQualified(Request $request, Application $application)
+    {
         $formFields = $request->validate([
             'title'=> 'required',
             'message' => 'required',
             'coordinator' => 'required',
         ]);
 
-        /**  Get all applicants that belongs to qualified table
-         *   according to the current application id
-         */
         $qualifiedApplicants = QualifiedApplicant::with('applicant')->where(
             'applications_id', $application->id)->latest()->get();
 
-        /**
-         * Looping through Applicant table that is match in qualified
-         * applicant list, and store it to an array
-         */
         $applicants = array();
         foreach($qualifiedApplicants as $list){
 
             $applicants[] = $list->applicant;
         }
-        /**
-         * Looping through applicant list and store their users_id
-         * to an array
-         */
 
         $applicantsID = array();
         foreach($applicants as $applicant){
             $applicantsID[] = $applicant->first()->users_id;
         }
 
-
-        /**
-         * Getting all the users from Users table and looping on it.
-         * Whenever the current users->id is in array of applicantListID
-         * it stores it in another array which is applicantNotif.
-         */
         $user = User::get();
         $applicantNotif = array();
         foreach($user as $users){
@@ -94,10 +81,6 @@ class NotificationController extends Controller
             }
         }
 
-        /**
-         * Retreiving users that has an ID belongs to
-         * applicantNotifs array
-         */
         $users = array();
         foreach($applicantNotif as $id){
 
@@ -113,46 +96,27 @@ class NotificationController extends Controller
 
     }
 
-    /**
-     * Send Notification to Rejected Applicant List
-     */
-    public function storeRejected(Request $request, Application $application){
-
+    public function storeRejected(Request $request, Application $application)
+    {
         $formFields = $request->validate([
             'title'=> 'required',
             'message' => 'required',
             'coordinator' => 'required',
         ]);
 
-        /**  Get all applicants that belongs to rejected table
-         *   according to the current application id
-         */
         $rejectedApplicantList = RejectedApplicant::where('applications_id', $application->id)
         ->latest()->get();
 
-        /**
-         * Looping through Applicant table that is match in rejected
-         * applicant list, and store it to an array
-         */
         $applicants = array();
         foreach($rejectedApplicantList as $list){
             $applicants[] = $list->applicant;
         }
 
-        /**
-         * Looping through applicant list and store their users_id
-         * to an array
-         */
         $applicantsID = array();
         foreach($applicants as $applicant){
             $applicantsID[] = $applicant->first()->users_id;
         }
 
-        /**
-         * Getting all the users from Users table and looping on it.
-         * Whenever the current users->id is in array of applicantListID
-         * it stores it in another array which is applicantNotif.
-         */
         $user = User::get();
         $applicantNotif = array();
         foreach($user as $users){
@@ -163,10 +127,6 @@ class NotificationController extends Controller
             }
         }
 
-        /**
-         * Retreiving users that has an ID belongs to
-         * applicantNotifs array
-         */
         $users = array();
         foreach($applicantNotif as $id){
 

@@ -11,16 +11,16 @@ use App\Models\RejectedApplicant;
 
 class CoordinatorController extends Controller
 {
-    public function home(){
-
+    public function home()
+    {
         return view('coordinator.home', [
             'activities' => Activity::latest()->limit(5)->get(),
             'applications' => Application::latest()->get()
         ]);
     }
 
-    public function report(){
-
+    public function report()
+    {
         /**
          * This is for Applied Applicants chart in dashboard
          */

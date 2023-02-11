@@ -10,18 +10,18 @@ use Illuminate\Support\Facades\Storage;
 class ActivityController extends Controller
 {
 
-    public function index(){
-
+    public function index()
+    {
         return view('post.activity', ['activities' => Activity::latest()->paginate(5)]);
     }
 
-    public function show(Activity $activity){
-
+    public function show(Activity $activity)
+    {
         return view('post.activity-show', ['activity' => $activity]);
     }
 
-    public function store(){
-
+    public function store()
+    {
         $formFields = request()->validate([
             'title' => ['required', Rule::unique('activities', 'title')],
             'image' => ['required', 'mimes:png,jpg,jpeg'],

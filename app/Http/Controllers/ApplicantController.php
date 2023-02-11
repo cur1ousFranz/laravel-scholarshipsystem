@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Application;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Applicant\UpdateApplicantRequest;
@@ -16,8 +14,8 @@ class ApplicantController extends Controller
 {
 
     private $applicant;
-    private function getApplicant(){
-
+    private function getApplicant()
+    {
         $this->applicant = Applicant::where('users_id', Auth::user()->id)->first();
 
         return $this->applicant;

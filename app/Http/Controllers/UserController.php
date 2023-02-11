@@ -5,23 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Scholar;
 use App\Models\Activity;
-use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Requests\User\LoginUserRequest;
 use App\Http\Requests\User\CreateUserRequest;
-use App\Http\Requests\CreateUserRequest as RequestsCreateUserRequest;
 
 class UserController extends Controller
 {
 
     use Notifiable;
 
-    public function index(){
-
+    public function index()
+    {
         if(Auth::check() && auth()->user()->role === 'coordinator'){
             return redirect('/home');
         }
@@ -31,13 +28,14 @@ class UserController extends Controller
             'scholars' => Scholar::latest()->get()
         ]);
     }
-    public function signup(){
-
+    
+    public function signup()
+    {
         return view('signup');
     }
 
-    public function create(CreateUserRequest $request){
-
+    public function create(CreateUserRequest $request)
+    {
         $validated = $request->validated();
 
         $user = User::create([
@@ -58,9 +56,10 @@ class UserController extends Controller
     {
 
         $validated = $request->validated();
-        $user = User::where('username', $validated['username'])->first();
+        $remember = $request->remember ? true : false;
 
-        if(Auth::attempt($validated)){
+        $user = User::where('username', $validated['username'])->first();
+        if(Auth::attempt($validated, $remember)){
             if($user->role == "applicant"){
                 $request->session()->regenerate();
                 return redirect('/')->with('success', 'Logged in!');
@@ -75,10 +74,12 @@ class UserController extends Controller
         return back()->with('error', 'Invalid Credentials!');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
 }

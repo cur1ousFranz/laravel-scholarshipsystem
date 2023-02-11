@@ -25,14 +25,13 @@ class ScholarshipApplicationController extends Controller
     {
         $formFields = $request->validated();
 
-        $reqPath = $formFields['documentary_requirement']->store('documentary_requirement', 's3');
-        $appPath = $formFields['application_form']->store('application_form', 's3');
+        // $reqPath = $formFields['documentary_requirement']->store('documentary_requirement', 's3');
+        // $appPath = $formFields['application_form']->store('application_form', 's3');
 
-        $formFields['documentary_requirement'] = Storage::disk('s3')->url($reqPath);
-        $formFields['application_form'] = Storage::disk('s3')->url($appPath);
+        // $formFields['documentary_requirement'] = Storage::disk('s3')->url($reqPath);
+        // $formFields['application_form'] = Storage::disk('s3')->url($appPath);
 
         $coordinator = Coordinator::where('users_id', Auth::user()->id)->first();
-
         $application = Application::create([
             'coordinators_id' => $coordinator->id,
             'slots' => $formFields['slots'],
@@ -45,15 +44,10 @@ class ScholarshipApplicationController extends Controller
         $application->applicationDetail()->create([
 
             'description' => $formFields['description'],
-            // 'years_in_city' => 3,
-            // 'family_income' => 'Less than ₱10,957',
-            // 'educational_attainment' => 'Incoming College / College Level',
-            // 'gwa' => 80,
-            // 'nationality' => 'Filipino',
-            // 'city' => 'General Santos',
-            // 'registered_voter' => 'Yes',
             'documentary_requirement' => $formFields['documentary_requirement'],
             'application_form' => $formFields['application_form']
+            // 'documentary_requirement' => '',
+            // 'application_form' => ''
 
         ]);
 

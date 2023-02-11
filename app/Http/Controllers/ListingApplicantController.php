@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 class ListingApplicantController extends Controller
 {
 
-    public function index(ApplicantList $applicantlist){
+    public function index(ApplicantList $applicantlist)
+    {
         $family_incomes = DB::table('family_incomes')->first();
         return view('coordinator.evaluation', [
             'applicantlist' => ApplicantList::with([
@@ -30,9 +31,6 @@ class ListingApplicantController extends Controller
     public function store(Request $request, Application $application)
     {
 
-        /**
-         * Input has sent through checkboxes
-         */
         if ($request->input('applicant')) {
             switch ($request->input('action')) {
                 case 'qualified':
@@ -45,13 +43,11 @@ class ListingApplicantController extends Controller
                             ])
                             ->first();
 
-                        /** Getting the current count of qualified applicants, for validating the slots */
                         $count = QualifiedApplicant::where('applications_id', $application->id)
                                     ->select('id')
                                     ->get()
                                     ->count();
-
-                        // Validating if there is slot available
+                        
                         if($count < $application->slots){
                             $applicant = [
                                 'applications_id' => $application->id,
@@ -68,7 +64,6 @@ class ListingApplicantController extends Controller
                             return back()->with('error', 'No more slots available!');
                         }
 
-                        // CLosing the current application if slots has been fulfilled
                         $latestCount = QualifiedApplicant::where('applications_id', $application->id)
                                     ->select('id')
                                     ->get()

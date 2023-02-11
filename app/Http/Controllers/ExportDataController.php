@@ -10,8 +10,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ExportDataController extends Controller
 {
 
-    public function show(){
-
+    public function show()
+    {
         $year = request()->validate(['school_year' => 'required']);
 
         $applicantList = ApplicantList::with('applicant', 'applicant.school')

@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Storage;
 class ScholarController extends Controller
 {
 
-
-    public function store(){
-
+    public function store()
+    {
         request()->validate(['image' => ['required', 'mimes:png,jpg,jpeg']]);
         $path = request()->file('image')->store('scholars', 's3');
 
