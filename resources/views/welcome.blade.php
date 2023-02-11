@@ -83,7 +83,7 @@
                 <a class="slider-btn next" onclick="plusSlides(1)">❯</a>
             @empty
                 <div class="h4 text-center mt-5">
-                    Nothing to show scholars yet. Please come back later.
+                    Nothing to show. Please come back later.
                 </div>
             @endforelse
         </div>
@@ -126,7 +126,7 @@
                     </div>
                 @else
                     <div class="h4 text-center mt-5">
-                        Nothing to show activities yet. Please come back later.
+                        Nothing to show. Please come back later.
                     </div>
                 @endif
             </div>
