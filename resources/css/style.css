@@ -1,0 +1,152 @@
+body {
+    font-family:Arial, Helvetica, sans-serif
+}
+
+/* This is for submissions table */
+.scroll {
+    overflow-x: auto;
+    max-width: auto;
+
+}
+
+#applicantListHeader{
+    white-space: nowrap;
+}
+
+.scroll th:nth-child(1),
+.scroll td:nth-child(1){
+    position: sticky;
+    left: 0px;
+}
+
+.scroll th:nth-child(2),
+.scroll td:nth-child(2){
+    position: sticky;
+    left: 32px;
+}
+
+.scroll th:nth-child(3),
+.scroll td:nth-child(3){
+    position: sticky;
+    left: 91px;
+}
+
+.scroll td:nth-child(1),
+.scroll td:nth-child(2),
+.scroll td:nth-child(3){
+    background-color: #f7f7f7;
+}
+
+/* This is for qualified applicant and rejected list table */
+.scroll2 {
+    overflow-x: auto;
+    max-width: auto;
+
+}
+
+.scroll2 th:nth-child(1),
+.scroll2 td:nth-child(1){
+    position: sticky;
+    left: 0px;
+    background-color: white;
+}
+
+.scroll2 th:nth-child(2),
+.scroll2 td:nth-child(2){
+    position: sticky;
+    left: 59.9px;
+    background-color: white;
+}
+
+#alertSuccess,
+#alertError{
+
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index:9999;
+    border-radius:0px
+
+}
+
+/* Slide Show */
+
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/*Style for ">" next and "<" previous buttons */
+.slider-btn{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 8px 16px;
+    margin-top: -22px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+/* setting the position of the previous button towards left */
+.previous {
+    left: 2%;
+}
+/* setting the position of the next button towards right */
+.next {
+    right: 2%;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Fading animation */
+.fading {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+from {opacity: .4}
+to {opacity: 1}
+}
+
+/* CUT TEXT */
+.cut-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* after 3 line show ... */
+    -webkit-box-orient: vertical;
+}
+
+::-webkit-scrollbar {
+    width: 0.4em;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c2bdbd;
+}
+
+.hide-background {
+    background-color: transparent;
+}
