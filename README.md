@@ -10,41 +10,41 @@
 
 ## Installation
 
-### Clone the repository
+#### Clone the repository
 
 ```
 git clone https://github.com/cur1ousFranz/laravel-scholarshipsystem.git
 ```
-### Navigate to main directory
+#### Navigate to main directory
 
 ```
 cd laravel-scholarship-system
 ```
-### Install required dependencies
+#### Install required dependencies
 
 ```
 composer install
 ```
 
-### Copy the example env file and make the required configuration changes in the .env file
+#### Copy the example env file and make the required configuration changes in the .env file
 
 ```
 cp .env.example .env
 ```
 
-### Generate a new application key
+#### Generate a new application key
 
 ```
 php artisan key:generate
 ```
 
-### Run the database migrations (Set the database connection in .env before migrating)
+#### Run the database migrations (Set the database connection in .env before migrating)
 
 ```
 php artisan migrate
 ```
 
-### Start local development server.
+#### Start local development server.
 
 ```
 php artisan serve
@@ -52,11 +52,11 @@ php artisan serve
 
 #### You can now access the server at http://127.0.0.1:8000
 
-## Database seeding
+#### Database seeding
 
 #### Populate the database with seed data with relationship that includes user, coordinator, list of courses in a particular school, family income brackets as well as dynamic address. This can help you to start creating applicants and scholarship application. In order that applicant can apply, there must be a scholarship application published, otherwise the apply button will be disabled.
 
-### Run the database seeder and you're done.
+#### Run the database seeder and you're done.
 
 ```
 php artisan db:seed
@@ -68,7 +68,7 @@ php artisan db:seed
 php artisan migrate:fresh --seed
 ```
 
-## Features
+### Features
 
 * Applicant Registration, Complete Profile (CRUD).
 * Read Scholarship available, submit application (CRUD).
