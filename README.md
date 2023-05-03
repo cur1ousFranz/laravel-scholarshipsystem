@@ -13,7 +13,7 @@
 ### Clone the repository
 
 ```
-git clone git@github.com:cur1ousFranz/laravel-scholarshipsystem.git
+git clone https://github.com/cur1ousFranz/laravel-scholarshipsystem.git
 ```
 ### Navigate to main directory
 
