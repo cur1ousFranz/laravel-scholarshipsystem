@@ -44,9 +44,9 @@
     <x-navbar/>
 
     @if (session()->has('success'));
-        <div class="d-flex justify-content-center ms-3 text-center" id="alertSuccess">
-            <div style="margin-top: 80px"
-            class="alert bg-success text-white"
+        <div class="d-flex position-relative justify-content-center ms-3 text-center" id="alertSuccess">
+            <div style="margin-top: 50px; z-index: 1;"
+            class="alert position-absolute bg-success text-white"
             x-data="{show: true}"
             x-init="setTimeout(() => show = false, 2000)"
             x-show="show">
