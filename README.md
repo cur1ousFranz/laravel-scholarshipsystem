@@ -1,24 +1,81 @@
-<h2>Description</h2>
-<p>
-    Scholarship Application System is an online application which helps those applicants who are residents in General Santos City to lessen their effort applying for Edukar scholarship. It filters the most qualified applicants from registration to application, which also lessen the work of scholarship coordinator for filtering applicants.
-</p>
+# Edukar Scholarship Application Management System
 
-<h2>User Roles</h2>
-<p>Applicant, Coordinator </p>
+## Description
 
-<h3>Applicant:</h3>
-<p>Can create account and must complete their profile to be able to submit an scholarship application. Upon submission, applicant can only submit pdf file once. Applicant can recieve notifications from the system as well as in email.</p>
+####  Scholarship Application System is an online application which helps those applicants who are residents in General Santos City to lessen their effort applying for Edukar scholarship. System filters the most qualified applicants from registration to application and to rate the applicant based on their profile information which helps scholarship coordinator to determine who is the qualified applicants.
 
-<h3>Coordinator:</h3>
-<p>Can post a blogpost about activities or featured scholars. Coordinator can create an application and review the submitted document of applicants, and add them as qualified or rejected. Can send an announcement thru system's notification and email. Coordinator also can review the report data of applicants per batch as well as to export it as pdf file.</p>
+#### Scholarship coordinator can manage applicant's submission and select qualified and rejected applicants. Scholarship coordinator can send announcements to applicants via email and system's notification. Scholarship coordinator may also post their activities and featured scholars to be posted in landing page. This system allows scholarship coordinator to view and export annual data records of application.
 
-<h2>Features</h2>
-<p>-Applicant Registration, Complete Profile (CRUD)</p>
-<p>-Read Scholarship available, submit application (CRUD)</p>
-<p>-Applicant recieves notification both email and system's notification</p>
-<p>-Coordinator can post blog about activities and featured scholars (CRUD)</p>
-<p>-Read applicants and document attachments, mark applicant as qualified or rejected (CRUD)</p>
-<p>-Coordinator can read the summary of evaluation based on applicants profile information and rate by percentage</p>
-<p>-Coordinator can send notification to applicants both email and system's notification</p>
-<p>-Coordinator can read data reports every school year and export data as pdf file (CRUD)</p>
-<p>-Coordinator has functionality to update family income ranges as well as adding course in particular school (CRUD)</p>
+# Getting Started
+
+## Installation
+
+#### Clone the repository
+
+```
+git clone https://github.com/cur1ousFranz/laravel-scholarshipsystem.git
+```
+#### Navigate to main directory
+
+```
+cd laravel-scholarship-system
+```
+#### Install required dependencies
+
+```
+composer install
+```
+
+#### Copy the example env file and make the required configuration changes in the .env file
+
+```
+cp .env.example .env
+```
+
+#### Generate a new application key
+
+```
+php artisan key:generate
+```
+
+#### Run the database migrations (Set the database connection in .env before migrating)
+
+```
+php artisan migrate
+```
+
+#### Start local development server.
+
+```
+php artisan serve
+```
+
+#### You can now access the server at http://127.0.0.1:8000
+
+#### Database seeding
+
+#### Populate the database with seed data with relationship that includes user, coordinator, list of courses in a particular school, family income brackets as well as dynamic address. This can help you to start creating applicants and scholarship application. In order that applicant can apply, there must be a scholarship application published, otherwise the apply button will be disabled.
+
+#### Run the database seeder and you're done.
+
+```
+php artisan db:seed
+```
+
+#### ***Note:*** It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database by running the following command
+
+```
+php artisan migrate:fresh --seed
+```
+
+### Features
+
+* Applicant Registration, Complete Profile (CRUD).
+* Read Scholarship available, submit application (CRUD).
+* Applicant recieves notification both email and system's notification.
+* Coordinator can post blog about activities and featured scholars (CRUD).
+* Read applicants and document attachments, mark applicant as qualified or rejected (CRUD).
+* Coordinator can read the summary of evaluation based on applicants profile information and rate by percentage.
+* Coordinator can send notification to applicants both email and system's notification.
+* Coordinator can read data reports every school year and export data as pdf file (CRUD).
+* Coordinator has functionality to update family income ranges as well as adding course in particular school (CRUD).
